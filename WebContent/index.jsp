@@ -33,7 +33,7 @@
 		<div class="login">
 			<form>
 				<button type="submit">
-					<i class="fas fa-user-circle"></i>
+					<i class="fas fa-user-circle"></i> 
 				</button>
 			</form>
 		</div>
