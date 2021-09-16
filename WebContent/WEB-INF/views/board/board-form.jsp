@@ -37,7 +37,7 @@
 	</div>
 	
 <div class="content">
-	<h2 class="tit">*게시판</h2>
+	<h2 class="tit">게시판</h2>
 	<div class="desc_board">
 		<form action="${contextPath}/board/upload" method="post" enctype="multipart/form-data">
 			<div>
