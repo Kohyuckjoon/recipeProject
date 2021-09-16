@@ -7,7 +7,7 @@
 <title>Recipe</title>
 <link href="resources/css/reset.css" type="text/css" rel="stylesheet">
 <link href="resources/css/all.css" rel="stylesheet">
-<link href="resources/css/test.css" rel="stylesheet"  type="text/css">
+<link href="resources/css/test.css"rel="stylesheet"  type="text/css">
 </head>
 <body>
 	
