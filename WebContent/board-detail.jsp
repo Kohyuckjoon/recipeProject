@@ -7,7 +7,7 @@
 <link href="resources/css/reset.css" type="text/css" rel="stylesheet">
 <link href="resources/css/all.css" rel="stylesheet">
 <link href="resources/css/test.css"rel="stylesheet"  type="text/css">
-<link rel="stylesheet" href="/resources/css/board/board.css"/>
+<link rel="stylesheet" href="/resources/css/board/board-detail.css"/>
 </head>
 <body>
 <div class="head">
@@ -31,7 +31,7 @@
 <!-- 게시판 목록 리스트 -->
 <div class="content">
 
-	<h2 class="tit">게시판</h2>
+	<h1 class="tit">게시판</h1>
 	<div class="category">
 				<form>		 		
 					<select name="nation">
@@ -43,11 +43,16 @@
 			 	</form>
 	</div>
 	<div class="info">
-		<span>번호  <c:out value="${datas.board.no}"/></span>
-		<span>제목 <c:out value="${datas.board.title}"/></span>
-		<span>등록일  <c:out value="${datas.board.date}"/></span>
-		<span>작성자 <c:out value="${datas.board.id}"/></span>
-		<span>조회수  <c:out value="${datas.board.viewCount}"/></span>
+	<table class="list_board">
+		<tr>
+		
+		<td>번호  <c:out value="${datas.board.no}"/></td>
+		<td>제목 <c:out value="${datas.board.title}"/></td>
+		<td>등록일  <c:out value="${datas.board.date}"/></td>
+		<td>작성자 <c:out value="${datas.board.id}"/></td>
+		<td>조회수  <c:out value="${datas.board.viewCount}"/></td>
+		</tr>
+	</table>
 	</div>
 	
 <div class="btn_page_num" id=page>
