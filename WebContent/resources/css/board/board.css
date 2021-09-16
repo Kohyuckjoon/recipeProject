@@ -31,5 +31,8 @@
    left:30%;
 }
 
+.category{
+	font-size:1.5vw;
+}
 .btn_down-file{margin-left:1%;   z-index:999;}
 .article_content{min-height: 50vh; border-bottom: 1px solid;}
