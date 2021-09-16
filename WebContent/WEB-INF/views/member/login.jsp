@@ -3,38 +3,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
+
 <style type="text/css">
 .tit{display:block; width:50px;}
 .valid-msg{color:red; font-size:0.5vw;}
 </style>
 </head>
 <body>
+<%@ include file="/WEB-INF/include/head.jsp" %>
+
+
+<a herf="javascript:kakaoLogin();"><img src="/resources/img/kakao_login_large_narrow.png"></a>
+	<ul>
+	<li onclick="kakaoLogin();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그인</span>
+      </a>
+	</li>
+	<li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+</ul>
+
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript">
-	window.Kakao.init("0c512e152e989192c220235a73035b4b");
-
-	function kakaoLogin(){
-		window.Kakao.Auth.login({
-			scope:''
-		})
-	}
-
+<script>
+Kakao.init('0c512e152e989192c220235a73035b4b'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+        	  console.log(response)
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
 </script>
-	<h1>로그인</h1>
-	<hr>
-	<form action="/member/login" method="post">
-	
-		<c:if test="${not empty param.err}">
-		<span class="valid-msg">아이디나 비밀번호를 확인하세요.</span>
-		</c:if>
-	
-		<span class='tit'>ID : </span>
-		<input type="text" name="userId" id="userId">
-		<span class='tit'>Password : </span>
-		<input type="password" name="password" id="password">
-		<button>로그인</button>
-	</form>
 </body>
 </html>
