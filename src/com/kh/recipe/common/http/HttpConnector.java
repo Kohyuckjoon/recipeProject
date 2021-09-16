@@ -16,10 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.exception.HandlableException;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'main' of https://github.com/Kohyuckjoon/recipeProject
 
 public class HttpConnector {
 
