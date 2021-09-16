@@ -28,38 +28,44 @@
 		</form>
 
 </div>
-	
-<div class="content"> 
+<!-- 게시판 목록 리스트 -->
+<div class="content">
+
 	<h2 class="tit">게시판</h2>
-	<div class="desc_board">
-		<form action="${contextPath}/board/upload" method="post" enctype="multipart/form-data">
-			<div>
-				<div class="tit_board">
-					제목 : <input type="text" name="title" required="required"/><br>
-					파일 : <input type="file" name="files" id="contract_file" multiple/>
-				</div>
-				<div class="category">
+	<div class="category">
 				<form>		 		
 					<select name="nation">
 				 		<option  selected disabled> ---게시글 분류---</option>
+				 		<option value="all" id ="all">전체보기</option>
 				 		<option value="free" id ="free">자유</option>
 				 		<option value="scrap" id="scraps">스크랩공유</option>
 				 	</select>
-			 </form>
-				</div>
-				<div class="content_board">
-					<textarea name="content" required="required" maxlength="250"></textarea>
-				</div>
-				<div class="btn_section">
-					<button style="background-color:blue; color:white; width:8%">글쓰기</button>
-					<button style="background-color:blue; color:white; width:5%">목록</button>
-				</div>
-			</div>
-		</form>
+			 	</form>
 	</div>
+	<div class="info">
+		<span>번호  <c:out value="${datas.board.no}"/></span>
+		<span>제목 <c:out value="${datas.board.title}"/></span>
+		<span>등록일  <c:out value="${datas.board.date}"/></span>
+		<span>작성자 <c:out value="${datas.board.id}"/></span>
+		<span>조회수  <c:out value="${datas.board.viewCount}"/></span>
+	</div>
+	
+<div class="btn_page_num" id=page>
+				
+				<a href="#"><i class="fas fa-angle-double-left"></i></a>
+				<a href="#"><i class="fas fa-angle-left"></i></a>
+			    <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+				<a href="#"><i class="fas fa-angle-right"></i></a>
+				<a href="#"><i class="fas fa-angle-double-right"></i></a>
 </div>
-
-	<!-- 여기부턴 foot -->
+<div class="btn_section">
+					<button style="background-color:blue; color:white; width:10%">글쓰기</button>
+	</div>
+<!-- 여기부턴 foot -->
 	<div class="foot">
 		<div class="Copyright">Copyright © 1992-2021 HSJ All Right
 			Reserved</div>
