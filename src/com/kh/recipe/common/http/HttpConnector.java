@@ -14,8 +14,8 @@ import java.net.URLEncoder;
 import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.kh.toy.common.code.ErrorCode;
-import com.kh.toy.common.exception.HandlableException;
+import com.kh.recipe.common.code.ErrorCode;
+import com.kh.recipe.common.exception.HandlableException;
 
 public class HttpConnector {
 
