@@ -12,6 +12,7 @@ public class Board {
 	private Date date; //게시날짜
 	private int viewCount; //조회수
 	
+	
 	public int getNo() {
 		return no;
 	}
