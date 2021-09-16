@@ -15,7 +15,7 @@ import java.util.List;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.http.HttpConnector;
 import com.kh.recipe.common.http.RequestParams;
-import com.kh.recipe.common.mail.MailSender;
+import com.kh.recipe.common.mail.handler.MailSender;
 import com.kh.recipe.member.model.dao.MemberDao;
 import com.kh.recipe.member.model.dto.Member;
 

@@ -9,9 +9,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 
-import com.kh.toy.common.code.Config;
-import com.kh.toy.common.code.ErrorCode;
-import com.kh.toy.common.exception.HandlableException;
+import com.kh.recipe.common.code.Config;
+import com.kh.recipe.common.code.ErrorCode;
+import com.kh.recipe.common.exception.HandlableException;
+
+
 
 public class MailSender {
 	
