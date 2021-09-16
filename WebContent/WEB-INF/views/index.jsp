@@ -32,7 +32,7 @@
 
 		<div class="login">
 			<form>
-				<button type="submit">
+				<button class="login_btn" type="submit" href="/WEB-INF/views/member/login.jsp">
 					<i class="fas fa-user-circle"></i>
 				</button>
 			</form>
