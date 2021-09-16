@@ -13,13 +13,8 @@
 <%@ include file="/WEB-INF/include/head.jsp" %>
 
 
-<a herf="javascript:kakaoLogin();"><img src="/resources/img/kakao_login_large_narrow.png" style="height :60px;width:auto;"></a>
+<a herf="javascript:kakaoLogin();"><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :60px;width:auto;"></a>
 	<ul>
-	<li onclick="kakaoLogin();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그인</span>
-      </a>
-	</li>
 	<li onclick="kakaoLogout();">
       <a href="javascript:void(0)">
           <span>카카오 로그아웃</span>
