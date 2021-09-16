@@ -40,8 +40,9 @@ function kakaoLogin() {
         Kakao.API.request({
           url: '/v2/user/me',
           success: function (response) {
-        	  console.log(response)
+        	  
         	  alert("kakao login success!");
+        	  console.log(JSON.stringify(response))
         	  var userData = response;
         	  jsonData = JSON.stringify(response);
         	  //kakao 로그인 후 user Data 를 가져옵니다.
@@ -71,7 +72,7 @@ function kakaoLogin() {
         	  var userEmail = userData.kakao_account.email;
         	  var user_birthday = userData.kakao_account.birthday;
         	  var user_gender = userData.kakao_account.gender;
-        	  axios.get("http://localhost:8093/myapp/getUserData",{
+        	  axios.get("http://localhost:9090/getUserData",{
         		  	params:{
         		  		userNickName : userNickName,
         		  		userEmail: userEmail,
