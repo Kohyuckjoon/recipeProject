@@ -5,17 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Recipe</title>
-<<<<<<< HEAD
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<link href="${contextPath}/resources/css/reset.css" type="text/css" rel="stylesheet">
-<link href="${contextPath}/resources/css/all.css" rel="stylesheet">
-<link rel="stylesheet" href="${contextPath}/resources/css/test.css" type="text/css">
-=======
 <link href="resources/css/reset.css" type="text/css" rel="stylesheet">
 <link href="resources/css/all.css" rel="stylesheet">
 <link href="resources/css/test.css" rel="stylesheet"  type="text/css">
->>>>>>> refs/heads/DEV
 </head>
 <body>
 	
