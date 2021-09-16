@@ -26,9 +26,9 @@
 				placeholder="Type to Search..." id="search_keyword">
 		</form>
 
-
+</div>
 	
-<div class="content">
+<div class="content"> 
 	<h2 class="tit">게시판</h2>
 	<div class="desc_board">
 		<form action="${contextPath}/board/upload" method="post" enctype="multipart/form-data">
@@ -41,17 +41,17 @@
 				<form>		 		
 					<select name="nation">
 				 		<option  selected disabled> ---게시글 분류---</option>
-				 		<option value="free">자유</option>
-				 		<option value="ch">스크랩공유</option>
+				 		<option value="free" id ="free">자유</option>
+				 		<option value="scrap" id="scraps">스크랩공유</option>
 				 	</select>
-				 	<input type="submit">
 			 </form>
 				</div>
 				<div class="content_board">
-					<textarea name="content" required="required"></textarea>
+					<textarea name="content" required="required" maxlength="250"></textarea>
 				</div>
 				<div class="btn_section">
-					<button style="background-color:blue; color:white; width:100%">전송</button>
+					<button style="background-color:blue; color:white; width:8%">글쓰기</button>
+					<button style="background-color:blue; color:white; width:5%">목록</button>
 				</div>
 			</div>
 		</form>
