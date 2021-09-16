@@ -27,14 +27,6 @@
 		</form>
 
 
-		<div class="login">
-			<form>
-				<button type="submit">
-					<i class="fas fa-user-circle"></i>
-				</button>
-			</form>
-		</div>
-	</div>
 	
 <div class="content">
 	<h2 class="tit">게시판</h2>
@@ -45,11 +37,21 @@
 					제목 : <input type="text" name="title" required="required"/><br>
 					파일 : <input type="file" name="files" id="contract_file" multiple/>
 				</div>
+				<div class="category">
+				<form>		 		
+					<select name="nation">
+				 		<option  selected disabled> ---게시글 분류---</option>
+				 		<option value="free">자유</option>
+				 		<option value="ch">스크랩공유</option>
+				 	</select>
+				 	<input type="submit">
+			 </form>
+				</div>
 				<div class="content_board">
 					<textarea name="content" required="required"></textarea>
 				</div>
 				<div class="btn_section">
-					<button style="background-color:red; color:white; width:100%">전송</button>
+					<button style="background-color:blue; color:white; width:100%">전송</button>
 				</div>
 			</div>
 		</form>
