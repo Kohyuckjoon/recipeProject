@@ -26,11 +26,35 @@ public class MyPageController extends HttpServlet {
 		case "myPage":
 			myPage(request,response);
 			break;
+		case "memberInfo":
+			memberInfo(request,response);
+			break;
+		case "myRivew":
+			myRivew(request,response);
+			break;
+		case "myScrape":
+			myScrape(request,response);
+			break;
 		default: throw new PageNotFoundException();
 		
 		}
 	}
 	
+	private void myScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/myPage/myScrape").forward(request, response);
+		
+	}
+
+	private void myRivew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/myPage/myRivew").forward(request, response);
+		
+	}
+
+	private void memberInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/myPage/memberInfo").forward(request, response);
+		
+	}
+
 	private void myPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/myPage/myPage").forward(request, response);
 		
