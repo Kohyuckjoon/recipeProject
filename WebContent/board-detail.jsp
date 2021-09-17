@@ -8,6 +8,47 @@
 <link href="resources/css/all.css" rel="stylesheet">
 <link href="resources/css/test.css"rel="stylesheet"  type="text/css">
 <link rel="stylesheet" href="/resources/css/board/board-detail.css"/>
+
+<style type="text/css">
+
+html,body{
+   height: 100%;
+   min-height:200px;
+}
+
+.list{
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   height: 70%;
+}
+
+.list_board{
+	 text-align: center;
+  	 font-size: 2vw;
+  	 color:black;
+	
+}
+.btn_page_num{
+	text-align: center;
+	font-size: 1vw;
+  	 font-weight:bolder;
+}
+.btn_section{
+	display:flex;
+   justify-content:center;
+}
+
+.foot{
+   display:flex;
+   flex-direction:row-reverse;
+   align-items:center;
+   height: 10vh;   
+}
+
+
+
+</style>
 </head>
 <body>
 <div class="head">
@@ -42,19 +83,30 @@
 				 	</select>
 			 	</form>
 	</div>
-	<div class="info">
-	<table class="list_board">
-		<tr>
-		
-		<td>번호  <c:out value="${datas.board.no}"/></td>
-		<td>제목 <c:out value="${datas.board.title}"/></td>
-		<td>등록일  <c:out value="${datas.board.date}"/></td>
-		<td>작성자 <c:out value="${datas.board.id}"/></td>
-		<td>조회수  <c:out value="${datas.board.viewCount}"/></td>
-		</tr>
-	</table>
+	<div class="list">
+		<div class="info">
+		<table class="list_board">
+			<tr>
+			<td>번호</td>
+			<td>제목</td>
+			<td>등록일  </td>
+			<td>작성자</td>
+			<td>조회수 </td>
+			</tr>
+		</table>
+		</div>
 	</div>
+		<!--   게시판 내용 뿌려주기-->
 	
+		<div class="content_list" >
+		<table>
+		
+		
+		
+		</table>
+		
+		
+		</div>
 <div class="btn_page_num" id=page>
 				
 				<a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -67,8 +119,8 @@
 				<a href="#"><i class="fas fa-angle-right"></i></a>
 				<a href="#"><i class="fas fa-angle-double-right"></i></a>
 </div>
-<div class="btn_section">
-					<button style="background-color:blue; color:white; width:10%">글쓰기</button>
+	<div class="btn_section">
+					<button style="background-color:blue; color:white; width:10%" onclick="board-form">글쓰기</button>
 	</div>
 <!-- 여기부턴 foot -->
 	<div class="foot">
