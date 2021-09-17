@@ -17,7 +17,7 @@ html,body{
 
 .tit{
 	text-align: center;
-	font-size: 10vw;
+	font-size:7vw;
   	 font-weight:bolder;
 }
 
@@ -33,6 +33,15 @@ html,body{
 }
 
 
+.table{
+	 text-align:center;
+	 border : 1px solid;
+}
+.table > th{
+	 text-align:center;
+	 font-size:3vw;
+	 font-weight: bolder;
+	 }
 .btn_page_num{
 	text-align: center;
 	font-size: 1vw;
@@ -42,9 +51,14 @@ html,body{
 .btn_section{
 	display:flex;
    justify-content:right;
+    flex-direction:row-reverse;
+   background-color:blue;
+   color:white;
+   width:10%;
+   height:15%;
 }
 
-
+ 
 
 /*board-detail*/
 .info{font-size:1.3vw; border-bottom:1px solid}
@@ -85,7 +99,7 @@ html,body{
 <!-- 게시판 목록 리스트 -->
 <div class="content">
 
-	<h1 class="tit">게시판</h1>
+	<div class="tit">자유게시판</div>
 	<div class="category">
 				<form>		 		
 					<select name="nation">
@@ -96,15 +110,46 @@ html,body{
 				 	</select>
 			 	</form>
 	</div>
-	<div class="info">
-		<span>번호 <c:out value="${datas.board.bdIdx}"/></span>
-		<span>제목  <c:out value="${datas.board.title}"/></span>
-		<span>등록일  <c:out value="${datas.board.regDate}"/></span>
-		<span>작성자  <c:out value="${datas.board.userId}"/></span>
-		<span>조회수  <c:out value="${datas.board.viewCount}"/></span>
+	
+	<!-- 게시판 내용 뿌려주는 곳 -->
+	<div class="list">
+		<div class="row">
+			<table class="table">
+				<thead>
+				<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+      			<th>조회수</th>				
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>1</td>
+					<td>안녕</td>
+					<td>최윤지</td>
+					<td>2021-09-17</td>
+					<td>0</td>
+					</tr>
+				<tr>
+					<td>2</td>
+					<td>안녕</td>
+					<td>최윤지</td>
+					<td>2021-09-17</td>
+					<td>0</td>
+					</tr>
+				<tr>
+					<td>3</td>
+					<td>안녕</td>
+					<td>최윤지</td>
+					<td>2021-09-17</td>
+					<td>0</td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>	
 	</div>
-	
-	
 
 		
 	
@@ -122,7 +167,7 @@ html,body{
 				<a href="#"><i class="fas fa-angle-double-right"></i></a>
 </div>
 	<div class="btn_section">
-					<button style="background-color:blue; color:white; width:10%" >글쓰기</button>
+					<a href="board-form.jsp"><button>글쓰기</button></a>
 	</div>
 <!-- 여기부턴 foot -->
 	<div class="foot">
