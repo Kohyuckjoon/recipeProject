@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="header">
-		<img src="images/blog.jpeg">
+		<div class="title">RfDnH</div>
 		<div class="pagebutton">
 			<button class="mainPageButton">메인페이지</button>
 			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
