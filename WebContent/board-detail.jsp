@@ -7,7 +7,6 @@
 <link href="resources/css/reset.css" type="text/css" rel="stylesheet">
 <link href="resources/css/all.css" rel="stylesheet">
 <link href="resources/css/test.css"rel="stylesheet"  type="text/css">
-<link rel="stylesheet" href="/resources/css/board/board-detail.css"/>
 
 <style type="text/css">
 
@@ -16,6 +15,16 @@ html,body{
    min-height:200px;
 }
 
+.tit{
+	text-align: center;
+	font-size: 10vw;
+  	 font-weight:bolder;
+}
+
+.category{
+	 display:flex;
+   justify-content:right;
+}
 .list{
    display:flex;
    justify-content:center;
@@ -23,21 +32,24 @@ html,body{
    height: 70%;
 }
 
-.list_board{
-	 text-align: center;
-  	 font-size: 2vw;
-  	 color:black;
-	
-}
+
 .btn_page_num{
 	text-align: center;
 	font-size: 1vw;
   	 font-weight:bolder;
 }
+
 .btn_section{
 	display:flex;
-   justify-content:center;
+   justify-content:right;
 }
+
+
+
+/*board-detail*/
+.info{font-size:1.3vw; border-bottom:1px solid}
+.info span{padding-right: 3vw;}
+.info li{font-size:0.5vw;}
 
 .foot{
    display:flex;
@@ -69,6 +81,7 @@ html,body{
 		</form>
 
 </div>
+
 <!-- 게시판 목록 리스트 -->
 <div class="content">
 
@@ -83,25 +96,16 @@ html,body{
 				 	</select>
 			 	</form>
 	</div>
-	<div class="list">
-		<div class="info">
-		<table class="list_board">
-			<tr>
-			<th width="90px">번호</th>
-			<th width="200px">제목</th>
-			<th width="90px">등록일  </th>
-			<th width="120px">작성자</th>
-			<th width="100px">조회수 </th>
-			</tr>
-			
-			<!--   게시판 내용 뿌려주기-->
-			<tr>
-			<td>
-			</tr>
-			
-		</table>
-		</div>
+	<div class="info">
+		<span>번호 <c:out value="${datas.board.bdIdx}"/></span>
+		<span>제목  <c:out value="${datas.board.title}"/></span>
+		<span>등록일  <c:out value="${datas.board.regDate}"/></span>
+		<span>작성자  <c:out value="${datas.board.userId}"/></span>
+		<span>조회수  <c:out value="${datas.board.viewCount}"/></span>
 	</div>
+	
+	
+
 		
 	
 		
@@ -118,7 +122,7 @@ html,body{
 				<a href="#"><i class="fas fa-angle-double-right"></i></a>
 </div>
 	<div class="btn_section">
-					<button style="background-color:blue; color:white; width:10%" onclick="board-form">글쓰기</button>
+					<button style="background-color:blue; color:white; width:10%" >글쓰기</button>
 	</div>
 <!-- 여기부턴 foot -->
 	<div class="foot">
