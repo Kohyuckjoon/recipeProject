@@ -3,18 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<style type="text/css">
-.tit{display:block; width:50px;}
-.valid-msg{color:red; font-size:0.5vw;}
-</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/include/head.jsp" %>
 
-
 <a herf="javascript:kakaoLogin();"><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :60px;width:auto;"></a>
 	<ul>
+	<li onclick="accReg();">
+      <a href="javascript:void(0)">
+          <span>회원가입하기</span>
+      </a>
+	</li>
 	<li onclick="kakaoLogout();">
       <a href="javascript:void(0)">
           <span>카카오 로그아웃</span>
@@ -28,6 +27,8 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 
+
+
 Kakao.init('0c512e152e989192c220235a73035b4b'); //발급받은 키 중 javascript키를 사용해준다.
 /* console.log(Kakao.isInitialized()); // sdk초기화여부판단 */
 
@@ -37,7 +38,8 @@ var jsonData = '';
 function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
-        Kakao.API.request({
+        
+		Kakao.API.request({//사용자 정보 저장
           url: '/v2/user/me',
           success: function (response) {
         	  
@@ -58,35 +60,23 @@ function kakaoLogin() {
         						  "kakao_account.gender",
         						  "REFRESH_TOKEN"
         			  ]
-        	  }
+        	  }//test1.kakao_account.profile.thumbnail_image_url
         	  alert(userData.properties.nickname + "님 환영합니다.");
-        	 /*  console.log("properties.nickname =====>"+userData.properties.nickname);
-        	  console.log("properties.profile_image_url =====>"+userData.properties.profile_image);
-        	  console.log("properties.thumbnail_image_url =====>"+userData.properties.thumbnail_image);
+        	  /* console.log("properties.nickname =====>"+userData.properties.nickname);
+        	  console.log("properties.profile_image_url =====>"+userData.kakao_account.profile.profile_image_url);
+        	  console.log("properties.thumbnail_image_url =====>"+userData.kakao_account.profile.thumbnail_image_url);
         	  console.log("kakao_account.profile =====>"+userData.kakao_account.profile);
         	  console.log("kakao_account.email =====>"+userData.kakao_account.email);
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
-        	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender); */
+        	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
         	  var userNickName = userData.properties.nickname;
-        	  var userProfile_image = userData.properties.profile_image;
-        	  var userProfile_thumnail_image = userData.properties.thumbnail_image;
+        	  var userProfile_image = userData.kakao_account.profile.profile_image_url;
+        	  var userProfile_thumnail_image = userData.kakao_account.profile.thumbnail_image_url;
         	  var useraccount_profile = userData.kakao_account.profile;
         	  var userEmail = userData.kakao_account.email;
         	  var user_birthday = userData.kakao_account.birthday;
         	  var user_gender = userData.kakao_account.gender;
-        	  axios.get("http://localhost:9090/member/login",{
-        		  	params:{
-        		  		userNickName : userNickName,
-        		  		userEmail: userEmail,
-        		  		userProfile_image: userProfile_image,
-        		  		user_birthday: user_birthday,
-        		  		user_gender : user_gender, 
-        		  		
-        		  		
-        		  		
-        		  		
-        		  	}
-        	  })
+        	  
         
         	  
         	  
@@ -101,6 +91,9 @@ function kakaoLogin() {
       },
     })
   }
+  
+
+
   
 //kakao logout!
 function kakaoLogout() {
@@ -124,6 +117,20 @@ function kakaoLogout() {
 		return false;
 	}
   }  
+  
+  
+function accReg(){
+	if()
+}   
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </script>
 
 
