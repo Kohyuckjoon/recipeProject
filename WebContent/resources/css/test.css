@@ -5,6 +5,16 @@ html, body {
 	margin: 3em 2em 0.5em 2em;
 	background-color: #ccdce7;
 }
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+    height: 3em;
+}
 /* 전체 헤드 */
 .head {
 	width: 1800px;
@@ -75,52 +85,6 @@ html, body {
 	transition: all .5s ease-in-out;
 	padding-right: 40px;
 	color: black;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-}
-
-.input-search::placeholder {
-	color: rgba(255, 255, 255, .5);
-	font-size: 18px;
-	letter-spacing: 2px;
-	font-weight: 100;
-}
-
-.btn-search {
-	width: 50px;
-	height: 50px;
-	border-style: none;
-	font-size: 2em;
-	font-weight: bold;
-	outline: none;
-	cursor: pointer;
-	border-radius: 50%;
-	position: absolute;
-	right: 0px;
-	color: black;
-	background-color: transparent;
-	pointer-events: painted;
-}
-
-.btn-search:focus ~ .input-search {
-	width: 300px;
-	border-radius: 0px;
-	background-color: transparent;
-	border-bottom: 1px solid rgba(255, 255, 255, .5);
-	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-	border-bottom: 1px sloid;
-	border-bottom-color: black;
-}
-
-.input-search:focus {
-	width: 300px;
-	border-radius: 0px;
-	background-color: transparent;
-	border-bottom: 1px solid rgba(255, 255, 255, .5);
-	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-
-=======
 }
 
 .input-search::placeholder {
@@ -160,48 +124,6 @@ html, body {
 	background-color: transparent;
 	border-bottom: 1px solid rgba(255, 255, 255, .5);
 	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
->>>>>>> refs/heads/DEV
-=======
-}
-
-.input-search::placeholder {
-	color: rgba(255, 255, 255, .5);
-	font-size: 18px;
-	letter-spacing: 2px;
-	font-weight: 100;
-}
-
-.btn-search {
-	width: 50px;
-	height: 50px;
-	border-style: none;
-	font-size: 2em;
-	font-weight: bold;
-	outline: none;
-	cursor: pointer;
-	border-radius: 50%;
-	position: absolute;
-	right: 0px;
-	color: black;
-	background-color: transparent;
-	pointer-events: painted;
-}
-
-.btn-search:focus ~ .input-search {
-	width: 300px;
-	border-radius: 0px;
-	background-color: transparent;
-	border-bottom: 1px solid rgba(255, 255, 255, .5);
-	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-}
-
-.input-search:focus {
-	width: 300px;
-	border-radius: 0px;
-	background-color: transparent;
-	border-bottom: 1px solid rgba(255, 255, 255, .5);
-	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
->>>>>>> refs/heads/DEV
 }
 
 /* 로그인 아이콘 */
