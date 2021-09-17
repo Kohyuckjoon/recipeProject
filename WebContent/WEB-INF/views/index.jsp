@@ -32,7 +32,7 @@
 
 
 		<div class="login">
-				<button class="login_btn" onclick = "location.href = '/login/login' ">
+				<button class="login_btn" onclick = "window.open('/login/login')" target="_blank">
 					<i class="fas fa-user-circle"></i>
 				</button>
 		</div>
