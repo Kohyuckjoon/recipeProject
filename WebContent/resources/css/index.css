@@ -9,50 +9,50 @@ html, body {
 /* 전체 헤드 */
 .head {
 	width: 1600px;
-	height: 3em;
+	height: 50px;
 	position: fixed;
 	background-color: white;
 	display: flex;
 	border: 1px solid;
 	border-color: orange;
-	top: 1em;
+	top: 30px;
 }
 
 /* 싸이트 이름 */
 .title {
-	font-size: 2em;
+	font-size: 35px;
 	font-weight: bold;
 	margin: auto;
 	text-align: center;
-	margin-left: 1em;
+	margin-left: 10px;
 	
 }
 
 /* 이하 4개는 버튼. recipePageButton 버튼은 존나 길어서 따로 빼놓음 */
 .pagebutton {
-	width: 50%;
-	margin-top: 0.5em;
-	margin-left: 10em;
+	width: 1000px;
+	margin-top: 10px;
+	margin-left: 150px;
 	position: fixed;
 }
 
 .mainPageButton, .boardPageButton, .myPageButton {
-	width: 18%;
+	width: 150px;
 	text-align: center;
 	color: white;
-	font-size: 1.4em;
+	font-size: 25px;
 	background-color: #3498db;
-	margin-right: 0.5em;
+	margin-right: 10px;
 	border-radius: 1em;
 }
 
 .recipePageButton {
-	width: 34%;
+	width: 290px;
 	text-align: center;
 	color: white;
-	font-size: 1.4em;
+	font-size: 25px;
 	background-color: #3498db;
-	margin-right: 0.5em;
+	margin-right: 10px;
 	border-radius: 1em;
 }
 
@@ -61,7 +61,7 @@ html, body {
 	width: fit-content;
 	height: 100%;
 	position: relative;
-	margin-right: -70em;
+	margin-right: -60em;
   	
 }
 
@@ -121,7 +121,7 @@ html, body {
 .login {
 	bottom: 0.05em;
 	margin: auto;
-	margin-right: 3em;
+	margin-right: 1.5em;
 	
 }
 
@@ -129,6 +129,7 @@ html, body {
 	font-size: 2.3em;
 	font-weight: bold;
 }
+
 
 /* 싸이드바 */
 .sideBar {
