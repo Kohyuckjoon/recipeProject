@@ -14,12 +14,12 @@
 	<!-- 여기서부터 헤드 -->
 	<div class="head">
 		<div class="title">RfDnH</div>
-		<form class="pagebutton">
+		<div class="pagebutton">
 			<button class="mainPageButton">메인페이지</button>
 			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
 			<button class="boardPageButton">자유게시판</button>
-			<a href="/myPage/myPage" class="myPageButton">마이페이지</a>
-		</form>
+			<button class="myPageButton" onclick = "location.href = '/myPage/myPage' ">마이페이지</button>
+		</div>
 		
 
 		<form class="search-box" id="search_button">
@@ -32,12 +32,11 @@
 
 
 		<div class="login">
-			<form>
-				<button class="login_btn" type="submit" href="/WEB-INF/views/member/login.jsp">
+				<button class="login_btn" onclick = "location.href = '/login/login' ">
 					<i class="fas fa-user-circle"></i>
 				</button>
-			</form>
 		</div>
+		
 	</div>
 
 
