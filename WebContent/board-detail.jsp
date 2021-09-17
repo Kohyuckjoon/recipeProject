@@ -87,26 +87,24 @@ html,body{
 		<div class="info">
 		<table class="list_board">
 			<tr>
-			<td>번호</td>
-			<td>제목</td>
-			<td>등록일  </td>
-			<td>작성자</td>
-			<td>조회수 </td>
+			<th width="90px">번호</th>
+			<th width="200px">제목</th>
+			<th width="90px">등록일  </th>
+			<th width="120px">작성자</th>
+			<th width="100px">조회수 </th>
 			</tr>
+			
+			<!--   게시판 내용 뿌려주기-->
+			<tr>
+			<td>
+			</tr>
+			
 		</table>
 		</div>
 	</div>
-		<!--   게시판 내용 뿌려주기-->
+		
 	
-		<div class="content_list" >
-		<table>
 		
-		
-		
-		</table>
-		
-		
-		</div>
 <div class="btn_page_num" id=page>
 				
 				<a href="#"><i class="fas fa-angle-double-left"></i></a>
