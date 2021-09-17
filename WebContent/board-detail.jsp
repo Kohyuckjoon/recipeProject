@@ -7,7 +7,72 @@
 <link href="resources/css/reset.css" type="text/css" rel="stylesheet">
 <link href="resources/css/all.css" rel="stylesheet">
 <link href="resources/css/test.css"rel="stylesheet"  type="text/css">
-<link rel="stylesheet" href="/resources/css/board/board-detail.css"/>
+
+<style type="text/css">
+
+html,body{
+   height: 100%;
+   min-height:200px;
+}
+
+.tit{
+	text-align: center;
+	font-size:7vw;
+  	 font-weight:bolder;
+}
+
+.category{
+	 display:flex;
+   justify-content:right;
+}
+.list{
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   height: 66%;
+}
+
+
+.table{
+	 text-align:center;
+	 border : 1px solid;
+	 font-size:1.5vw;
+	 
+}
+
+.btn_page_num{
+	text-align: center;
+	font-size: 1vw;
+  	 font-weight:bolder;
+}
+
+.btn_section{
+	display:flex;
+   justify-content:right;
+    flex-direction:row-reverse;
+   background-color:blue;
+   color:white;
+   width:10%;
+   height:15%;
+}
+
+ 
+
+/*board-detail*/
+.info{font-size:1.3vw; border-bottom:1px solid}
+.info span{padding-right: 3vw;}
+.info li{font-size:0.5vw;}
+
+.foot{
+   display:flex;
+   flex-direction:row-reverse;
+   align-items:center;
+   height: 10vh;   
+}
+
+
+
+</style>
 </head>
 <body>
 <div class="head">
@@ -28,10 +93,11 @@
 		</form>
 
 </div>
+
 <!-- 게시판 목록 리스트 -->
 <div class="content">
 
-	<h1 class="tit">게시판</h1>
+	<div class="tit">자유게시판</div>
 	<div class="category">
 				<form>		 		
 					<select name="nation">
@@ -42,19 +108,50 @@
 				 	</select>
 			 	</form>
 	</div>
-	<div class="info">
-	<table class="list_board">
-		<tr>
-		
-		<td>번호  <c:out value="${datas.board.no}"/></td>
-		<td>제목 <c:out value="${datas.board.title}"/></td>
-		<td>등록일  <c:out value="${datas.board.date}"/></td>
-		<td>작성자 <c:out value="${datas.board.id}"/></td>
-		<td>조회수  <c:out value="${datas.board.viewCount}"/></td>
-		</tr>
-	</table>
-	</div>
 	
+	<!-- 게시판 내용 뿌려주는 곳 -->
+	<div class="list">
+		<div class="row">
+			<table class="table">
+				<thead>
+				<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+      			<th>조회수</th>				
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>1</td>
+					<td>안녕</td>
+					<td>최윤지</td>
+					<td>2021-09-17</td>
+					<td>0</td>
+					</tr>
+				<tr>
+					<td>2</td>
+					<td>안녕</td>
+					<td>최윤지</td>
+					<td>2021-09-17</td>
+					<td>0</td>
+					</tr>
+				<tr>
+					<td>3</td>
+					<td>안녕</td>
+					<td>최윤지</td>
+					<td>2021-09-17</td>
+					<td>0</td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>	
+	</div>
+
+		
+	
+		
 <div class="btn_page_num" id=page>
 				
 				<a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -62,13 +159,11 @@
 			    <a href="#">1</a>
                 <a href="#">2</a>
                 <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
 				<a href="#"><i class="fas fa-angle-right"></i></a>
 				<a href="#"><i class="fas fa-angle-double-right"></i></a>
 </div>
-<div class="btn_section">
-					<button style="background-color:blue; color:white; width:10%">글쓰기</button>
+	<div class="btn_section">
+					<a href="board-form.jsp"><button>글쓰기</button></a>
 	</div>
 <!-- 여기부턴 foot -->
 	<div class="foot">

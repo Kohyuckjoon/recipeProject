@@ -52,7 +52,7 @@
 				</div>
 				<div class="btn_section">
 					<button style="background-color:blue; color:white; width:8%">글쓰기</button>
-					<button style="background-color:blue; color:white; width:5%">목록</button>
+					<a href="board-detail.jsp"><button style="background-color:blue; color:white; width:8%">목록</button></a>
 				</div>
 			</div>
 		</form>
