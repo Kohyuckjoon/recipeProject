@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="header">
-		<div class="title">RfDnH</div>
+		<div class="title"><img src="images/banner.gif"></div>
 		<div class="pagebutton">
 			<button class="mainPageButton">메인페이지</button>
 			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
