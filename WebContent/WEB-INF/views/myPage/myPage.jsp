@@ -10,35 +10,30 @@
 	display: flex;
 	margin-top: 5vw;
 }
-
 #memberInfo { /* 회원정보 div */
 	background-color: silver;
 	width: 33%;
 	height: 300px;
 	margin-right: 10px;
 }
-
 #myRivew { /* 댓글&리뷰 모아보기 div */
 	background-color: silver;
 	width: 33%;
 	height: 300px;
 	margin-right: 10px;
 }
-
 #myScrape { /* 스크랩 모아보기 div */
 	background-color: silver;
 	width: 33%;
 	height: 300px;
 	margin-right: 10px;
 }
-
 .myRivew{ /* 댓글&리뷰 이미지 삽입 */
 	background-image: url(/resources/img/mypage_review.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
 }
-
 .myScrape{ /* 스크랩 이미지 삽입 */
 	background-image: url(/resources/img/mypage_scrape.png);
 	background-size: contain;

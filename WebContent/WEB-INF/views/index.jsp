@@ -21,22 +21,22 @@
 
 			<div class="most-popular-recipe-1">
 				<div class="most-popular-recipe-1-pic"></div>
-				<div class="most-popular-recipe-1-text">Lamb chops are such a simple...</div>
+				<span class="most-popular-recipe-1-text">Lamb chops are such a simple...</span>
 			</div>
 
 			<div class="most-popular-recipe-2">
 				<div class="most-popular-recipe-2-pic"></div>
-				<div class="most-popular-recipe-2-text">Everyone loves a good lasagna...</div>
+				<span class="most-popular-recipe-2-text">Everyone loves a good lasagna...</span>
 			</div>
 
 			<div class="most-popular-recipe-3">
 				<div class="most-popular-recipe-3-pic"></div>
-				<div class="most-popular-recipe-3-text">Dakos Salad is Greek salad...</div>
+				<span class="most-popular-recipe-3-text">Dakos Salad is Greek salad...</span>
 			</div>
 
 			<div class="most-popular-recipe-4">
 				<div class="most-popular-recipe-4-pic"></div>
-				<div class="most-popular-recipe-4-text">Pozole is a traditional soup...</div>
+				<span class="most-popular-recipe-4-text">Pozole is a traditional soup...</span>
 			</div>
 
 		</div>
