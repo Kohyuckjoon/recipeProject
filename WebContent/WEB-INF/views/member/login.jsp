@@ -29,7 +29,7 @@
 <script>
 
 Kakao.init('0c512e152e989192c220235a73035b4b'); //발급받은 키 중 javascript키를 사용해준다.
-console.log(Kakao.isInitialized()); // sdk초기화여부판단
+/* console.log(Kakao.isInitialized()); // sdk초기화여부판단 */
 
 var userData = '';
 var jsonData = '';
@@ -41,15 +41,16 @@ function kakaoLogin() {
           url: '/v2/user/me',
           success: function (response) {
         	  
-        	  alert("kakao login success!");
+        	  
         	  console.log(JSON.stringify(response))
         	  var userData = response;
+        	  //console.log(JSON.stringify(response));
         	  jsonData = JSON.stringify(response);
         	  //kakao 로그인 후 user Data 를 가져옵니다.
         	  jsonData:{
         		  property_keys: ["properties.nickname",
         						  "properties.profile_image",
-        						  "properties.thumnail_image",
+        						  "properties.thumbnail_image",
         						  "kakao_account.profile",
         						  "kakao_account.email",
         						  "kakao_account.age_range",
@@ -58,21 +59,22 @@ function kakaoLogin() {
         						  "REFRESH_TOKEN"
         			  ]
         	  }
-        	  console.log("properties.nickname =====>"+userData.properties.nickname);
-        	  console.log("properties.profile_image =====>"+userData.properties.profile_image);
-        	  console.log("properties.thumnail_image =====>"+userData.properties.thumnail_image);
+        	  alert(userData.properties.nickname + "님 환영합니다.");
+        	 /*  console.log("properties.nickname =====>"+userData.properties.nickname);
+        	  console.log("properties.profile_image_url =====>"+userData.properties.profile_image);
+        	  console.log("properties.thumbnail_image_url =====>"+userData.properties.thumbnail_image);
         	  console.log("kakao_account.profile =====>"+userData.kakao_account.profile);
         	  console.log("kakao_account.email =====>"+userData.kakao_account.email);
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
-        	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);
+        	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender); */
         	  var userNickName = userData.properties.nickname;
         	  var userProfile_image = userData.properties.profile_image;
-        	  var userProfile_thumnail_image = userData.properties.thumnail_image;
+        	  var userProfile_thumnail_image = userData.properties.thumbnail_image;
         	  var useraccount_profile = userData.kakao_account.profile;
         	  var userEmail = userData.kakao_account.email;
         	  var user_birthday = userData.kakao_account.birthday;
         	  var user_gender = userData.kakao_account.gender;
-        	  axios.get("http://localhost:9090/getUserData",{
+        	  axios.get("http://localhost:9090/member/login",{
         		  	params:{
         		  		userNickName : userNickName,
         		  		userEmail: userEmail,
@@ -108,8 +110,8 @@ function kakaoLogout() {
       Kakao.API.request({
         url: '/v1/user/unlink',
         success: function (response) {
-        	alert("logout!");
-        	console.log(response)
+        	alert("로그아웃 되셨습니다.");
+        	
         },
         fail: function (error) {
           console.log(error)
