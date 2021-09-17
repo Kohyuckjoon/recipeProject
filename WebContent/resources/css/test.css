@@ -11,9 +11,13 @@ a.button {
     -moz-appearance: button;
     appearance: button;
 
-    text-decoration: none;
-    color: initial;
-    height: 3em;
+  	width: 18%;
+	text-align: center;
+	color: white;
+	font-size: 1.4em;
+	background-color: #3498db;
+	margin-right: 0.5em;
+	border-radius: 1em;
 }
 /* 전체 헤드 */
 .head {
@@ -45,7 +49,7 @@ a.button {
 	position: fixed;
 }
 
-.mainPageButton, .boardPageButton, .myPageButton {
+.mainPageButton, .boardPageButton {
 	width: 18%;
 	text-align: center;
 	color: white;

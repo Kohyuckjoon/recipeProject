@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.common.exception.PageNotFoundException;
 
-@WebServlet("/mypage/*")
+@WebServlet("/myPage/*")
 public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,7 @@ public class MyPageController extends HttpServlet {
 	}
 	
 	private void myPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/mypage/myPage").forward(request, response);
+		request.getRequestDispatcher("/myPage/myPage").forward(request, response);
 		
 	}
 
