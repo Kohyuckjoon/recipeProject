@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+/* 전체 헤드 */
+.header {
+	width: 1600px;
+	height: 50px;
+	position: fixed;
+	background-color: white;
+	display: flex;
+	border: 1px solid;
+	border-color: orange;
+	top: 30px;
+}
+
+/* 싸이트 이름 */
+.title {
+	font-size: 35px;
+	font-weight: bold;
+	margin: auto;
+	text-align: center;
+	margin-left: 10px;
+	
+}
+
+/* 이하 4개는 버튼. recipePageButton 버튼은 존나 길어서 따로 빼놓음 */
+.pagebutton {
+	width: 1000px;
+	margin-top: 10px;
+	margin-left: 150px;
+	position: fixed;
+}
+
+.mainPageButton, .boardPageButton, .myPageButton {
+	width: 150px;
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	background-color: #3498db;
+	margin-right: 10px;
+	border-radius: 1em;
+}
+
+.recipePageButton {
+	width: 290px;
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	background-color: #3498db;
+	margin-right: 10px;
+	border-radius: 1em;
+}
+
+/* 검색관련 기능 */
+.search-box {
+	width: fit-content;
+	height: 100%;
+	position: relative;
+	margin-right: -60em;
+  	
+}
+
+.input-search {
+	height: 0.8em;
+	width: 0.001em;
+	border-style: none;
+	padding: 0.31em;
+	font-size: 2em;
+	letter-spacing: 2px;
+	outline: none;
+	transition: all .5s ease-in-out;
+	padding-right: 40px;
+	color: black;
+}
+
+.input-search::placeholder {
+	color: rgba(255, 255, 255, .5);
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-weight: 100;
+}
+
+.btn-search {
+	width: 50px;
+	height: 50px;
+	border-style: none;
+	font-size: 2em;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+	border-radius: 50%;
+	position: absolute;
+	right: 0px;
+	color: black;
+	background-color: transparent;
+	pointer-events: painted;
+}
+
+.btn-search:focus ~ .input-search {
+	width: 300px;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(255, 255, 255, .5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.input-search:focus {
+	width: 300px;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(255, 255, 255, .5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+/* 로그인 아이콘 */
+.login {
+	bottom: 0.05em;
+	margin: auto;
+	margin-right: 1.5em;
+	
+}
+
+.login>button {
+	font-size: 2.3em;
+	font-weight: bold;
+}

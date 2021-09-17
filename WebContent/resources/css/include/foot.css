@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.foot {
+	margin-top: 5em;
+	height: 3%;
+	background-color: lightblue;
+	display: flex;
+}
+
+.Copyright {
+	position: relative;
+	margin: auto;
+}

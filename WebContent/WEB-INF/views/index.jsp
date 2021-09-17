@@ -3,42 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Recipe</title>
-<link href="resources/css/reset.css" type="text/css" rel="stylesheet">
-<link href="resources/css/all.css" rel="stylesheet">
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="resources/css/index.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
 	
 	<!-- 여기서부터 헤드 -->
-	<div class="head">
-		<div class="title">RfDnH</div>
-		<div class="pagebutton">
-			<button class="mainPageButton">메인페이지</button>
-			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
-			<button class="boardPageButton" onclick = "location.href = '/board/boardForm' ">자유게시판</button>
-			<button class="myPageButton" onclick = "location.href = '/myPage/myPage' ">마이페이지</button>
-		</div>
-		
-
-		<form class="search-box" id="search_button">
-			<button type="submit" form="search_button" class="btn-search">
-				<i class="fas fa-search"></i>
-			</button>
-			<input type="text" name="search" class="input-search"
-				placeholder="Type to Search..." id="search_keyword">
-		</form>
-
-
-		<div class="login">
-				<button class="login_btn" onclick = "window.open('/login/login')" target="_blank">
-					<i class="fas fa-user-circle"></i>
-				</button>
-		</div>
-		
-	</div>
-
+	
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 	<!-- ul과 li로 넣어도 댐 -->
 	<div class="sideBar">
@@ -316,10 +288,7 @@
 	</div>
 
 	<!-- 여기부턴 foot -->
-	<div class="foot">
-		<div class="Copyright">Copyright © 1992-2021 HSJ All Right
-			Reserved</div>
-	</div>
+	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 
 </body>
 </html>
