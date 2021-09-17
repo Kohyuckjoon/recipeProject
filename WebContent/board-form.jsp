@@ -52,7 +52,7 @@
 				</div>
 				<div class="btn_section">
 					<button style="background-color:blue; color:white; width:8%">글쓰기</button>
-					<button style="background-color:blue; color:white; width:5%">목록</button>
+					<button style="background-color:blue; color:white; width:5%" onclick="board-detail">목록</button>
 				</div>
 			</div>
 		</form>

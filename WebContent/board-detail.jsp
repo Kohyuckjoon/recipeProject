@@ -7,7 +7,60 @@
 <link href="resources/css/reset.css" type="text/css" rel="stylesheet">
 <link href="resources/css/all.css" rel="stylesheet">
 <link href="resources/css/test.css"rel="stylesheet"  type="text/css">
-<link rel="stylesheet" href="/resources/css/board/board-detail.css"/>
+
+<style type="text/css">
+
+html,body{
+   height: 100%;
+   min-height:200px;
+}
+
+.tit{
+	text-align: center;
+	font-size: 10vw;
+  	 font-weight:bolder;
+}
+
+.category{
+	 display:flex;
+   justify-content:right;
+}
+.list{
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   height: 70%;
+}
+
+
+.btn_page_num{
+	text-align: center;
+	font-size: 1vw;
+  	 font-weight:bolder;
+}
+
+.btn_section{
+	display:flex;
+   justify-content:right;
+}
+
+
+
+/*board-detail*/
+.info{font-size:1.3vw; border-bottom:1px solid}
+.info span{padding-right: 3vw;}
+.info li{font-size:0.5vw;}
+
+.foot{
+   display:flex;
+   flex-direction:row-reverse;
+   align-items:center;
+   height: 10vh;   
+}
+
+
+
+</style>
 </head>
 <body>
 <div class="head">
@@ -28,6 +81,7 @@
 		</form>
 
 </div>
+
 <!-- 게시판 목록 리스트 -->
 <div class="content">
 
@@ -43,18 +97,18 @@
 			 	</form>
 	</div>
 	<div class="info">
-	<table class="list_board">
-		<tr>
-		
-		<td>번호  <c:out value="${datas.board.no}"/></td>
-		<td>제목 <c:out value="${datas.board.title}"/></td>
-		<td>등록일  <c:out value="${datas.board.date}"/></td>
-		<td>작성자 <c:out value="${datas.board.id}"/></td>
-		<td>조회수  <c:out value="${datas.board.viewCount}"/></td>
-		</tr>
-	</table>
+		<span>번호 <c:out value="${datas.board.bdIdx}"/></span>
+		<span>제목  <c:out value="${datas.board.title}"/></span>
+		<span>등록일  <c:out value="${datas.board.regDate}"/></span>
+		<span>작성자  <c:out value="${datas.board.userId}"/></span>
+		<span>조회수  <c:out value="${datas.board.viewCount}"/></span>
 	</div>
 	
+	
+
+		
+	
+		
 <div class="btn_page_num" id=page>
 				
 				<a href="#"><i class="fas fa-angle-double-left"></i></a>
@@ -67,8 +121,8 @@
 				<a href="#"><i class="fas fa-angle-right"></i></a>
 				<a href="#"><i class="fas fa-angle-double-right"></i></a>
 </div>
-<div class="btn_section">
-					<button style="background-color:blue; color:white; width:10%">글쓰기</button>
+	<div class="btn_section">
+					<button style="background-color:blue; color:white; width:10%" >글쓰기</button>
 	</div>
 <!-- 여기부턴 foot -->
 	<div class="foot">
