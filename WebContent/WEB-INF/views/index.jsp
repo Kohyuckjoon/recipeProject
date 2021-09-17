@@ -18,8 +18,9 @@
 			<button class="mainPageButton">메인페이지</button>
 			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
 			<button class="boardPageButton">자유게시판</button>
-			<button class="myPageButton">마이페이지</button>
+			<button class="myPageButton" onclick="location.href='/myPage/myPage'">마이페이지</button>
 		</form>
+		
 
 		<form class="search-box" id="search_button">
 			<button type="submit" form="search_button" class="btn-search">
