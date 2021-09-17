@@ -29,19 +29,17 @@ html,body{
    display:flex;
    justify-content:center;
    align-items:center;
-   height: 70%;
+   height: 66%;
 }
 
 
 .table{
 	 text-align:center;
 	 border : 1px solid;
+	 font-size:1.5vw;
+	 
 }
-.table > th{
-	 text-align:center;
-	 font-size:3vw;
-	 font-weight: bolder;
-	 }
+
 .btn_page_num{
 	text-align: center;
 	font-size: 1vw;
