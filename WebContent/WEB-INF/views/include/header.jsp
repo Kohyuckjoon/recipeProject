@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="header">
-		<div class="title"><img src="images/banner.gif"></div>
+		<img class="title" src ="../../resources/img/banner.gif"></img>
 		<div class="pagebutton">
 			<button class="mainPageButton">메인페이지</button>
 			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
@@ -17,13 +17,11 @@
 			<button class="myPageButton" onclick = "location.href = '/myPage/myPage' ">마이페이지</button>
 		</div>
 		
-
 		<form class="search-box" id="search_button">
 			<button type="submit" form="search_button" class="btn-search">
 				<i class="fas fa-search"></i>
 			</button>
-			<input type="text" name="search" class="input-search"
-				placeholder="Type to Search..." id="search_keyword">
+			<input type="text" name="search" class="input-search" placeholder="검색어를 입력하세요" id="search_keyword">
 		</form>
 
 

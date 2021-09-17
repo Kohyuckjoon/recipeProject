@@ -14,11 +14,10 @@
 
 /* 싸이트 이름 */
 .title {
-	font-size: 35px;
-	font-weight: bold;
-	margin: auto;
-	text-align: center;
-	margin-left: 10px;
+	background-image: url("../../resources/img/banner.gif");
+	background-size: contain;
+	height: 100%;
+	width: 300px;
 	
 }
 
@@ -26,7 +25,7 @@
 .pagebutton {
 	width: 1000px;
 	margin-top: 10px;
-	margin-left: 150px;
+	margin-left: 310px;
 	position: fixed;
 }
 
@@ -55,8 +54,8 @@
 	width: fit-content;
 	height: 100%;
 	position: relative;
-	margin-right: -60em;
-  	
+  	left: 800px;
+  	top: 3px
 }
 
 .input-search {
@@ -77,6 +76,7 @@
 	font-size: 18px;
 	letter-spacing: 2px;
 	font-weight: 100;
+	color: gray;
 }
 
 .btn-search {
