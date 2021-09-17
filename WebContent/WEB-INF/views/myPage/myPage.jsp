@@ -16,7 +16,7 @@
 	height: 300px;
 	margin-right: 10px;
 }
-#myRivew { /* 댓글&리뷰 모아보기 div */
+#myReview { /* 댓글&리뷰 모아보기 div */
 	background-color: silver;
 	width: 33%;
 	height: 300px;
@@ -28,7 +28,7 @@
 	height: 300px;
 	margin-right: 10px;
 }
-.myRivew{ /* 댓글&리뷰 이미지 삽입 */
+.myReview{ /* 댓글&리뷰 이미지 삽입 */
 	background-image: url(/resources/img/mypage_review.png);
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -50,11 +50,11 @@
 
 	<!-- myPage 바디 -->
 	<div id="myPage">
-		<div class="memberInfo" id="memberInfo" onclick = "location.href = '/myPage/myPage_memberInfo' ">			
+		<div class="memberInfo" id="memberInfo" onclick = "location.href = '/myPage/memberInfo' ">			
 		</div>
-		<div class="myRivew" id="myRivew" onclick = "location.href = '/myPage/myPage_review' ">		
+		<div class="myReview" id="myReview" onclick = "location.href = '/myPage/myReview' ">		
 		</div>
-		<div class="myScrape" id="myScrape" onclick = "location.href = '/myPage/myPage_scrape' ">
+		<div class="myScrape" id="myScrape" onclick = "location.href = '/myPage/myScrape' ">
 		</div>
 	</div> 
 

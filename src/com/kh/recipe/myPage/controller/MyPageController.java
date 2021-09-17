@@ -29,8 +29,8 @@ public class MyPageController extends HttpServlet {
 		case "memberInfo":
 			memberInfo(request,response);
 			break;
-		case "myRivew":
-			myRivew(request,response);
+		case "myReview":
+			myReview(request,response);
 			break;
 		case "myScrape":
 			myScrape(request,response);
@@ -45,8 +45,8 @@ public class MyPageController extends HttpServlet {
 		
 	}
 
-	private void myRivew(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/myPage/myRivew").forward(request, response);
+	private void myReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/myPage/myReview").forward(request, response);
 		
 	}
 
