@@ -23,50 +23,16 @@ html,body{
 	 display:flex;
    justify-content:right;
 }
-.list{
-   display:flex;
-   justify-content:center;
-   align-items:center;
-   height: 66%;
-}
 
 
-.table{
-	 text-align:center;
-	 border : 1px solid;
-	 font-size:1.5vw;
-	 
-}
 
 .btn_page_num{
+ 	display:flex;
 	text-align: center;
 	font-size: 1vw;
   	 font-weight:bolder;
 }
 
-.btn_section{
-	display:flex;
-   justify-content:right;
-    flex-direction:row-reverse;
-   background-color:blue;
-   color:white;
-   width:10%;
-   height:15%;
-}
-
- 
-
-/*board-detail*/
-.info{font-size:1.3vw; border-bottom:1px solid}
-.info span{padding-right: 3vw;}
-.info li{font-size:0.5vw;}
-
-.foot{
-   display:flex;
-   flex-direction:row-reverse;
-   align-items:center;
-   height: 10vh;   
-}
 
 
 
@@ -91,28 +57,40 @@ html,body{
 	</div>
 	
 	<!-- 게시판 내용 뿌려주는 곳 -->
-<div>
 
+<div class ="board_list">
 
-</div>
+	<div>
+		<table width=700 border=1 cellspacing=1>
+		<!-- 목록  -->
+			<thead>
+				<tr>
+					<td width=50>번호</td>
+					 <td width=100>이름</td>
+				 	 <td width=300>제목</td>
+					  <td width=100>등록일</td>
+					  <td width=100>조회수</td>
+			</tr>
 				
-
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
 		
 	
 		
 <div class="btn_page_num" id=page>
 				
-				<a href="#"><i class="fas fa-angle-double-left"></i></a>
-				<a href="#"><i class="fas fa-angle-left"></i></a>
+				<i class="fas fa-angle-double-left"></i>
+				<i class="fas fa-angle-left"></i>
 			    <a href="#">1</a>
                 <a href="#">2</a>
                 <a href="#">3</a>
-				<a href="#"><i class="fas fa-angle-right"></i></a>
-				<a href="#"><i class="fas fa-angle-double-right"></i></a>
+				<i class="fas fa-angle-right"></i>
+				<i class="fas fa-angle-double-right"></i>
 </div>
-	<div class="btn_section">
-					<a href="board-form.jsp"><button>글쓰기</button></a>
-	</div>
+			<a href="board-form.jsp"> <input type="button" value="글쓰기" ></a>
 <!-- 여기부턴 foot -->
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
