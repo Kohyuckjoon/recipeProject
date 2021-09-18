@@ -22,7 +22,7 @@
 </ul>
 
 <script  src="https://code.jquery.com/jquery-3.5.0.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<script src="https://api.jquery.com/jQuery.ajax"></script>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
@@ -37,13 +37,43 @@ Kakao.Auth.authorize({
 
 var userData = '';
 var jsonData = '';
-/* var walletAddress;
+var walletAddress;
 var totalReceived;
 var Key;
 var txIdArray = null;
-var txId = null; */
+var txId = null;
 
-//카카오톡을 통한 로그인, 리다이렉트 구축
+//Ajax 동기식을 통한 재구축
+function api(code){
+	
+	var grant_type = "authorization_code";
+	var client_id = "0c512e152e989192c220235a73035b4b";
+	var redirect_uri = "localhost:9090/index";
+	var code = code;
+	
+	$.post("https://kauth.kakao.com/oauth/token", {grant_type:grant_type, client_id:client_id, redirect_uri:redirect_uri, code:code});
+		
+		var access_token = data['access_token'];
+		$('body').append(access_token + '<br>'); //엑세스 토큰값 출력
+		
+		tokenFunction(access_token);
+	
+	
+}
+
+
+var tokenRequest = new XMLHttpRequest();
+
+function tokenFunction(access_token){
+	var access_token = access_token;
+	
+	tokenRequest.open("Post", "/member?access_token="+ access+token,true);
+	tokenRequest.onreadystatechange = tokenProcess;
+	tokenRequest.send(null);
+	
+}
+
+
 function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
@@ -122,10 +152,6 @@ function kakaoLogin() {
   
 //kakao logout!
 function kakaoLogout() {
-	 if (!Kakao.Auth.getAccessToken()) {
-	      alert("로그인 되어있지 않습니다.");
-	      return
-	    }
 	var logout = confirm("로그아웃 하시겠습니까?");
 	if(logout == true){
     if (Kakao.Auth.getAccessToken()) {
