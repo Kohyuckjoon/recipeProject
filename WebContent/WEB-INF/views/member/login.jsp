@@ -27,10 +27,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 
-
-
-Kakao.init('0c512e152e989192c220235a73035b4b'); //발급받은 키 중 javascript키를 사용해준다.
-/* console.log(Kakao.isInitialized()); // sdk초기화여부판단 */
+Kakao.init('3e85a50f7736492121915fea486aa4af');
 
 var userData = '';
 var jsonData = '';
@@ -44,7 +41,7 @@ function kakaoLogin() {
           success: function (response) {
         	  
         	  
-        	  console.log(JSON.stringify(response))
+        	  //console.log(JSON.stringify(response))
         	  var userData = response;
         	  //console.log(JSON.stringify(response));
         	  jsonData = JSON.stringify(response);
@@ -60,7 +57,7 @@ function kakaoLogin() {
         						  "kakao_account.gender",
         						  "REFRESH_TOKEN"
         			  ]
-        	  }//test1.kakao_account.profile.thumbnail_image_url
+        	  }
         	  alert(userData.properties.nickname + "님 환영합니다.");
         	  /* console.log("properties.nickname =====>"+userData.properties.nickname);
         	  console.log("properties.profile_image_url =====>"+userData.kakao_account.profile.profile_image_url);
@@ -77,19 +74,20 @@ function kakaoLogin() {
         	  var user_birthday = userData.kakao_account.birthday;
         	  var user_gender = userData.kakao_account.gender;
         	  
-        
+        	  
         	  
         	  
           },
           fail: function (error) {
-            console.log(error)
-          },
-        })
-      },
-      fail: function (error) {
-        console.log(error)
-      },
-    })
+              console.log(error)
+            },
+          })
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+   
   }
   
 
