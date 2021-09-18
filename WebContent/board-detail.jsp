@@ -3,10 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/head.jsp" %>
-<link href="resources/css/reset.css" type="text/css" rel="stylesheet">
-<link href="resources/css/all.css" rel="stylesheet">
-<link href="resources/css/test.css"rel="stylesheet"  type="text/css">
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<link href="resources/css/index.css" rel="stylesheet"  type="text/css">
 
 <style type="text/css">
 
@@ -24,6 +22,8 @@ html,body{
 .category{
 	 display:flex;
    justify-content:right;
+ 	font-size: 1.5vw;
+   
 }
 .list{
    display:flex;
@@ -40,21 +40,21 @@ html,body{
 	 
 }
 
+#btn{
+display:flex;
+   justify-content:right;
+   flex-direction:row-reverse;
+	background-color: blue;
+	color:white;
+	
+   
+}
 .btn_page_num{
 	text-align: center;
 	font-size: 1vw;
   	 font-weight:bolder;
 }
 
-.btn_section{
-	display:flex;
-   justify-content:right;
-    flex-direction:row-reverse;
-   background-color:blue;
-   color:white;
-   width:10%;
-   height:15%;
-}
 
  
 
@@ -63,36 +63,15 @@ html,body{
 .info span{padding-right: 3vw;}
 .info li{font-size:0.5vw;}
 
-.foot{
-   display:flex;
-   flex-direction:row-reverse;
-   align-items:center;
-   height: 10vh;   
-}
 
 
 
 </style>
 </head>
 <body>
-<div class="head">
-		<div class="title">RfDnH</div>
-		<form class="pagebutton">
-			<button class="mainPageButton">메인페이지</button>
-			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
-			<button class="boardPageButton">자유게시판</button>
-			<button class="myPageButton">마이페이지</button>
-		</form>
 
-		<form class="search-box" id="search_button">
-			<button type="submit" form="search_button" class="btn-search">
-				<i class="fas fa-search"></i>
-			</button>
-			<input type="text" name="search" class="input-search"
-				placeholder="Type to Search..." id="search_keyword">
-		</form>
-
-</div>
+	
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <!-- 게시판 목록 리스트 -->
 <div class="content">
@@ -162,13 +141,10 @@ html,body{
 				<a href="#"><i class="fas fa-angle-right"></i></a>
 				<a href="#"><i class="fas fa-angle-double-right"></i></a>
 </div>
-	<div class="btn_section">
-					<a href="board-form.jsp"><button>글쓰기</button></a>
+	<div>
+				<a href="board-form.jsp"><button id="btn">글쓰기</button></a>
 	</div>
 <!-- 여기부턴 foot -->
-	<div class="foot">
-		<div class="Copyright">Copyright © 1992-2021 HSJ All Right
-			Reserved</div>
-	</div>
+<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
 </html>
