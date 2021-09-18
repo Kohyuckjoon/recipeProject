@@ -28,6 +28,7 @@
 <script>
 
 Kakao.init('3e85a50f7736492121915fea486aa4af');
+console.log(Kakao.isInitialized()); 
 
 var userData = '';
 var jsonData = '';
