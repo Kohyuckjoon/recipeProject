@@ -9,8 +9,8 @@
 
 <a herf="javascript:kakaoLogin();"><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :60px;width:auto;"></a>
 	<ul>
-	<li onclick="accReg();">
-      <a href="javascript:void(0)">
+	<li>
+      <a href="/member/join-form">
           <span>회원가입하기</span>
       </a>
 	</li>
