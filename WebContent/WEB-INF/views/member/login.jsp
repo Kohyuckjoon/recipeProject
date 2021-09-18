@@ -118,11 +118,7 @@ function kakaoLogout() {
 	}
   }  
   
-  
-function accReg(){
-	if()
-}   
-  
+
   
   
   
