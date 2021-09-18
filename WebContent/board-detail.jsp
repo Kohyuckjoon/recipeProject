@@ -3,10 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/head.jsp" %>
-<link href="resources/css/reset.css" type="text/css" rel="stylesheet">
-<link href="resources/css/all.css" rel="stylesheet">
-<link href="resources/css/test.css"rel="stylesheet"  type="text/css">
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<link href="resources/css/index.css" rel="stylesheet"  type="text/css">
 
 <style type="text/css">
 
@@ -75,24 +73,7 @@ html,body{
 </style>
 </head>
 <body>
-<div class="head">
-		<div class="title">RfDnH</div>
-		<form class="pagebutton">
-			<button class="mainPageButton">메인페이지</button>
-			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
-			<button class="boardPageButton">자유게시판</button>
-			<button class="myPageButton">마이페이지</button>
-		</form>
-
-		<form class="search-box" id="search_button">
-			<button type="submit" form="search_button" class="btn-search">
-				<i class="fas fa-search"></i>
-			</button>
-			<input type="text" name="search" class="input-search"
-				placeholder="Type to Search..." id="search_keyword">
-		</form>
-
-</div>
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <!-- 게시판 목록 리스트 -->
 <div class="content">
@@ -110,44 +91,11 @@ html,body{
 	</div>
 	
 	<!-- 게시판 내용 뿌려주는 곳 -->
-	<div class="list">
-		<div class="row">
-			<table class="table">
-				<thead>
-				<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-      			<th>조회수</th>				
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>1</td>
-					<td>안녕</td>
-					<td>최윤지</td>
-					<td>2021-09-17</td>
-					<td>0</td>
-					</tr>
-				<tr>
-					<td>2</td>
-					<td>안녕</td>
-					<td>최윤지</td>
-					<td>2021-09-17</td>
-					<td>0</td>
-					</tr>
-				<tr>
-					<td>3</td>
-					<td>안녕</td>
-					<td>최윤지</td>
-					<td>2021-09-17</td>
-					<td>0</td>
-					</tr>
-				</tbody>	
-			</table>
-		</div>	
-	</div>
+<div>
+
+
+</div>
+				
 
 		
 	
@@ -166,9 +114,6 @@ html,body{
 					<a href="board-form.jsp"><button>글쓰기</button></a>
 	</div>
 <!-- 여기부턴 foot -->
-	<div class="foot">
-		<div class="Copyright">Copyright © 1992-2021 HSJ All Right
-			Reserved</div>
-	</div>
+	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
 </html>
