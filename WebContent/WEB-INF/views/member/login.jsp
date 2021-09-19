@@ -97,7 +97,7 @@ function kakaoLogin() {
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
         	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
         	  
-        	  location.href = 'http://localhost:9090/index?userEmail='+userEmail+'&name='+userNickName;
+        	  location.href = 'http://localhost:9090/mainPage?userEmail='+userEmail+'&name='+userNickName;
         	  
         	  
           },
@@ -133,7 +133,7 @@ function kakaoLogout() {
         url: '/v1/user/unlink',
         success: function (response) {
         	alert("로그아웃 되셨습니다.");
-        	location.href = 'http://localhost:9090/index';
+        	location.href = 'http://localhost:9090/mainPage';
         },
         fail: function (error) {
           console.log(error)
