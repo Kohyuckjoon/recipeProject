@@ -85,27 +85,28 @@ text-decoration: underline;
 		<!-- 목록  -->
 			<thead>
 				<tr>
-					<td width=50>번호</td>
-				 	 <td width=300>제목</td>
-				 	 <td width=100>작성자</td>
-					  <td width=100>작성일</td>
-					  <td width=100>조회수</td>
+					<th width=50>번호</th>
+				 	 <th width=300>제목</th>
+				 	 <th width=100>작성자</th>
+					  <th width=100>작성일</th>
+					  <th width=100>조회수</th>
 				</tr>
 			</thead>
-			<tbody>
+			<c:forEach var="board" items="${ls}">
 				<tr>
-					<td>1</td>
-					<td>첫번째 게시물</td>
-					<td> 최윤지</td>
-					<td> 2021-09-19</td>
-					<td>254</td>
+					<td>${board.no}</td>
+					<td>${board.title}</td>
+					<td>${board.id}</td>
+					<td>${board.date}</td>
+					<td>${board.viewCount}</td>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		
 	
 		
-<div class="paging" id=page>
+<div class="paging" >
 				
 				<i class="fas fa-angle-double-left"></i>
 				<i class="fas fa-angle-left"></i>
