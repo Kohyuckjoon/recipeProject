@@ -20,16 +20,40 @@
    justify-content:right;
 }
 
-
+.board_list {
+	width:80%;
+	border-top: 2px solid navy;
+	display: flex;
+	justify-content: center;
+}
+.board_list tr {
+	border-bottom :1px solid #ccc;
+}
+.board_list th,
+.board_list td{
+	padding 10px;
+	font-size:14px;
+}
+.board_list td{
+text-align: center;
+}
+.board_list tbody tr td:nth-child(2){
+text-align: left;
+}
+.board_list tbody tr td:nth-child(2):hover{
+text-decoration: underline;
+}
 .paging{
  	display:flex;
-	text-align: center;
-	font-size: 1vw;
-  	 font-weight:bolder;
+	justify-content: center;
+  	margin-top: 20px;
   	
 }
 
-
+.btn{
+	 display:flex;
+   justify-content:right;
+}
 
 
 </style>
@@ -81,7 +105,7 @@
 		
 	
 		
-<div class="btn_page_num" id=page>
+<div class="paging" id=page>
 				
 				<i class="fas fa-angle-double-left"></i>
 				<i class="fas fa-angle-left"></i>
@@ -91,7 +115,7 @@
 				<i class="fas fa-angle-right"></i>
 				<i class="fas fa-angle-double-right"></i>
 </div>
-	<div class=btn">
+	<div class="btn">
 			<a href="board-form.jsp"> <input type="button" value="글쓰기" ></a>
 	</div>
 <!-- 여기부턴 foot -->
