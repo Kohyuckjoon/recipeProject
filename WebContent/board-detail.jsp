@@ -25,14 +25,14 @@
 	border-top: 2px solid navy;
 	display: flex;
 	justify-content: center;
+	font-size:1vw;
 }
 .board_list tr {
-	border-bottom :1px solid #ccc;
+	border-bottom :1px solid #999;
 }
 .board_list th,
 .board_list td{
-	padding 10px;
-	font-size:14px;
+	padding: 10px;
 }
 .board_list td{
 text-align: center;
@@ -92,7 +92,16 @@ text-decoration: underline;
 					  <th width=100>조회수</th>
 				</tr>
 			</thead>
-			<c:forEach var="board" items="${ls}">
+			
+				
+				<tr>
+					<td>1</td>
+					<td>첫번째 게시글입니다</td>
+					<td>최윤지</td>
+					<td>21-09-19</td>
+					<td>234</td>
+				</tr>
+				<c:forEach var="board" items="${ls}">
 				<tr>
 					<td>${board.no}</td>
 					<td>${board.title}</td>
