@@ -9,6 +9,7 @@ public enum ErrorCode {
 	AUTHENTICATION_FAILED_ERROR("유효하지 않은 인증입니다."),
 	UNAUTHORIZED_PAGE_ERROR("접근 권한이 없는 페이지 입니다."),
 	FAILED_FILE_UPLOAD_ERROR("파일업로드에 실패하였습니다."),
+	API_LODING_FAIL("API 로딩에 실패하였습니다."),
 	REDIRECT("");
 	
 	public final String MESSAGE;

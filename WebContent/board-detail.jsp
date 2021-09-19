@@ -8,10 +8,6 @@
 
 <style type="text/css">
 
-html,body{
-   height: 100%;
-   min-height:200px;
-}
 
 .tit{
 	text-align: center;
@@ -24,22 +20,40 @@ html,body{
    justify-content:right;
 }
 
-
-.bdTable{
-	display:flex;
+.board_list {
+	width:80%;
+	border-top: 2px solid navy;
+	display: flex;
 	justify-content: center;
-	width: 70%;
-	height: 66%;
-	
+	font-size:1vw;
 }
-.btn_page_num{
+.board_list tr {
+	border-bottom :1px solid #999;
+}
+.board_list th,
+.board_list td{
+	padding: 10px;
+}
+.board_list td{
+text-align: center;
+}
+.board_list tbody tr td:nth-child(2){
+text-align: left;
+}
+.board_list tbody tr td:nth-child(2):hover{
+text-decoration: underline;
+}
+.paging{
  	display:flex;
-	text-align: center;
-	font-size: 1vw;
-  	 font-weight:bolder;
+	justify-content: center;
+  	margin-top: 20px;
+  	
 }
 
-
+.btn{
+	 display:flex;
+   justify-content:right;
+}
 
 
 </style>
@@ -67,28 +81,41 @@ html,body{
 <div class ="board_list">
 
 	<div>
-		<table class="bdTable" border="1">
+		<table >
 		<!-- 목록  -->
+			<thead>
+				<tr>
+					<th width=50>번호</th>
+				 	 <th width=300>제목</th>
+				 	 <th width=100>작성자</th>
+					  <th width=100>작성일</th>
+					  <th width=100>조회수</th>
+				</tr>
+			</thead>
 			
+				
 				<tr>
-					<td width=50>번호</td>
-				 	 <td width=300>제목</td>
-				 	 <td width=100>작성자</td>
-					  <td width=100>작성일</td>
-					  <td width=100>조회수</td>
+					<td>1</td>
+					<td>첫번째 게시글입니다</td>
+					<td>최윤지</td>
+					<td>21-09-19</td>
+					<td>234</td>
 				</tr>
+				<c:forEach var="board" items="${ls}">
 				<tr>
-			<td><c:out value="${datas.board.bdIdx}"/></td>
-			<td> <c:out value="${datas.board.title}"/></td>
-			<td><c:out value="${datas.board.regDate}"/></td>
-			<td><c:out value="${datas.board.userId}"/></td>
-			<td><c:out value="${datas.board.viewCount}"/></td>
+					<td>${board.no}</td>
+					<td>${board.title}</td>
+					<td>${board.id}</td>
+					<td>${board.date}</td>
+					<td>${board.viewCount}</td>
 				</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 		
 	
 		
-<div class="btn_page_num" id=page>
+<div class="paging" >
 				
 				<i class="fas fa-angle-double-left"></i>
 				<i class="fas fa-angle-left"></i>
@@ -98,7 +125,9 @@ html,body{
 				<i class="fas fa-angle-right"></i>
 				<i class="fas fa-angle-double-right"></i>
 </div>
+	<div class="btn">
 			<a href="board-form.jsp"> <input type="button" value="글쓰기" ></a>
+	</div>
 <!-- 여기부턴 foot -->
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
