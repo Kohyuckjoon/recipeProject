@@ -47,7 +47,6 @@ html, body {
 .most-popular-recipe-1-pic{
 	height: 100%;
 	width: 40%;
-	background-image: url("../../resources/img/food_1.webp");
 	background-size: cover;
 }
 
@@ -55,7 +54,6 @@ html, body {
 .most-popular-recipe-2-pic{
 	height: 100%;
 	width: 40%;
-	background-image: url("../../resources/img/food_2.webp");
 	background-size: cover;
 }
 
@@ -64,7 +62,6 @@ html, body {
 .most-popular-recipe-3-pic{
 	height: 100%;
 	width: 40%;
-	background-image: url("../../resources/img/food_3.webp");
 	background-size: cover;
 }
 
@@ -72,7 +69,6 @@ html, body {
 .most-popular-recipe-4-pic{
 	height: 100%;
 	width: 40%;
-	background-image: url("../../resources/img/food_4.webp");
 	background-size: cover;
 }
 
