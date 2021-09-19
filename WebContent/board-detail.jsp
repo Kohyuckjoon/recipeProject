@@ -8,10 +8,6 @@
 
 <style type="text/css">
 
-html,body{
-   height: 100%;
-   min-height:200px;
-}
 
 .tit{
 	text-align: center;
@@ -25,18 +21,12 @@ html,body{
 }
 
 
-.bdTable{
-	display:flex;
-	justify-content: center;
-	width: 70%;
-	height: 66%;
-	
-}
-.btn_page_num{
+.paging{
  	display:flex;
 	text-align: center;
 	font-size: 1vw;
   	 font-weight:bolder;
+  	
 }
 
 
@@ -67,9 +57,9 @@ html,body{
 <div class ="board_list">
 
 	<div>
-		<table class="bdTable" border="1">
+		<table >
 		<!-- 목록  -->
-			
+			<thead>
 				<tr>
 					<td width=50>번호</td>
 				 	 <td width=300>제목</td>
@@ -77,13 +67,16 @@ html,body{
 					  <td width=100>작성일</td>
 					  <td width=100>조회수</td>
 				</tr>
+			</thead>
+			<tbody>
 				<tr>
-			<td><c:out value="${datas.board.bdIdx}"/></td>
-			<td> <c:out value="${datas.board.title}"/></td>
-			<td><c:out value="${datas.board.regDate}"/></td>
-			<td><c:out value="${datas.board.userId}"/></td>
-			<td><c:out value="${datas.board.viewCount}"/></td>
+					<td>1</td>
+					<td>첫번째 게시물</td>
+					<td> 최윤지</td>
+					<td> 2021-09-19</td>
+					<td>254</td>
 				</tr>
+			</tbody>
 		</table>
 		
 	
@@ -98,7 +91,9 @@ html,body{
 				<i class="fas fa-angle-right"></i>
 				<i class="fas fa-angle-double-right"></i>
 </div>
+	<div class=btn">
 			<a href="board-form.jsp"> <input type="button" value="글쓰기" ></a>
+	</div>
 <!-- 여기부턴 foot -->
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
