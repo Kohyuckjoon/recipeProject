@@ -2,7 +2,8 @@
 
 .foot {
 	margin-top: 5em;
-	height: 3%;
+	width : 1900px;
+	height: 100px;
 	background-color: lightblue;
 	display: flex;
 }

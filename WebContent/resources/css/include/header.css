@@ -2,19 +2,15 @@
 
 /* 전체 헤드 */
 
-body{
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
 .header {
-	width: 1600px;
+	width: 1800px;
 	height: 50px;
 	position: fixed;
 	background-color: white;
 	display: flex;
 	border: 1px solid;
 	border-color: orange;
-	top: 30px;
+	margin-top: 30px;
 }
 
 /* 싸이트 이름 */
@@ -23,14 +19,13 @@ body{
 	background-size: contain;
 	height: 100%;
 	width: 300px;
-	
 }
 
 /* 이하 4개는 버튼. recipePageButton 버튼은 존나 길어서 따로 빼놓음 */
 .pagebutton {
 	width: 1000px;
 	margin-top: 10px;
-	margin-left: 310px;
+	margin-left: 350px;
 	position: fixed;
 }
 
@@ -40,7 +35,7 @@ body{
 	color: white;
 	font-size: 25px;
 	background-color: #3498db;
-	margin-right: 10px;
+	margin-right: 50px;
 	border-radius: 1em;
 }
 
@@ -50,7 +45,7 @@ body{
 	color: white;
 	font-size: 25px;
 	background-color: #3498db;
-	margin-right: 10px;
+	margin-right: 50px;
 	border-radius: 1em;
 }
 
@@ -59,8 +54,8 @@ body{
 	width: fit-content;
 	height: 100%;
 	position: relative;
-  	left: 800px;
-  	top: 3px
+  	margin-left: 980px;
+  	margin-top: 3px
 }
 
 .input-search {
