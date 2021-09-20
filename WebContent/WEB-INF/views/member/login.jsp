@@ -78,13 +78,13 @@ function kakaoLogin() {
         	  
         	  var userId = userData.id;
         	  var userNickName = userData.properties.nickname;
-        	  var userProfile_image = userData.kakao_account.profile.profile_image_url;
-        	  var userProfile_thumnail_image = userData.kakao_account.profile.thumbnail_image_url;
-        	  var useraccount_profile = userData.kakao_account.profile;
+        	  //var userProfile_image = userData.kakao_account.profile.profile_image_url;
+        	  //var userProfile_thumnail_image = userData.kakao_account.profile.thumbnail_image_url;
+        	  //var useraccount_profile = userData.kakao_account.profile;
         	  var userEmail = userData.kakao_account.email;
-        	  var user_birthday = userData.kakao_account.birthday;
-        	  var user_gender = userData.kakao_account.gender;
-        	  var html = '<br>' + userEmail + '<br>' + userNickName;
+        	  //var user_birthday = userData.kakao_account.birthday;
+        	  //var user_gender = userData.kakao_account.gender;
+        	  //var html = '<br>' + userEmail + '<br>' + userNickName;
         	  
         	  //html +='<br><img src="' + userProfile_image + '">';
         	  //$('body').append(html);
