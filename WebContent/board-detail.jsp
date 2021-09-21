@@ -68,7 +68,7 @@ text-decoration: underline;
 	<div class="category">
 				<form>		 		
 					<select name="nation">
-				 		<option  selected disabled> ---게시글 분류---</option>
+				 		<option  selected disabled> --게시글 분류--</option>
 				 		<option value="all" id ="all">전체보기</option>
 				 		<option value="free" id ="free">자유</option>
 				 		<option value="scrap" id="scraps">스크랩공유</option>
