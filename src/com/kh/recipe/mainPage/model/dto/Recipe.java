@@ -2,12 +2,20 @@ package com.kh.recipe.mainPage.model.dto;
 
 public class Recipe {
 	
+	private String rcpSeq;
+	// 요리 인덱스
 	private String rcpNm;
 	// 메뉴명
 	private String rcpPat2;
 	// 요리종류
 	private String attFileNoMk;
 	// 요리 이미지
+	public String getRcpSeq() {
+		return rcpSeq;
+	}
+	public void setRcpSeq(String rcpSeq) {
+		this.rcpSeq = rcpSeq;
+	}
 	public String getRcpNm() {
 		return rcpNm;
 	}
@@ -28,8 +36,10 @@ public class Recipe {
 	}
 	@Override
 	public String toString() {
-		return "Recipe [rcpNm=" + rcpNm + ", rcpPat2=" + rcpPat2 + ", attFileNoMk=" + attFileNoMk + "]";
+		return "Recipe [rcpSeq=" + rcpSeq + ", rcpNm=" + rcpNm + ", rcpPat2=" + rcpPat2 + ", attFileNoMk=" + attFileNoMk
+				+ "]";
 	}
+	
 	
 	
 	
