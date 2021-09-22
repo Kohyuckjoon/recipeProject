@@ -19,6 +19,11 @@
           <span>카카오 로그아웃</span>
       </a>
 	</li>
+	<li onclick="unlinkApp();">
+      <a href="javascript:void(0)">
+          <span>카카오 회원탈퇴</span>
+      </a>
+	</li>
 </ul>
 
 <script  src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -128,11 +133,31 @@ function kakaoLogout() {
 	    }
 	var logout = confirm("로그아웃 하시겠습니까?");
 	if(logout == true){
+		Kakao.Auth.logout(function() {
+       	alert("로그아웃 되셨습니다.");
+       	Kakao.Auth.getAccessToken()
+        location.href = 'http://localhost:9090/mainPage';
+      })
+      Kakao.Auth.setAccessToken(undefined)
+	}else{
+		return false;
+		
+	}
+  }  
+
+//회원탈퇴
+function unlinkApp() {
+	 if (!Kakao.Auth.getAccessToken()) {
+	      alert("로그인 되어있지 않습니다.");
+	      return
+	    }
+	var logout = confirm("회원탈퇴 하시겠습니까?");
+	if(logout == true){
     if (Kakao.Auth.getAccessToken()) {
       Kakao.API.request({
         url: '/v1/user/unlink',
         success: function (response) {
-        	alert("로그아웃 되셨습니다.");
+        	alert("회원탈퇴 되셨습니다.");
         	location.href = 'http://localhost:9090/mainPage';
         },
         fail: function (error) {
