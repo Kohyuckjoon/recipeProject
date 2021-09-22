@@ -5,58 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="resources/css/index.css" rel="stylesheet"  type="text/css">
-
-<style type="text/css">
-
-
-.tit{
-	text-align: center;
-	font-size:7vw;
-  	 font-weight:bolder;
-}
-
-.category{
-	 display:flex;
-   justify-content:right;
-}
-
-.board_list {
-	width:80%;
-	border-top: 2px solid navy;
-	display: flex;
-	justify-content: center;
-	font-size:1vw;
-}
-.board_list tr {
-	border-bottom :1px solid #999;
-}
-.board_list th,
-.board_list td{
-	padding: 10px;
-}
-.board_list td{
-text-align: center;
-}
-.board_list tbody tr td:nth-child(2){
-text-align: left;
-}
-.board_list tbody tr td:nth-child(2):hover{
-text-decoration: underline;
-}
-.paging{
- 	display:flex;
-	justify-content: center;
-  	margin-top: 20px;
-  	
-}
-
-.btn{
-	 display:flex;
-   justify-content:right;
-}
-
-
-</style>
+<link href="resources/css/board/board-detail.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
@@ -75,6 +24,19 @@ text-decoration: underline;
 				 	</select>
 			 	</form>
 	</div>
+	</div>
+	<!-- 게시판 검색내용  -->
+	<div class="search">
+	<div id="search_select">
+          <select>
+            <option>제목</option>
+            <option>내용</option>
+            <option>글쓴이</option>
+          </select> 
+        </div>
+        <div id="search_input"><input type="text"></div>
+        <div id="search_btn"><i class="fas fa-search"></i></div>
+     </div>
 	
 	<!-- 게시판 내용 뿌려주는 곳 -->
 
@@ -86,21 +48,13 @@ text-decoration: underline;
 			<thead>
 				<tr>
 					<th width=50>번호</th>
-				 	 <th width=300>제목</th>
-				 	 <th width=100>작성자</th>
-					  <th width=100>작성일</th>
-					  <th width=100>조회수</th>
+				   <th width=300>제목</th>
+				 	<th width=100>작성자</th>
+					 <th width=100>작성일</th>
+					 <th width=100>조회수</th>
 				</tr>
 			</thead>
 			
-				
-				<tr>
-					<td>1</td>
-					<td>첫번째 게시글입니다</td>
-					<td>최윤지</td>
-					<td>21-09-19</td>
-					<td>234</td>
-				</tr>
 				<c:forEach var="board" items="${ls}">
 				<tr>
 					<td>${board.no}</td>
