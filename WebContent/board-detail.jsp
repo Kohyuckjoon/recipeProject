@@ -57,7 +57,7 @@
                 <td colspan="5">
                     <input type="button" value="수정" >
                     <input type="button" value="삭제" >
-                    <input type="button" value=답글 >    
+                    <input type="button" value="답글" >    
                     <input type="button" value="목록" 
                         onclick="board-list.jsp">            
                 </td>
