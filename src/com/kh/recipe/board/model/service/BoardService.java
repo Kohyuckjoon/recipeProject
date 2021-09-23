@@ -33,14 +33,14 @@ public class BoardService {
 		}
 	}
 
-	public Map<String, Object> selectBoardDetail(String bdIdx) {
+	public Map<String, Object> selectBoardDetail(int no) {
 		
 		Connection conn = template.getConnection();
 		Map<String,Object> res = new HashMap<String, Object>();
 		
 		try {
-			Board board = boardDao.selectBoardDetail(conn,bdIdx);
-			List<FileDTO> files = boardDao.selectFileDTOs(conn,bdIdx);
+			Board board = boardDao.selectBoardDetail(conn,no);
+			List<FileDTO> files = boardDao.selectFileDTOs(conn,no);
 			res.put("board", board);
 			res.put("files", files);
 		} finally {
