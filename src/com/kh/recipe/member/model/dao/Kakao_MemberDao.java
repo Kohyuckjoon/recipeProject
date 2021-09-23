@@ -193,7 +193,7 @@ public class Kakao_MemberDao {
 			column = column.trim();
 			
 			switch (column) {
-			case "userNickName": kakao_Member.setUserNickName(rset.getString("user_id")); break;
+			case "userNickName": kakao_Member.setUserNickName(rset.getString("id")); break;
 			case "id": kakao_Member.setUserId(rset.getString("password")); break;
 			case "email" : kakao_Member.setUserEmail(rset.getString("email")); break;
 			case "birth" : kakao_Member.setBirth(rset.getDate("birth")); break;
