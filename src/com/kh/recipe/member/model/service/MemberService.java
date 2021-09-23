@@ -34,11 +34,11 @@ public class MemberService {
 	private MemberDao memberDao = new MemberDao();
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
-	public Member memberAuthenticate(String userId, String password) {
+	public Member memberAuthenticate(String id, String password) {
 		Connection conn = template.getConnection();
 		Member member = null;
 		try {
-			member = memberDao.memberAuthenticate(userId, password, conn);
+			member = memberDao.memberAuthenticate(id, password, conn);
 		}finally {
 			template.close(conn);
 		}
@@ -46,13 +46,13 @@ public class MemberService {
 		return member;
 	}
 
-	public Member selectMemberById(String userId) {
+	public Member selectMemberById(String id) {
 		
 		Connection conn = template.getConnection();
 		Member member = null;
 		
 		try {
-			member = memberDao.selectMemberById(userId, conn);
+			member = memberDao.selectMemberById(id, conn);
 		} finally {
 			template.close(conn);
 		}
@@ -96,12 +96,12 @@ public class MemberService {
 		return res;
 	}
 
-	public int updateMemeberPassword(String userId, String password) {
+	public int updateMemeberPassword(String id, String password) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		
 		try {
-			res = memberDao.updateMemberPassword(userId, password, conn);
+			res = memberDao.updateMemberPassword(id, password, conn);
 			template.commit(conn);
 			
 		} catch (Exception e) {
@@ -115,11 +115,11 @@ public class MemberService {
 		return res; 
 	} 
 
-	public int deleteMember(String userId) {
+	public int deleteMember(String id) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		try {
-			res = memberDao.deleteMember(userId, conn);
+			res = memberDao.deleteMember(id, conn);
 			template.commit(conn);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -136,7 +136,7 @@ public class MemberService {
 		String queryString = conn.urlEncodedForm(RequestParams
 												.builder()
 												.param("mailTemplate", "join-auth-mail")
-												.param("userId", member.getId())
+												.param("id", member.getId())
 												.param("persistToken", persistToken).build());
 		
 		String response 
