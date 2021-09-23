@@ -13,6 +13,9 @@ public class Board {
 	private int viewCount; //조회수
 	
 	
+	public Board() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getNo() {
 		return no;
 	}

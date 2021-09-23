@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link href="resources/css/board/board-detail.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
+<%@ include file="/WEB-INF/views/include/header.jsp" %> 
 
 <!-- 게시판 목록 리스트 -->
 <div class="content">
@@ -64,11 +65,13 @@
 					<td>${board.viewCount}</td>
 				</tr>
 				</c:forEach>
+				
+				
 			</tbody>
 		</table>
-		
+		</div>
 	
-		
+		<!-- 게시판 페이징 구현하는 거 -->
 <div class="paging" >
 				
 				<i class="fas fa-angle-double-left"></i>
