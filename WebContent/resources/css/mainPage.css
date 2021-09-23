@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 html, body {
-	height: 4000px;
-	width : 1920px;
-	margin: 3em 2em 0.5em 2em;
-	background-color: #ccdce7;
-	font-family: 'Noto Sans KR', sans-serif;
+	height: 400px;
+	display: flex;
+	margin-top: 1em;
+	font-weight: bold;
+	text-align: center;
 }
 
 /* 싸이드바 */
@@ -153,6 +153,3 @@ html, body {
 .recipe-text>*{
 	margin-bottom: 0.5em;
 }
-
-
-
