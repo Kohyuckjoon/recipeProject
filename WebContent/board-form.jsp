@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+
 <link href="resources/css/index.css" rel="stylesheet"  type="text/css">
 <link rel="stylesheet" href="/resources/css/board/board.css"/>
 </head>
