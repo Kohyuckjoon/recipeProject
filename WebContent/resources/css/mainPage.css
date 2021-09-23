@@ -1,11 +1,9 @@
 @charset "UTF-8";
 
 html, body {
-	height: 4000px;
-	width : 1920px;
-	margin: 3em 2em 0.5em 2em;
-	background-color: #ccdce7;
-	font-family: 'Noto Sans KR', sans-serif;
+	display: flex;
+	font-weight: bold;
+	text-align: center;
 }
 
 /* 싸이드바 */
@@ -142,7 +140,7 @@ html, body {
 	float: left;
 	height: 70%;
 	width: 100%;
-}
+} 
 
 /* 음식 종류. 이하 뒤에 꼬리 이상한건 api 파라미터 따라한거임 */
 .row-1-recipe-1_RCP_PAT2, .row-1-recipe-2_RCP_PAT2, .row-1-recipe-3_RCP_PAT2, .row-1-recipe-4_RCP_PAT2{
@@ -153,6 +151,3 @@ html, body {
 .recipe-text>*{
 	margin-bottom: 0.5em;
 }
-
-
-
