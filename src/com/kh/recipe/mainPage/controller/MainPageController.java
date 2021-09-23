@@ -36,7 +36,7 @@ public class MainPageController extends HttpServlet {
 			break;
 		default: throw new PageNotFoundException();
 		}
-		
+		 
 
 	}
 
