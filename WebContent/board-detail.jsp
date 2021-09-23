@@ -47,14 +47,14 @@
 		<!-- 목록  -->
 			<thead>
 				<tr>
-					<th width=50>번호</th>
+				   <th width=50>번호</th>
 				   <th width=300>제목</th>
-				 	<th width=100>작성자</th>
-					 <th width=100>작성일</th>
-					 <th width=100>조회수</th>
+				   <th width=100>작성자</th>
+				   <th width=100>작성일</th>
+				   <th width=100>조회수</th>
 				</tr>
 			</thead>
-			
+			<tbody>
 				<c:forEach var="board" items="${ls}">
 				<tr>
 					<td>${board.no}</td>
