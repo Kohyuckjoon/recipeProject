@@ -94,14 +94,14 @@ public class MemberDao {
 	public int insertMember(Member member, Connection conn){	
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "insert into member(user_id,password,email,tell) values(?,?,?,?)";
+		String query = "insert into member(id,password,email,phone) values(?,?,?,?)";
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, member.getUserId());
+			pstm.setString(1, member.getId());
 			pstm.setString(2, member.getPassword());
 			pstm.setString(3, member.getEmail());
-			pstm.setString(4, member.getTell());
+			pstm.setString(4, member.getPhone());
 			res = pstm.executeUpdate();
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
@@ -180,14 +180,11 @@ public class MemberDao {
 	
 	private Member convertAllToMember(ResultSet rset) throws SQLException {
 		Member member = new Member();
-		member.setUserId(rset.getString("user_id"));
+		member.setId(rset.getString("id"));
 		member.setPassword(rset.getString("password"));
 		member.setEmail(rset.getString("email"));
-		member.setGrade(rset.getString("grade"));
-		member.setIsLeave(rset.getInt("is_leave"));
-		member.setRegDate(rset.getDate("reg_date"));
-		member.setRentableDate(rset.getDate("rentable_date"));
-		member.setTell(rset.getString("tell"));
+		member.setBirth(rset.getDate("birth"));
+		member.setPhone(rset.getString("phone"));
 		return member;
 	}
 	
@@ -198,14 +195,11 @@ public class MemberDao {
 			column = column.trim();
 			
 			switch (column) {
-			case "user_id": member.setUserId(rset.getString("user_id")); break;
+			case "user_id": member.setId(rset.getString("id")); break;
 			case "password": member.setPassword(rset.getString("password")); break;
 			case "email" : member.setEmail(rset.getString("email")); break;
-			case "grade" : member.setGrade(rset.getString("grade")); break;
-			case "is_leave" : member.setIsLeave(rset.getInt("is_leave")); break;
-			case "reg_date" : member.setRegDate(rset.getDate("reg_date")); break;
-			case "rentable_date" : member.setRentableDate(rset.getDate("rentable_date")); break;
-			case "tell" : member.setTell(rset.getString("tell")); break;
+			case "birth" : member.setBirth(rset.getDate("birth")); break;
+			case "phone" : member.setPhone(rset.getString("phone")); break;
 			default : throw new SQLException("부적절한 컬럼명을 전달했습니다."); //예외처리
 			}
 		}
