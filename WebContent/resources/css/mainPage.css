@@ -142,7 +142,7 @@ html, body {
 	float: left;
 	height: 70%;
 	width: 100%;
-}
+} 
 
 /* 음식 종류. 이하 뒤에 꼬리 이상한건 api 파라미터 따라한거임 */
 .row-1-recipe-1_RCP_PAT2, .row-1-recipe-2_RCP_PAT2, .row-1-recipe-3_RCP_PAT2, .row-1-recipe-4_RCP_PAT2{
