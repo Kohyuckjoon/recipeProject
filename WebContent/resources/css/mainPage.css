@@ -112,9 +112,8 @@ html{
 	font-size: 20px;
 	padding: 5px;
 	background-color: white;	
-	border: 1px solid;
-	border-color: #6559E9;
 	color: #6559E9;
+	
 }
 
 .arrow{
@@ -125,8 +124,6 @@ html{
 	width: 5px;
 	padding: 0px;
 	background-color:#ccdce7;
-	border: 5px solid;
-	border-color: green;
 }
 
 
