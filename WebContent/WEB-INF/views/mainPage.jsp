@@ -35,46 +35,29 @@
 	
 	<!-- 여기서부터 바디 -->
 	<div class="body">
-	
-		<c:if test="${empty pageNumber || pageNumber eq 1}">
-			<% int begin = -3; int end = 0;%>
-				<c:forEach begin="0" end="8">
-				<div class="row">
-					<% begin += 4; end += 4;%>
-					<c:forEach var="recipe" items="${Recipes}" begin= "<%=begin%>" end="<%=end%>">
-						<div class="upper-recipe">
-							<img src="${recipe.attFileNoMk}" class="recipe-pic">
-							<div class="recipe-text">
-								<div class="food-type">${recipe.rcpPat2}</div>
-								<div class="food-name">${recipe.rcpNm}</div>
-								<span class="food-star">★★★★★</span>
-							</div>
+
+		<%
+		int begin = (int) request.getAttribute("pageNumber")*36 - 35;
+		int end = (int) request.getAttribute("pageNumber")*36 - 32;
+		%>
+		<c:forEach begin="0" end="8">
+			<div class="row">
+				<c:forEach var="recipe" items="${Recipes}" begin="<%=begin%>" end="<%=end%>">
+					<div class="upper-recipe">
+						<img src="${recipe.attFileNoMk}" class="recipe-pic">
+						<div class="recipe-text">
+							<div class="food-type">${recipe.rcpPat2}</div>
+							<div class="food-name">${recipe.rcpNm}</div>
+							<span class="food-star">★★★★★</span>
 						</div>
-					</c:forEach>
-				</div>
-			</c:forEach>
-		</c:if>
-		
-		<c:if test="${pageNumber == '2'}">
-			<% int begin = 33; int end = 36;%>
-				<c:forEach begin="0" end="8">
-				<div class="row">
-					<% begin += 4; end += 4;%>
-					<c:forEach var="recipe" items="${Recipes}" begin= "<%=begin%>" end="<%=end%>">
-						<div class="upper-recipe">
-							<img src="${recipe.attFileNoMk}" class="recipe-pic">
-							<div class="recipe-text">
-								<div class="food-type">${recipe.rcpPat2}</div>
-								<div class="food-name">${recipe.rcpNm}</div>
-								<span class="food-star">★★★★★</span>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-			</c:forEach>
-		</c:if>
-		
+					</div>
+				</c:forEach>
+			</div>
+			<%begin += 4; end += 4; %>
+		</c:forEach>
+
 	</div>
+
 	<!-- 스코프 문제 -->
 	<!-- 페이지 이동 기능 -->
 	<div class = "page">
@@ -105,6 +88,7 @@
 	<c:forEach begin= "0" end="9">
 		<% step += 1;%>
 		document.querySelector(".page-number-<%=step%>").addEventListener('click', () => {
+			<%-- <c:set scope = "session" var="pageNumber" value = "<%=step%>"/> --%>
 			location.href="/mainPage/<%=step%>";
 		});
 	</c:forEach>

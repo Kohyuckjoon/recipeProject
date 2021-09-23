@@ -23,7 +23,7 @@ public class MainPageDao {
 		List<Recipe> Recipes = new ArrayList<Recipe>();
 		
 		try {
-			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/1/200");
+			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/1/1000");
 			BufferedReader br;
 			br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			value = br.readLine();
