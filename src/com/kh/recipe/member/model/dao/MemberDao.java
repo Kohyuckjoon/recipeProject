@@ -20,15 +20,15 @@ public class MemberDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 
-	public Member memberAuthenticate(String userId, String password, Connection conn){
+	public Member memberAuthenticate(String id, String password, Connection conn){
 		Member member = null;	
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where user_id = ? and password = ?";
+		String query = "select * from member where id = ? and password = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, userId);
+			pstm.setString(1, id);
 			pstm.setString(2, password);
 			rset = pstm.executeQuery();
 			
@@ -44,15 +44,15 @@ public class MemberDao {
 		return member;
 	}
 
-	public Member selectMemberById(String userId, Connection conn) {
+	public Member selectMemberById(String id, Connection conn) {
 		Member member = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where user_id = ?";
+		String query = "select * from member where id = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, userId);
+			pstm.setString(1, id);
 			rset = pstm.executeQuery();
 			if(rset.next()) {
 				member = convertAllToMember(rset);
@@ -71,7 +71,7 @@ public class MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String columns = "user_id, email, tell, grade";
+		String columns = "id, email, phone, name";
 		String query = "select " + columns +" from member";
 		
 		try {
@@ -121,7 +121,7 @@ public class MemberDao {
 	//생성시 등록된 쿼리 템플릿의 구조가 변경되는 것을 방지
 	//문자열에 대해서 자동으로 이스케이프 처리 
 	//ex) ->\' or 1=1 or user_id = \'
-	public int updateMemberPassword(String userId, String password, Connection conn) {
+	public int updateMemberPassword(String id, String password, Connection conn) {
 		
 	      Statement stmt = null;
 	      int res = 0;
@@ -132,7 +132,7 @@ public class MemberDao {
 	         conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "bm", "1234");
 	         stmt = conn.createStatement();
 	         String query = "update member set password = '" + password + "' "
-	                  + "where user_id = '" + userId + "'";
+	                  + "where id = '" + id + "'";
 	         res = stmt.executeUpdate(query);
 	      } catch (ClassNotFoundException | SQLException e) {
 	         res = -1;
@@ -149,11 +149,11 @@ public class MemberDao {
 		
 	}
 
-	public int deleteMember(String userId, Connection conn) {
+	public int deleteMember(String id, Connection conn) {
 		int res = 0;
 		
 		Statement stmt = null;
-		String query = "delete from member where user_id = '" + userId + "'";
+		String query = "delete from member where id = '" + id + "'";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

@@ -6,12 +6,9 @@ public class Kakao_Member {
 
 	 private String userId;
 	 private String userNickName;
-	 private String grade;
 	 private String userEmail;
-	 private String tell;
-	 private Date regDate;
-	 private Date rentableDate;
-	 private int isLeave;
+	 private String phone;
+	 private Date birth;
 	public String getUserId() {
 		return userId;
 	}
@@ -24,48 +21,30 @@ public class Kakao_Member {
 	public void setUserNickName(String userNickName) {
 		this.userNickName = userNickName;
 	}
-	public String getGrade() {
-		return grade;
-	}
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
 	public String getUserEmail() {
 		return userEmail;
 	}
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getTell() {
-		return tell;
+	public String getPhone() {
+		return phone;
 	}
-	public void setTell(String tell) {
-		this.tell = tell;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public Date getRegDate() {
-		return regDate;
+	public Date getBirth() {
+		return birth;
 	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-	public Date getRentableDate() {
-		return rentableDate;
-	}
-	public void setRentableDate(Date rentableDate) {
-		this.rentableDate = rentableDate;
-	}
-	public int getIsLeave() {
-		return isLeave;
-	}
-	public void setIsLeave(int isLeave) {
-		this.isLeave = isLeave;
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 	@Override
 	public String toString() {
-		return "Kakao_Member [userId=" + userId + ", userNickName=" + userNickName + ", grade=" + grade + ", userEmail="
-				+ userEmail + ", tell=" + tell + ", regDate=" + regDate + ", rentableDate=" + rentableDate
-				+ ", isLeave=" + isLeave + "]";
+		return "Kakao_Member [userId=" + userId + ", userNickName=" + userNickName + ", userEmail=" + userEmail
+				+ ", phone=" + phone + ", birth=" + birth + "]";
 	}
+
 	 
 	
 	

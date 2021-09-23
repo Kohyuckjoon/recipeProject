@@ -22,7 +22,7 @@ public class Kakao_MemberDao {
 		Kakao_Member kakao_Member = null;	
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where user_id = ? and password = ?";
+		String query = "select * from member where id = ? and password = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -46,7 +46,7 @@ public class Kakao_MemberDao {
 		Kakao_Member kakao_Member = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where user_id = ?";
+		String query = "select * from member where id = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -69,7 +69,7 @@ public class Kakao_MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String columns = "user_id, email, tell, grade";
+		String columns = "id, email, phone";
 		String query = "select " + columns +" from member";
 		
 		try {
@@ -92,14 +92,14 @@ public class Kakao_MemberDao {
 	public int insertKakaoMember(Kakao_Member kakao_Member, Connection conn){	
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "insert into member(user_id,password,email,tell) values(?,?,?,?)";
+		String query = "insert into member(id,password,email,phone) values(?,?,?,?)";
 		
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kakao_Member.getUserNickName());
 			pstm.setString(2, kakao_Member.getUserId());
 			pstm.setString(3, kakao_Member.getUserEmail());
-			
+			pstm.setString(4, kakao_Member.getPhone());
 			res = pstm.executeUpdate();
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
@@ -151,7 +151,7 @@ public class Kakao_MemberDao {
 		int res = 0;
 		
 		Statement stmt = null;
-		String query = "delete from member where user_id = '" + userNickName + "'";
+		String query = "delete from member where id = '" + userNickName + "'";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -178,14 +178,11 @@ public class Kakao_MemberDao {
 	
 	private Kakao_Member convertAllToKakao_Member(ResultSet rset) throws SQLException {
 		Kakao_Member kakao_Member = new Kakao_Member();
-		kakao_Member.setUserNickName(rset.getString("userId"));
+		kakao_Member.setUserNickName(rset.getString("id"));
 		kakao_Member.setUserId(rset.getString("password"));
-		kakao_Member.setUserEmail(rset.getString("userEmail"));
-		kakao_Member.setGrade(rset.getString("grade"));
-		kakao_Member.setIsLeave(rset.getInt("is_leave"));
-		kakao_Member.setRegDate(rset.getDate("reg_date"));
-		kakao_Member.setRentableDate(rset.getDate("rentable_date"));
-		kakao_Member.setTell(rset.getString("tell"));
+		kakao_Member.setUserEmail(rset.getString("email"));
+		kakao_Member.setBirth(rset.getDate("birth"));
+		kakao_Member.setPhone(rset.getString("phone"));
 		return kakao_Member;
 	}
 	
@@ -197,13 +194,10 @@ public class Kakao_MemberDao {
 			
 			switch (column) {
 			case "userNickName": kakao_Member.setUserNickName(rset.getString("user_id")); break;
-			case "user_id": kakao_Member.setUserId(rset.getString("password")); break;
+			case "id": kakao_Member.setUserId(rset.getString("password")); break;
 			case "email" : kakao_Member.setUserEmail(rset.getString("email")); break;
-			case "grade" : kakao_Member.setGrade(rset.getString("grade")); break;
-			case "is_leave" : kakao_Member.setIsLeave(rset.getInt("is_leave")); break;
-			case "reg_date" : kakao_Member.setRegDate(rset.getDate("reg_date")); break;
-			case "rentable_date" : kakao_Member.setRentableDate(rset.getDate("rentable_date")); break;
-			case "tell" : kakao_Member.setTell(rset.getString("tell")); break;
+			case "birth" : kakao_Member.setBirth(rset.getDate("birth")); break;
+			case "phone" : kakao_Member.setPhone(rset.getString("phone")); break;
 			default : throw new SQLException("부적절한 컬럼명을 전달했습니다."); //예외처리
 			}
 		}
