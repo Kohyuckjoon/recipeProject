@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Board {
 
-	private int no; //게시글 번호
+	private int no; //게시글 번호 -bdIdx
 	private String id; //아이디
 	private String category; //게시글 분류
 	private String title; //게시글 제목
