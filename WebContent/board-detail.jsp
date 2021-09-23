@@ -9,7 +9,7 @@
 <link href="resources/css/board/board-detail.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jsp" %> 
+<%@ include file="/WEB-INF/views/include/header.jsp" %>  
 
 <!-- 게시판 목록 리스트 -->
 <div class="content">
@@ -35,16 +35,15 @@
             <option>글쓴이</option>
           </select> 
         </div>
-        <div id="search_input"><input type="text"></div>
+        <div id="search_input"><input type="text" placeholder="검색어를 입력하시오"></div>
         <div id="search_btn"><i class="fas fa-search"></i></div>
      </div>
 	
 	<!-- 게시판 내용 뿌려주는 곳 -->
 
 <div class ="board_list">
-
-	<div>
-		<table >
+	
+		<table>
 		<!-- 목록  -->
 			<thead>
 				<tr>
@@ -56,21 +55,46 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="board" items="${ls}">
 				<tr>
-					<td>${board.no}</td>
-					<td>${board.title}</td>
-					<td>${board.id}</td>
-					<td>${board.date}</td>
-					<td>${board.viewCount}</td>
+					<td>1</td>
+					<td>1번째 게시물</td>
+					<td>최윤지</td>
+					<td>21-09-23</td>
+					<td>0</td>
 				</tr>
-				</c:forEach>
-				
-				
+				<tr>
+					<td>2</td>
+					<td>2번째 게시물</td>
+					<td>최윤지</td>
+					<td>21-09-23</td>
+					<td>43</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>3번째 게시물</td>
+					<td>최윤지</td>
+					<td>21-09-23</td>
+					<td>23</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>4번째 게시물</td>
+					<td>최윤지</td>
+					<td>21-09-23</td>
+					<td>2342</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>5번째 게시물</td>
+					<td>최윤지</td>
+					<td>21-09-23</td>
+					<td>3453</td>
+				</tr>
 			</tbody>
+		
 		</table>
 		</div>
-	
+		
 		<!-- 게시판 페이징 구현하는 거 -->
 <div class="paging" >
 				
@@ -85,7 +109,8 @@
 	<div class="btn">
 			<a href="board-form.jsp"> <input type="button" value="글쓰기" ></a>
 	</div>
-<!-- 여기부턴 foot -->
-	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
+	
+	<!-- 여기부턴 foot -->
+	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
 </html>
