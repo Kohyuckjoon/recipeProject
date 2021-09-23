@@ -23,8 +23,7 @@ public class JDBCTemplate {
    private JDBCTemplate() {
       try {
          Class.forName("oracle.jdbc.driver.OracleDriver");
-         
-         String url = "jdbc:oracle:thin:@db202109131358_high?TNS_ADMIN=C:/CODE/e_servlet/Wallet_DB202109131358";
+         String url = "jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233";
          String user = "ADMIN";
          String password = "2whTpalvmf__";
                   
