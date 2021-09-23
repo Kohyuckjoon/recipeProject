@@ -1,11 +1,12 @@
 @charset "UTF-8";
 
 .foot {
-	margin-top: 5em;
+	margin-top: 20px;
 	width : 1900px;
 	height: 100px;
 	background-color: lightblue;
 	display: flex;
+	
 }
 
 .Copyright {

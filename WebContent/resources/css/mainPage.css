@@ -1,153 +1,143 @@
 @charset "UTF-8";
 
-html, body {
-	display: flex;
-	font-weight: bold;
-	text-align: center;
+html{
+	width: 1800px;
+	background-color: #ccdce7;
+	margin-left: 70px;
 }
 
 /* 싸이드바 */
 .sideBar {
 	width: 200px;	
-	height: 400px;
+	height: 600px;
 	position: fixed;
-	right: 50px;
-	margin-top: 100px;
+	margin-top: 230px;
+	margin-left: 1597px;
 	text-align: center;
 	background-color: white;
 }
 
 .sideBar-title {
 	width: 100%;	
-	height: 20%;
-	font-size: 2em;
+	height: 10%;
+	font-size: 35px;
 	font-weight: bold;
+	font-family: Times New Roman;
 }
 .sideBar-body{
 	width: 100%;	
-	height: 80%;
+	height: 70%;
 	
 }
-.sideBar-body>div{
-	height: 22%;
-	width: 100%;	
+.best-recipe{
+	height: 80px;
+	width: 200px;	
 	display: flex;
 	margin-bottom: 10px;
 }
 
-.sideBar-body span{
-	height: 100%;
-	width: 60%;	
-	margin-top: 10px;
-	font:caption;
+.best-recipe-pic{
+	height: 80px;
+	width: 100px;
+}
+.best-recipe-text{
+	height: 80px;
+	width: 100px;
+	word-break: keep-all;
+	font-size: 14px;
+	margin-top: 14px;	
 }
 
-.most-popular-recipe-1-pic{
-	height: 100%;
-	width: 40%;
-	background-size: cover;
-}
-
-
-.most-popular-recipe-2-pic{
-	height: 100%;
-	width: 40%;
-	background-size: cover;
-}
-
-
-
-.most-popular-recipe-3-pic{
-	height: 100%;
-	width: 40%;
-	background-size: cover;
-}
-
-
-.most-popular-recipe-4-pic{
-	height: 100%;
-	width: 40%;
-	background-size: cover;
-}
-
-
-
-.sideBar-body>div:hover {
-	background-color: fuchsia;
+.most-popular-recipe-text{
+	font-family: 'Single Day', cursive;
+	font-weight: bold;
 }
 
 /* 여기부터 바디 메뉴-------------------------------------------------------------------------- */
 .body {
-	height: 2600px;
-	width: 1400px;
-	margin-right: 40em;
+	width: 1600px;
 	display: inline-flex;
 	flex-direction: column;
+	margin-top: 100px;
 }
 
 /* 첫번재줄 */
-.row-1 {
-	height: 15%;
+.row {
+	height: 400px;
 	display: flex;
 	margin-top: 1em;
 	font-weight: bold;
 	text-align: center;
 }
 
-.row-1>* {
+.row>* {
 	margin-right: 2em;
 }
 
-/* 음식 사진 */
-.row-1-recipe-1, .row-1-recipe-2, .row-1-recipe-3, .row-1-recipe-4 {
-	height: 110%;
+/* 세뉴 상세 */
+.upper-recipe {
+	height: 100%;
 	width: 100%;
 	background-color: white;
 }
 
-.row-1-recipe-1-ATT_FILE_NO_MK {
-	background-image: url("../../resources/img/food_1.webp");
-	background-size: cover;
+.recipe-pic {
 	margin-bottom: 1em;
 	float: left;
-	height: 70%;
+	height: 80%;
 	width: 100%;
 	
 }
 
-.row-1-recipe-2-ATT_FILE_NO_MK {
-	background-image: url("../../resources/img/food_2.webp");
-	background-size: cover;
-	margin-bottom: 1em;
-	float: left;
-	height: 70%;
-	width: 100%;
+.recipe-text>div{
+	margin-bottom: 0.3px;
+	font-weight:bold; 
+	font-family: 'Single Day', cursive;
 }
-
-.row-1-recipe-3-ATT_FILE_NO_MK {
-	background-image: url("../../resources/img/food_3.webp");
-	background-size: cover;
-	margin-bottom: 1em;
-	float: left;
-	height: 70%;
-	width: 100%;
-}
-
-.row-1-recipe-4-ATT_FILE_NO_MK {
-	background-image: url("../../resources/img/food_4.webp");
-	background-size: cover;
-	margin-bottom: 1em;
-	float: left;
-	height: 70%;
-	width: 100%;
-} 
 
 /* 음식 종류. 이하 뒤에 꼬리 이상한건 api 파라미터 따라한거임 */
-.row-1-recipe-1_RCP_PAT2, .row-1-recipe-2_RCP_PAT2, .row-1-recipe-3_RCP_PAT2, .row-1-recipe-4_RCP_PAT2{
+.food-type{
 	font-size: 12px;
 	color: orange;
 }
 
-.recipe-text>*{
-	margin-bottom: 0.5em;
+/* 페이지 넘버 */
+
+.page{
+	margin-top: 30px;
+	margin-left: 530px
 }
+
+.page td{
+	font-size: 20px;
+	padding: 5px;
+	background-color: white;	
+	border: 1px solid;
+	border-color: #6559E9;
+	color: #6559E9;
+}
+
+.arrow{
+	
+}
+
+.blank{
+	width: 5px;
+	padding: 0px;
+	background-color:#ccdce7;
+	border: 5px solid;
+	border-color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

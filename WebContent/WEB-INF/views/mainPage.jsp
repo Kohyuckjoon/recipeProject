@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="resources/css/index.css" rel="stylesheet"  type="text/css">
+<link href="../resources/css/mainPage.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
 	
@@ -13,86 +13,108 @@
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 	
 	
+
 	<!-- ul과 li로 넣어도 댐 -->
 	<div class="sideBar">
 
-		<div class="sideBar-title">Most Popular</div>
-
+		<div class="sideBar-title">Best Recipes</div>
 		<div class="sideBar-body">
-
-			<div class="most-popular-recipe-1">
-				<div class="most-popular-recipe-1-pic"></div>
-				<span class="most-popular-recipe-1-text">Lamb chops are such a simple...</span>
-			</div>
-
-			<div class="most-popular-recipe-2">
-				<div class="most-popular-recipe-2-pic"></div>
-				<span class="most-popular-recipe-2-text">Everyone loves a good lasagna...</span>
-			</div>
-
-			<div class="most-popular-recipe-3">
-				<div class="most-popular-recipe-3-pic"></div>
-				<span class="most-popular-recipe-3-text">Dakos Salad is Greek salad...</span>
-			</div>
-
-			<div class="most-popular-recipe-4">
-				<div class="most-popular-recipe-4-pic"></div>
-				<span class="most-popular-recipe-4-text">Pozole is a traditional soup...</span>
-			</div>
+				<c:forEach var="recipe" items="${Recipes}" begin= "31" end="36">
+					<div class="best-recipe">
+						<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
+						<div class="best-recipe-text">
+							<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
+							<div class="food-star">★★★★★</div>
+						</div>
+					</div>
+				</c:forEach>
 
 		</div>
 
 	</div>
-	
 	
 	<!-- 여기서부터 바디 -->
 	<div class="body">
-
-		<div class="row-1">
-			<div class="row-1-recipe-1">
-				<div class="row-1-recipe-1-ATT_FILE_NO_MK"></div>
-				<div class="recipe-text">
-					<div class="row-1-recipe-1_RCP_PAT2">DINNER</div>
-					<div class="row-1-recipe-1_RCP_NM">Lamb Chops with Rosemary and Garlic</div>
-					<div class="row-1-recipe-1_rating">★★★★★</div>
+	
+		<c:if test="${empty pageNumber || pageNumber eq 1}">
+			<% int begin = -3; int end = 0;%>
+				<c:forEach begin="0" end="8">
+				<div class="row">
+					<% begin += 4; end += 4;%>
+					<c:forEach var="recipe" items="${Recipes}" begin= "<%=begin%>" end="<%=end%>">
+						<div class="upper-recipe">
+							<img src="${recipe.attFileNoMk}" class="recipe-pic">
+							<div class="recipe-text">
+								<div class="food-type">${recipe.rcpPat2}</div>
+								<div class="food-name">${recipe.rcpNm}</div>
+								<span class="food-star">★★★★★</span>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
-
-			</div>
-			
-			<div class="row-1-recipe-2">
-				<div class="row-1-recipe-2-ATT_FILE_NO_MK"></div>
-				<div class="recipe-text">
-					<div class="row-1-recipe-2_RCP_PAT2">QUICK DINNER</div>
-					<div class="row-1-recipe-2_RCP_NM">Lasagna</div>
-					<div class="row-1-recipe-2_rating">★★★☆</div>
+			</c:forEach>
+		</c:if>
+		
+		<c:if test="${pageNumber == '2'}">
+			<% int begin = 33; int end = 36;%>
+				<c:forEach begin="0" end="8">
+				<div class="row">
+					<% begin += 4; end += 4;%>
+					<c:forEach var="recipe" items="${Recipes}" begin= "<%=begin%>" end="<%=end%>">
+						<div class="upper-recipe">
+							<img src="${recipe.attFileNoMk}" class="recipe-pic">
+							<div class="recipe-text">
+								<div class="food-type">${recipe.rcpPat2}</div>
+								<div class="food-name">${recipe.rcpNm}</div>
+								<span class="food-star">★★★★★</span>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
-			</div>
-
-			<div class="row-1-recipe-3">
-				<div class="row-1-recipe-3-ATT_FILE_NO_MK"></div>
-				<div class="recipe-text">
-					<div class="row-1-recipe-3_RCP_PAT2">SALARDS</div>
-					<div class="row-1-recipe-3_RCP_NM">Dakos Salad</div>
-					<div class="row-1-recipe-3_rating">★★★★☆</div>
-				</div>
-			</div>
-
-			<div class="row-1-recipe-4">
-				<div class="row-1-recipe-4-ATT_FILE_NO_MK"></div>
-				<div class="recipe-text">
-					<div class="row-1-recipe-4_RCP_PAT2">GLUTEN-FREE-DINNER</div>
-					<div class="row-1-recipe-4_RCP_NM">Pozole Rojo</div>
-					<div class="row-1-recipe-4_rating">★★☆</div>
-				</div>
-			</div>
-		</div>
-
+			</c:forEach>
+		</c:if>
+		
+	</div>
+	<!-- 스코프 문제 -->
+	<!-- 페이지 이동 기능 -->
+	<div class = "page">
+	<% int pageNum = 0;%>
+		<table>
+			<tr>
+				<td class = "arrow"><i class="fas fa-angle-double-left"></i></td>
+				<td class = "blank"></td>
+				<td class = "arrow"><i class="fas fa-angle-left"></i></td>
+				
+				<c:forEach begin= "0" end="9">
+					<% pageNum += 1;%>
+					<td class = "blank"> </td>
+					<td class = "page-number-<%=pageNum%>"><%=pageNum%></td>
+				</c:forEach>
+				
+				<td class = "blank"> </td>
+				<td class = "arrow"><i class="fas fa-angle-right"></i></td>
+				<td class = "blank"></td>
+				<td class = "arrow"><i class="fas fa-angle-double-right"></i></td>
+			</tr>
+		</table>
 	</div>
 	
-	<!-- https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/xml/1/1000/ -->
+	<script type="text/javascript">
+	<% int step = 0;%>
 	
-	<!-- 여기부턴 foot -->
-	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
+	<c:forEach begin= "0" end="9">
+		<% step += 1;%>
+		document.querySelector(".page-number-<%=step%>").addEventListener('click', () => {
+			location.href="/mainPage/<%=step%>";
+		});
+	</c:forEach>
+	
+	</script>
 
+	<!-- 여기부턴 foot -->
+	
+	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
+	
+	<!-- <script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script> -->
 </body>
 </html>
