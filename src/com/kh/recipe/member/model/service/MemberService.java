@@ -136,7 +136,7 @@ public class MemberService {
 		String queryString = conn.urlEncodedForm(RequestParams
 												.builder()
 												.param("mailTemplate", "join-auth-mail")
-												.param("userId", member.getUserId())
+												.param("userId", member.getId())
 												.param("persistToken", persistToken).build());
 		
 		String response 

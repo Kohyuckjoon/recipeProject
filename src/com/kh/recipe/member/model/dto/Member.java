@@ -23,89 +23,56 @@ import java.sql.Date;
 //Number -> int, double
 public class Member {
 	
-	private String userId;
+	private String Id;
 	private String password;
-	private String grade;
 	private String email;
-	private String tell;
-	private Date regDate;
-	private Date rentableDate;
-	private int isLeave;
-	
-	public Member() {
-		// TODO Auto-generated constructor stub
+	private String phone;
+	private String name;
+	private Date birth;
+	public String getId() {
+		return Id;
 	}
-
-	public String getUserId() {
-		return userId;
+	public void setId(String id) {
+		Id = id;
 	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getTell() {
-		return tell;
+	public String getPhone() {
+		return phone;
 	}
-
-	public void setTell(String tell) {
-		this.tell = tell;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-
-	public Date getRegDate() {
-		return regDate;
+	public String getName() {
+		return name;
 	}
-
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public Date getRentableDate() {
-		return rentableDate;
+	public Date getBirth() {
+		return birth;
 	}
-
-	public void setRentableDate(Date rentableDate) {
-		this.rentableDate = rentableDate;
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
-
-	public int getIsLeave() {
-		return isLeave;
-	}
-
-	public void setIsLeave(int isLeave) {
-		this.isLeave = isLeave;
-	}
-
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", password=" + password + ", grade=" + grade + ", email=" + email
-				+ ", tell=" + tell + ", regDate=" + regDate + ", rentableDate=" + rentableDate + ", isLeave=" + isLeave
-				+ "]";
+		return "Member [Id=" + Id + ", password=" + password + ", email=" + email + ", phone=" + phone + ", name="
+				+ name + ", birth=" + birth + "]";
 	}
+
+	
+	
 	
 	
 	
