@@ -12,12 +12,12 @@
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 	
 <div class="content"> 
-	<h2 class="tit">게시판</h2>
+	<h2 class="tit">게시판 글쓰기 양식</h2>
 	<div class="desc_board">
 		<form action="${contextPath}/board/upload" method="post" enctype="multipart/form-data">
 			<div>
 				<div class="tit_board">
-					제목 : <input type="text" name="title" required="required"/><br>
+					제목 : <input type="text" name="title" required="required" placeholder="글 제목을 입력하세요"/><br>
 					파일 : <input type="file" name="files" id="contract_file" multiple/>
 				</div>
 				<div class="category">
@@ -30,10 +30,10 @@
 			 </form>
 				</div>
 				<div class="content_board">
-					<textarea name="content" required="required" maxlength="250"></textarea>
+					<textarea name="content" required="required" maxlength="250" placeholder="250글자 이하로 작성하시오."></textarea>
 				</div>
-				<input type="button" value="글쓰기" >
-				<a href="board-detail.jsp"> <input type="button" value="목록" ></a>
+				<input type="submit" value="글쓰기" >
+				<a href="board-list.jsp"> <input type="button" value="목록" ></a>
 			</div>
 		</form>
 	</div>

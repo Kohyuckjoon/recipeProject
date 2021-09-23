@@ -1,6 +1,7 @@
 package com.kh.recipe.board.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -159,9 +160,7 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		return files;
 	}
 
-	
-	
-	
+
 	
 	
 	
