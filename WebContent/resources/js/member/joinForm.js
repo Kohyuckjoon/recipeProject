@@ -7,10 +7,10 @@
    		document.querySelector("#btnIdCheck").addEventListener('click', e => {
 
    			//id속성값이 지정되어있으면 id값으로 해당 요소객체 호출 가능
-   			let id = userId.value;
+   			let id = Id.value;
    			
    			if(id){
-   				fetch('/member/id-check?userId=' + id)
+   				fetch('/member/id-check?id=' + id)
    				.then(response => {
 					if(!response.ok) throw new Error(`${response.statusText} : ${response.status}`);
 					return response.text();
@@ -32,7 +32,7 @@
    			let pwReg = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(?=.{8,})/;
    			let tellReg = /^\d{9,11}$/;
    			
-   			if(confirmId != userId.value){
+   			if(confirmId != id.value){
    				e.preventDefault();
    				document.querySelector('#idCheck').innerHTML ='아이디 중복 검사를 통과하지 않았습니다.';   	
    			}

@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JoinForm {
 	
-	private String userId;
+	private String Id;
 	private String password;
 	private String email;
-	private String tell;
+	private String phone;
 	private HttpServletRequest request;
 	/* private MemberService memberService = new MemberService(); */
 	private Map<String, String> failedAttribute = new HashMap<String, String>();
 	
 	public JoinForm(HttpServletRequest request) {
 		this.request = request;
-		this.userId = request.getParameter("userId");
+		this.Id = request.getParameter("id");
 		this.password = request.getParameter("password");
 		this.email = request.getParameter("email");
-		this.tell = request.getParameter("tell");
+		this.phone = request.getParameter("phone");
 	}
 	
 	public boolean test() {
@@ -44,9 +44,9 @@ public class JoinForm {
 							
 		// 전화번호가 9-11자리 숫자
 		// 이스케이프문자니까 \하나 더
-		vaild =  Pattern.matches("^\\d{9,11}$", tell);
+		vaild =  Pattern.matches("^\\d{9,11}$", phone);
 		if (!vaild) {
-			failedAttribute.put("tell", tell);
+			failedAttribute.put("phone", phone);
 			res = false;
 		}
 		
@@ -65,8 +65,8 @@ public class JoinForm {
 	
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return Id;
 	}
 
 	public String getPassword() {
@@ -77,10 +77,11 @@ public class JoinForm {
 		return email;
 	}
 
-	public String getTell() {
-		return tell;
+	public String getPhone() {
+		return phone;
 	}
-	
+
+
 	
 
 }

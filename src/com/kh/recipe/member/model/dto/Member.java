@@ -70,6 +70,7 @@ public class Member {
 		return "Member [Id=" + Id + ", password=" + password + ", email=" + email + ", phone=" + phone + ", name="
 				+ name + ", birth=" + birth + "]";
 	}
+	
 
 	
 	

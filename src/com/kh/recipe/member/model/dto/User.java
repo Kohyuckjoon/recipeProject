@@ -43,7 +43,7 @@ public class User {
 		private String email;
 		private String phone;
 		
-		public UserBuilder userId(String Id) {
+		public UserBuilder Id(String Id) {
 			this.Id = Id;
 			return this; //userId 속성이 초기화된 UserBuilder
 		}

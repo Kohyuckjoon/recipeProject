@@ -20,7 +20,7 @@ public class MemberDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 
-	public Member memberAuthenticate(String id, String password, Connection conn){
+	public Member memberAuthenticate(String Id, String password, Connection conn){
 		Member member = null;	
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -28,7 +28,7 @@ public class MemberDao {
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, id);
+			pstm.setString(1, Id);
 			pstm.setString(2, password);
 			rset = pstm.executeQuery();
 			
@@ -44,7 +44,7 @@ public class MemberDao {
 		return member;
 	}
 
-	public Member selectMemberById(String id, Connection conn) {
+	public Member selectMemberById(String Id, Connection conn) {
 		Member member = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -52,7 +52,7 @@ public class MemberDao {
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, id);
+			pstm.setString(1, Id);
 			rset = pstm.executeQuery();
 			if(rset.next()) {
 				member = convertAllToMember(rset);
@@ -121,7 +121,7 @@ public class MemberDao {
 	//생성시 등록된 쿼리 템플릿의 구조가 변경되는 것을 방지
 	//문자열에 대해서 자동으로 이스케이프 처리 
 	//ex) ->\' or 1=1 or user_id = \'
-	public int updateMemberPassword(String id, String password, Connection conn) {
+	public int updateMemberPassword(String Id, String password, Connection conn) {
 		
 	      Statement stmt = null;
 	      int res = 0;
@@ -132,7 +132,7 @@ public class MemberDao {
 	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
 	         stmt = conn.createStatement();
 	         String query = "update member set password = '" + password + "' "
-	                  + "where id = '" + id + "'";
+	                  + "where id = '" + Id + "'";
 	         res = stmt.executeUpdate(query);
 	      } catch (ClassNotFoundException | SQLException e) {
 	         res = -1;
@@ -149,11 +149,11 @@ public class MemberDao {
 		
 	}
 
-	public int deleteMember(String id, Connection conn) {
+	public int deleteMember(String Id, Connection conn) {
 		int res = 0;
 		
 		Statement stmt = null;
-		String query = "delete from member where id = '" + id + "'";
+		String query = "delete from member where id = '" + Id + "'";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

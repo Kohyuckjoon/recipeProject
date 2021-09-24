@@ -34,11 +34,11 @@ public class MemberService {
 	private MemberDao memberDao = new MemberDao();
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
-	public Member memberAuthenticate(String Id, String password) {
+	public Member memberAuthenticate(String id, String password) {
 		Connection conn = template.getConnection();
 		Member member = null;
 		try {
-			member = memberDao.memberAuthenticate(Id, password, conn);
+			member = memberDao.memberAuthenticate(id, password, conn);
 		}finally {
 			template.close(conn);
 		}
@@ -46,13 +46,13 @@ public class MemberService {
 		return member;
 	}
 
-	public Member selectMemberById(String Id) {
+	public Member selectMemberById(String id) {
 		
 		Connection conn = template.getConnection();
 		Member member = null;
 		
 		try {
-			member = memberDao.selectMemberById(Id, conn);
+			member = memberDao.selectMemberById(id, conn);
 		} finally {
 			template.close(conn);
 		}
@@ -96,12 +96,12 @@ public class MemberService {
 		return res;
 	}
 
-	public int updateMemeberPassword(String Id, String password) {
+	public int updateMemeberPassword(String id, String password) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		
 		try {
-			res = memberDao.updateMemberPassword(Id, password, conn);
+			res = memberDao.updateMemberPassword(id, password, conn);
 			template.commit(conn);
 			
 		} catch (Exception e) {
@@ -115,11 +115,11 @@ public class MemberService {
 		return res; 
 	} 
 
-	public int deleteMember(String Id) {
+	public int deleteMember(String id) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		try {
-			res = memberDao.deleteMember(Id, conn);
+			res = memberDao.deleteMember(id, conn);
 			template.commit(conn);
 		} catch (Exception e) {
 			// TODO: handle exception
