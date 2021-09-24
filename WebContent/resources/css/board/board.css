@@ -1,7 +1,16 @@
-@charset "UTF-8";
-/* boardForm  */
+<style type="text/css">
 
-.tit_board *{font-size:1.3vw; margin-right:2vw}
+div {
+	box-shadow: 0 0 2px black;
+}
+
+.tit{
+	magin-top:150px;
+	position:relative;
+	text-align:center;
+	color:red;	
+	font-size:100px;
+}
 .board-content{padding-top:3vh; height:50vh}
 
 .content_board{
@@ -27,3 +36,4 @@
 }
 .btn_down-file{margin-left:1%;   z-index:999;}
 .article_content{min-height: 50vh; border-bottom: 1px solid;}
+</style>

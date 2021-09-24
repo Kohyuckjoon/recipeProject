@@ -6,38 +6,87 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="resources/css/index.css" rel="stylesheet"  type="text/css">
-<link href="resources/css/board/board-list.css" rel="stylesheet"  type="text/css">
+<!-- <link href="resources/css/board/board-list.css" rel="stylesheet"  type="text/css"> -->
+<style type="text/css">
+div {
+	box-shadow: 0 0 2px black;
+}
+
+.tit{
+	magin-top:150px;
+	position:relative;
+	text-align:center;
+	color:red;	
+	font-size:100px;
+}
+.category{
+	display: flex;
+	float: right;
+	position:relative;
+	right:250px;
+	top:20px;
+	
+}
+
+.board_list{
+	position:relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top:50px;
+	
+}
+
+.board_list {
+	width:80%;
+	border-top: 2px solid navy;
+	display: flex;
+	font-size:1vw;
+	justify-content: center;
+	align-items: center;
+}
+
+.board_list tr {
+	border-bottom :1px solid #999;
+}
+.board_list th,
+.board_list td{
+	padding: 10px;
+}
+.board_list td{
+text-align: center;
+}
+.board_list tbody tr td:nth-child(2){
+text-align: left;
+}
+.board_list tbody tr td:nth-child(2):hover{
+text-decoration: underline;
+}
+.paging{
+
+}
+
+.searchForm{
+	
+}
+</style>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jsp" %>  
+<%-- <%@ include file="/WEB-INF/views/include/header.jsp" %>   --%>
 
 <!-- 게시판 목록 리스트 -->
-<div class="content">
+
 
 	<div class="tit">자유게시판</div>
 	<div class="category">
 				<form>		 		
 					<select name="nation">
-				 		<option  selected disabled> --게시글 분류--</option>
-				 		<option value="all" id ="all">전체보기</option>
+
+				 		<option value="all" id ="all" selected>전체보기</option>
 				 		<option value="free" id ="free">자유</option>
 				 		<option value="scrap" id="scraps">스크랩공유</option>
 				 	</select>
 			 	</form>
 	</div>
-	</div>
-	<!-- 게시판 검색내용  -->
-	<div class="search">
-	<div id="search_select">
-          <select>
-            <option>제목</option>
-            <option>내용</option>
-            <option>글쓴이</option>
-          </select> 
-        </div>
-        <div id="search_input"><input type="text" place></div>
-        <div id="search_btn"><i class="fas fa-search"></i></div>
-     </div>
 	
 	<!-- 게시판 내용 뿌려주는 곳 -->
 
@@ -97,10 +146,15 @@
 		
 		<!-- 게시판 페이징 구현하는 거 -->
 
-<div id="pageForm">
-		페이지 번호
-	</div>
-	<br>
+<div id="paging">
+		<i class="fas fa-angle-double-left"></i>
+        <i class="fas fa-angle-left"></i>
+         	페이지 구현
+        <i class="fas fa-angle-right"></i>
+        <i class="fas fa-angle-double-right"></i>
+</div>
+	
+	
 	<div id="searchForm">
 		<form>
 			<select name="opt">
@@ -113,6 +167,7 @@
 			<input type="submit" value="검색"/>
 		</form>	
 	</div>
+		<input type="submit" value="글쓰기" >
 	<!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>

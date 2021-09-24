@@ -8,52 +8,64 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="resources/css/index.css" rel="stylesheet"  type="text/css">
-<link href="resources/css/board/board-detail.css" rel="stylesheet"  type="text/css">
+<link href="resources/css/board/board.css" rel="stylesheet"  type="text/css">
+<style type="text/css">
+.info{font-size:1.3vw; border-bottom:1px solid}
+.info span{padding-right: 3vw;}
+.info li{font-size:0.5vw;}
 
+.btn_section{
+   padding-top:20px;
+   flex-direction:row;
+   justify-content:flex-end;
+   width:50%;
+
+}
+.btn_section input{
+ font-size:1.5vw;
+ background-color: lightblue;
+  color:white;
+   }
+.wrap_board{
+   overflow:hidden;
+   width:70%;
+   left:30%;
+}
+
+.btn_down-file{margin-left:1%;   z-index:999;}
+.article_content{min-height: 50vh; border-bottom: 1px solid;}
+</style>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jsp" %>  
-<h2 class="tit">게시판</h2>
-<div id="info">
-  
-        <table class="boardForm">
-        	<tr>
-                <td id="date">번호</td>
-                <td>${datas.board.no}</td>
-            </tr>
-            <tr>
-                <td id="date">작성일</td>
-                <td>${datas.board.date}</td>
-            </tr>
-            <tr>
-                <td id="id">작성자</td>
-                <td>${datas.board.id}</td>
-            </tr>
-            <tr>
-                <td id="title">제 목</td>
-                <td> ${datas.board.title}</td>        
-            </tr>
-            <tr>
-                <td id="article_content">내 용 </td>
-                <td> ${datas.board.content} </td>        
-            </tr>
-            <tr>
-      	 	 <td id = "file">파 일</td>
-      	 	 <td>
-      	 	 <div class="info file_info">
-			<c:if test="${not empty datas.files}">
+<%-- <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>  
+
+	
+	
+	<div class="content"> 
+	<h2 class="tit">게시판 상세 글</h2>
+	
+		<div class="info">
+		<span>번호 : <c:out value="${datas.board.no}"/></span>
+		<span>제목 : <c:out value="${datas.board.title}"/></span>
+		<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
+		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
+		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
+	</div>
+	<div class="info file_info">
+		<c:if test="${not empty datas.files}">
 			<ol>
-					<c:forEach items="${datas.files}" var="file">
+				<c:forEach items="${datas.files}" var="file">
 					<li><a href="${file.downloadLink}">${file.originFileName}</a></li>				
 				</c:forEach>
 			</ol>
 		</c:if>
-	</div>  
-      	 	 </td>
-            </tr>
-        </table>
+	</div>
+	<div class="article_content">
+		<pre><c:out value="${datas.board.content}"/></pre>
+	</div>
+	
+</div>
 
-</div>   
  <div class="btn_section">
                     <input type="button" value="수정" >
                     <input type="button" value="삭제" >
