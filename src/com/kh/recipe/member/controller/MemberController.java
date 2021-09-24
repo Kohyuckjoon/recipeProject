@@ -177,13 +177,13 @@ public class MemberController extends HttpServlet {
 
 	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
+		String Id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		
 		Member member = new Member();
-		member.setId(id);
+		member.setId(Id);
 		member.setPassword(password);
 		member.setPhone(phone);
 		member.setEmail(email);

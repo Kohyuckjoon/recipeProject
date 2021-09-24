@@ -129,7 +129,7 @@ public class MemberDao {
 		
 	     try {
 	         Class.forName("oracle.jdbc.driver.OracleDriver");
-	         conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "bm", "1234");
+	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
 	         stmt = conn.createStatement();
 	         String query = "update member set password = '" + password + "' "
 	                  + "where id = '" + id + "'";
@@ -157,8 +157,7 @@ public class MemberDao {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe"
-							,"bm","1234");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
 			stmt = conn.createStatement();
 			res = stmt.executeUpdate(query);
 		} catch (ClassNotFoundException | SQLException e) {
