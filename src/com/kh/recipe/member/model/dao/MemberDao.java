@@ -71,7 +71,7 @@ public class MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String columns = "id, email, phone, name";
+		String columns = "id, email, phone";
 		String query = "select " + columns +" from member";
 		
 		try {
@@ -194,7 +194,7 @@ public class MemberDao {
 			column = column.trim();
 			
 			switch (column) {
-			case "user_id": member.setId(rset.getString("id")); break;
+			case "id": member.setId(rset.getString("id")); break;
 			case "password": member.setPassword(rset.getString("password")); break;
 			case "email" : member.setEmail(rset.getString("email")); break;
 			case "birth" : member.setBirth(rset.getDate("birth")); break;

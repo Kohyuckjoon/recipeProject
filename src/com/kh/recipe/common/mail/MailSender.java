@@ -1,4 +1,4 @@
-package com.kh.recipe.common.mail.handler;
+package com.kh.recipe.common.mail;
 
 import java.util.Date;
 import java.util.Properties;

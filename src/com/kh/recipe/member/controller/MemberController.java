@@ -81,6 +81,112 @@ public class MemberController extends HttpServlet {
 		}
 	}
 	
+	
+
+	private void mypage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/member/mypage").forward(request, response);
+		
+	}
+
+	private void checkID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String Id = request.getParameter("Id");
+		
+		Member member = memberService.selectMemberById(Id);
+		if(member == null) {
+			response.getWriter().print("available");
+		}else {
+			response.getWriter().print("disable");
+		}
+	}
+
+	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String Id = request.getParameter("Id");
+		String password = request.getParameter("password");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		
+		Member member = new Member();
+		member.setId(Id);
+		member.setPassword(password);
+		member.setPhone(phone);
+		member.setEmail(email);
+		
+		String persistToken = UUID.randomUUID().toString();
+		request.getSession().setAttribute("persistUser", member);
+		request.getSession().setAttribute("persistToken", persistToken);
+		
+		memberService.authenticateByEmail(member,persistToken);
+		
+		request.setAttribute("msg", "이메일이 발송 되었습니다.");
+		request.setAttribute("url", "/index");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+	}
+	
+	private void joinImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+				
+		Member member = (Member) request.getSession().getAttribute("persistUser");
+		memberService.insertMember(member);
+		
+		session.removeAttribute("persistToken");
+		session.removeAttribute("persistUser");
+		
+		response.sendRedirect("/member/login-form");
+		
+		/*
+		 * response.sendRedirect("/member/login-form"); String userId =
+		 * request.getParameter("userId");
+		 * 
+		 * String password = request.getParameter("password"); String tell =
+		 * request.getParameter("tell"); String email = request.getParameter("email");
+		 */
+		/*
+		 * Member member = new Member(); member.setUserId(userId);
+		 * member.setPassword(password); member.setTell(tell); member.setEmail(email);
+		 */		
+		/*
+		 * memberService.insertMember(member);
+		 * 
+		 * response.sendRedirect("/member/login-form");
+		 */
+	}
+
+	
+	
+
+	private void joinForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/member/join-form").forward(request, response);
+	}
+
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 request.getSession().removeAttribute("authentication");
+		 response.sendRedirect("/index");
+	}
+
+	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/member/login").forward(request, response);
+	}
+	
+	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		String Id = request.getParameter("Id");
+		String password = request.getParameter("password");
+		
+		Member member = memberService.memberAuthenticate(Id, password);
+		
+		//2. 사용자가 잘못된 아이디와 비밀번호를 입력한 경우
+		//	 사용자에게 아이디나 비밀번호가 틀렸음을 알림, login-form으로 redirect 
+		if(member == null) {
+			response.sendRedirect("/member/login-form?err=1");
+			return;
+		}
+		
+		request.getSession().setAttribute("authentication", member);
+		response.sendRedirect("/index");
+	}
+
 	private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) {
 		
 		String name = "";
@@ -158,111 +264,8 @@ public class MemberController extends HttpServlet {
 	    }
 		
 	}
-
-	private void mypage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/member/mypage").forward(request, response);
-		
-	}
-
-	private void checkID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		
-		Member member = memberService.selectMemberById(userId);
-		if(member == null) {
-			response.getWriter().print("available");
-		}else {
-			response.getWriter().print("disable");
-		}
-	}
-
-	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String Id = request.getParameter("id");
-		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		
-		Member member = new Member();
-		member.setId(Id);
-		member.setPassword(password);
-		member.setPhone(phone);
-		member.setEmail(email);
-		
-		String persistToken = UUID.randomUUID().toString();
-		request.getSession().setAttribute("persistUser", member);
-		request.getSession().setAttribute("persistToken", persistToken);
-		
-		memberService.authenticateByEmail(member,persistToken);
-		
-		request.setAttribute("msg", "이메일이 발송 되었습니다.");
-		request.setAttribute("url", "/index");
-		request.getRequestDispatcher("/error/result").forward(request, response);
-	}
-	
-	private void joinImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-				
-		Member member = (Member) request.getSession().getAttribute("persistUser");
-		memberService.insertMember(member);
-		
-		session.removeAttribute("persistToken");
-		session.removeAttribute("persistUser");
-		
-		response.sendRedirect("/member/login-form");
-		
-		/*
-		 * response.sendRedirect("/member/login-form"); String userId =
-		 * request.getParameter("userId");
-		 * 
-		 * String password = request.getParameter("password"); String tell =
-		 * request.getParameter("tell"); String email = request.getParameter("email");
-		 */
-		/*
-		 * Member member = new Member(); member.setUserId(userId);
-		 * member.setPassword(password); member.setTell(tell); member.setEmail(email);
-		 */		
-		/*
-		 * memberService.insertMember(member);
-		 * 
-		 * response.sendRedirect("/member/login-form");
-		 */
-	}
-
 	
 	
-
-	private void joinForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/member/join-form").forward(request, response);
-	}
-
-	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 request.getSession().removeAttribute("authentication");
-		 response.sendRedirect("/index");
-	}
-
-	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/member/login").forward(request, response);
-	}
-	
-	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		String userNickName = request.getParameter("userNickName");
-		String password = request.getParameter("password");
-		
-		Member member = memberService.memberAuthenticate(userNickName, password);;
-		
-		//2. 사용자가 잘못된 아이디와 비밀번호를 입력한 경우
-		//	 사용자에게 아이디나 비밀번호가 틀렸음을 알림, login-form으로 redirect 
-		if(member == null) {
-			response.sendRedirect("/member/login-form?err=1");
-			return;
-		}
-		
-		request.getSession().setAttribute("authentication", member);
-		response.sendRedirect("/index");
-	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
