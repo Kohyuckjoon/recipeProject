@@ -9,6 +9,14 @@
 <link rel="stylesheet" href="resources/css/include/all.css">
 <link rel="stylesheet" href="resources/css/include/reset.css">
 <style type="text/css">
+/* div {
+	box-shadow: 0 0 2px black;
+} */
+
+input[type="text"] {
+	width: 130px;
+}
+
 .topBlank {
 	height: 13vh;
 }
@@ -23,11 +31,29 @@
 	height: 15vh;
 }
 
-.test{
+.sideBar {
 	float: right;
 	height: 45vh;
-	width: 15%;
+	width: 10%;
 }
+
+.sideBarRight label {
+	float: right;
+}
+
+.sideBarGender label{
+	float: left;
+}
+
+/* .sideBarAreaLeft{
+	float: left;
+	width: 30%;
+}
+
+.sideBarAreaRight{
+	float: right;
+	width: 70%;
+} */
 
 /* position: relative;
 	width: 50vw;
@@ -35,7 +61,6 @@
 	max-height:78vh;
 	left: 25vw;
 	background-color: rgba(0,0,0,0.5); */
-
 .calorie {
 	float: left;
 	height: 15vh;
@@ -51,10 +76,7 @@
 	margin: 10%;
 }
 
-
-
-
-.salt  {
+.salt {
 	float: left;
 	height: 15vh;
 	width: 7%;
@@ -68,8 +90,6 @@
 .saltCheckbox {
 	margin: 10%;
 }
-
-
 
 .fat {
 	float: left;
@@ -86,9 +106,6 @@
 	margin: 10%;
 }
 
-
-
-
 .protein {
 	float: left;
 	height: 15vh;
@@ -104,10 +121,9 @@
 	margin: 10%;
 }
 
-
 .search {
 	float: left;
-	height: 15vh;
+	height: 50%;
 	width: 7%;
 }
 
@@ -119,16 +135,12 @@
 .searchCheckbox {
 	margin: 10%;
 	float: right;
-	
-	position:absolute, bottom:0, right:0;
+	position: absolute, bottom:0, right:0;
 }
 
-
-
-
-
-
-
+.calculateResult{
+	float: right;
+}
 
 /* ----------------------------------------------------- */
 /* .calorieCheckbox {
@@ -193,8 +205,8 @@
 				</div>
 			</div>
 			<div class="middleBlank"></div>
-			
-			
+
+
 			<div class="salt">
 				<div>
 					<div class="saltLabel">
@@ -209,8 +221,8 @@
 				</div>
 			</div>
 			<div class="middleBlank"></div>
-			
-			
+
+
 			<div class="fat">
 				<div>
 					<div class="fatLabel">
@@ -224,8 +236,8 @@
 				</div>
 			</div>
 			<div class="middleBlank"></div>
-			
-			
+
+
 			<div class="protein">
 				<div>
 					<div class="proteinLabel">
@@ -239,63 +251,49 @@
 				</div>
 			</div>
 			<div class="middleBlank"></div>
-			
-			
+
+
 			<div class="search">
+				<div></div>
 				<div>
-					<div class="proteinLabel">
-						
-					</div>
-					<div class="proteinCheckbox">
+					<div class="resetButtonBox">
 						<input type='submit' value='초기화'>
-						<input type='submit' value='검  색'>
+					</div>
+					<div class="searchButtonBox">
+						<input type='submit' value='검 색'>
 					</div>
 				</div>
 			</div>
 			<div class="middleBlank"></div>
-			
 		</div>
-		
-	</div>
-	
-	<div class="test">
-		<div class="sideInfoBar">
-
-		<label>성별 <input type="radio" name="gender" value="man">
-			남 <input type="radio" name="gender" value="woman"> 여 <br></label>
-
-		<label>나이 : <input type="text" name="age"></label><br> <label>키
-			: <input type="text" name="height">
-		</label><br> <label>몸무게 : <input type="text" name="weight"></label><br>
-
-		<input type='submit' value='계 산'>
-
-	</div>
-	
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-	
-
+	<div class="sideBar">
+		<div class="sideBarRight">
+			<div class="sideBarGender">
+				<!-- 라벨칸 -->
+				<div>
+					<label>&nbsp;&nbsp;&nbsp;성별 : </label>
+				</div>
+				<!-- 라디오박스칸 --> 
+				<div>
+					<input type="radio" name="gender" value="man">남
+					<input type="radio" name="gender" value="woman" style="padding-left: 50%;">여 <br>
+				</div>
+			</div>
+			<div>
+				<label>나이 : <input type="text" name="age"></label><br>
+			</div>
+			<div>
+				<label>키 : <input type="text" name="height"></label><br>
+			</div>
+			<div>
+				<label>몸무게 : <input type="text" name="weight"></label><br>
+			</div>
+			<div class="calculateResult">
+				<input type='submit' value='계 산'>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
