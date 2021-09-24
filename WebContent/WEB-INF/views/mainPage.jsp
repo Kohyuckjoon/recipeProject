@@ -58,7 +58,7 @@
 
 	</div>
 
-	<!-- 스코프 문제 -->
+
 	<!-- 페이지 이동 기능 -->
 	<div class = "page">
 	<% int pageNum = 0;%>
@@ -88,10 +88,13 @@
 	<c:forEach begin= "0" end="9">
 		<% step += 1;%>
 		document.querySelector(".page-number-<%=step%>").addEventListener('click', () => {
-			<%-- <c:set scope = "session" var="pageNumber" value = "<%=step%>"/> --%>
 			location.href="/mainPage/<%=step%>";
 		});
 	</c:forEach>
+	
+	// 데이터셋이나 속성값에 넣자
+	// el-jstl 동작 시점이 다르니까, 속성값만 미리 넣어놓자
+	// 자바스크립트로 통일시키자. 
 	
 	</script>
 
