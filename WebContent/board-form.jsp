@@ -6,10 +6,11 @@
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
 <link href="resources/css/index.css" rel="stylesheet"  type="text/css">
-<link rel="stylesheet" href="/resources/css/board/board.css"/>
+<!-- <link rel="stylesheet" href="/resources/css/board/board.css"/> -->
+
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
+<%-- <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>
 	
 <div class="content"> 
 	<h2 class="tit">게시판 글쓰기 양식</h2>
@@ -17,7 +18,8 @@
 		<form action="${contextPath}/board/upload" method="post" enctype="multipart/form-data">
 			<div>
 				<div class="tit_board">
-					제목 : <input type="text" name="title" required="required" placeholder="글 제목을 입력하세요"/><br>
+					제목 : <input type="text" name="title" required="required" placeholder="글 제목을 입력하세요"/>
+					<br>
 					파일 : <input type="file" name="files" id="contract_file" multiple/>
 				</div>
 				<div class="category">
