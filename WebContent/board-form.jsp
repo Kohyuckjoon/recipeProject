@@ -5,12 +5,17 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
-<link href="resources/css/index.css" rel="stylesheet"  type="text/css">
+<link href="../resources/css/mainPage.css" rel="stylesheet"
+	type="text/css">
+
  <link rel="stylesheet" href="/resources/css/board/board.css"/>
 
 </head>
 <body>
-<%-- <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>
+
+
+ <%@ include file="/WEB-INF/views/include/header.jsp" %> 
+
 	
 <div class="content"> 
 	<h2 class="tit">게시판 글쓰기 양식</h2>
@@ -22,7 +27,7 @@
 					<br>
 					파일 : <input type="file" name="files" id="contract_file" multiple/>
 				</div>
-				<div class="category">
+				<!-- <div class="category">
 				<form>		 		
 					<select name="nation">
 				 		<option  selected disabled> ---게시글 분류---</option>
@@ -30,12 +35,12 @@
 				 		<option value="scrap" id="scraps">스크랩공유</option>
 				 	</select>
 			 </form>
-				</div>
+				</div> -->
 				<div class="content_board">
 					<textarea name="content" required="required" maxlength="250" placeholder="250글자 이하로 작성하시오."></textarea>
 				</div>
-				<input type="submit" value="글쓰기" >
-				<a href="board-list.jsp"> <input type="button" value="목록" ></a>
+				<button style="background-color:red; color:white; width:100%">전송</button>
+				<!-- <a href="board-list.jsp"> <input type="button" value="목록" ></a> -->
 			</div>
 		</form>
 	</div>

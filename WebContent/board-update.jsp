@@ -40,16 +40,16 @@
 </style>
 </head>
 <body>
- <%@ include file="/WEB-INF/views/include/header.jsp" %> 
+ <%@ include file="/WEB-INF/views/include/header.jsp" %>   
 
 	
 	
 	<div class="content"> 
-	<h2 class="tit">게시판 상세 글</h2>
+	<h2 class="tit">게시판 글 수정</h2>
 	
 		<div class="info">
 		<span>번호 : <c:out value="${datas.board.no}"/></span>
-		<span>제목 : <c:out value="${datas.board.title}"/></span>
+		<span>제목 : <input type="text" name="title" required="required" placeholder="글 제목을 입력하세요"/></span>
 		<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
 		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
 		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
@@ -63,14 +63,14 @@
 			</ol>
 		</c:if>
 	</div>
-	<div class="article_content">
-		<pre><c:out value="${datas.board.content}"/></pre>
+	<div class="content_board">
+					<textarea name="content" required="required" maxlength="250" placeholder="250글자 이하로 작성하시오."></textarea>
 	</div>
 	
 </div>
 
  <div class="btn_section">
-                    <input type="button" value="수정" >
+                    <input type="button" value="수정완료" >
                     <input type="button" value="삭제" >
                     <input type="button" value="목록" 
                         onclick="board-list.jsp">            

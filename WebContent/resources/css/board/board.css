@@ -5,11 +5,12 @@ div {
 }
 
 .tit{
-	magin-top:150px;
-	position:relative;
+
+	margin-top:10%;
 	text-align:center;
-	color:red;	
-	font-size:100px;
+	color:blue;	
+	font-size:80px;
+
 }
 .board-content{padding-top:3vh; height:50vh}
 

@@ -5,7 +5,10 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="resources/css/index.css" rel="stylesheet"  type="text/css">
+
+<link href="../resources/css/mainPage.css" rel="stylesheet"
+	type="text/css">
+
 <!-- <link href="resources/css/board/board-list.css" rel="stylesheet"  type="text/css"> -->
 <style type="text/css">
 div {
@@ -71,7 +74,7 @@ text-decoration: underline;
 </style>
 </head>
 <body>
-<%-- <%@ include file="/WEB-INF/views/include/header.jsp" %>   --%>
+<%@ include file="/WEB-INF/views/include/header.jsp" %> 
 
 <!-- 게시판 목록 리스트 -->
 
