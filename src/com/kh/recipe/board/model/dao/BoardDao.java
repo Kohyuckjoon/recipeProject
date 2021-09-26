@@ -18,7 +18,7 @@ public class BoardDao {
 	JDBCTemplate template = JDBCTemplate.getInstance();
 	
 	public void insertBoard(Connection conn, Board board) {
-		String sql = "insert into board(no,title,id,content,date,viewCount) values("
+		String sql = "insert into board(no,title,userId,content,date,viewCount) values("
 				+ "BOARD_SEQ.nextval,?,?,?,sysdate,0)";
 		
 		PreparedStatement pstm = null;
@@ -27,7 +27,7 @@ public class BoardDao {
 			
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, board.getTitle());
-			pstm.setString(2, board.getId());
+			pstm.setString(2, board.getUserId());
 			pstm.setString(3, board.getContent());
 			pstm.executeUpdate();
 			
@@ -61,7 +61,7 @@ public class BoardDao {
 
 	public List<Board> selectBoardAll(Connection conn) { //전체 게시판 조회
 		
-		String sql = "select no,title,id,date,viewCount"
+		String sql = "select no,title,userId,date,viewCount"
 				+ " from board";
 		ArrayList<Board> ls = new ArrayList<Board>();
 		PreparedStatement pstm = null;
@@ -76,7 +76,7 @@ public class BoardDao {
 				board = new Board();
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
-				board.setId(rset.getString("id"));
+				board.setUserId(rset.getString("userId"));
 				board.setDate(rset.getDate("date"));
 				board.setViewCount(rset.getInt("viewCount"));
 				ls.add(board);
@@ -92,9 +92,9 @@ public class BoardDao {
 	
 public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		
-		String sql = "select no,id,title,content,date,viewCount"
+		String sql = "select no,userId,title,content,date,viewCount"
 				+ " from board "
-				+ " where bd_idx = ?";
+				+ " where no = ?";
 		
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -108,7 +108,7 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			while(rset.next()) {
 				board = new Board();
 				board.setNo(rset.getInt("no"));
-				board.setId(rset.getString("id"));
+				board.setUserId(rset.getString("userId"));
 				board.setTitle(rset.getString("title"));
 				board.setContent(rset.getString("content"));
 				board.setDate(rset.getDate("date"));

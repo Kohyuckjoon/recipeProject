@@ -71,7 +71,7 @@ public class BoardController extends HttpServlet {
 		Member member  =(Member) request.getSession().getAttribute("authentication");
 		
 		Board board = new Board();
-		board.setId(member.getId());
+		board.setUserId(member.getUserId());
 		board.setTitle(multiPart.getParameter("title"));
 		board.setContent(multiPart.getParameter("content"));
 		
