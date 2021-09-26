@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 
@@ -16,7 +17,7 @@ div {
 }
 
 .tit{
-	magin-top:150px;
+	height:150px;
 	position:relative;
 	text-align:center;
 	color:red;	
@@ -106,43 +107,27 @@ text-decoration: underline;
 				   <th width=100>조회수</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>1번째 게시물</td>
-					<td>최윤지</td>
-					<td>21-09-23</td>
-					<td>0</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>2번째 게시물</td>
-					<td>최윤지</td>
-					<td>21-09-23</td>
-					<td>43</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>3번째 게시물</td>
-					<td>최윤지</td>
-					<td>21-09-23</td>
-					<td>23</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>4번째 게시물</td>
-					<td>최윤지</td>
-					<td>21-09-23</td>
-					<td>2342</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>5번째 게시물</td>
-					<td>최윤지</td>
-					<td>21-09-23</td>
-					<td>3453</td>
-				</tr>
-			</tbody>
+		<tbody>
+		<!--<h4>c:forEach, forEach 로 사용하기</h4>
+					<pre>
+					items: forEach에서 탐색할 배열 또는 리스트
+					var: 배열 또는 리스트이 요소를 받을 변수
+					varStatus:index,count 속성을 가진 객체
+						index: 요소의 인덱스(시작이 0)
+						count: 요소의 차례(시작이 1)  -->
+							
+			 <c:forEach var="datas" items="${list}">
+			 <tr>
+				<td>${datas.board.no}"</td>
+				 <td>${datas.board.title}"</td>
+				 <td>${datas.board.userId}"</td>
+				 <td>${datas.board.regDate}"</td>
+				 <td>${datas.board.viewCount}"</td>
+				 </tr>
+			</c:forEach>
+
+
+		</tbody>
 		
 		</table>
 		</div>

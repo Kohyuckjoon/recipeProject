@@ -20,7 +20,7 @@
 <div class="content"> 
 	<h2 class="tit">게시판 글쓰기 양식</h2>
 	<div class="desc_board">
-		<form action="${contextPath}/board/upload" method="post" enctype="multipart/form-data">
+		<form action="/board/upload" method="post" enctype="multipart/form-data">
 			<div>
 				<div class="tit_board">
 					제목 : <input type="text" name="title" required="required" placeholder="글 제목을 입력하세요"/>

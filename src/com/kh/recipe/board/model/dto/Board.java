@@ -6,7 +6,7 @@ public class Board {
 
 	private int no; //게시글 번호 -bdIdx
 	private String userId; //아이디
-	private String category; //게시글 분류
+	//private String category; //게시글 분류
 	private String title; //게시글 제목
 	private String content; //내용
 	private Date date; //게시날짜
@@ -37,15 +37,12 @@ public class Board {
 		this.userId = userId;
 	}
 
-
-	public String getCategory() {
-		return category;
-	}
-
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
+	/*
+	 * public String getCategory() { return category; }
+	 * 
+	 * 
+	 * public void setCategory(String category) { this.category = category; }
+	 */
 
 
 	public String getTitle() {
@@ -90,7 +87,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [no=" + no + ", userId=" + userId + ", category=" + category + ", title=" + title + ", content="
+		return "Board [no=" + no + ", userId=" + userId + ", title=" + title + ", content="
 				+ content + ", date=" + date + ", viewCount=" + viewCount + "]";
 	}
 	
