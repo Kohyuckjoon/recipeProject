@@ -111,14 +111,18 @@ body {
 <div class="login-page">
   <div class="form">
     <form class="login-form" action="/member/login" method="post">
-      <input type="text" name="userId" id="userId" placeholder="ID"/>
-      <input type="password" name="password" id="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
-    </form>
+	<input type="text" name="userId" id="userId" placeholder="ID"/>
+	<c:if test="${not empty param.err}">
+		<span class="valid-msg">아이디나 비밀번호를 확인하세요.</span>
+	</c:if>
+
+	<input type="password" name="password" id="password" placeholder="password"/>
+	<button>login</button>
+	<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
+	</form>
   </div>
 </div>
-
+console.log(member.getUserId);
 	<%-- <h1>로그인</h1>
 	<hr>
 	<form action="/member/login" method="post">

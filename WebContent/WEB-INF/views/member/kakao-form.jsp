@@ -7,22 +7,8 @@
 <body>
 <%@ include file="/WEB-INF/include/head.jsp" %>
 
-<a herf="javascript:kakaoLogin();"><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :60px;width:auto;"></a>
-	<ul>
-	<li onclick="accReg();">
-      <a href="javascript:void(0)">
-          <span>회원가입하기</span>
-      </a>
-	</li>
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃</span>
-      </a>
-	</li>
-</ul>
-
 <script  src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script src="https://api.jquery.com/jQuery.ajax"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
@@ -37,43 +23,13 @@ Kakao.Auth.authorize({
 
 var userData = '';
 var jsonData = '';
-var walletAddress;
+/* var walletAddress;
 var totalReceived;
 var Key;
 var txIdArray = null;
-var txId = null;
+var txId = null; */
 
-//Ajax 동기식을 통한 재구축
-function api(code){
-	
-	var grant_type = "authorization_code";
-	var client_id = "0c512e152e989192c220235a73035b4b";
-	var redirect_uri = "localhost:9090/index";
-	var code = code;
-	
-	$.post("https://kauth.kakao.com/oauth/token", {grant_type:grant_type, client_id:client_id, redirect_uri:redirect_uri, code:code});
-		
-		var access_token = data['access_token'];
-		$('body').append(access_token + '<br>'); //엑세스 토큰값 출력
-		
-		tokenFunction(access_token);
-	
-	
-}
-
-
-var tokenRequest = new XMLHttpRequest();
-
-function tokenFunction(access_token){
-	var access_token = access_token;
-	
-	tokenRequest.open("Post", "/member?access_token="+ access+token,true);
-	tokenRequest.onreadystatechange = tokenProcess;
-	tokenRequest.send(null);
-	
-}
-
-
+//카카오톡을 통한 로그인, 리다이렉트 구축
 function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
@@ -108,13 +64,13 @@ function kakaoLogin() {
         	  
         	  var userId = userData.id;
         	  var userNickName = userData.properties.nickname;
-        	  var userProfile_image = userData.kakao_account.profile.profile_image_url;
-        	  var userProfile_thumnail_image = userData.kakao_account.profile.thumbnail_image_url;
-        	  var useraccount_profile = userData.kakao_account.profile;
+        	  //var userProfile_image = userData.kakao_account.profile.profile_image_url;
+        	  //var userProfile_thumnail_image = userData.kakao_account.profile.thumbnail_image_url;
+        	  //var useraccount_profile = userData.kakao_account.profile;
         	  var userEmail = userData.kakao_account.email;
-        	  var user_birthday = userData.kakao_account.birthday;
-        	  var user_gender = userData.kakao_account.gender;
-        	  var html = '<br>' + userEmail + '<br>' + userNickName;
+        	  //var user_birthday = userData.kakao_account.birthday;
+        	  //var user_gender = userData.kakao_account.gender;
+        	  //var html = '<br>' + userEmail + '<br>' + userNickName;
         	  
         	  //html +='<br><img src="' + userProfile_image + '">';
         	  //$('body').append(html);
@@ -127,7 +83,7 @@ function kakaoLogin() {
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
         	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
         	  
-        	  location.href = 'http://localhost:9090/index?userEmail='+userEmail+'&name='+userNickName;
+        	  location.href = 'http://localhost:9090/mainPage?userEmail='+userEmail+'&name='+userNickName;
         	  
         	  
           },
@@ -152,14 +108,38 @@ function kakaoLogin() {
   
 //kakao logout!
 function kakaoLogout() {
+	 if (!Kakao.Auth.getAccessToken()) {
+	      alert("로그인 되어있지 않습니다.");
+	      return
+	    }
 	var logout = confirm("로그아웃 하시겠습니까?");
+	if(logout == true){
+		Kakao.Auth.logout(function() {
+       	alert("로그아웃 되셨습니다.");
+       	Kakao.Auth.getAccessToken()
+        location.href = 'http://localhost:9090/mainPage';
+      })
+      Kakao.Auth.setAccessToken(undefined)
+	}else{
+		return false;
+		
+	}
+  }  
+
+//회원탈퇴
+function unlinkApp() {
+	 if (!Kakao.Auth.getAccessToken()) {
+	      alert("로그인 되어있지 않습니다.");
+	      return
+	    }
+	var logout = confirm("회원탈퇴 하시겠습니까?");
 	if(logout == true){
     if (Kakao.Auth.getAccessToken()) {
       Kakao.API.request({
         url: '/v1/user/unlink',
         success: function (response) {
-        	alert("로그아웃 되셨습니다.");
-        	location.href = 'http://localhost:9090/index';
+        	alert("회원탈퇴 되셨습니다.");
+        	location.href = 'http://localhost:9090/mainPage';
         },
         fail: function (error) {
           console.log(error)

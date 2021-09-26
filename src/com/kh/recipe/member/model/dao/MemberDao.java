@@ -71,7 +71,7 @@ public class MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String columns = "user_id, email, phone";
+		String columns = "user_id, name, phone, email";
 		String query = "select " + columns +" from member";
 		
 		try {
@@ -94,14 +94,15 @@ public class MemberDao {
 	public int insertMember(Member member, Connection conn){	
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "insert into member(user_id,password,email,phone) values(?,?,?,?)";
+		String query = "insert into member(user_id,password,name,phone,email) values(?,?,?,?,?)";
 		
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, member.getUserId());
 			pstm.setString(2, member.getPassword());
-			pstm.setString(3, member.getEmail());
+			pstm.setString(3, member.getName());
 			pstm.setString(4, member.getPhone());
+			pstm.setString(5, member.getEmail());
 			res = pstm.executeUpdate();
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
@@ -179,8 +180,9 @@ public class MemberDao {
 	
 	private Member convertAllToMember(ResultSet rset) throws SQLException {
 		Member member = new Member();
-		member.setUserId(rset.getString("user_Id"));
+		member.setUserId(rset.getString("user_id"));
 		member.setPassword(rset.getString("password"));
+		member.setName(rset.getString("name"));
 		member.setEmail(rset.getString("email"));
 		member.setBirth(rset.getDate("birth"));
 		member.setPhone(rset.getString("phone"));
@@ -196,6 +198,7 @@ public class MemberDao {
 			switch (column) {
 			case "user_id": member.setUserId(rset.getString("user_id")); break;
 			case "password": member.setPassword(rset.getString("password")); break;
+			case "name" : member.setName(rset.getString("name")); break;
 			case "email" : member.setEmail(rset.getString("email")); break;
 			case "birth" : member.setBirth(rset.getDate("birth")); break;
 			case "phone" : member.setPhone(rset.getString("phone")); break;
