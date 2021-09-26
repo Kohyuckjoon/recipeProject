@@ -107,12 +107,14 @@ public class MemberController extends HttpServlet {
 		
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		
 		Member member = new Member();
 		member.setUserId(userId);
 		member.setPassword(password);
+		member.setName(name);
 		member.setPhone(phone);
 		member.setEmail(email);
 		

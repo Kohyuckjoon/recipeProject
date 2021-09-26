@@ -122,7 +122,7 @@ body {
 	</form>
   </div>
 </div>
-console.log(member.getUserId);
+
 	<%-- <h1>로그인</h1>
 	<hr>
 	<form action="/member/login" method="post">

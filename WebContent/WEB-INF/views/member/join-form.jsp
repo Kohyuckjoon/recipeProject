@@ -140,7 +140,7 @@ body {
       
       <input type="text" name="name" id="name" size="10" placeholder="이름" required/>
       
-      <input type="tel" name="phone" id="phone" size="10" placeholder="숫자만 입력하세요"  
+      <input type="tel" name="phone" id="phone" size="10" placeholder="0100000000"  
 	      <c:if test="${empty joinFailed.tell}">
 		  	value="${joinForm.tell}"	
 		  </c:if>
