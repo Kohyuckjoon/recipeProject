@@ -41,6 +41,9 @@ public class BoardController extends HttpServlet {
 		case "board-form":
 			boardForm(request,response);
 			break;
+		case "board-list":
+			boardList(request,response);
+			break;
 		case "upload":
 			upload(request,response);
 			break;
@@ -50,6 +53,11 @@ public class BoardController extends HttpServlet {
 		default:throw new PageNotFoundException();
 		
 		}
+	}
+
+	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/board/board-list").forward(request, response);
 	}
 
 	private void boardDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
