@@ -63,7 +63,7 @@ public class BoardDao {
 		
 		String sql = "select no,title,userId,date,viewCount"
 				+ " from board";
-		ArrayList<Board> ls = new ArrayList<Board>();
+		ArrayList<Board> list = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
@@ -79,7 +79,7 @@ public class BoardDao {
 				board.setUserId(rset.getString("userId"));
 				board.setDate(rset.getDate("date"));
 				board.setViewCount(rset.getInt("viewCount"));
-				ls.add(board);
+				list.add(board);
 			}
 			
 		} catch (SQLException e) {
@@ -87,7 +87,7 @@ public class BoardDao {
 		}finally {
 			template.close(rset,pstm);
 		}
-		return ls;
+		return list;
 	}
 	
 public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
