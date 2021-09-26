@@ -52,8 +52,8 @@ public class MemberController extends HttpServlet {
 		case "login-form":
 			loginForm(request,response);
 			break;
-		case "login":
-			login(request,response);
+		case "normal-login":
+			normalLogin(request,response);
 			break;
 		case "logout":
 			logout(request,response);
@@ -73,13 +73,19 @@ public class MemberController extends HttpServlet {
 		case "mypage":
 			mypage(request,response);
 			break;
+		case "login":
+			login(request,response);
+			break;
 
 		default: throw new PageNotFoundException();
 		
 		}
 	}
 	
-	
+	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/member/login").forward(request, response);
+		
+	}
 
 	private void mypage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/member/mypage").forward(request, response);
@@ -164,10 +170,11 @@ public class MemberController extends HttpServlet {
 	}
 
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/member/login").forward(request, response);
+		request.getRequestDispatcher("/member/login-form").forward(request, response);
+		
 	}
 	
-	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	private void normalLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
@@ -177,12 +184,12 @@ public class MemberController extends HttpServlet {
 		//2. 사용자가 잘못된 아이디와 비밀번호를 입력한 경우
 		//	 사용자에게 아이디나 비밀번호가 틀렸음을 알림, login-form으로 redirect 
 		if(member == null) {
-			response.sendRedirect("/member/login-form?err=1");
+			response.sendRedirect("/member/login");
 			return;
 		}
 		
 		request.getSession().setAttribute("authentication", member);
-		response.sendRedirect("/index");
+		response.sendRedirect("/mainPage/1");
 	}
 
 	

@@ -10,6 +10,11 @@
 <a herf="javascript:kakaoLogin();"><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :60px;width:auto;"></a>
 	<ul>
 	<li>
+	  <a href="/member/login-form">
+		<span>로그인</span>
+	  </a>
+	</li>
+	<li>
       <a href="/member/join-form">
           <span>회원가입하기</span>
       </a>
@@ -31,6 +36,13 @@
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
+
+
+
+
+
+
+
 
 Kakao.init('0c512e152e989192c220235a73035b4b');
 //console.log(Kakao.isInitialized()); 

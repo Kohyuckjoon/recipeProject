@@ -29,6 +29,7 @@ public class LoginController extends HttpServlet {
 		case "join":
 			join(request,response);
 			break;
+		
 		default: throw new PageNotFoundException();
 		
 		}

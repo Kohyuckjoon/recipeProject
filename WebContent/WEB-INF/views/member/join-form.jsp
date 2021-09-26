@@ -23,7 +23,7 @@ tr>td:nth-child(1){
 	color:white;
 }
 
-#Id{
+#userId{
 	display: inline-block;
 	width: 80%;
 }
