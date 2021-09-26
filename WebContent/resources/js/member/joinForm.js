@@ -37,15 +37,15 @@
    				document.querySelector('#idCheck').innerHTML ='아이디 중복 검사를 통과하지 않았습니다.';   	
    			}
    			
-   			/*if(!pwReg.test(password.value)){
+   			if(!pwReg.test(password.value)){
    				e.preventDefault();
-   				document.querySelector('#pwCheck').innerHTML ='비밀번호는 숫자,영문자,특수문자 조합의 8자리 이상 문자열입니다.'; 
+   				document.querySelector('#pwCheck').innerHTML ='영어,숫자,특수문자 조합의 8~14자의 문자열'; 
    			}
    			
-   			if(!tellReg.test(tell.value)){
+   			if(!tellReg.test(phone.value)){
    				e.preventDefault();
-   				document.querySelector('#tellCheck').innerHTML ='휴대폰 번호는 9~11자리의 숫자입니다.'; 
-   			}*/
+   				document.querySelector('#tellCheck').innerHTML ='-를 제외한 11자리까지입니다.'; 
+   			}
    		})
 	})();
 	

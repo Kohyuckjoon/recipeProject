@@ -123,7 +123,7 @@ public class MemberController extends HttpServlet {
 		memberService.authenticateByEmail(member,persistToken);
 		
 		request.setAttribute("msg", "이메일이 발송 되었습니다.");
-		request.setAttribute("url", "/index");
+		request.setAttribute("url", "/mainPage/1");
 		request.getRequestDispatcher("/error/result").forward(request, response);
 	}
 	
@@ -166,12 +166,15 @@ public class MemberController extends HttpServlet {
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 request.getSession().removeAttribute("authentication");
-		 response.sendRedirect("/index");
+		 response.sendRedirect("/mainPage/1");
 	}
 
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.getRequestDispatcher("/member/login-form").forward(request, response);
-		
+		String userId = request.getParameter("userId");
+		String password = request.getParameter("password");
+		Member member = memberService.memberAuthenticate(userId, password);
+		request.getSession().setAttribute("authentication", member);
 	}
 	
 	private void normalLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

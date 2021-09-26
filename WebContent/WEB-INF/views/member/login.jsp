@@ -18,6 +18,11 @@
       <a href="/member/join-form">
           <span>회원가입하기</span>
       </a>
+    </li>
+	<li>
+     <a href="/member/logout">
+     	<span>로그아웃</span>
+     	</a>
 	</li>
 	<li onclick="kakaoLogout();">
       <a href="javascript:void(0)">
