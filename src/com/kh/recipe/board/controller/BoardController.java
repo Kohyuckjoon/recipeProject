@@ -50,9 +50,24 @@ public class BoardController extends HttpServlet {
 		case "board-detail":
 			boardDetail(request,response);
 			break;
+		case "board-update":
+			boardUpdate(request,response);
+			break;
 		default:throw new PageNotFoundException();
 		
 		}
+	}
+
+	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
+				int no = Integer.parseInt(request.getParameter("no"));
+				
+				//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
+				Map<String, Object> datas = boardService.selectBoardDetail(no);
+				
+				request.setAttribute("datas", datas);
+				request.getRequestDispatcher("/board/board-update").forward(request, response);
+		
 	}
 
 	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -73,20 +88,21 @@ public class BoardController extends HttpServlet {
 	}
 
 	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
-		FileUtil util = new FileUtil();
-		MultiPartParams multiPart = util.fileUpload(request);
-		Member member  =(Member) request.getSession().getAttribute("authentication");
 		
-		Board board = new Board();
-		board.setUserId(member.getUserId());
-		board.setTitle(multiPart.getParameter("title"));
-		board.setContent(multiPart.getParameter("content"));
+		  FileUtil util = new FileUtil(); MultiPartParams multiPart =
+		  util.fileUpload(request); Member member =(Member)
+		  request.getSession().getAttribute("authentication");
+		  
+		  Board board = new Board(); board.setUserId(member.getUserId());
+		  board.setTitle(multiPart.getParameter("title"));
+		  board.setContent(multiPart.getParameter("content"));
+		  
+		  List<FileDTO> files = multiPart.getFilesInfo();
+		  boardService.insertBoard(board,files);
+		  
+		  response.sendRedirect("/board/board-list"); //게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
+		 
 		
-		List<FileDTO> files = multiPart.getFilesInfo();
-		boardService.insertBoard(board,files);
-		
-		response.sendRedirect("/");
 	}
 
 	private void boardForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

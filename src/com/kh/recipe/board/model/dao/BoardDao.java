@@ -18,8 +18,8 @@ public class BoardDao {
 	JDBCTemplate template = JDBCTemplate.getInstance();
 	
 	public void insertBoard(Connection conn, Board board) {
-		String sql = "insert into board(no,title,userId,content,date,viewCount) values("
-				+ "BOARD_SEQ.nextval,?,?,?,sysdate,0)";
+		String sql = "insert into board(no,title,userId,content) values("
+				+ "BOARD_SEQ.nextval,?,?,?)";
 		
 		PreparedStatement pstm = null;
 		
@@ -77,7 +77,7 @@ public class BoardDao {
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
 				board.setUserId(rset.getString("userId"));
-				board.setDate(rset.getDate("date"));
+				board.setDate(rset.getDate("regDate"));
 				board.setViewCount(rset.getInt("viewCount"));
 				list.add(board);
 			}
