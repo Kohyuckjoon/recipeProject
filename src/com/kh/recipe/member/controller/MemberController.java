@@ -87,9 +87,9 @@ public class MemberController extends HttpServlet {
 	}
 
 	private void checkID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String userId = request.getParameter("userId");
 		
-		Member member = memberService.selectMemberById(id);
+		Member member = memberService.selectMemberById(userId);
 		if(member == null) {
 			response.getWriter().print("available");
 		}else {
@@ -99,13 +99,13 @@ public class MemberController extends HttpServlet {
 
 	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = request.getParameter("id");
+		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		
 		Member member = new Member();
-		member.setId(id);
+		member.setUserId(userId);
 		member.setPassword(password);
 		member.setPhone(phone);
 		member.setEmail(email);
@@ -169,10 +169,10 @@ public class MemberController extends HttpServlet {
 	
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		String id = request.getParameter("id");
+		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		
-		Member member = memberService.memberAuthenticate(id, password);
+		Member member = memberService.memberAuthenticate(userId, password);
 		
 		//2. 사용자가 잘못된 아이디와 비밀번호를 입력한 경우
 		//	 사용자에게 아이디나 비밀번호가 틀렸음을 알림, login-form으로 redirect 

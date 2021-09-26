@@ -41,15 +41,15 @@ input[type=submit]{
         <tr>
            <td>ID : </td>
            <td >
-           	  <input type="text" name="Id" id="Id" size="10" 
-	           	  <c:if test="${empty joinFailed.Id}">
-	           	  	value="${joinForm.Id}"	
+           	  <input type="text" name="userId" id="userId" size="10" 
+	           	  <c:if test="${empty joinFailed.userId}">
+	           	  	value="${joinForm.userId}"	
 	           	  </c:if>
            	  required />
            	  
            	  <button type="button" id="btnIdCheck">check</button>
            	  <span id="idCheck"  class="valid-msg" >
-           	  	  <c:if test="${not empty joinFailed.Id}">
+           	  	  <c:if test="${not empty joinFailed.userId}">
 	           	  	이미 존재하는 아이디 입니다.
 	           	  </c:if>
            	  </span>
@@ -73,13 +73,13 @@ input[type=submit]{
         <tr>
            <td>휴대폰번호 : </td>
            <td>
-           	  <input id="phone" type="tel" name="phone" placeholder="숫자만 입력하세요"  
-           	  	<c:if test="${empty joinFailed.phone}">
-	           	  	value="${joinForm.phone}"	
+           	  <input id="tell" type="tel" name="tell" placeholder="숫자만 입력하세요"  
+           	  	<c:if test="${empty joinFailed.tell}">
+	           	  	value="${joinForm.tell}"	
 	           	</c:if>
            	  required/>
-           	  <span  id="phoneCheck" class="valid-msg">
-           	  	<c:if test="${not empty joinFailed.phone}">
+           	  <span  id="tellCheck" class="valid-msg">
+           	  	<c:if test="${not empty joinFailed.tell}">
 	           	  	전화번호는 9~11자리 숫자입니다. 
 	           	</c:if>
            	  </span>

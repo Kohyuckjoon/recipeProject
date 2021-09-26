@@ -16,7 +16,7 @@ public class User {
 	//3. 빌더 패턴
 	// 가독성과 변경불가능한 객체를 만들 수 없다는 단점을 극복한 디자인패턴
 	// Effective Java에서 제시된 Builder 패턴
-	private String Id;
+	private String userId;
 	private String password;
 	private String email;
 	private String phone;
@@ -24,7 +24,7 @@ public class User {
 	//생성자는 private 처리하여 외부에서 직접 객체를 생성하는 것을 차단
 	//객체의 생성은 오직 Factory Class인 Builder를 통해서 만 생성
 	private User(UserBuilder builder) {
-		this.Id = builder.Id;
+		this.userId = builder.userId;
 		this.password = builder.password;
 		this.email = builder.email;
 		this.phone = builder.phone;
@@ -38,13 +38,13 @@ public class User {
 	//생성될 User객체의 속성을 초기화하기 위한 값을 전달 받고, User의 인스턴스를 생성해줄 inner class
 	public static class UserBuilder{
 		
-		private String Id;
+		private String userId;
 		private String password;
 		private String email;
 		private String phone;
 		
-		public UserBuilder Id(String Id) {
-			this.Id = Id;
+		public UserBuilder id(String userId) {
+			this.userId = userId;
 			return this; //userId 속성이 초기화된 UserBuilder
 		}
 		
@@ -57,7 +57,7 @@ public class User {
 			return this; 
 		}
 		
-		public UserBuilder tell(String phone) {
+		public UserBuilder phone(String phone) {
 			this.phone = phone;
 			return this; 
 		}
@@ -68,7 +68,7 @@ public class User {
 
 		@Override
 		public String toString() {
-			return "UserBuilder [Id=" + Id + ", password=" + password + ", email=" + email + ", phone=" + phone + "]";
+			return "UserBuilder [userId=" + userId + ", password=" + password + ", email=" + email + ", phone=" + phone + "]";
 		}
 
 		

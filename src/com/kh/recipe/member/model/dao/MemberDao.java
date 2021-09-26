@@ -20,15 +20,15 @@ public class MemberDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 
-	public Member memberAuthenticate(String Id, String password, Connection conn){
+	public Member memberAuthenticate(String userId, String password, Connection conn){
 		Member member = null;	
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where id = ? and password = ?";
+		String query = "select * from member where user_id = ? and password = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, Id);
+			pstm.setString(1, userId);
 			pstm.setString(2, password);
 			rset = pstm.executeQuery();
 			
@@ -44,15 +44,15 @@ public class MemberDao {
 		return member;
 	}
 
-	public Member selectMemberById(String Id, Connection conn) {
+	public Member selectMemberById(String userId, Connection conn) {
 		Member member = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where id = ?";
+		String query = "select * from member where user_id = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, Id);
+			pstm.setString(1, userId);
 			rset = pstm.executeQuery();
 			if(rset.next()) {
 				member = convertAllToMember(rset);
@@ -71,7 +71,7 @@ public class MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String columns = "id, email, phone";
+		String columns = "user_id, email, phone";
 		String query = "select " + columns +" from member";
 		
 		try {
@@ -94,11 +94,11 @@ public class MemberDao {
 	public int insertMember(Member member, Connection conn){	
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "insert into member(id,password,email,phone) values(?,?,?,?)";
+		String query = "insert into member(user_id,password,email,phone) values(?,?,?,?)";
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, member.getId());
+			pstm.setString(1, member.getUserId());
 			pstm.setString(2, member.getPassword());
 			pstm.setString(3, member.getEmail());
 			pstm.setString(4, member.getPhone());
@@ -121,7 +121,7 @@ public class MemberDao {
 	//생성시 등록된 쿼리 템플릿의 구조가 변경되는 것을 방지
 	//문자열에 대해서 자동으로 이스케이프 처리 
 	//ex) ->\' or 1=1 or user_id = \'
-	public int updateMemberPassword(String Id, String password, Connection conn) {
+	public int updateMemberPassword(String userId, String password, Connection conn) {
 		
 	      Statement stmt = null;
 	      int res = 0;
@@ -132,7 +132,7 @@ public class MemberDao {
 	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
 	         stmt = conn.createStatement();
 	         String query = "update member set password = '" + password + "' "
-	                  + "where id = '" + Id + "'";
+	                  + "where user_id = '" + userId + "'";
 	         res = stmt.executeUpdate(query);
 	      } catch (ClassNotFoundException | SQLException e) {
 	         res = -1;
@@ -149,11 +149,11 @@ public class MemberDao {
 		
 	}
 
-	public int deleteMember(String Id, Connection conn) {
+	public int deleteMember(String userId, Connection conn) {
 		int res = 0;
 		
 		Statement stmt = null;
-		String query = "delete from member where id = '" + Id + "'";
+		String query = "delete from member where user_id = '" + userId + "'";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -179,7 +179,7 @@ public class MemberDao {
 	
 	private Member convertAllToMember(ResultSet rset) throws SQLException {
 		Member member = new Member();
-		member.setId(rset.getString("id"));
+		member.setUserId(rset.getString("user_Id"));
 		member.setPassword(rset.getString("password"));
 		member.setEmail(rset.getString("email"));
 		member.setBirth(rset.getDate("birth"));
@@ -194,7 +194,7 @@ public class MemberDao {
 			column = column.trim();
 			
 			switch (column) {
-			case "id": member.setId(rset.getString("id")); break;
+			case "user_id": member.setUserId(rset.getString("user_id")); break;
 			case "password": member.setPassword(rset.getString("password")); break;
 			case "email" : member.setEmail(rset.getString("email")); break;
 			case "birth" : member.setBirth(rset.getDate("birth")); break;

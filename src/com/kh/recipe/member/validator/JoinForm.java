@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JoinForm {
 	
-	private String Id;
+	private String id;
 	private String password;
 	private String email;
 	private String phone;
@@ -17,7 +17,7 @@ public class JoinForm {
 	
 	public JoinForm(HttpServletRequest request) {
 		this.request = request;
-		this.Id = request.getParameter("id");
+		this.id = request.getParameter("id");
 		this.password = request.getParameter("password");
 		this.email = request.getParameter("email");
 		this.phone = request.getParameter("phone");
@@ -66,7 +66,7 @@ public class JoinForm {
 	}
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	public String getPassword() {

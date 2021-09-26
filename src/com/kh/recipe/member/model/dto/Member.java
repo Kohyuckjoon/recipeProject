@@ -23,17 +23,17 @@ import java.sql.Date;
 //Number -> int, double
 public class Member {
 	
-	private String Id;
+	private String userId;
 	private String password;
 	private String email;
 	private String phone;
 	private String name;
 	private Date birth;
-	public String getId() {
-		return Id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		Id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getPassword() {
 		return password;
@@ -67,9 +67,10 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return "Member [Id=" + Id + ", password=" + password + ", email=" + email + ", phone=" + phone + ", name="
-				+ name + ", birth=" + birth + "]";
+		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", phone=" + phone
+				+ ", name=" + name + ", birth=" + birth + "]";
 	}
+	
 	
 
 	
