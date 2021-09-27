@@ -1,18 +1,20 @@
-<style type="text/css">
-
-div {
-	box-shadow: 0 0 2px black;
-}
 
 .tit{
-	margin-top:100px;
-	font-weight: bold;
+	position:relative;
+	top:30px;
+	font-size:2.3vw;
 	text-align: center;
-	color:blue;	
-	font-size:80px;
-
+	
 }
-.board-content{padding-top:3vh; height:50vh}
+.tit_board{
+	position:relative;
+	top:30px;
+	
+}
+.board-content{
+	margin-top:50px;
+	padding-top:3vh; 
+	height:50vh;}
 
 .content_board{
    padding-top:3vh;
@@ -23,7 +25,9 @@ div {
    width:100%;
    min-height:50vh;
 }
-
+.btn{
+	margin-top:20px;
+}
 
 .btn_section > button{margin:0 1vw 0 1vw; font-size:1.5vw;}
 .wrap_board{

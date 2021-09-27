@@ -5,8 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
-<link href="../resources/css/mainPage.css" rel="stylesheet"
-	type="text/css">
+<link href="../resources/css/mainPage.css" rel="stylesheet"type="text/css">
 
  <link rel="stylesheet" href="/resources/css/board/board.css"/>
 
@@ -14,11 +13,11 @@
 <body>
 
 
- <%@ include file="/WEB-INF/views/include/header.jsp" %> 
+<%--  <%@ include file="/WEB-INF/views/include/header.jsp" %>  --%>
 
 	
 <div class="content"> 
-	<h2 class="tit">게시판 글쓰기 양식</h2>
+	<div class="tit">게시판 글쓰기 양식</div>
 	<div class="desc_board">
 		<form action="/board/upload" method="post" enctype="multipart/form-data">
 			<div>
@@ -39,8 +38,10 @@
 				<div class="content_board">
 					<textarea name="content" required="required" maxlength="250" placeholder="250글자 이하로 작성하시오."></textarea>
 				</div>
+				<div class="btn">
 				<button style="background-color:red; color:white; width:100%">전송</button>
 				<button onclick = "location.href = '/board/board-list'">목록</button>
+				</div>
 			</div>
 		</form>
 	</div>
