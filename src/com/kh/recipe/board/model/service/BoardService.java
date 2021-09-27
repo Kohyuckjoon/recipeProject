@@ -65,6 +65,24 @@ public class BoardService {
 		
 		return res;
 	}
+
+	public List<Board> selectBoardAll() {
+		Connection conn = template.getConnection();
+		List<Board> boardList = null;
+		
+		try {
+			
+			boardList = boardDao.selectBoardAll(conn);
+			
+		} finally {
+			template.close(conn);
+		}
+		
+		return boardList;
+	}
+
+	
+	
 	
 	
 

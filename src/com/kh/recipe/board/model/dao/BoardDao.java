@@ -59,36 +59,6 @@ public class BoardDao {
 		}
 	}
 
-	public List<Board> selectBoardAll(Connection conn) { //전체 게시판 조회
-		
-		String sql = "select no,title,userId,regDate,viewCount"
-				+ " from board";
-		ArrayList<Board> list = new ArrayList<Board>();
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		Board board = null;
-		
-		try {
-			pstm = conn.prepareStatement(sql);
-			rset = pstm.executeQuery();
-			
-			while(rset.next()) {
-				board = new Board();
-				board.setNo(rset.getInt("no"));
-				board.setTitle(rset.getString("title"));
-				board.setUserId(rset.getString("userId"));
-				board.setDate(rset.getDate("regDate"));
-				board.setViewCount(rset.getInt("viewCount"));
-				list.add(board);
-			}
-			
-		} catch (SQLException e) {
-			throw new DataAccessException(e);
-		}finally {
-			template.close(rset,pstm);
-		}
-		return list;
-	}
 	
 public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		
@@ -222,6 +192,38 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		}
 		
 		return files;
+	}
+
+	public List<Board> selectBoardAll(Connection conn) {
+		String sql = "select no,title,userId,regDate,viewCount"
+				+ " from board order by desc";
+		
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		List<Board> boardList = new ArrayList<Board>();
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			
+			rset = pstm.executeQuery();
+			
+			while(rset.next()) {
+				
+				Board board = new Board();
+				board.setNo(rset.getInt("no"));
+				board.setTitle(rset.getString("title"));
+				board.setUserId(rset.getString("userId"));
+				board.setDate(rset.getDate("regDate"));
+				board.setViewCount(rset.getInt("viewCount"));
+				boardList.add(board);
+			}
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(rset,pstm);
+		}
+		return boardList;
 	}
 
 

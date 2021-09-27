@@ -117,7 +117,7 @@
 </div>
 
  <div class="btn_section">
-          <button >수정완료</button>
+         	<button>수정완료</button>
           <button >삭제</button>
           <button onclick = "location.href = '/board/board-list'">목록</button>         
     </div>      

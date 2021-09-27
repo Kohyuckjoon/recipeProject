@@ -70,10 +70,11 @@
 </div>
 
  <div class="btn_section">
-                    <input type="button" value="수정" >
-                    <input type="button" value="삭제" >
-                    <input type="button" value="목록" 
-                        onclick="board-list.jsp">            
+               <button onclick = "location.href = '/board/board-update'">수정하기</button>
+               <button>삭제하기</button>
+               <button onclick = "location.href = '/board/board-list'">목록</button>
+                   
+      </div>                      
           
 <!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>

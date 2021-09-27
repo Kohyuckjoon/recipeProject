@@ -73,7 +73,10 @@ public class BoardController extends HttpServlet {
 	}
 
 	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		// TODO Auto-generated method stub
+		
+		Board board = new Board();
+		board.setNo(board.getNo());
+		boardService.selectBoardAll();
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
 	}
 
@@ -91,11 +94,12 @@ public class BoardController extends HttpServlet {
 
 	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		  FileUtil util = new FileUtil(); MultiPartParams multiPart =
-		  util.fileUpload(request); Member member =(Member)
-		  request.getSession().getAttribute("authentication");
+		  FileUtil util = new FileUtil(); 
+		  MultiPartParams multiPart = util.fileUpload(request); 
+		  Member member =(Member) request.getSession().getAttribute("authentication");
 		  
-		  Board board = new Board(); board.setUserId(member.getUserId());
+		  Board board = new Board();
+		  board.setUserId(member.getUserId());
 		  board.setTitle(multiPart.getParameter("title"));
 		  board.setContent(multiPart.getParameter("content"));
 		  
