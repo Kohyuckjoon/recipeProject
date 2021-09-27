@@ -27,6 +27,11 @@ input[type="text"] {
 	width: 2%;
 }
 
+.blank {
+	float: left;
+	width: 7%;
+}
+
 .checkBox {
 	height: 15vh;
 }
@@ -41,26 +46,10 @@ input[type="text"] {
 	float: right;
 }
 
-.sideBarGender label{
+.sideBarGender label {
 	float: left;
 }
 
-/* .sideBarAreaLeft{
-	float: left;
-	width: 30%;
-}
-
-.sideBarAreaRight{
-	float: right;
-	width: 70%;
-} */
-
-/* position: relative;
-	width: 50vw;
-	height: 25vw;
-	max-height:78vh;
-	left: 25vw;
-	background-color: rgba(0,0,0,0.5); */
 .calorie {
 	float: left;
 	height: 15vh;
@@ -68,8 +57,11 @@ input[type="text"] {
 }
 
 .calorielabel {
+	font-size: 110%;
+	margin: 5%;
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
-	margin: 7%;
+	padding: 3%;
 }
 
 .calorieCheckbox {
@@ -83,8 +75,11 @@ input[type="text"] {
 }
 
 .saltLabel {
+	font-size: 110%;
+	margin: 5%;
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
-	margin: 7%;
+	padding: 3%;
 }
 
 .saltCheckbox {
@@ -98,8 +93,11 @@ input[type="text"] {
 }
 
 .fatLabel {
+	font-size: 110%;
+	margin: 5%;
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
-	margin: 7%;
+	padding: 3%;
 }
 
 .fatCheckbox {
@@ -113,8 +111,11 @@ input[type="text"] {
 }
 
 .proteinLabel {
+	font-size: 110%;
+	margin: 5%;
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
-	margin: 7%;
+	padding: 3%;
 }
 
 .proteinCheckbox {
@@ -125,6 +126,7 @@ input[type="text"] {
 	float: left;
 	height: 50%;
 	width: 7%;
+	padding: 1%;
 }
 
 .searchLabel {
@@ -138,55 +140,108 @@ input[type="text"] {
 	position: absolute, bottom:0, right:0;
 }
 
-.calculateResult{
+.calculateResult {
 	float: right;
 }
 
-/* ----------------------------------------------------- */
-/* .calorieCheckbox {
-	margin-right: 20px;
-	border: 1px solid red;
-	float: left;
-	width: 5%;
-	background: white;
+.checkBoxStyle1 {
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
+	background-color: white;
+	padding: 3%;
+	margin: 5%;
 }
 
-.saltCheckbox {
-	margin-right: 20px;
-	border: 1px solid red;
-	float: left;
-	width: 5%;
-	background: white;
+.checkBoxStyle2 {
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
+	background-color: white;
+	padding: 3%;
+	margin: 5%;
 }
 
-.fatCheckbox {
-	margin-right: 20px;
-	border: 1px solid red;
-	float: left;
-	width: 5%;
-	background: white;
+.checkBoxStyle3 {
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
+	background-color: white;
+	padding: 3%;
+	margin: 5%;
 }
 
-.proteinCheckbox {
-	margin-right: 20px;
-	border: 1px solid red;
-	float: left;
-	width: 5%;
-	background: white;
+.checkBoxStyle4 {
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
+	background-color: white;
+	padding: 3%;
+	margin: 5%;
 }
 
-.sideInfoBar {
-	border: 1px solid red;
-	float: right;
-	padding: 10px;
-	margin-left: 10px;
-} */
+.button {
+	background: #fff;
+	border: none;
+	padding: 2px;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	transition: all .35s ease-in-out .35s;
+	margin: 0 auto;
+	width: 85%;
+	text-align: center;
+	
+}
+
+span {
+	display: flex;
+	padding: 15px;
+	background: #fff;
+	z-index: 100;
+	position: relative;
+	transition: all .35s ease-in-out .35s;
+	text-align: center;
+}
+
+.button:hover span {
+	background: #36B4C7;
+	color: #fff;
+	transition: all .35s ease-in-out .35s;
+}
+
+.button:after {
+	bottom: -100%;
+	right: -100%;
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #36B4C7;
+	transition: all .35s ease-in-out .5s;
+}
+
+.button:hover:after {
+	right: 0;
+	bottom: 0;
+	transition: all ease-in-out .35s;
+}
+
+.button:before {
+	top: -100%;
+	left: -100%;
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #36B4C7;
+	transition: all .35s ease-in-out .5s;
+}
+
+.button:hover:before {
+	left: 0;
+	top: 0;
+	transition: all ease-in-out .35s;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-
+<form action="#" method="get">
 	<div>
 		<div class="topBlank"></div>
 		<!-- 칼로리, 나트륨, 지방, 단백질 선택박스 표시 -->
@@ -196,11 +251,14 @@ input[type="text"] {
 					<div class="calorielabel">
 						<label>칼로리(cal)</label>
 					</div>
+					<div class="blank"></div>
 
-					<div class="calorieCheckbox">
-						0~300<input type="checkbox" name="calorie1" value=""><br>
-						300~500<input type="checkbox" name="calorie2" value=""><br>
-						500~700<input type="checkbox" name="calorie3" value=""><br>
+					<div class="checkBoxStyle1">
+						<div class="calorieCheckbox">
+							0~300<input type="checkbox" name="calorie1" value=""><br>
+							300~500<input type="checkbox" name="calorie2" value=""><br>
+							500~700<input type="checkbox" name="calorie3" value=""><br>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -212,11 +270,14 @@ input[type="text"] {
 					<div class="saltLabel">
 						<label>나트륨(na)</label>
 					</div>
+					<div class="blank"></div>
 
-					<div class="saltCheckbox">
-						0~300<input type="checkbox" name="calorie1" value=""><br>
-						300~500<input type="checkbox" name="calorie2" value=""><br>
-						500~700<input type="checkbox" name="calorie3" value=""><br>
+					<div class="checkBoxStyle2">
+						<div class="saltCheckbox">
+							0~50<input type="checkbox" name="salt1" value=""><br>
+							50~100<input type="checkbox" name="salt2" value=""><br>
+							100~150<input type="checkbox" name="salt3" value=""><br>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -228,10 +289,14 @@ input[type="text"] {
 					<div class="fatLabel">
 						<label>지방(g)</label>
 					</div>
-					<div class="fatCheckbox">
-						0~300<input type="checkbox" name="calorie1" value=""><br>
-						300~500<input type="checkbox" name="calorie2" value=""><br>
-						500~700<input type="checkbox" name="calorie3" value=""><br>
+					<div class="blank"></div>
+
+					<div class="checkBoxStyle3">
+						<div class="fatCheckbox">
+							0~50<input type="checkbox" name="fat1" value=""><br>
+							50~100<input type="checkbox" name="fat2" value=""><br>
+							100~150<input type="checkbox" name="fat3" value=""><br>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -243,30 +308,35 @@ input[type="text"] {
 					<div class="proteinLabel">
 						<label>단백질(g)</label>
 					</div>
-					<div class="proteinCheckbox">
-						0~300<input type="checkbox" name="calorie1" value=""><br>
-						300~500<input type="checkbox" name="calorie2" value=""><br>
-						500~700<input type="checkbox" name="calorie3" value=""><br>
+					<div class="blank"></div>
+
+					<div class="checkBoxStyle4">
+						<div class="proteinCheckbox">
+							0~50<input type="checkbox" name="protein1" value=""><br>
+							50~100<input type="checkbox" name="protein2" value=""><br>
+							100~150<input type="checkbox" name="protein3" value=""><br>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="middleBlank"></div>
 
-
 			<div class="search">
-				<div></div>
-				<div>
-					<div class="resetButtonBox">
-						<input type='submit' value='초기화'>
-					</div>
-					<div class="searchButtonBox">
-						<input type='submit' value='검 색'>
-					</div>
-				</div>
+				<button class="button" type="reset" value="내용초기화">
+					<span> 초기화 </span>
+				</button>
+				
+				<div>　</div>
+				
+				<button class="button" type="" value="검색하기">
+					<span> 검색하기 </span>
+				</button>
 			</div>
+		
 			<div class="middleBlank"></div>
 		</div>
 	</div>
+	</form>
 
 	<div class="sideBar">
 		<div class="sideBarRight">
@@ -275,10 +345,11 @@ input[type="text"] {
 				<div>
 					<label>&nbsp;&nbsp;&nbsp;성별 : </label>
 				</div>
-				<!-- 라디오박스칸 --> 
+				<!-- 라디오박스칸 -->
 				<div>
-					<input type="radio" name="gender" value="man">남
-					<input type="radio" name="gender" value="woman" style="padding-left: 50%;">여 <br>
+					<input type="radio" name="gender" value="man">남 <input
+						type="radio" name="gender" value="woman"
+						style="padding-left: 50%;">여 <br>
 				</div>
 			</div>
 			<div>
@@ -290,6 +361,7 @@ input[type="text"] {
 			<div>
 				<label>몸무게 : <input type="text" name="weight"></label><br>
 			</div>
+
 			<div class="calculateResult">
 				<input type='submit' value='계 산'>
 			</div>
