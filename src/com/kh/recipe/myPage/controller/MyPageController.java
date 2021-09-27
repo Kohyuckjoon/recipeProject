@@ -1,6 +1,9 @@
 package com.kh.recipe.myPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,10 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.common.exception.PageNotFoundException;
+import com.kh.recipe.member.model.dto.Member;
+import com.kh.recipe.myPage.model.dto.MyReview;
+import com.kh.recipe.myPage.model.service.MyPageService;
 
 @WebServlet("/myPage/*")
 public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private MyPageService myPageService = new MyPageService();
        
 	public MyPageController() {
         super();
@@ -46,6 +53,14 @@ public class MyPageController extends HttpServlet {
 	}
 
 	private void myReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = new Member();
+		request.getSession().getAttribute("authentication");
+		MyReview myReview = new MyReview();
+		myReview.setUserId(member.getUserId());
+		
+		myPageService.selectReview(myReview);
+		
 		request.getRequestDispatcher("/myPage/myReview").forward(request, response);
 		
 	}

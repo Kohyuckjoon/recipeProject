@@ -3,10 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
+
+	<div class="top"></div>
+	
+	<div>
 	<table class="sub_news" border="1" cellspacing="0"
 		summary="게시판의 글제목 리스트">
 		<caption>게시판 리스트</caption>
@@ -46,6 +51,7 @@
 			
 		</tbody>
 	</table>
+	</div>
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
 </html>

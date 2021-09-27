@@ -5,11 +5,19 @@
 <head>
 
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+<<<<<<< HEAD
 <link href="../resources/css/mainPage.css" rel="stylesheet"
 	type="text/css">
+=======
+<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
+>>>>>>> refs/heads/dev
 <style type="text/css">
 
+<<<<<<< HEAD
 #top{
+=======
+.top{
+>>>>>>> refs/heads/dev
 	height:100px;
 }
 
@@ -64,7 +72,11 @@
 	
 
 	<!-- myPage 바디 -->
+<<<<<<< HEAD
 	<div id="top"></div>
+=======
+	<div class="top"></div>
+>>>>>>> refs/heads/dev
 	
 	<div id="myPage">
 		<div class="memberInfo" id="memberInfo" onclick = "location.href = '/myPage/memberInfo' ">
