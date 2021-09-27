@@ -61,20 +61,16 @@
 
 	<!-- 페이지 이동 기능 -->
 	<div class = "page">
-	<% int pageNum = 0;%>
 		<table>
 			<tr>
 				<td class = "arrow"><i class="fas fa-angle-double-left"></i></td>
 				<td class = "blank"></td>
 				<td class = "arrow"><i class="fas fa-angle-left"></i></td>
-				
-				<c:forEach begin= "0" end="9">
-					<% pageNum += 1;%>
-					<td class = "blank"> </td>
-					<td class = "page-number-<%=pageNum%>"><%=pageNum%></td>
-				</c:forEach>
-				
 				<td class = "blank"> </td>
+				
+				
+				
+				<td class = "blank num"> </td>
 				<td class = "arrow"><i class="fas fa-angle-right"></i></td>
 				<td class = "blank"></td>
 				<td class = "arrow"><i class="fas fa-angle-double-right"></i></td>
@@ -83,25 +79,39 @@
 	</div>
 	
 	<script type="text/javascript">
-	<% int step = 0;%>
+	let totalPage = 28
+	// 1000/36 = 27.7
+	let currentPage = 1
+	let viewPageNumbers = 10
+	let remainder = currentPage % viewPageNumbers
+	let firstPagerNum = currentPage - remainder + 1
+	let lastPagerNum = currentPage - remainder + viewPageNumbers
+		
+	if(totalPage < lastPagerNum){
+		totalPage = lastPagerNum
+	}
 	
-	<c:forEach begin= "0" end="9">
-		<% step += 1;%>
-		document.querySelector(".page-number-<%=step%>").addEventListener('click', () => {
-			location.href="/mainPage/<%=step%>";
-		});
-	</c:forEach>
-	
-	// 데이터셋이나 속성값에 넣자
-	// el-jstl 동작 시점이 다르니까, 속성값만 미리 넣어놓자
-	// 자바스크립트로 통일시키자. 
+	for(let i = firstPagerNum; i < lastPagerNum; i++){
+		let pageNumber = document.createElement('td');
+		pageNumber.append(i);
+		document.querySelector('.num').before(pageNumber);
+		
+	}
 	
 	</script>
+	
+	
+	<!-- 
+	데이터셋이나 속성값에 넣자
+	el-jstl 동작 시점이 다르니까, 속성값만 미리 넣어놓자
+	자바스크립트로 통일시키자.  -->
+	
+
 
 	<!-- 여기부턴 foot -->
 	
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 	
-	<!-- <script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script> -->
+	<script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script>
 </body>
 </html>
