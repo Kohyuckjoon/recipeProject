@@ -16,7 +16,7 @@ public class BoardService {
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private BoardDao boardDao = new BoardDao();
 	
-	public void insertBoard(Board board, List<FileDTO> files) {
+	public void insertBoard(Board board, List<FileDTO> files) { //게시글 작성 폼
 		Connection conn = template.getConnection();
 		
 		try {
@@ -33,7 +33,7 @@ public class BoardService {
 		}
 	}
 
-	public Map<String, Object> selectBoardDetail(int no) {
+	public Map<String, Object> selectBoardDetail(int no) { //게시글 하나씩
 		
 		Connection conn = template.getConnection();
 		Map<String,Object> res = new HashMap<String, Object>();
@@ -49,5 +49,23 @@ public class BoardService {
 		
 		return res;
 	}
+
+	public Map<String, Object> updateBoard(int no) { //수정
+		Connection conn = template.getConnection();
+		Map<String,Object> res = new HashMap<String, Object>();
+		
+		try {
+			Board board = boardDao.updateBoard(conn,no);
+			List<FileDTO> files = boardDao.updateFileDTOs(conn,no);
+			res.put("board", board);
+			res.put("files", files);
+		} finally {
+			template.close(conn);
+		}
+		
+		return res;
+	}
+	
+	
 
 }

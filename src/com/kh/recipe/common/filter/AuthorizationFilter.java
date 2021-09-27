@@ -51,38 +51,35 @@ public class AuthorizationFilter implements Filter {
 //			case "admin":
 //				adminAuthorize(httpRequest, httpResponse, uriArr);
 //				break;
-			case "board":
-				boardAuthorize(httpRequest, httpResponse, uriArr);
-				break;
-			default:
-				break;
+			
+			 case "board":
+				 boardAuthorize(httpRequest, httpResponse, uriArr);
+				 break;
+			 
 			}
 			
 		}
 		chain.doFilter(request,response);
 	}
 
-	private void boardAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
-		HttpSession session = httpRequest.getSession();
-		Member member= (Member) session.getAttribute("authentication");
-		switch (uriArr[2]) {
-		case "board-form":
-			if(member==null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
-			}
-			break;
-		case "upload":
-			if(member==null) {
-				throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR);
-			}
-			break;
-
-		default:
-			break;
-		}
-		
-	}
-
+	
+	  private void boardAuthorize(HttpServletRequest httpRequest,
+	  HttpServletResponse httpResponse, String[] uriArr) { HttpSession session =
+	  httpRequest.getSession(); Member member= (Member)
+	  session.getAttribute("authentication"); switch (uriArr[2]) { 
+	  case
+	  "board-form": 
+		  if(member==null) { 
+			  throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR); } break;
+	  case "upload": 
+				  if(member==null) {
+					  throw new HandlableException(ErrorCode.UNAUTHORIZED_PAGE_ERROR); 
+			} break;
+	  
+	 }
+	  
+	  }
+	 
 //	private void adminAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 //		
 //		HttpSession session = httpRequest.getSession();

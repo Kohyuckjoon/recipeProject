@@ -72,6 +72,11 @@ text-decoration: underline;
 .searchForm{
 	
 }
+
+.formBtn{
+	background-color: yellow;
+	color:blue;
+}
 </style>
 </head>
 <body>
@@ -155,7 +160,7 @@ text-decoration: underline;
 			<input type="submit" value="검색"/>
 		</form>	
 	</div>
-		<input type="submit" value="글쓰기" >
+	<button class="formBtn" onclick = "location.href = '/board/board-form'">글쓰기</button>
 	<!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
