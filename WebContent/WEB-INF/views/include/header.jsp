@@ -9,9 +9,9 @@
 </head>
 <body>
 	<div class="header">
-		<img class="title" src ="../../resources/img/banner.gif"></img>
+		<img class="title"></img>
 		<div class="pagebutton">
-			<button class="mainPageButton" onclick = "location.href = '/mainPage/1' ">메인페이지</button>
+			<button class="mainPageButton" onclick = "location.href = '/mainPage/mainPage' ">메인페이지</button>
 			<button class="recipePageButton">다이어트 & 헬스 레시피</button>
 			<button class="boardPageButton" onclick = "location.href = '/board/board-list'">자유게시판</button>
 			<button class="myPageButton" onclick = "location.href = '/myPage/myPage' ">마이페이지</button>
