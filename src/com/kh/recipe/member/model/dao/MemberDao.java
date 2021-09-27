@@ -34,13 +34,15 @@ public class MemberDao {
 			
 			if(rset.next()) {
 				member = convertAllToMember(rset);
+				
 			}
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
 		} finally {
 			template.close(rset, pstm);
+			
 		}
-		System.out.println(member);
+		
 		return member;
 	}
 

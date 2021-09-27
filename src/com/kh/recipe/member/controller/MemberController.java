@@ -83,7 +83,19 @@ public class MemberController extends HttpServlet {
 	}
 	
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/member/login").forward(request, response);
+		String userId = request.getParameter("userId");
+		String password = request.getParameter("password");
+		
+		Member member = memberService.memberAuthenticate(userId, password);
+		request.getSession().setAttribute("authentication", member);
+		
+		if(userId != null) {
+			request.getRequestDispatcher("/myPage/myPage").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/member/login").forward(request, response);
+			return;
+		}
+		
 		
 	}
 
@@ -159,9 +171,6 @@ public class MemberController extends HttpServlet {
 		 */
 	}
 
-	
-	
-
 	private void joinForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.getRequestDispatcher("/member/join-form").forward(request, response);
 	}
@@ -173,28 +182,26 @@ public class MemberController extends HttpServlet {
 
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.getRequestDispatcher("/member/login-form").forward(request, response);
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		Member member = memberService.memberAuthenticate(userId, password);
-		request.getSession().setAttribute("authentication", member);
+		
 	}
+
 	
 	private void normalLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		
-		Member member = memberService.memberAuthenticate(userId, password);
-		
-		//2. 사용자가 잘못된 아이디와 비밀번호를 입력한 경우
-		//	 사용자에게 아이디나 비밀번호가 틀렸음을 알림, login-form으로 redirect 
-		if(member == null) {
-			response.sendRedirect("/member/login");
-			return;
-		}
-		
-		request.getSession().setAttribute("authentication", member);
-		response.sendRedirect("/mainPage/1");
+//		String userId = request.getParameter("userId");
+//		String password = request.getParameter("password");
+//		
+//		Member member = memberService.memberAuthenticate(userId, password);
+//		
+//		//2. 사용자가 잘못된 아이디와 비밀번호를 입력한 경우
+//		//	 사용자에게 아이디나 비밀번호가 틀렸음을 알림, login-form으로 redirect 
+//		if(member == null) {
+//			response.sendRedirect("/member/login");
+//			return;
+//		}
+//		
+//		request.getSession().setAttribute("authentication", member);
+//		response.sendRedirect("/mainPage/1");
 	}
 
 	

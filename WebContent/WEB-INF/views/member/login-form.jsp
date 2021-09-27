@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -122,7 +123,17 @@ body {
 	</form>
   </div>
 </div>
-
+<!-- <script type="text/javascript">
+	String userId = null;
+	if(session.getAttribute("userId")!= null){
+		userId = (String) session.getAttribute("userId");
+	}
+	if(userId != null){
+		
+		alert("이미 로그인 되어 있습니다.");
+		location.href = "/mainPage/1"
+	}
+	</script>  -->
 	<%-- <h1>로그인</h1>
 	<hr>
 	<form action="/member/login" method="post">
