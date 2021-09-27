@@ -31,7 +31,65 @@ var txId = null; */
 
 //카카오톡을 통한 로그인, 리다이렉트 구축
 function kakaoLogin() {
-    Kakao.Auth.login({
+    
+	 if (isset($_GET['code'])) {
+
+         require_once realpath(dirname(__FILE__).'/../libraries/SNS_OAuth/').'/kakao_oauth.php';
+
+         $url = "https://kauth.kakao.com/oauth/token";
+         
+         $param = "grant_type=authorization_code";
+         $param .= "&client_id=".$kakao_api;
+         $param .= "&redirect_url=".$kakao_redirect;
+         $param .= "&code=".$_GET['code'];
+
+         // Get Aeccess Token Value
+         
+         $auth_data = $this->common->restful_curl($url, $param, 'POST');
+         $auth_data = json_decode($auth_data);
+
+        
+         
+         if($auth_data->access_token) {
+            
+             $_SESSION['kakao_token'] = $auth_data->access_token;
+             
+             $url = "https://kapi.kakao.com/v1/user/me";
+             $param = "";
+             $header = array("Authorization: Bearer " .$auth_data->access_token);
+
+
+             // Get User Info
+             $user_data = $this->common->restful_curl($url, $param, 'POST', $header);
+             $user_data = json_decode($user_data);
+
+             $nickname=isset($user_data->name)?$user_data->name :"";
+             $thumbnail_image=isset($user_data->thumbnail_image)?$user_data->thumbnail_image:"";
+             
+             // Add Code :: Valid Member
+             $assign_data=array(
+                 'sns_id'=>$user_data->id,
+                 'sns_type'=>'kakao',
+                 'profile_img'=>$thumbnail_image,
+                 'email'=>$user_data->kaccount_email,
+                 'name'=>$user_data->name,
+                 'nickname'=>''   
+             );
+             
+             $this->_register_action($assign_data);
+
+         }else {
+             $this->script->alert("Kakao Token Access Fail.");
+             $this->script->locationhref('/index.php/auth');
+         }
+
+     }else {
+         $this->script->alert("Invailed Access.");
+         $this->script->locationhref('/index.php/auth');
+     } 
+	
+	
+	/* Kakao.Auth.login({
       success: function (response) {
         
 		Kakao.API.request({//사용자 정보 저장
@@ -99,12 +157,81 @@ function kakaoLogin() {
         fail: function (error) {
           console.log(error)
         },
-      });
+      }); 
    
-	
+      */
 
 }
 
+      function _register_action($assign_data) {
+
+          //sns 의경우 이메일이 없는 경우가 있으므로 없을 경우 sns_id 값으로 저장
+         $insertId=$assign_data['email']!=null ? $assign_data['email'] :$assign_data['sns_id'];
+         
+         //sns_id 로 기존에 등록된 유저 확인
+         $sql="select * from users where userid=?";
+         $query=$this->db->query($sql,  $insertId);
+         
+        
+         $message="";
+         //등록된 userid 를 확인 한다.
+         if($query->num_rows() > 0){
+             //테스트 메시지
+             $message="userid 가 존재";
+         }
+         else
+         {
+             //userid 값이 없으면 등록한다. 
+              // Member Register in Your Code.       
+              $data=array(
+                 'userid' =>$insertId,
+                 'sns_id'=>$assign_data['sns_id'],
+                 'sns_type'=>$assign_data['sns_type'],
+                 'register_auth_code'=>1,  //이메일 인증 코드 1로 
+                 'profile_img'=>$assign_data['profile_img'],
+                 'email'=>$assign_data['email'],
+                 'nickname'=>$assign_data['nickname'],
+                 'username'=>$assign_data['name'],
+                 'register_ip'=>$_SERVER['REMOTE_ADDR']
+                 );       
+             $this->db->insert('users', $data);
+               $message="등록했습니다.";
+                       
+         }
+         
+         //DB에서 정보를 다시 불러온다.
+         $sql="select * from users where userid=?";
+         $query=$this->db->query($sql,  $insertId);
+         $result=$query->row();
+
+          //세션 생성         
+         if($result) {             
+             //세션 생성         
+             $newdata =array(
+                 'nickname' =>$result->nickname,
+                 'email' =>$result->email,
+                 'logged_in' =>TRUE,
+                 'auth_code' =>$result->auth_code,
+                 'icon'=>$result->icon,
+                 'sns_type'=>$result->sns_type,
+                 'userid' =>$result->userid
+             );
+             
+             $this->session->set_userdata($newdata);
+             
+             redirect('/');
+             exit;
+          }else{
+              
+              alert('로그인에 실패 하였습니다.', '/');
+              exit;
+          }                            
+     }
+  
+  
+  
+  
+  
   
 //kakao logout!
 function kakaoLogout() {

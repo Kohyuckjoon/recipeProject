@@ -3,10 +3,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 </head>
 <body>
+<h1>마이페이지</h1>
+<table border="1">
+	<tr>
+		<th>개인정보 수정</th>
+		<th>${authentication.name}</th>
+	</tr>
 
+	<tr>
+		<th>아이디</th>
+		<th>${authentication.userId}</th>
+	</tr>
+	<tr>
+		<th>비밀번호</th>
+		<th>${authentication.password}</th>
+	</tr>
+	<tr>
+		<th>전화번호</th>
+		<th>${authentication.phone}</th>
+	</tr>
+	<tr>
+		<th>이메일</th>
+		<th>${authentication.email}</th>
+	</tr>
+
+</table>
 </body>
 </html>

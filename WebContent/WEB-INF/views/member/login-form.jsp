@@ -123,6 +123,10 @@ body {
 	</form>
   </div>
 </div>
+<c:forEach items="${param}">
+	${param}
+</c:forEach>
+
 <!-- <script type="text/javascript">
 	String userId = null;
 	if(session.getAttribute("userId")!= null){
