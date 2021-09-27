@@ -15,7 +15,7 @@
 
 /* 싸이트 이름 */
 .title {
-	background-image: url("../../resources/img/banner.gif");
+	background-image: url("../../img/banner.gif");
 	background-size: contain;
 	height: 100%;
 	width: 300px;
