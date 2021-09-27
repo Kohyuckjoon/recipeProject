@@ -34,77 +34,132 @@
 	</div>
 	
 	<!-- 여기서부터 바디 -->
+
 	<div class="body">
 
+
+
 		<%
-		int begin = (int) request.getAttribute("pageNumber")*36 - 35;
-		int end = (int) request.getAttribute("pageNumber")*36 - 32;
+		int begin = (int) session.getAttribute("sessionPageNumber") * 36 - 35;
+		int end = (int) session.getAttribute("sessionPageNumber") * 36 - 32;
 		%>
+
 		<c:forEach begin="0" end="8">
+
 			<div class="row">
+
 				<c:forEach var="recipe" items="${Recipes}" begin="<%=begin%>" end="<%=end%>">
+
 					<div class="upper-recipe">
+
 						<img src="${recipe.attFileNoMk}" class="recipe-pic">
+
 						<div class="recipe-text">
+
 							<div class="food-type">${recipe.rcpPat2}</div>
+
 							<div class="food-name">${recipe.rcpNm}</div>
+
 							<span class="food-star">★★★★★</span>
+
 						</div>
+
 					</div>
+
 				</c:forEach>
+
 			</div>
+
 			<%begin += 4; end += 4; %>
+
 		</c:forEach>
+	
+	<script type="text/javascript">
+		
+	let b = sessionStorage.getItem('sessionPageNumber');
+	let c = ${sessionPageNumber};
+	console.dir(b);
+	console.dir(c);
+	
+	</script>
+
 
 	</div>
-
-
 	<!-- 페이지 이동 기능 -->
 	<div class = "page">
 		<table>
 			<tr>
-				<td class = "arrow"><i class="fas fa-angle-double-left"></i></td>
+				<td class = "arrow" class = "firstPage"><i class="fas fa-angle-double-left"></i></td>
 				<td class = "blank"></td>
-				<td class = "arrow"><i class="fas fa-angle-left"></i></td>
+				<td class = "arrow" class = "prevPage"><i class="fas fa-angle-left"></i></td>
 				<td class = "blank"> </td>
-				
-				
-				
 				<td class = "blank num"> </td>
-				<td class = "arrow"><i class="fas fa-angle-right"></i></td>
+				<td class = "arrow" class = "nextPage"><i class="fas fa-angle-right"></i></td>
 				<td class = "blank"></td>
-				<td class = "arrow"><i class="fas fa-angle-double-right"></i></td>
+				<td class = "arrow" class = "lastPage"><i class="fas fa-angle-double-right"></i></td>
 			</tr>
 		</table>
 	</div>
 	
 	<script type="text/javascript">
-	let totalPage = 28
-	// 1000/36 = 27.7
-	let currentPage = 1
-	let viewPageNumbers = 10
-	let remainder = currentPage % viewPageNumbers
-	let firstPagerNum = currentPage - remainder + 1
-	let lastPagerNum = currentPage - remainder + viewPageNumbers
+		let numberForPaging = (totalPage, viewPageNumbers, currentPage) => {
 		
-	if(totalPage < lastPagerNum){
-		totalPage = lastPagerNum
+		this.totalPage = totalPage;
+		// 1000/36 = 27.7
+		this.currentPage = currentPage;
+		this.viewPageNumbers = viewPageNumbers;
+		let remainder = currentPage % viewPageNumbers;
+		let firstPagerNum = currentPage - remainder + 1;
+		let lastPagerNum = currentPage - remainder + viewPageNumbers;
+		
+		if(remainder == 0){
+			firstPagerNum -= 10;
+			lastPagerNum -= 10;
+		}
+		
+		if(this.totalPage < lastPagerNum ){
+			lastPagerNum = this.totalPage; 
+		}
+		
+		return{
+			totalPage,
+			currentPage,
+			viewPageNumbers,
+			firstPagerNum,
+			lastPagerNum
+		}
+		
 	}
 	
-	for(let i = firstPagerNum; i < lastPagerNum; i++){
+	let paging = null;
+	let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
+	
+	
+	if(isNaN(sPN) == true) {
+		paging = numberForPaging(28, 10, 1)
+	} else {
+		paging = numberForPaging(28, 10, sPN)
+	}
+	
+	for(let i = paging.firstPagerNum; i < paging.lastPagerNum + 1; i++){
 		let pageNumber = document.createElement('td');
+		pageNumber.classList.add('page-' + i);
 		pageNumber.append(i);
 		document.querySelector('.num').before(pageNumber);
 		
+		document.querySelector('.page-' + i).addEventListener('click',() =>{
+			sessionStorage.setItem('sessionPageNumber', i );
+			location.href="/mainPage/clickedPage";
+		});
+		
 	}
-	
 	</script>
-	
 	
 	<!-- 
 	데이터셋이나 속성값에 넣자
 	el-jstl 동작 시점이 다르니까, 속성값만 미리 넣어놓자
-	자바스크립트로 통일시키자.  -->
+	자바스크립트로 통일시키자. 
+	 -->
 	
 
 
@@ -112,6 +167,6 @@
 	
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 	
-	<script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script>
+	<!-- <script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script> -->
 </body>
 </html>
