@@ -210,6 +210,7 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			while(rset.next()) {
 				
 				Board board = new Board();
+				
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
 				board.setUserId(rset.getString("userId"));

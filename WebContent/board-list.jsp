@@ -27,13 +27,15 @@ div {
 }
 
 .tit{
+	position:relative;
+	top:105px;
 	font-size:2.3vw;
 	text-align: center;
 	
 }
 .category{
 	width:150px;
-	margin:30px;
+	margin:120px;
  	position: relative;
  	left:80%;
 }
@@ -124,36 +126,24 @@ text-decoration: underline;
 				</tr>
 			</thead>
 		<tbody>
-		<!--<h4>c:forEach, forEach 로 사용하기</h4>
-					<pre>
-					items: forEach에서 탐색할 배열 또는 리스트
-					var: 배열 또는 리스트이 요소를 받을 변수
-					varStatus:index,count 속성을 가진 객체
-					index: 요소의 인덱스(시작이 0)
-					count: 요소의 차례(시작이 1)  -->
-			<!--  List<Board> -->				
 		
-		<%-- <c:forEach items="${board.list}" var="list">
-				<tr>
-				<td>${list.no}</td>
-				<td>${list.title}</td>
-				<td>${list.content}</td>
-				<td>${list.regDate}</td>
-				<td>${list.viewCount}</td>
-			</tr>
-			
-		</c:forEach>
-		 --%>
-	
+		<c:if test="${not empty datas.files}">
+			<ol>
+				<c:forEach items="${boardList}" var="board">
+					<td><c:out value="${board.no}"/><td>
+					<td><c:out value="${board.title}"/><td>
+					<td><c:out value="${board.userId}"/><td>
+					<td><c:out value="${board.regDate}"/><td>
+					<td><c:out value="${board.viewCount}"/><td>
+				</c:forEach>
+			</ol>
+		</c:if>
+
 		</tbody>
 		
 		</table>
 		</div>
-			<span>번호 : <c:out value="${list.board.no}"/></span>
-		<span>제목 : <c:out value="${list.board.title}"/></span>
-		<span>등록일 : <c:out value="${list.board.regDate}"/></span>
-		<span>작성자 : <c:out value="${list.board.userId}"/></span>
-		<span>작성자 : <c:out value="${list.board.viewCount}"/></span>
+		
 		<!-- 게시판 페이징 구현하는 거 -->
 
 <div id="paging">
