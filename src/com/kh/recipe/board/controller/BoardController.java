@@ -58,16 +58,18 @@ public class BoardController extends HttpServlet {
 		}
 	}
 
+
+
 	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
 				int no = Integer.parseInt(request.getParameter("no"));
 				
 				//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
-				Map<String, Object> datas = boardService.selectBoardDetail(no);
+				Map<String, Object> datas = boardService.updateBoard(no);
 				
 				request.setAttribute("datas", datas);
 				request.getRequestDispatcher("/board/board-update").forward(request, response);
-		
 	}
 
 	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

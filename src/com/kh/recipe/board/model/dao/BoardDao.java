@@ -61,7 +61,7 @@ public class BoardDao {
 
 	public List<Board> selectBoardAll(Connection conn) { //전체 게시판 조회
 		
-		String sql = "select no,title,userId,date,viewCount"
+		String sql = "select no,title,userId,regDate,viewCount"
 				+ " from board";
 		ArrayList<Board> list = new ArrayList<Board>();
 		PreparedStatement pstm = null;
@@ -92,7 +92,7 @@ public class BoardDao {
 	
 public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		
-		String sql = "select no,userId,title,content,date,viewCount"
+		String sql = "select no,userId,title,content,regDate,viewCount"
 				+ " from board "
 				+ " where no = ?";
 		
@@ -147,6 +147,70 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 				file.setRenameFileName(rset.getString("rename_file_name"));
 				file.setSavePath(rset.getString("save_path"));
 				file.setRegDate(rset.getDate("reg_date"));
+				
+				files.add(file);
+			}
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(rset, pstm);
+		}
+		
+		return files;
+	}
+
+	public Board updateBoard(Connection conn, int no) {
+		String sql = "update board set title = ?, content = ?"
+				+ " where no = ?";
+		
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Board board = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, no);
+			rset = pstm.executeQuery();
+			
+			while(rset.next()) {
+				board = new Board();
+				
+				board.setTitle(rset.getString("title"));
+				board.setContent(rset.getString("content"));
+				board.setUserId(rset.getString("userId"));
+				
+			}
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(rset,pstm);
+		}
+		return board;
+	
+	}
+
+	public List<FileDTO> updateFileDTOs(Connection conn, int no) {
+		String sql = "update file_info set type_idx,origin_file_name,rename_file_name,save_path "
+				+ " where fl_idx=?";
+		
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		List<FileDTO> files = new ArrayList<FileDTO>();
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, no);
+			rset = pstm.executeQuery();
+			
+			while(rset.next()) {
+				FileDTO file = new FileDTO();
+				file.setTypeIdx(rset.getString("type_idx"));
+				file.setOriginFileName(rset.getString("origin_file_name"));
+				file.setRenameFileName(rset.getString("rename_file_name"));
+				file.setSavePath(rset.getString("save_path"));
+				
 				
 				files.add(file);
 			}
