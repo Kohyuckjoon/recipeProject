@@ -14,10 +14,16 @@
 
 <link href="resources/css/board/board.css" rel="stylesheet"  type="text/css">
 <style type="text/css">
-.info{font-size:1.3vw; border-bottom:1px solid}
+.info{
+font-size:1.3vw; 
+margin-top: 30px;
+}
 .info span{padding-right: 3vw;}
 .info li{font-size:0.5vw;}
 
+.content_board{
+	margin-top:10px;
+}
 .btn_section{
    padding-top:20px;
    flex-direction:row;
@@ -43,6 +49,7 @@
 <body>
  <%@ include file="/WEB-INF/views/include/header.jsp" %>   
 
+<div class="top"></div>
 	<!-- 게시판수정  -->
 	<%-- 게시판 수정 세션값 담겨있는지 체크하는 거 퍼온내용
 	<%
@@ -82,17 +89,9 @@
 	 --%>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<div class="content"> 
-	<h2 class="tit">게시판 글 수정</h2>
+	<div class="tit">게시판 글 수정</div>
 	
 		<div class="info">
 		<span>번호 : <c:out value="${datas.board.no}"/></span>

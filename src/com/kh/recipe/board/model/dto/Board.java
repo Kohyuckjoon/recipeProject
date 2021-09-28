@@ -6,7 +6,7 @@ public class Board {
 
 	private int no; //게시글 번호 -bdIdx
 	private String userId; //아이디
-	//private String category; //게시글 분류
+
 	private String title; //게시글 제목
 	private String content; //내용
 	private Date regDate; //게시날짜
@@ -37,13 +37,7 @@ public class Board {
 		this.userId = userId;
 	}
 
-	/*
-	 * public String getCategory() { return category; }
-	 * 
-	 * 
-	 * public void setCategory(String category) { this.category = category; }
-	 */
-
+	
 
 	public String getTitle() {
 		return title;

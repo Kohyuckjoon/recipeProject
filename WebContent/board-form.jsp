@@ -13,8 +13,9 @@
 <body>
 
 
-<%--  <%@ include file="/WEB-INF/views/include/header.jsp" %>  --%>
+ <%@ include file="/WEB-INF/views/include/header.jsp" %> 
 
+	<div class="top"></div>
 	
 <div class="content"> 
 	<div class="tit">게시판 글쓰기 양식</div>

@@ -13,6 +13,9 @@
 
 <link href="resources/css/board/board.css" rel="stylesheet"  type="text/css">
 <style type="text/css">
+.top{
+height: 100px;
+}
 .info{font-size:1.3vw; border-bottom:1px solid}
 .info span{padding-right: 3vw;}
 .info li{font-size:0.5vw;}
@@ -41,7 +44,7 @@
 </head>
 <body>
  <%@ include file="/WEB-INF/views/include/header.jsp" %> 
-
+<div class="top"></div>
 	
 	
 	<div class="content"> 
