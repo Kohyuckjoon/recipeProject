@@ -6,11 +6,6 @@
 
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
-<link href="../resources/css/mainPage.css" rel="stylesheet"
-	type="text/css">
-
-<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
-
 <link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
 
 <style type="text/css">
