@@ -9,7 +9,7 @@ public class Board {
 	//private String category; //게시글 분류
 	private String title; //게시글 제목
 	private String content; //내용
-	private Date date; //게시날짜
+	private Date regDate; //게시날짜
 	private int viewCount; //조회수
 	
 	
@@ -65,13 +65,14 @@ public class Board {
 	}
 
 
-	public Date getDate() {
-		return date;
+
+	public Date getRegDate() {
+		return regDate;
 	}
 
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 
@@ -87,9 +88,11 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [no=" + no + ", userId=" + userId + ", title=" + title + ", content="
-				+ content + ", date=" + date + ", viewCount=" + viewCount + "]";
+		return "Board [no=" + no + ", userId=" + userId + ", title=" + title + ", content=" + content + ", regDate="
+				+ regDate + ", viewCount=" + viewCount + "]";
 	}
+
+
 	
 	
 	
