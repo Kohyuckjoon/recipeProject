@@ -67,8 +67,6 @@ public class MyPageController extends HttpServlet {
 
 		request.getRequestDispatcher("/myPage/myScrape").forward(request, response);
 		
-		request.getRequestDispatcher("/myPage/myScrape").forward(request, response);
-		
 	}
 
 	private void myReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
