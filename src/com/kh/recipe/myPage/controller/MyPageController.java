@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.common.exception.PageNotFoundException;
+import com.kh.recipe.mainPage.model.dto.Recipe;
 import com.kh.recipe.member.model.dto.Member;
 import com.kh.recipe.myPage.model.dto.Review;
+
+import com.kh.recipe.myPage.model.dto.Scrape;
 import com.kh.recipe.myPage.model.service.MyPageService;
 
 @WebServlet("/myPage/*")
@@ -48,18 +51,27 @@ public class MyPageController extends HttpServlet {
 	}
 
 	private void myScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+
+		Scrape scrape = new Scrape();
+		scrape.setUserId(member.getUserId());
+		String userId = scrape.getUserId();
+
+		List<Recipe> myRecipes = new ArrayList<Recipe>();
+		myRecipes = myPageService.selectMyRecipe(userId);
+		
+		System.out.println(myRecipes);
+		
+		request.setAttribute("myRecipes", myRecipes);
+
+		request.getRequestDispatcher("/myPage/myScrape").forward(request, response);
+		
 		request.getRequestDispatcher("/myPage/myScrape").forward(request, response);
 		
 	}
 
 	private void myReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Member member = new Member();
-		request.getSession().getAttribute("authentication");
-		Review myReview = new Review();
-		myReview.setUserId(member.getUserId());
-		
-		myPageService.selectReview(myReview);
 		
 		request.getRequestDispatcher("/myPage/myReview").forward(request, response);
 		
