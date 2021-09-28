@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,49 +27,48 @@ public class MainPageDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
-	public List<Recipe> selectRecipeByDetail() {
+	public List<Recipe> selectRecipeByDetail(Connection conn) throws SQLException {
 		
-		String value = "";
 		List<Recipe> Recipes = new ArrayList<Recipe>();
+		String query = "select rcp_seq, att_file_no_mk, rcp_pat2, rcp_nm from recipe";
+		ResultSet rset = null;
+		PreparedStatement pstm = null;
 		
 		try {
-			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/1/100");
-			BufferedReader br;
-			br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-			value = br.readLine();
-
-			JSONParser parser = new JSONParser();
-			JSONObject object = (JSONObject) parser.parse(value);
-			JSONObject COOKRCP01 = (JSONObject) object.get("COOKRCP01");
-			JSONArray recipeArray = (JSONArray) COOKRCP01.get("row");
-
-			for (int i = 0; i < recipeArray.size(); i++){
+			pstm = conn.prepareStatement(query);
+			rset = pstm.executeQuery();
+			
+			while(rset.next()) {
 				Recipe recipe = new Recipe();
-				
-				JSONObject recipeDetail = (JSONObject) recipeArray.get(i);
-				recipe.setRcpSeq(Integer.parseInt(recipeDetail.get("RCP_SEQ").toString())); // 인덱스
-				recipe.setAttFileNoMk(recipeDetail.get("ATT_FILE_NO_MK").toString()); // 사진
-				recipe.setRcpPat2(recipeDetail.get("RCP_PAT2").toString()); // 종류
-				recipe.setRcpNm(recipeDetail.get("RCP_NM").toString()); // 요리명
+				recipe.setRcpSeq(rset.getInt("rcp_seq")); // 인덱스
+				recipe.setAttFileNoMk(rset.getString("att_file_no_mk")); // 사진
+				recipe.setRcpPat2(rset.getString("rcp_pat2")); // 종류
+				recipe.setRcpNm(rset.getString("rcp_nm")); // 요리명
 				Recipes.add(recipe);
 			}
 
-		} catch (Exception e) {
-			throw new HandlableException(ErrorCode.API_LODING_FAIL);
+		}catch (Exception e) {
+			e.printStackTrace();
+			/* throw new HandlableException(ErrorCode.API_LODING_FAIL); */
+		}finally {
+			template.close(rset,pstm);
 		}
 		return Recipes;
 	}
 
 	public int insertRecipe(Connection conn) {
 		
+		JSONObject recipeDetail = null;
 		PreparedStatement pstm = null;
-		int res = 0;
-		String value = "";
 		
+		String value = "";
 		String query = "insert into recipe(rcp_seq, rcp_nm, rcp_way2, rcp_pat2, info_eng, info_car, info_pro, info_fat, info_na, att_file_no_main, att_file_no_mk, rcp_parts_dtls, manual01, manual02, manual03, manual04, manual05, manual06, manual07, manual08, manual09, manual10, manual11, manual12, manual13, manual14, manual15, manual16, manual17, manual18, manual19, manual20) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";                                                                                      
+		int res = 0;
+		
+		
 		
 		try {
-			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/44/60");
+			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/44/44");
 			BufferedReader br;
 			br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			value = br.readLine();
@@ -77,22 +78,24 @@ public class MainPageDao {
 			JSONObject COOKRCP01 = (JSONObject) object.get("COOKRCP01");
 			JSONArray recipeArray = (JSONArray) COOKRCP01.get("row");
 			
-			
+			pstm = conn.prepareStatement(query);
 			
 			for (int i = 0; i < recipeArray.size(); i++){
 				Recipe recipe = new Recipe();
 				
-				JSONObject recipeDetail = (JSONObject) recipeArray.get(i);
+				recipeDetail = (JSONObject) recipeArray.get(i);
 				
 				recipe.setRcpSeq(Integer.parseInt(recipeDetail.get("RCP_SEQ").toString())); // 인덱스
 				recipe.setRcpNm(recipeDetail.get("RCP_NM").toString()); // 요리명
 				recipe.setRcpWay2(recipeDetail.get("RCP_WAY2").toString());
 				recipe.setRcpPat2(recipeDetail.get("RCP_PAT2").toString());
-				recipe.setInfoEng(Integer.parseInt(recipeDetail.get("INFO_ENG").toString()));
-				recipe.setInfoCar(Integer.parseInt(recipeDetail.get("INFO_CAR").toString()));
-				recipe.setInfoPro(Integer.parseInt(recipeDetail.get("INFO_PRO").toString()));
-				recipe.setInfoFat(Integer.parseInt(recipeDetail.get("INFO_FAT").toString()));
-				recipe.setInfoNa(Integer.parseInt(recipeDetail.get("INFO_NA").toString()));
+				
+				recipe.setInfoEng(Integer.parseInt(roundOff(recipeDetail.get("INFO_ENG").toString())));
+				recipe.setInfoCar(Integer.parseInt(roundOff(recipeDetail.get("INFO_CAR").toString())));
+				recipe.setInfoPro(Integer.parseInt(roundOff(recipeDetail.get("INFO_PRO").toString())));
+				recipe.setInfoFat(Integer.parseInt(roundOff(recipeDetail.get("INFO_FAT").toString())));
+				recipe.setInfoNa(Integer.parseInt(roundOff(recipeDetail.get("INFO_NA").toString())));
+				
 				recipe.setAttFileNoMain(recipeDetail.get("ATT_FILE_NO_MAIN").toString());
 				recipe.setAttFileNoMk(recipeDetail.get("ATT_FILE_NO_MK").toString()); // 사진
 				recipe.setRcpPartsDtls(recipeDetail.get("RCP_PARTS_DTLS").toString());
@@ -118,7 +121,7 @@ public class MainPageDao {
 				recipe.setManual20(recipeDetail.get("MANUAL20").toString());
 
 				
-				pstm = conn.prepareStatement(query);
+				
 				pstm.setInt(1, recipe.getRcpSeq());
 				pstm.setString(2, recipe.getRcpNm());
 				pstm.setString(3, recipe.getRcpWay2());
@@ -165,7 +168,14 @@ public class MainPageDao {
 		return res;
 	}
 	
-	
+	public String roundOff(String primeNum) {
+		
+		int idx = primeNum.indexOf(".");
+		String roundOff = primeNum.substring(0, idx);
+		
+		return roundOff;
+		
+	}
 	
 	
 	

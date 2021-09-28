@@ -1,6 +1,7 @@
 package com.kh.recipe.mainPage.service;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.kh.recipe.common.code.ErrorCode;
@@ -19,11 +20,15 @@ public class MainPageService {
 	public List<Recipe> selectRecipeByDetail() {
 		
 		List<Recipe> Recipes = new ArrayList<Recipe>();
+		Connection conn = template.getConnection();
 		
 		try {
-			Recipes = mPD.selectRecipeByDetail();
-		} catch (DataAccessException e) {
-			throw new HandlableException(ErrorCode.API_LODING_FAIL);
+			Recipes = mPD.selectRecipeByDetail(conn);
+		} catch (DataAccessException | SQLException e) {
+			e.printStackTrace();
+			/* throw new HandlableException(ErrorCode.API_LODING_FAIL); */
+		}finally {
+			template.close(conn);
 		}
 		return Recipes;
 	}
