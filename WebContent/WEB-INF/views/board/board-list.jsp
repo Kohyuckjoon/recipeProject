@@ -113,25 +113,22 @@ text-decoration: underline;
 				<tr>
 				   <th width=50>번호</th>
 				   <th width=300>제목</th>
-				   <th width=100>작성자</th>
-				   <th width=100>작성일</th>
+				   <th width=150>작성자</th>
+				   <th width=150>작성일</th>
 				   <th width=100>조회수</th>
 				</tr>
 			</thead>
 		<tbody>
 		
-			<c:forEach items="${boardList}" var="board">
+			<c:forEach items="${datas}" var="board">
 				<tr>
-					<td><c:out value="${board.no}"/><td>
-					<td><c:out value="${board.title}"/><td>
-					<td><c:out value="${board.userId}"/><td>
-					<td><c:out value="${board.regDate}"/><td>
-					<td><c:out value="${board.viewCount}"/><td>
+					<td>${board.no}</td>
+					<td>${board.title}</td>
+					<td>${board.userId}</td>
+					<td>${board.regDate}</td>
+					<td>${board.viewCount}</td>
 				</tr>
 			</c:forEach> 
-			
-	
-
 		</tbody>
 		
 		</table>
