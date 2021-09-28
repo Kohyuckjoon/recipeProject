@@ -6,15 +6,23 @@
 
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <link href="../resources/css/mainPage.css" rel="stylesheet"
 	type="text/css">
+=======
+<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
+>>>>>>> refs/heads/dev
 =======
 <link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
 >>>>>>> refs/heads/dev
 <style type="text/css">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #top{
+=======
+.top{
+>>>>>>> refs/heads/dev
 =======
 .top{
 >>>>>>> refs/heads/dev
@@ -50,6 +58,16 @@
 	text-align:center;
 }
 
+<<<<<<< HEAD
+=======
+.memberInfo{ /* 회원정보 이미지 삽입 */
+	background-image: url(/resources/img/mypage_memberinfo.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+>>>>>>> refs/heads/dev
 .myReview{ /* 댓글&리뷰 이미지 삽입 */
 	background-image: url(/resources/img/mypage_review.png);
 	background-size: contain;
@@ -73,7 +91,11 @@
 
 	<!-- myPage 바디 -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<div id="top"></div>
+=======
+	<div class="top"></div>
+>>>>>>> refs/heads/dev
 =======
 	<div class="top"></div>
 >>>>>>> refs/heads/dev
