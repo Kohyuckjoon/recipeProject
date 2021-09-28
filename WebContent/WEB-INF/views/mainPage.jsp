@@ -47,27 +47,16 @@
 		<c:forEach begin="0" end="8">
 
 			<div class="row">
-
 				<c:forEach var="recipe" items="${Recipes}" begin="<%=begin%>" end="<%=end%>">
-
 					<div class="upper-recipe">
-
 						<img src="${recipe.attFileNoMk}" class="recipe-pic">
-
 						<div class="recipe-text">
-
 							<div class="food-type">${recipe.rcpPat2}</div>
-
 							<div class="food-name">${recipe.rcpNm}</div>
-
 							<span class="food-star">★★★★★</span>
-
 						</div>
-
 					</div>
-
 				</c:forEach>
-
 			</div>
 
 			<%begin += 4; end += 4; %>
@@ -78,9 +67,9 @@
 		
 	let b = sessionStorage.getItem('sessionPageNumber');
 	let c = ${sessionPageNumber};
-	console.dir(b);
-	console.dir(c);
-	
+	console.dir('JavaScript sessionStorage(sessionPageNumber) : ' + b);
+	console.dir('Java session(sessionPageNumber) : ' + c);
+	/* jstl로 list를 그대로 출력하는게 아니라 자바스크립트 배열로 받아서 출력 구현중 */
 	</script>
 
 

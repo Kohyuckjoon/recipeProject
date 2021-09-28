@@ -1,6 +1,7 @@
 package com.kh.recipe.board.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,12 +69,11 @@ public class BoardService {
 
 	public List<Board> selectBoardAll() {
 		Connection conn = template.getConnection();
-		List<Board> boardList = null;
-		
+		List<Board> boardList = new ArrayList<Board>();
 		try {
 			
-			boardList = boardDao.selectBoardAll(conn);
-			
+		 boardList = boardDao.selectBoardAll(conn);
+		
 		} finally {
 			template.close(conn);
 		}
