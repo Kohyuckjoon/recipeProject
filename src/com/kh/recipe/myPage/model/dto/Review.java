@@ -2,7 +2,7 @@ package com.kh.recipe.myPage.model.dto;
 
 import java.sql.Date;
 
-public class MyReview {
+public class Review {
 
 	private int reviewNo; // 댓글번호
 	private int rcpSeq; // 레시피 번호
@@ -11,7 +11,7 @@ public class MyReview {
 	private Date reviewDate; //댓글작성날짜
 	private int rating; // 평점
 	
-	public MyReview() {
+	public Review() {
 		// TODO Auto-generated constructor stub
 	}
 

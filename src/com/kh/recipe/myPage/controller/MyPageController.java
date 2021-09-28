@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.common.exception.PageNotFoundException;
 import com.kh.recipe.member.model.dto.Member;
-import com.kh.recipe.myPage.model.dto.MyReview;
+import com.kh.recipe.myPage.model.dto.Review;
 import com.kh.recipe.myPage.model.service.MyPageService;
 
 @WebServlet("/myPage/*")
@@ -56,7 +56,7 @@ public class MyPageController extends HttpServlet {
 		
 		Member member = new Member();
 		request.getSession().getAttribute("authentication");
-		MyReview myReview = new MyReview();
+		Review myReview = new Review();
 		myReview.setUserId(member.getUserId());
 		
 		myPageService.selectReview(myReview);
