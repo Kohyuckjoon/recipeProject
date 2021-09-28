@@ -35,7 +35,7 @@
       </a>
 	</li>
 </ul>
-
+<h2>${authentication.userId}님 안녕?</h2>
 <script  src="https://code.jquery.com/jquery-3.5.0.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
@@ -119,7 +119,7 @@ function kakaoLogin() {
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
         	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
         	  
-        	  location.href = 'http://localhost:9090/mainPage/1?userEmail='+userEmail+'&name='+userNickName;
+        	  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName;
         	  
         	  
           },
@@ -153,7 +153,7 @@ function kakaoLogout() {
 		Kakao.Auth.logout(function() {
        	alert("로그아웃 되셨습니다.");
        	Kakao.Auth.getAccessToken()
-        location.href = 'http://localhost:9090/mainPage/1';
+        location.href = 'http://localhost:9090/mainPage/mainPage';
       })
       Kakao.Auth.setAccessToken(undefined)
 	}else{
@@ -175,7 +175,7 @@ function unlinkApp() {
         url: '/v1/user/unlink',
         success: function (response) {
         	alert("회원탈퇴 되셨습니다.");
-        	location.href = 'http://localhost:9090/mainPage/1';
+        	location.href = 'http://localhost:9090/mainPage/mainPage';
         },
         fail: function (error) {
           console.log(error)

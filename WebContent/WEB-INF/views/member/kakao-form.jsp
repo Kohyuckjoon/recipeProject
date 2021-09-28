@@ -89,7 +89,7 @@ function kakaoLogin() {
      } 
 	
 	
-	/* Kakao.Auth.login({
+	/*  Kakao.Auth.login({
       success: function (response) {
         
 		Kakao.API.request({//사용자 정보 저장
@@ -158,8 +158,8 @@ function kakaoLogin() {
           console.log(error)
         },
       }); 
-   
-      */
+    */
+      
 
 }
 
