@@ -172,7 +172,7 @@ public class MainPageDao {
 		
 		int idx = primeNum.indexOf(".");
 		String roundOff = primeNum.substring(0, idx);
-		
+		 
 		return roundOff;
 		
 	}
