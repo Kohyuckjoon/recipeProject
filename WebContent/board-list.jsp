@@ -22,9 +22,9 @@ body {
 	flex-direction: column;
 	margin-top: 100px;
 }
-div {
+/* div {
 	box-shadow: 0 0 2px black;
-}
+} */
 
 .tit{
 	position:relative;
@@ -127,17 +127,17 @@ text-decoration: underline;
 			</thead>
 		<tbody>
 		
-		<c:if test="${not empty datas.files}">
-			<ol>
-				<c:forEach items="${boardList}" var="board">
+			<c:forEach items="${boardList}" var="board">
+				<tr>
 					<td><c:out value="${board.no}"/><td>
 					<td><c:out value="${board.title}"/><td>
 					<td><c:out value="${board.userId}"/><td>
 					<td><c:out value="${board.regDate}"/><td>
 					<td><c:out value="${board.viewCount}"/><td>
-				</c:forEach>
-			</ol>
-		</c:if>
+				</tr>
+			</c:forEach> 
+			
+	
 
 		</tbody>
 		

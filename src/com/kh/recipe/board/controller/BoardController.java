@@ -76,7 +76,8 @@ public class BoardController extends HttpServlet {
 		
 		Board board = new Board();
 		board.setNo(board.getNo());
-		boardService.selectBoardAll();
+		List<Board> datas = boardService.selectBoardAll();
+		request.setAttribute("datas",datas);
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
 	}
 

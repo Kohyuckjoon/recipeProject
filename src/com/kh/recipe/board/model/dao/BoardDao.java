@@ -225,6 +225,7 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			template.close(rset,pstm);
 		}
 		return boardList;
+		
 	}
 
 
