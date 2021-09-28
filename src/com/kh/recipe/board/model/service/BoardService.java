@@ -67,7 +67,7 @@ public class BoardService {
 		return res;
 	}
 
-	public List<Board> selectBoardAll() {
+	public List<Board> selectBoardAll() { //게시글 목록 페이지 
 		Connection conn = template.getConnection();
 		List<Board> boardList = new ArrayList<Board>();
 		try {
@@ -80,10 +80,6 @@ public class BoardService {
 		
 		return boardList;
 	}
-
-	
-	
-	
 	
 
 }

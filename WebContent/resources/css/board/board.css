@@ -1,4 +1,6 @@
-
+.top{
+	height: 100px;
+}
 .tit{
 	position:relative;
 	top:30px;

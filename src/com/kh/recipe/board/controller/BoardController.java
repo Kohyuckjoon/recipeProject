@@ -73,7 +73,13 @@ public class BoardController extends HttpServlet {
 	}
 
 	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		/*
+		 * String field = request.getParameter("f"); String query =
+		 * request.getParameter("q");
+		 */
 		
+		
+			
 		Board board = new Board();
 		board.setNo(board.getNo());
 		List<Board> datas = boardService.selectBoardAll();

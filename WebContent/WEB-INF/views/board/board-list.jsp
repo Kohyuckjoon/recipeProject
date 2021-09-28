@@ -6,26 +6,19 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-
-<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
+<link href="../resources/css/mainPage.css" rel="stylesheet"
+	type="text/css">
 
 <!-- <link href="resources/css/board/board-list.css" rel="stylesheet"  type="text/css"> -->
 <style type="text/css">
-html{
-	width: 1800px;
-	background-color: #ccdce7;
-	margin-left: 70px;
-}
-body {
-	width: 1600px;
-	display: inline-flex;
-	flex-direction: column;
-	margin-top: 100px;
-}
+
+
 /* div {
 	box-shadow: 0 0 2px black;
 } */
-
+.top{
+height: 100px;
+}
 .tit{
 	position:relative;
 	top:105px;
@@ -95,7 +88,7 @@ text-decoration: underline;
 </head>
 <body>
  <%@ include file="/WEB-INF/views/include/header.jsp" %>
-
+<div class="top"></div>
 <!-- 게시판 목록 리스트 -->
 
 
@@ -103,9 +96,9 @@ text-decoration: underline;
 	<div class="category">
 				<form>		 		
 					<select name="nation">
-				 		<option value="all" id ="all" selected>전체보기</option>
-				 		<option value="free" id ="free">자유</option>
-				 		<option value="scrap" id="scraps">스크랩공유</option>
+				 		<option value="" id ="" selected>최신순</option>
+				 		<option value="" id ="" >조회순</option>
+				 	
 				 	</select>
 			 	</form>
 	</div>
@@ -120,25 +113,22 @@ text-decoration: underline;
 				<tr>
 				   <th width=50>번호</th>
 				   <th width=300>제목</th>
-				   <th width=100>작성자</th>
-				   <th width=100>작성일</th>
+				   <th width=150>작성자</th>
+				   <th width=150>작성일</th>
 				   <th width=100>조회수</th>
 				</tr>
 			</thead>
 		<tbody>
 		
-			<c:forEach items="${boardList}" var="board">
+			<c:forEach items="${datas}" var="board">
 				<tr>
-					<td><c:out value="${board.no}"/><td>
-					<td><c:out value="${board.title}"/><td>
-					<td><c:out value="${board.userId}"/><td>
-					<td><c:out value="${board.regDate}"/><td>
-					<td><c:out value="${board.viewCount}"/><td>
+					<td>${board.no}</td>
+					<td>${board.title}</td>
+					<td>${board.userId}</td>
+					<td>${board.regDate}</td>
+					<td>${board.viewCount}</td>
 				</tr>
 			</c:forEach> 
-			
-	
-
 		</tbody>
 		
 		</table>
@@ -147,10 +137,7 @@ text-decoration: underline;
 		<!-- 게시판 페이징 구현하는 거 -->
 
 <div id="paging">
-		<i class="fas fa-angle-double-left"></i>
-        <i class="fas fa-angle-left"></i>
-        <i class="fas fa-angle-right"></i>
-        <i class="fas fa-angle-double-right"></i>
+		페이징 구현 할 부분
 </div>
 	
 	
