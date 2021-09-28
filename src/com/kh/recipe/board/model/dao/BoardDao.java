@@ -18,7 +18,7 @@ public class BoardDao {
 	JDBCTemplate template = JDBCTemplate.getInstance();
 	
 	public void insertBoard(Connection conn, Board board) {
-		String sql = "insert into board(no,title,userId,content) values("
+		String sql = "insert into board(no,title,user_id,content) values("
 				+ "BOARD_SEQ.nextval,?,?,?)";
 		
 		PreparedStatement pstm = null;
@@ -41,7 +41,7 @@ public class BoardDao {
 	public void insertFile(Connection conn, FileDTO fileDTO) {
 		String sql = "insert into file_info(fl_idx,type_idx,"
 				+ "origin_file_name,rename_file_name,save_path)"
-				+ "values(sc_file_idx.nextval,sc_board_idx.currval,?,?,?)";
+				+ "values(SC_FILE_IDX.nextval,BOARD_SEQ.currval,?,?,?)";
 		
 		PreparedStatement pstm = null;
 		
@@ -62,7 +62,7 @@ public class BoardDao {
 	
 public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		
-		String sql = "select no,userId,title,content,regDate,viewCount"
+		String sql = "select no,user_id,title,content,reg_date,view_count"
 				+ " from board "
 				+ " where no = ?";
 		
@@ -78,11 +78,11 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			while(rset.next()) {
 				board = new Board();
 				board.setNo(rset.getInt("no"));
-				board.setUserId(rset.getString("userId"));
+				board.setUserId(rset.getString("user_id"));
 				board.setTitle(rset.getString("title"));
 				board.setContent(rset.getString("content"));
-				board.setDate(rset.getDate("date"));
-				board.setViewCount(rset.getInt("viewCount"));
+				board.setRegDate(rset.getDate("reg_date"));
+				board.setViewCount(rset.getInt("view_count"));
 				
 			}
 			
@@ -148,7 +148,7 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 				
 				board.setTitle(rset.getString("title"));
 				board.setContent(rset.getString("content"));
-				board.setUserId(rset.getString("userId"));
+				board.setUserId(rset.getString("user_id"));
 				
 			}
 			
@@ -195,8 +195,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 	}
 
 	public List<Board> selectBoardAll(Connection conn) {
-		String sql = "select no,title,userId,regDate,viewCount"
-				+ " from board order by desc";
+		String sql = "select no,title,user_id,reg_date,view_count"
+				+ " from board order by no desc";
 		
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -213,9 +213,9 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 				
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
-				board.setUserId(rset.getString("userId"));
-				board.setDate(rset.getDate("regDate"));
-				board.setViewCount(rset.getInt("viewCount"));
+				board.setUserId(rset.getString("user_id"));
+				board.setRegDate(rset.getDate("reg_date"));
+				board.setViewCount(rset.getInt("view_count"));
 				boardList.add(board);
 			}
 			
