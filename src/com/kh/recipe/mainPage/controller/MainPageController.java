@@ -48,6 +48,7 @@ public class MainPageController extends HttpServlet {
 		
 		request.getSession().setAttribute("sessionPageNumber", 4);
 		request.getRequestDispatcher("/mainPage").forward(request, response);	
+		
 	}
 	
 	private void clickedPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
