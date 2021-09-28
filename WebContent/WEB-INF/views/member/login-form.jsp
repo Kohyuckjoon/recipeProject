@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -109,47 +108,173 @@ body {
 </style>
 </head>
 <body>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <div class="login-page">
   <div class="form">
+  
     <form class="login-form" action="/member/login" method="post">
+	
 	<input type="text" name="userId" id="userId" placeholder="ID"/>
-	<c:if test="${not empty param.err}">
-		<span class="valid-msg">아이디나 비밀번호를 확인하세요.</span>
-	</c:if>
 
 	<input type="password" name="password" id="password" placeholder="password"/>
-	<button>login</button>
+	
+	<button>로그인 하기</button>
+<hr>
+<p><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></p>
+
+
 	<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
+	
 	</form>
   </div>
 </div>
 
+<script type="text/javascript">
 
-<!-- <script type="text/javascript">
-	String userId = null;
-	if(session.getAttribute("userId")!= null){
-		userId = (String) session.getAttribute("userId");
-	}
-	if(userId != null){
+Kakao.init('0c512e152e989192c220235a73035b4b');
+
+var userData = '';
+var jsonData = '';
+
+//카카오톡을 통한 로그인, 리다이렉트 구축
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        
+		Kakao.API.request({//사용자 정보 저장
+          url: '/v2/user/me',
+          success: function (response) {
+        	  var userData = response;
+        	  //console.log(JSON.stringify(response));
+        	  alert(userData.properties.nickname + "님 환영합니다.");
+        	  
+        	  jsonData = JSON.stringify(response);
+        	  
+        	  //kakao 로그인 후 user Data 를 가져옵니다.
+        	  jsonData:{
+        		  property_keys: ["id",
+        			  			  "properties.nickname",
+        						  "properties.profile_image",
+        						  "properties.thumbnail_image",
+        						  "kakao_account.access_token",
+        						  "kakao_account.profile",
+        						  "kakao_account.email",
+        						  "kakao_account.age_range",
+        						  "kakao_account.birthday",
+        						  "kakao_account.gender",
+        						  "REFRESH_TOKEN"
+        						  
+        			  ]
+        	  }  
+        	  
+        	  
+        	  
+        	  var userId = userData.id;
+        	  var userNickName = userData.properties.nickname;
+        	  var userEmail = userData.kakao_account.email;
+        	  //var user_birthday = userData.kakao_account.birthday;
+        	  //var user_gender = userData.kakao_account.gender;
+        	  //var html = '<br>' + userEmail + '<br>' + userNickName;
+        	  
+        	  //html +='<br><img src="' + userProfile_image + '">';
+        	  //$('body').append(html);
+        	  
+        	  /* console.log("properties.nickname =====>"+userData.properties.nickname);
+        	  console.log("properties.profile_image_url =====>"+userData.kakao_account.profile.profile_image_url);
+        	  console.log("properties.thumbnail_image_url =====>"+userData.kakao_account.profile.thumbnail_image_url);
+        	  console.log("kakao_account.profile =====>"+userData.kakao_account.profile);
+        	  console.log("kakao_account.email =====>"+userData.kakao_account.email);
+        	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
+        	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
+        	  
+        	  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName;
+        	  
+        	  
+          },
+          fail: function (error) {
+        	  alert("카카오 로그인이 취소되었습니다.");
+            },
+          })
+          
+          console.log(response);
+		  var token = response.access_token;
+		  
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      });
+   
+	
+
+}
+
+  
+//kakao logout!
+function kakaoLogout() {
+	 if (!Kakao.Auth.getAccessToken()) {
+	      alert("로그인 되어있지 않습니다.");
+	      return
+	    }
+	var logout = confirm("로그아웃 하시겠습니까?");
+	if(logout == true){
+		Kakao.Auth.logout(function() {
+       	alert("로그아웃 되셨습니다.");
+       	Kakao.Auth.getAccessToken()
+        location.href = 'http://localhost:9090/mainPage/mainPage';
+      })
+      Kakao.Auth.setAccessToken(undefined)
+	}else{
+		return false;
 		
-		alert("이미 로그인 되어 있습니다.");
-		location.href = "/mainPage/1"
 	}
-	</script>  -->
-	<%-- <h1>로그인</h1>
-	<hr>
-	<form action="/member/login" method="post">
-	
-		<c:if test="${not empty param.err}">
-		<span class="valid-msg">아이디나 비밀번호를 확인하세요.</span>
-		</c:if>
-	
-		<span class='tit'>ID : </span>
-		<input type="text" name="userId" id="userId">
-		<span class='tit'>Password : </span>
-		<input type="password" name="password" id="password">
-		<button>로그인</button>
-	</form> --%>
+  }  
+
+//회원탈퇴
+function unlinkApp() {
+	 if (!Kakao.Auth.getAccessToken()) {
+	      alert("로그인 되어있지 않습니다.");
+	      return
+	    }
+	var logout = confirm("회원탈퇴 하시겠습니까?");
+	if(logout == true){
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	alert("회원탈퇴 되셨습니다.");
+        	location.href = 'http://localhost:9090/mainPage/mainPage';
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+        
+      })
+      Kakao.Auth.setAccessToken(undefined)
+      
+    }
+	}else{
+		return false;
+		
+	}
+  }  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+</script>
+  
+  
+  
+  
+ 
+
 	 
 </body>
 </html>

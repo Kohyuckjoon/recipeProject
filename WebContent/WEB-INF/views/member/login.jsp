@@ -35,7 +35,7 @@
       </a>
 	</li>
 </ul>
-<h2>${authentication.userId}님 안녕?</h2>
+<span>이름 : ${param.userId}</span>
 <script  src="https://code.jquery.com/jquery-3.5.0.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 

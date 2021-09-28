@@ -110,7 +110,7 @@ body {
 </head>
 <body>
 
-<div class="login-page">
+<div class="join-page">
   <div class="form">
     <form class="register-form" action="/member/join" method="post" id="frm_join" >
       <input type="text" name="userId" id="userId" size="10"

@@ -87,15 +87,15 @@ public class MemberController extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		Member member = memberService.memberAuthenticate(userId, password);
-		request.getSession().setAttribute("authentication", member);
 		
-		if(userId != null) {
+		if(member != null) {
 			request.getRequestDispatcher("/myPage/myPage").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/member/login").forward(request, response);
+			response.sendRedirect("/member/login-form");
 			return;
 		}
 		
+		request.getSession().setAttribute("authentication", member);
 		
 	}
 
@@ -183,10 +183,18 @@ public class MemberController extends HttpServlet {
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.getRequestDispatcher("/member/login-form").forward(request, response);
 		
+		String userId = request.getParameter("userId");
+		String password = request.getParameter("password");
+		
+		Member member = memberService.memberAuthenticate(userId, password);
+		
+		request.getSession().setAttribute("authentication", member);
+		
 	}
 
 	
 	private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/member/kakao-form").forward(request, response);
 		
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
@@ -201,7 +209,7 @@ public class MemberController extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("authentication", member);
-		response.sendRedirect("/mainPage/mainPage");
+		
 	}
 
 	
