@@ -177,7 +177,7 @@ public class MemberController extends HttpServlet {
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 request.getSession().removeAttribute("authentication");
-		 response.sendRedirect("/mainPage/1");
+		 response.sendRedirect("/mainPage/mainPage");
 	}
 
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -201,7 +201,7 @@ public class MemberController extends HttpServlet {
 		}
 		
 		request.getSession().setAttribute("authentication", member);
-		response.sendRedirect("/mainPage/1");
+		response.sendRedirect("/mainPage/mainPage");
 	}
 
 	
