@@ -241,6 +241,8 @@ span {
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
+
+
 <form action="#" method="get">
 	<div>
 		<div class="topBlank"></div>
@@ -321,6 +323,8 @@ span {
 			</div>
 			<div class="middleBlank"></div>
 
+
+		
 			<div class="search">
 				<button class="button" type="reset" value="내용초기화">
 					<span> 초기화 </span>
@@ -361,6 +365,7 @@ span {
 			<div>
 				<label>몸무게 : <input type="text" name="weight"></label><br>
 			</div>
+
 
 			<div class="calculateResult">
 				<input type='submit' value='계 산'>
