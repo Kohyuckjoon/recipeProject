@@ -46,6 +46,40 @@ public class MemberDao {
 		return member;
 	}
 
+	/*
+	 * // 로그인시 아이디, 비밀번호 체크 메서드 // 아이디, 비밀번호를 인자로 받는다. public int loginCheck(String
+	 * userid, String password) { Connection conn = null; PreparedStatement pstm =
+	 * null; ResultSet rset = null;
+	 * 
+	 * String dbPW = ""; // db에서 꺼낸 비밀번호를 담을 변수 int x = -1;
+	 * 
+	 * try { // 쿼리 - 먼저 입력된 아이디로 DB에서 비밀번호를 조회한다. StringBuffer query = new
+	 * StringBuffer(); query.append("SELECT PASSWORD FROM MEMBER WHERE user_ID=?");
+	 * 
+	 * conn = template.getConnection(); pstm =
+	 * conn.prepareStatement(query.toString()); pstm.setString(1, userid); rset =
+	 * pstm.executeQuery();
+	 * 
+	 * if (rset.next()) // 입려된 아이디에 해당하는 비번 있을경우 { dbPW =
+	 * rset.getString("password"); // 비번을 변수에 넣는다.
+	 * 
+	 * if (dbPW.equals(password)) x = 1; // 넘겨받은 비번과 꺼내온 배번 비교. 같으면 인증성공 else x = 0;
+	 * // DB의 비밀번호와 입력받은 비밀번호 다름, 인증실패
+	 * 
+	 * } else { x = -1; // 해당 아이디가 없을 경우 }
+	 * 
+	 * return x;
+	 * 
+	 * } catch (Exception sqle) { throw new RuntimeException(sqle.getMessage()); }
+	 * finally { try{ if ( pstm != null ){ pstm.close(); pstm=null; } if ( conn !=
+	 * null ){ conn.close(); conn=null; } }catch(Exception e){ throw new
+	 * RuntimeException(e.getMessage()); } } } // end loginCheck()
+	 */
+
+	
+	
+
+	
 	public Member selectMemberById(String userId, Connection conn) {
 		Member member = null;
 		PreparedStatement pstm = null;

@@ -67,6 +67,9 @@ public class MemberController extends HttpServlet {
 		case "id-check":
 			checkID(request,response);
 			break;
+		/*
+		 * case "login-check": checkLogin(request,response); break;
+		 */
 		case "join-impl":
 			joinImpl(request,response);
 			break;
@@ -82,20 +85,44 @@ public class MemberController extends HttpServlet {
 		}
 	}
 	
+	/*
+	 * private void checkLogin(HttpServletRequest request, HttpServletResponse
+	 * response) throws ServletException, IOException{ String userId =
+	 * request.getParameter("userId"); String password =
+	 * request.getParameter("password");
+	 * 
+	 * Member member = memberService.selectMemberById(userId); if(member == null) {
+	 * response.getWriter().print("available"); }else {
+	 * response.getWriter().print("disable"); }
+	 * 
+	 * String password = request.getParameter("password");
+	 * 
+	 * Member member = memberService.selectMemberById(password); if(member == null)
+	 * { response.getWriter().print("available"); }else {
+	 * response.getWriter().print("disable"); }
+	 * 
+	 * }
+	 */
+
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
 		
-		Member member = memberService.memberAuthenticate(userId, password);
+		  String userId = request.getParameter("userId"); 
+		  String password = request.getParameter("password");
+		  
+		  Member member = memberService.memberAuthenticate(userId, password);
+		  
+		  if(member != null) {
+		  request.getRequestDispatcher("/myPage/myPage").forward(request, response);
+		  }else { 
+			  response.sendRedirect("/member/login-form"); 
+			  return; 
+		  }
+		  
+		  request.getSession().setAttribute("authentication", member);
+		 
 		
-		if(member != null) {
-			request.getRequestDispatcher("/myPage/myPage").forward(request, response);
-		}else {
-			response.sendRedirect("/member/login-form");
-			return;
-		}
+	
 		
-		request.getSession().setAttribute("authentication", member);
 		
 	}
 
@@ -181,14 +208,36 @@ public class MemberController extends HttpServlet {
 	}
 
 	private void loginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/member/login-form").forward(request, response);
+		
+		request.getRequestDispatcher("/member/login-form").forward(request,response);
+		/*
+		 * request.getRequestDispatcher("/member/login-form").forward(request,
+		 * response);
+		 * 
+		 * String userId = request.getParameter("userId"); String password =
+		 * request.getParameter("password");
+		 * 
+		 * Member member = memberService.memberAuthenticate(userId, password);
+		 * 
+		 * request.getSession().setAttribute("authentication", member);
+		 */
 		
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		
 		Member member = memberService.memberAuthenticate(userId, password);
 		
+		if(member != null) {
+			System.out.println(member);
+			request.getRequestDispatcher("/myPage/myPage").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/member/login-form");
+			return;
+		}
+		
 		request.getSession().setAttribute("authentication", member);
+		
+		
 		
 	}
 

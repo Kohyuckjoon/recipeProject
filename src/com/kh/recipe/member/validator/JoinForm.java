@@ -3,21 +3,26 @@ package com.kh.recipe.member.validator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import com.kh.recipe.common.code.ErrorCode;
+import com.kh.recipe.common.exception.HandlableException;
+import com.kh.recipe.member.model.service.MemberService;
 public class JoinForm {
 	
-	private String id;
+	private String userId;
 	private String password;
 	private String email;
 	private String phone;
 	private HttpServletRequest request;
-	/* private MemberService memberService = new MemberService(); */
+	private MemberService memberService = new MemberService(); 
 	private Map<String, String> failedAttribute = new HashMap<String, String>();
 	
 	public JoinForm(HttpServletRequest request) {
 		this.request = request;
-		this.id = request.getParameter("id");
+		this.userId = request.getParameter("userId");
 		this.password = request.getParameter("password");
 		this.email = request.getParameter("email");
 		this.phone = request.getParameter("phone");
@@ -30,10 +35,10 @@ public class JoinForm {
 		
 		
 		//db에 존재하지 않는 아이디인지 확인
-		/*
-		 * if(memberService.selectMemberById(userId) != null) {
-		 * failedAttribute.put("userId", userId); res = false; }
-		 */
+		
+		  if(memberService.selectMemberById(userId) != null) {
+		  failedAttribute.put("userId", userId); res = false; }
+		 
 					
 		//비밀번호가 영수특문 8자리
 		vaild = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(.{8,})", password);
@@ -65,8 +70,10 @@ public class JoinForm {
 	
 	}
 
-	public String getId() {
-		return id;
+	
+
+	public String getUserId() {
+		return userId;
 	}
 
 	public String getPassword() {
