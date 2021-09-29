@@ -27,6 +27,7 @@ import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.common.exception.PageNotFoundException;
+import com.kh.recipe.member.model.dto.Kakao_Member;
 import com.kh.recipe.member.model.dto.Member;
 import com.kh.recipe.member.model.service.MemberService;
 
@@ -67,8 +68,8 @@ public class MemberController extends HttpServlet {
 		case "id-check":
 			checkID(request,response);
 			break;
-		case "login-check":
-			checkLogin(request,response); break;
+		case "kakao-join":
+			kakaoJoin(request,response); break;
 		
 		case "join-impl":
 			joinImpl(request,response);
@@ -86,23 +87,22 @@ public class MemberController extends HttpServlet {
 	}
 	
 	
-	  private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
-		  /*
-		  String userId = request.getParameter("userId"); 
-		  String password = request.getParameter("password");
-	  	  
-		  Member member = memberService.memberAuthenticate(userId, password);
-		  
-		  request.getSession().setAttribute("authentication", member);
-		  
-	  	  if(member == null) {
-	  		request.getRequestDispatcher("/mainPage/mainPage").forward(request, response);
-	  	  }else {
-	  		request.getRequestDispatcher("/myPage/myPage").forward(request, response);
-	  	  }
-	  	 */
-	  	
-	  	  
+	  private void kakaoJoin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
+		  	
+		String userId = request.getParameter("userId");
+		String userNickName = request.getParameter("password");
+		String userName = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String userEmail = request.getParameter("email");
+		
+		
+		Kakao_Member kakao_member = new Kakao_Member();
+		kakao_member.setUserId(userId);
+		kakao_member.setUserNickName(userNickName);
+		kakao_member.setUserName(userName);
+		kakao_member.setPhone(phone);
+		kakao_member.setUserEmail(userEmail);
+  	  
 	  	  
 	  } 	  
 

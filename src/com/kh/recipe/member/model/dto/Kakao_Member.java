@@ -6,6 +6,7 @@ public class Kakao_Member {
 
 	 private String userId;
 	 private String userNickName;
+	 private String userName;
 	 private String userEmail;
 	 private String phone;
 	 private Date birth;
@@ -20,6 +21,12 @@ public class Kakao_Member {
 	}
 	public void setUserNickName(String userNickName) {
 		this.userNickName = userNickName;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getUserEmail() {
 		return userEmail;
@@ -41,9 +48,10 @@ public class Kakao_Member {
 	}
 	@Override
 	public String toString() {
-		return "Kakao_Member [userId=" + userId + ", userNickName=" + userNickName + ", userEmail=" + userEmail
-				+ ", phone=" + phone + ", birth=" + birth + "]";
+		return "Kakao_Member [userId=" + userId + ", userNickName=" + userNickName + ", userName=" + userName
+				+ ", userEmail=" + userEmail + ", phone=" + phone + ", birth=" + birth + "]";
 	}
+	
 
 	 
 	

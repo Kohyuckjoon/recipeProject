@@ -126,7 +126,7 @@ body {
 			
 			<hr>
 			
-			<p><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></p>
+			<a><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></a>
 		
 			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
 	
@@ -199,7 +199,7 @@ function kakaoLogin() {
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
         	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
         	  
-        	  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName;
+        	  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName+'&userId='+userId;
         	  
         	  
           },
