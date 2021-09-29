@@ -70,10 +70,10 @@ text-decoration: underline;
 	
 	}
 
-.searchForm {
-	margin:0 auto; 
+Form {
+	position:relative;
      margin-top: 30px; 
-     width:auto; 
+    left:47%;
 }
 .formBtn{
    display:flex;
@@ -146,8 +146,6 @@ text-decoration: underline;
 		<form>
 			<select name="opt">
 				<option value="0">제목</option>
-				<option value="1">내용</option>
-				<option value="2">제목+내용</option>
 				<option value="3">글쓴이</option>
 			</select>
 			<input type="text" size="20" name="condition"/>&nbsp;

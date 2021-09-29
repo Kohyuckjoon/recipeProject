@@ -9,7 +9,6 @@ public class Review {
 	private String userId; // 아이디
 	private String reviewContents; // 댓글 내용
 	private Date reviewDate; //댓글작성날짜
-	private int rating; // 평점
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
@@ -55,18 +54,11 @@ public class Review {
 		this.reviewDate = reviewDate;
 	}
 
-	public int getRating() {
-		return rating;
-	}
-
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
 
 	@Override
 	public String toString() {
 		return "myReview [reviewNo=" + reviewNo + ", rcpSeq=" + rcpSeq + ", userId=" + userId + ", reviewContents="
-				+ reviewContents + ", reviewDate=" + reviewDate + ", rating=" + rating + "]";
+				+ reviewContents + ", reviewDate=" + reviewDate + "]";
 	}
 	
 	

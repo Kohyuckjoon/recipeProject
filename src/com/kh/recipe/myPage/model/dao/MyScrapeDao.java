@@ -43,7 +43,7 @@ public class MyScrapeDao {
 
 	private Recipe convertAllToRecipe(ResultSet rset) throws SQLException {
 		Recipe recipe = new Recipe();
-		recipe.setRcpSeq(rset.getString("rcp_seq"));
+		recipe.setRcpSeq(rset.getInt("rcp_seq"));
 		recipe.setRcpNm(rset.getString("rcp_nm"));
 		recipe.setRcpPat2(rset.getString("rcp_pat2"));
 		recipe.setAttFileNoMk(rset.getString("att_file_no_mk"));
@@ -57,7 +57,7 @@ public class MyScrapeDao {
 			column = column.trim();
 			
 			switch (column) {
-			case "rcp_seq": recipe.setRcpSeq(rset.getString("rcp_seq")); break;
+			case "rcp_seq": recipe.setRcpSeq(rset.getInt("rcp_seq")); break;
 			case "rcp_nm": recipe.setRcpNm(rset.getString("rcp_nm")); break;
 			case "rcp_pat2" : recipe.setRcpPat2(rset.getString("rcp_pat2")); break;
 			case "att_file_no_mk" : recipe.setAttFileNoMk(rset.getString("att_file_no_mk")); break;
