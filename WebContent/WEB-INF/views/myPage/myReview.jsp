@@ -39,7 +39,7 @@
 				<th>아이디</th>
 				<th>댓글내용</th>
 				<th>댓글작성날짜</th>
-				<th>평점</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -49,7 +49,7 @@
 				<td class="id">pclass</td>
 				<td class="reviewContents">asdas</td>
 				<td class="date">2021/09/21</td>
-				<td class="rating">3.5</td>
+				
 			</tr>		
 			<tr>
 				<td class="reviewIndex">2</td>
@@ -57,7 +57,7 @@
 				<td class="id">pclass</td>
 				<td class="reviewContents">asdasdass</td>
 				<td class="date">2021/09/23</td>
-				<td class="rating">4.5</td>
+				
 			</tr>
 			
 		</tbody>
