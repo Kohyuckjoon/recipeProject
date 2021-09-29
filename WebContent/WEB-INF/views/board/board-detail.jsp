@@ -16,9 +16,9 @@
 .top{
 height: 100px;
 }
-.info{font-size:1.3vw; border-bottom:1px solid}
+.info{font-size:2vw; border-bottom:1px solid}
 .info span{padding-right: 3vw;}
-.info li{font-size:0.5vw;}
+.info li{font-size:1.5vw;}
 
 .btn_section{
    padding-top:20px;
@@ -73,7 +73,7 @@ height: 100px;
 </div>
 
  <div class="btn_section">
-               <button onclick = "location.href = '/board/board-update'">수정하기</button>
+               <button onclick = "location.href = '/board/board-update?">수정하기</button>
                <button>삭제하기</button>
                <button onclick = "location.href = '/board/board-list'">목록</button>
                    

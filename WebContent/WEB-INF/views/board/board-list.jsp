@@ -123,7 +123,15 @@ Form {
 			<c:forEach items="${datas}" var="board">
 				<tr>
 					<td>${board.no}</td>
-					<td>${board.title}</td>
+					
+					
+					<%-- <a href="BoardServlet?command=board_view&num=${board.num}">${board.title}</a> --%>
+
+					<!-- BoardServlet(가상 주소로)
+					command키에 board_view와
+					num키에 servlet으로 받은 num(Vo)값이 담겨있는 값을 담는다.?no="+rset.getInt("no") -->
+					
+					<td><a href="/board/board-detail?no=${board.no}">${board.title}</a></td>
 					<td>${board.userId}</td>
 					<td>${board.regDate}</td>
 					<td>${board.viewCount}</td>

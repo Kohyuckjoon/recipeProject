@@ -96,6 +96,7 @@ public class BoardController extends HttpServlet {
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
 		
 		request.setAttribute("datas", datas);
+		System.out.println("제목클릭 후 호출");
 		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
 
