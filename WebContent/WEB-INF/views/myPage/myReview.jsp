@@ -5,6 +5,17 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+
+.top{
+
+	height : 100px;
+	
+}
+
+</style>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>

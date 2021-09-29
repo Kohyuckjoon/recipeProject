@@ -82,6 +82,8 @@ public class MyPageController extends HttpServlet {
 		
 		System.out.println(myReviews);
 		
+		request.setAttribute("myReviews", myReviews);
+		
 		request.getRequestDispatcher("/myPage/myReview").forward(request, response);
 		
 	}

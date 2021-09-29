@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ page import="com.kh.recipe.member.model.dao.MemberDao" %>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -109,27 +110,39 @@ body {
 </head>
 <body>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<div class="login-page">
-  <div class="form">
-  
-    <form class="login-form" action="/member/login" method="post">
-	
-	<input type="text" name="userId" id="userId" placeholder="ID"/>
 
-	<input type="password" name="password" id="password" placeholder="password"/>
+	<c:if test="${empty authentication}">
 	
-	<button>로그인 하기</button>
-<hr>
-<p><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></p>
-
-
-	<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
+	<div class="login-page">
+	  	<div class="form">
+	  
+		    <form class="login-form" action="/member/login" method="post">
+			
+			<input type="text" name="userId" id="userId" placeholder="ID"/>
+		
+			<input type="password" name="password" id="password" placeholder="password"/>
+			
+			<button>로그인 하기</button>
+			
+			<hr>
+			
+			<p><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></p>
+		
+			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
 	
-	</form>
-  </div>
-</div>
+			</form>
+	 	</div>
+	</div>
+	</c:if>
+<%-- 
+	<c:if test="${not empty authentication}">
+		location.href='/myPage/myPage';
+	</c:if> --%>
 
 <script type="text/javascript">
+
+
+
 
 Kakao.init('0c512e152e989192c220235a73035b4b');
 
@@ -258,24 +271,26 @@ function unlinkApp() {
 		
 	}
   }  
-  
 
-  
-  
-  
-  
-  
-  
-  
-  
-</script>
+</script>	  
+
+ 
+	
+	
+	
+
+	
+
+
+
+
+
   
   
   
   
  
-
-	 
+ 
 </body>
 </html>
 
