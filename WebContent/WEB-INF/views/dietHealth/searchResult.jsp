@@ -238,7 +238,7 @@ span {
 }
 </style>
 </head>
-<body>
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
 
@@ -371,6 +371,7 @@ span {
 				<input type='submit' value='계 산'>
 			</div>
 		</div>
+		
 	</div>
 </body>
 </html>

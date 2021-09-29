@@ -46,4 +46,24 @@
     <servlet-name>dietHealth</servlet-name>
     <url-pattern>/dietHealth</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>dietHealthController</display-name>
+    <servlet-name>dietHealthController</servlet-name>
+    <servlet-class>com.kh.recipe.dietHealth.controller.dietHealthController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dietHealthController</servlet-name>
+    <url-pattern>/dietHealthController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>diethealthController</display-name>
+    <servlet-name>diethealthController</servlet-name>
+    <servlet-class>com.kh.recipe.dietHealth.controller.diethealthController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>diethealthController</servlet-name>
+    <url-pattern>/diethealthController</url-pattern>
+  </servlet-mapping>
 </web-app>
