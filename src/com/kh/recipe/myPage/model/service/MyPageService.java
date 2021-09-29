@@ -34,6 +34,20 @@ public class MyPageService {
 		return myRecipes;
 	}
 
+	public List<Review> selectMyReview(String userId) {
+		Connection conn = template.getConnection();
+
+		List<Review> myReviews = null;
+		
+		try {
+			myReviews = myReviewDao.selectMyReview(conn,userId);
+		}finally {
+			template.close(conn);
+		}
+		
+		return myReviews;
+	}
+
 	
 
 	

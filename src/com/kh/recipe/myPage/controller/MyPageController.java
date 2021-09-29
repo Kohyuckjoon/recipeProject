@@ -71,6 +71,17 @@ public class MyPageController extends HttpServlet {
 
 	private void myReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+		
+		Review review = new Review();
+		review.setUserId(member.getUserId());
+		String userId = review.getUserId();
+		
+		List<Review> myReviews = new ArrayList<Review>();
+		myReviews = myPageService.selectMyReview(userId);
+		
+		System.out.println(myReviews);
+		
 		request.getRequestDispatcher("/myPage/myReview").forward(request, response);
 		
 	}
