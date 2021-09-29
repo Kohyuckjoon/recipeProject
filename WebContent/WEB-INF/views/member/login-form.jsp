@@ -134,10 +134,9 @@ body {
 	 	</div>
 	</div>
 	</c:if>
-<%-- 
-	<c:if test="${not empty authentication}">
-		location.href='/myPage/myPage';
-	</c:if> --%>
+<c:if test="${not empty authentication}">
+<c:redirect  url="/myPage/myPage"/>
+</c:if>
 
 <script type="text/javascript">
 
