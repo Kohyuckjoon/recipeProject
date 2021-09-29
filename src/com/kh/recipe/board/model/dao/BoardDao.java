@@ -228,6 +228,33 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		
 	}
 
+	public Board deleteBoard(Connection conn, int no) {
+		String sql = "delete from board where no ?";
+		
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Board board = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, no);
+			rset = pstm.executeQuery();
+			
+		int flag = pstm.executeUpdate();
+		if(flag > 0) {
+			
+			conn.commit();
+		}
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(rset,pstm);
+		}
+		return board;
+	
+	}
+
 
 	
 	

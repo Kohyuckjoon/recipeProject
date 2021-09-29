@@ -53,12 +53,26 @@ public class BoardController extends HttpServlet {
 		case "board-update":
 			boardUpdate(request,response);
 			break;
+		case "board-delete":
+			boardDelete(request,response);
+			break;
 		default:throw new PageNotFoundException();
 		
 		}
 	}
 
 
+
+	private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int no = Integer.parseInt(request.getParameter("no"));
+		
+		//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
+		Map<String, Object> datas = boardService.deleteBoard(no);
+		
+		request.getRequestDispatcher("/board/board-list").forward(request, response);
+		
+	}
 
 	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -73,13 +87,7 @@ public class BoardController extends HttpServlet {
 	}
 
 	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		/*
-		 * String field = request.getParameter("f"); String query =
-		 * request.getParameter("q");
-		 */
-		
-		
-			
+	
 		Board board = new Board();
 		board.setNo(board.getNo());
 		List<Board> datas = boardService.selectBoardAll();
@@ -96,7 +104,6 @@ public class BoardController extends HttpServlet {
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
 		
 		request.setAttribute("datas", datas);
-		System.out.println("제목클릭 후 호출");
 		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
 

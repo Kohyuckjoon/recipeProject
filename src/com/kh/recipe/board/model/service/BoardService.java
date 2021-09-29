@@ -80,6 +80,20 @@ public class BoardService {
 		
 		return boardList;
 	}
+
+	public Map<String, Object> deleteBoard(int no) {
+		Connection conn = template.getConnection();
+		Map<String,Object> res = new HashMap<String, Object>();
+		
+		try {
+			Board board = boardDao.deleteBoard(conn,no);
+			res.remove("board", board);
+		} finally {
+			template.close(conn);
+		}
+		
+		return res;
+	}
 	
 
 }
