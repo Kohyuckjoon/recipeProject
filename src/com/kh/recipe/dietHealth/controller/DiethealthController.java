@@ -20,6 +20,7 @@ public class DiethealthController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		
@@ -31,6 +32,7 @@ public class DiethealthController extends HttpServlet {
 		default: throw new PageNotFoundException();
 		}
 	}
+	
 
 	private void searchResult(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/dietHealth/searchResult").forward(request, response);
