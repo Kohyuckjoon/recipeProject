@@ -10,7 +10,7 @@ import java.util.List;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 
-public class dietHealthDao {
+public class DietHealthDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	

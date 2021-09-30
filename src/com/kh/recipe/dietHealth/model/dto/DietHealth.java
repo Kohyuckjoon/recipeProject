@@ -1,5 +1,5 @@
 package com.kh.recipe.dietHealth.model.dto;
 
-public class dietHealth {
+public class DietHealth {
 	//DTO
 }
