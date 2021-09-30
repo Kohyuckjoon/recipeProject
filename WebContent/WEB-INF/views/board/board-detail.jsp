@@ -72,13 +72,10 @@ height: 100px;
 	
 </div>
 
- <div class="btn_section">
-
-               <button onclick = "location.href = '/board/board-update?no={board.no}">수정하기</button>
-    	<!-- 		<button onclick = "location.href = '/board/board-update?no={board.no}">삭제하기</button> -->
-               <button onclick = "location.href = '/board/board-list'">목록</button>
-                   
-      </div>                      
+	<a href="/board/board-update?no=${board.no}">게시글 수정</a>
+	<a href="/board/board-delete?no=${board.no}">게시글 삭제</a>   
+	<a href="/board/board-list">목록</a>     
+	<!-- <button onclick = "location.href = '/board/board-list'">목록</button>   -->                
           
 <!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>

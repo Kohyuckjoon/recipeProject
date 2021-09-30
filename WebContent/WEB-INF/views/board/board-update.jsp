@@ -14,16 +14,13 @@
 
 <link href="resources/css/board/board.css" rel="stylesheet"  type="text/css">
 <style type="text/css">
-.info{
-font-size:1.3vw; 
-margin-top: 30px;
+.top{
+height: 100px;
 }
+.info{font-size:2vw; border-bottom:1px solid}
 .info span{padding-right: 3vw;}
-.info li{font-size:0.5vw;}
+.info li{font-size:1.5vw;}
 
-.content_board{
-	margin-top:10px;
-}
 .btn_section{
    padding-top:20px;
    flex-direction:row;
@@ -36,7 +33,7 @@ margin-top: 30px;
  background-color: lightblue;
   color:white;
    }
-.wrap_board{
+.content_board{
    overflow:hidden;
    width:70%;
    left:30%;
@@ -45,6 +42,7 @@ margin-top: 30px;
 .btn_down-file{margin-left:1%;   z-index:999;}
 .article_content{min-height: 50vh; border-bottom: 1px solid;}
 </style>
+
 </head>
 <body>
  <%@ include file="/WEB-INF/views/include/header.jsp" %>   
@@ -95,7 +93,7 @@ margin-top: 30px;
 	
 		<div class="info">
 		<span>번호 : <c:out value="${datas.board.no}"/></span>
-		<span>제목 : <input type="text" name="title" required="required" /><%-- <%=board.getTitle() %> --%></span>
+		<span>제목 : <input type="text" name="title" required="required" />${datas.board.title}</span>
 		<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
 		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
 		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
@@ -110,13 +108,13 @@ margin-top: 30px;
 		</c:if>
 	</div>
 	<div class="content_board">
-					<textarea name="content" required="required" maxlength="250"><%-- <%=board.getContent() %> --%></textarea>
+					<textarea name="content" required="required" maxlength="250">${datas.board.content}</textarea>
 	</div>
 	
 </div>
 
  <div class="btn_section">
-         	<button>수정완료</button>
+         <button style="background-color:red; color:white; width:100%">수정완료</button>
           <button >삭제</button>
           <button onclick = "location.href = '/board/board-list'">목록</button>         
     </div>      

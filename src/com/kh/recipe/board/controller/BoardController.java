@@ -60,7 +60,6 @@ public class BoardController extends HttpServlet {
 			boardDelete(request,response);
 			break;
 		case "viewCount":
-			/* boardList(request,response); */
 			viewCount(request,response);
 			break;
 		default:throw new PageNotFoundException();
@@ -72,14 +71,16 @@ public class BoardController extends HttpServlet {
 
 	private void viewCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int no = Integer.parseInt(request.getParameter("no"));
+		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
+				String no = request.getParameter("no");
+				
 		boardService.updateViewCount(no);
 		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
 
 	private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int no = Integer.parseInt(request.getParameter("no"));
+		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
+		String no = request.getParameter("no");
 		
 		//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
 		Map<String, Object> datas = boardService.deleteBoard(no);
@@ -91,7 +92,7 @@ public class BoardController extends HttpServlet {
 	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
-				int no = Integer.parseInt(request.getParameter("no"));
+		String no = request.getParameter("no");
 				
 				//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
 				Map<String, Object> datas = boardService.updateBoard(no);
@@ -112,7 +113,7 @@ public class BoardController extends HttpServlet {
 	private void boardDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
-		int no = Integer.parseInt(request.getParameter("no"));
+		String no = request.getParameter("no");
 		
 		//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
