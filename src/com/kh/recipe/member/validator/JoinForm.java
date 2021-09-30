@@ -14,6 +14,7 @@ public class JoinForm {
 	
 	private String userId;
 	private String password;
+	private String name;
 	private String email;
 	private String phone;
 	private HttpServletRequest request;
@@ -24,6 +25,7 @@ public class JoinForm {
 		this.request = request;
 		this.userId = request.getParameter("userId");
 		this.password = request.getParameter("password");
+		this.name = request.getParameter("name");
 		this.email = request.getParameter("email");
 		this.phone = request.getParameter("phone");
 	}
@@ -46,7 +48,14 @@ public class JoinForm {
 			failedAttribute.put("password", password);
 			res = false;
 		}
+		
+		vaild = Pattern.matches("^[가-힣]{2,5}$", name);
+		if (!vaild) {
+			failedAttribute.put("name", name);
+			res = false;
+		}
 							
+		
 		// 전화번호가 9-11자리 숫자
 		// 이스케이프문자니까 \하나 더
 		vaild =  Pattern.matches("^\\d{9,11}$", phone);
@@ -78,6 +87,10 @@ public class JoinForm {
 
 	public String getPassword() {
 		return password;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public String getEmail() {

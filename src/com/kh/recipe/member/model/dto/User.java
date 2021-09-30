@@ -18,6 +18,7 @@ public class User {
 	// Effective Java에서 제시된 Builder 패턴
 	private String userId;
 	private String password;
+	private String name;
 	private String email;
 	private String phone;
 	
@@ -26,6 +27,7 @@ public class User {
 	private User(UserBuilder builder) {
 		this.userId = builder.userId;
 		this.password = builder.password;
+		this.name = builder.name;
 		this.email = builder.email;
 		this.phone = builder.phone;
 		
@@ -40,6 +42,7 @@ public class User {
 		
 		private String userId;
 		private String password;
+		private String name;
 		private String email;
 		private String phone;
 		
@@ -52,6 +55,12 @@ public class User {
 			this.password = password;
 			return this; 
 		}
+		
+		public UserBuilder name(String name) {
+			this.name = name;
+			return this; 
+		}
+		
 		public UserBuilder email(String email) {
 			this.email = email;
 			return this; 
@@ -68,7 +77,7 @@ public class User {
 
 		@Override
 		public String toString() {
-			return "UserBuilder [userId=" + userId + ", password=" + password + ", email=" + email + ", phone=" + phone + "]";
+			return "UserBuilder [userId=" + userId + ", password=" + password + ", name =" + name + ", email=" + email + ", phone=" + phone + "]";
 		}
 
 		

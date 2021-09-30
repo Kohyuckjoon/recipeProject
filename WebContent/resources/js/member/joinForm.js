@@ -30,7 +30,9 @@
    		document.querySelector('#frm_join').addEventListener('submit', e => {
    			
    			let pwReg = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(?=.{8,})/;
+			let nameReg = /^[가-힣]{2,5}$/;
    			let tellReg = /^\d{9,11}$/;
+			
    			
    			if(confirmId != userId.value){
    				e.preventDefault();
@@ -40,6 +42,11 @@
    			if(!pwReg.test(password.value)){
    				e.preventDefault();
    				document.querySelector('#pwCheck').innerHTML ='영어,숫자,특수문자 조합의 8~14자의 문자열'; 
+   			}
+
+			if(!nameReg.test(name.value)){
+   				e.preventDefault();
+   				document.querySelector('#nameCheck').innerHTML ='2자 이상 6자 미만의 한글 이름'; 
    			}
    			
    			if(!tellReg.test(phone.value)){
