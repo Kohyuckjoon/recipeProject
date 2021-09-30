@@ -12,7 +12,6 @@
 /* div {
 	box-shadow: 0 0 2px black;
 } */
-
 input[type="text"] {
 	width: 130px;
 }
@@ -39,7 +38,7 @@ input[type="text"] {
 .sideBar {
 	float: right;
 	height: 45vh;
-	width: 10%;
+	width: 13%;
 }
 
 .sideBarRight label {
@@ -129,6 +128,46 @@ input[type="text"] {
 	padding: 1%;
 }
 
+.secondBlank {
+	height: 5vh;
+}
+
+.lowerBox {
+	height: 80vh;
+}
+
+.lowerBoxLeft {
+	float: left;
+	width: 82%;
+	height: 79vh;
+}
+
+.lowerBoxRight {
+	float: right;
+	width: 18%;
+	height: 79vh;
+}
+
+.sideBarBoxStyle {
+	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
+	background-color: white;
+	padding: 3%;
+	margin: 5%;
+	width: 85%;
+	height: 85%;
+}
+
+.sideBarinfo {
+	float: right;
+	left: 50%;
+}
+
+.sideBarTitle {
+	margin: 10px;
+	width: 70%;
+	height: 78vh;
+}
+
 .searchLabel {
 	background-color: white;
 	margin: 7%;
@@ -184,7 +223,6 @@ input[type="text"] {
 	margin: 0 auto;
 	width: 85%;
 	text-align: center;
-	
 }
 
 span {
@@ -238,140 +276,154 @@ span {
 }
 </style>
 </head>
-<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+<body oncontextmenu='return false' onselectstart='return false'
+	ondragstart='return false'>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
 
 
-<form action="#" method="get">
-	<div>
-		<div class="topBlank"></div>
-		<!-- 칼로리, 나트륨, 지방, 단백질 선택박스 표시 -->
-		<div class="checkBox">
-			<div class="calorie">
-				<div>
-					<div class="calorielabel">
-						<label>칼로리(cal)</label>
-					</div>
-					<div class="blank"></div>
+	<form action="#" method="get">
+		<div>
+			<div class="topBlank"></div>
+			<!-- 칼로리, 나트륨, 지방, 단백질 선택박스 표시 -->
+			<div class="checkBox">
+				<div class="calorie">
+					<div>
+						<div class="calorielabel">
+							<label>칼로리(cal)</label>
+						</div>
+						<div class="blank"></div>
 
-					<div class="checkBoxStyle1">
-						<div class="calorieCheckbox">
-							0~300<input type="checkbox" name="calorie1" value=""><br>
-							300~500<input type="checkbox" name="calorie2" value=""><br>
-							500~700<input type="checkbox" name="calorie3" value=""><br>
+						<div class="checkBoxStyle1">
+							<div class="calorieCheckbox">
+								0~300<input type="checkbox" name="calorie1" value=""><br>
+								300~500<input type="checkbox" name="calorie2" value=""><br>
+								500~700<input type="checkbox" name="calorie3" value=""><br>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="middleBlank"></div>
+				<div class="middleBlank"></div>
 
 
-			<div class="salt">
-				<div>
-					<div class="saltLabel">
-						<label>나트륨(na)</label>
-					</div>
-					<div class="blank"></div>
+				<div class="salt">
+					<div>
+						<div class="saltLabel">
+							<label>나트륨(na)</label>
+						</div>
+						<div class="blank"></div>
 
-					<div class="checkBoxStyle2">
-						<div class="saltCheckbox">
-							0~50<input type="checkbox" name="salt1" value=""><br>
-							50~100<input type="checkbox" name="salt2" value=""><br>
-							100~150<input type="checkbox" name="salt3" value=""><br>
+						<div class="checkBoxStyle2">
+							<div class="saltCheckbox">
+								0~50<input type="checkbox" name="salt1" value=""><br>
+								50~100<input type="checkbox" name="salt2" value=""><br>
+								100~150<input type="checkbox" name="salt3" value=""><br>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="middleBlank"></div>
+				<div class="middleBlank"></div>
 
 
-			<div class="fat">
-				<div>
-					<div class="fatLabel">
-						<label>지방(g)</label>
-					</div>
-					<div class="blank"></div>
+				<div class="fat">
+					<div>
+						<div class="fatLabel">
+							<label>지방(g)</label>
+						</div>
+						<div class="blank"></div>
 
-					<div class="checkBoxStyle3">
-						<div class="fatCheckbox">
-							0~50<input type="checkbox" name="fat1" value=""><br>
-							50~100<input type="checkbox" name="fat2" value=""><br>
-							100~150<input type="checkbox" name="fat3" value=""><br>
+						<div class="checkBoxStyle3">
+							<div class="fatCheckbox">
+								0~50<input type="checkbox" name="fat1" value=""><br>
+								50~100<input type="checkbox" name="fat2" value=""><br>
+								100~150<input type="checkbox" name="fat3" value=""><br>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="middleBlank"></div>
+				<div class="middleBlank"></div>
 
 
-			<div class="protein">
-				<div>
-					<div class="proteinLabel">
-						<label>단백질(g)</label>
-					</div>
-					<div class="blank"></div>
+				<div class="protein">
+					<div>
+						<div class="proteinLabel">
+							<label>단백질(g)</label>
+						</div>
+						<div class="blank"></div>
 
-					<div class="checkBoxStyle4">
-						<div class="proteinCheckbox">
-							0~50<input type="checkbox" name="protein1" value=""><br>
-							50~100<input type="checkbox" name="protein2" value=""><br>
-							100~150<input type="checkbox" name="protein3" value=""><br>
+						<div class="checkBoxStyle4">
+							<div class="proteinCheckbox">
+								0~50<input type="checkbox" name="protein1" value=""><br>
+								50~100<input type="checkbox" name="protein2" value=""><br>
+								100~150<input type="checkbox" name="protein3" value=""><br>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="middleBlank"></div>
+				<div class="middleBlank"></div>
 
 
-		
-			<div class="search">
-				<button class="button" type="reset" value="내용초기화">
-					<span> 초기화 </span>
-				</button>
-				
-				<div>　</div>
-				
-				<button class="button" type="" value="검색하기">
-					<span> 검색하기 </span>
-				</button>
+
+				<div class="search">
+					<button class="button" type="reset" value="내용초기화">
+						<span> 초기화 </span>
+					</button>
+
+					<div></div>
+
+					<button class="button" type="" value="검색하기">
+						<span> 검색하기 </span>
+					</button>
+				</div>
+
+				<div class="middleBlank"></div>
 			</div>
-		
-			<div class="middleBlank"></div>
+
+			<div class="secondBlank"></div>
 		</div>
-	</div>
 	</form>
 
-	<div class="sideBar">
-		<div class="sideBarRight">
-			<div class="sideBarGender">
-				<!-- 라벨칸 -->
-				<div>
-					<label>&nbsp;&nbsp;&nbsp;성별 : </label>
-				</div>
-				<!-- 라디오박스칸 -->
-				<div>
-					<input type="radio" name="gender" value="man">남 <input
-						type="radio" name="gender" value="woman"
-						style="padding-left: 50%;">여 <br>
-				</div>
-			</div>
-			<div>
-				<label>나이 : <input type="text" name="age"></label><br>
-			</div>
-			<div>
-				<label>키 : <input type="text" name="height"></label><br>
-			</div>
-			<div>
-				<label>몸무게 : <input type="text" name="weight"></label><br>
-			</div>
+	<div class="lowerBox">
+		<!-- 왼쪽 -->
+		<div class="lowerBoxLeft"></div>
+
+		<!-- 오른쪽 -->
+		<div class="lowerBoxRight">
+			<div class="sideBarBoxStyle">
+				<!-- 영역 나눠야함 -->
+				<div class="sideBarinfo">
+					<!-- 라벨칸 -->
+					<div>
+						<label>성별 : </label> <input type="radio" name="gender" value="man">남
+						<input type="radio" name="gender" value="woman"
+							style="padding-left: 50%;">여 <br>
+						<br>
+					</div>
+
+					<!-- 라디오박스칸 -->
+					<div>
+						<label>나이 : <input type="text" name="age"></label><br>
+						<br>
+					</div>
+
+					<div>
+						<label>키 : <input type="text" name="height"></label><br>
+						<br>
+					</div>
+
+					<div>
+						<label>몸무게 : <input type="text" name="weight"></label><br>
+						<br>
+					</div>
 
 
-			<div class="calculateResult">
-				<input type='submit' value='계 산'>
+					<div class="calculateResult">
+						<input type='submit' value='계 산'>
+					</div>
+				</div>
 			</div>
 		</div>
-		
 	</div>
+
 </body>
 </html>

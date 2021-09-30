@@ -34,7 +34,8 @@ public class BoardDao {
 			pstm.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(pstm);
 		}
@@ -55,7 +56,8 @@ public class BoardDao {
 			
 			pstm.executeUpdate();
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(pstm);
 		}
@@ -71,8 +73,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		updateViewCount(conn, no);
 		Board board = null;
+		updateViewCount(conn, no);
 		
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -91,7 +93,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			}
 			
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(rset,pstm);
 		}
@@ -102,7 +105,7 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		
 		String sql = "select fl_idx,type_idx,origin_file_name,rename_file_name,"
 				+ " save_path,reg_date from file_info "
-				+ " where type_idx=? and is_del = 0";
+				+ " where type_idx=? ";
 		
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -126,7 +129,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			}
 			
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(rset, pstm);
 		}
@@ -150,7 +154,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 				
 				
 			} catch (SQLException e) {
-				throw new DataAccessException(e);
+				/* throw new DataAccessException(e); */
+				e.printStackTrace();
 			}finally {
 				
 				template.close(rset,pstm);
@@ -182,7 +187,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			}
 			
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(rset,pstm);
 		}
@@ -215,7 +221,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			}
 			
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(rset, pstm);
 		}
@@ -249,7 +256,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 			}
 			
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(rset,pstm);
 		}
@@ -276,7 +284,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		}
 			
 		} catch (SQLException e) {
-			throw new DataAccessException(e);
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
 		}finally {
 			template.close(rset,pstm);
 		}

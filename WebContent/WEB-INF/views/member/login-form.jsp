@@ -97,11 +97,11 @@
   color: #EF3B3A;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
+  background: #ccdce7; /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);
   background: -moz-linear-gradient(right, #76b852, #8DC26F);
   background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+  background: linear-gradient(to left, #ccdce7, #ccdce7);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
@@ -109,7 +109,7 @@ body {
 </style>
 </head>
 <body>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 
 	<c:if test="${empty authentication}">
 	
@@ -120,31 +120,33 @@ body {
 			
 			<input type="text" name="userId" id="userId" placeholder="ID"/>
 		
-			<input type="password" name="password" id="password" placeholder="password"/>
+			<input type="password" name="password" id="password" placeholder="Password"/>
 			
 			<button>로그인 하기</button>
-			
+			</form>
 			<hr>
-			
-			<a><img src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></a>
+			<form class="kakao-login" action="/member/kakaoLogin" method="post">
+			<a><img id="btnKakaoLogin"src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></a>
 		
 			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
-	
 			</form>
+			
 	 	</div>
 	</div>
 	</c:if>
-<c:if test="${not empty authentication}">
-<c:redirect  url="/myPage/myPage"/>
-</c:if>
+	
+	<c:if test="${not empty authentication}">
+	<c:redirect  url="/myPage/myPage"/>
+	</c:if>
 
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="/resources/js/member/kakaoLogin.js"></script>
 <script type="text/javascript">
 
 
-
-
 Kakao.init('0c512e152e989192c220235a73035b4b');
-
+Kakao.isInitialized();
 var userData = '';
 var jsonData = '';
 
@@ -157,7 +159,7 @@ function kakaoLogin() {
           url: '/v2/user/me',
           success: function (response) {
         	  var userData = response;
-        	  //console.log(JSON.stringify(response));
+        	  console.log(JSON.stringify(response));
         	  alert(userData.properties.nickname + "님 환영합니다.");
         	  
         	  jsonData = JSON.stringify(response);

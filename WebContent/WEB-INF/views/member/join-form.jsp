@@ -97,11 +97,11 @@
   color: #EF3B3A;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
+  background: #ccdce7; /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);
   background: -moz-linear-gradient(right, #76b852, #8DC26F);
   background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+  background: linear-gradient(to left, #ccdce7, #ccdce7);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
@@ -125,6 +125,8 @@ body {
 		       	사용 불가능한 아이디 입니다.
 		    </c:if>
         </span>
+        
+      <p></p>
       
       <input type="password" name="password" id="password" placeholder="영어,숫자,특수문자 조합의 8~14자의 문자열"  
 	      <c:if test="${empty joinFailed.password}">
@@ -151,7 +153,7 @@ body {
 		  </c:if>
       </span>
       
-      <input type="text" name="email" placeholder="email address"  
+      <input type="text" name="email" placeholder="Email address"  
 	      <c:if test="${empty joinFailed.email}">
 		  	value="${joinForm.email}"	
 		  </c:if>

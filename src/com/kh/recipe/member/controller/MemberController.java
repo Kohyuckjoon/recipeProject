@@ -29,6 +29,7 @@ import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.common.exception.PageNotFoundException;
 import com.kh.recipe.member.model.dto.Kakao_Member;
 import com.kh.recipe.member.model.dto.Member;
+import com.kh.recipe.member.model.service.Kakao_MemberService;
 import com.kh.recipe.member.model.service.MemberService;
 
 /**
@@ -39,6 +40,7 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private MemberService memberService = new MemberService();
+	private Kakao_MemberService kakao_memberService = new Kakao_MemberService();
 	
     public MemberController() {
         super();
@@ -86,25 +88,6 @@ public class MemberController extends HttpServlet {
 		}
 	}
 	
-	
-	  private void kakaoJoin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
-		  	
-		String userId = request.getParameter("userId");
-		String userNickName = request.getParameter("password");
-		String userName = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		String userEmail = request.getParameter("email");
-		
-		
-		Kakao_Member kakao_member = new Kakao_Member();
-		kakao_member.setUserId(userId);
-		kakao_member.setUserNickName(userNickName);
-		kakao_member.setUserName(userName);
-		kakao_member.setPhone(phone);
-		kakao_member.setUserEmail(userEmail);
-  	  
-	  	  
-	  } 	  
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -200,6 +183,60 @@ public class MemberController extends HttpServlet {
 	private void joinForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.getRequestDispatcher("/member/join-form").forward(request, response);
 	}
+	
+	  private void kakaoJoin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
+		  	
+		String userId = request.getParameter("userId");
+		String password = UUID.randomUUID().toString();
+		String userName = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String userEmail = request.getParameter("email");
+		
+		
+		Kakao_Member kakao_member = new Kakao_Member();
+		kakao_member.setUserId(userId);
+		kakao_member.setPassword(password);
+		kakao_member.setUserName(userName);
+		kakao_member.setPhone(phone);
+		kakao_member.setUserEmail(userEmail);
+	  
+	  	  
+	  } 	  
+
+	  
+	  private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+/*			
+			String userId = request.getParameter("userId");
+			String password = UUID.randomUUID().toString();
+			
+			Member member = memberService.selectMemberById(userId);
+			if(member == null) {
+				response.getWriter().print("available");
+			}else {
+				response.getWriter().print("disable");
+			}
+			String persistToken = UUID.randomUUID().toString();
+*/			
+			String userId = request.getParameter("userId"); 
+			  
+			Kakao_Member kakao_member = kakao_memberService.kakaomemberAuthenticate(userId);
+			
+			if(kakao_member != null) {
+				System.out.println(kakao_member);
+				response.sendRedirect("/mainPage/mainPage");
+			}else {
+				request.getRequestDispatcher("/member/login-form").forward(request, response);
+				return;
+			}
+			request.getSession().setAttribute("authentication", kakao_member); 
+			
+			
+			
+			
+			
+			
+		}
+	
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 request.getSession().removeAttribute("authentication");
@@ -238,24 +275,7 @@ public class MemberController extends HttpServlet {
 	}
 
 	
-	private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("/member/kakao-form").forward(request, response);
-		
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		
-		Member member = memberService.memberAuthenticate(userId, password);
-		
-		//2. 사용자가 잘못된 아이디와 비밀번호를 입력한 경우
-		//	 사용자에게 아이디나 비밀번호가 틀렸음을 알림, login-form으로 redirect 
-		if(member == null) {
-			response.sendRedirect("/member/login");
-			return;
-		}
-		
-		request.getSession().setAttribute("authentication", member);
-		
-	}
+	
 
 	
 	

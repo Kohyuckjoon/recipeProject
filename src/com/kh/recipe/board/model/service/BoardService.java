@@ -96,6 +96,11 @@ public class BoardService {
 		
 		return res;
 	}
+
+	public void updateViewCount(int no) {
+		
+	}
+
 	
 
 }

@@ -18,16 +18,15 @@ public class Kakao_MemberDao {
 
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 
-	public Kakao_Member kakaomemberAuthenticate(String userId, String userNickName, Connection conn){
+	public Kakao_Member kakaomemberAuthenticate(String userId, Connection conn){
 		Kakao_Member kakao_Member = null;	
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where user_id = ? and password = ?";
+		String query = "select * from member where user_id = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
-			pstm.setString(2, userNickName);
 			rset = pstm.executeQuery();
 			
 			if(rset.next()) {
@@ -97,7 +96,7 @@ public class Kakao_MemberDao {
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, kakao_Member.getUserId());
-			pstm.setString(2, kakao_Member.getUserNickName());
+			pstm.setString(2, kakao_Member.getPassword());
 			pstm.setString(3, kakao_Member.getUserEmail());
 			pstm.setString(4, kakao_Member.getPhone());
 			pstm.setDate(5, kakao_Member.getBirth());
@@ -171,7 +170,7 @@ public class Kakao_MemberDao {
 	private Kakao_Member convertAllToKakao_Member(ResultSet rset) throws SQLException {
 		Kakao_Member kakao_Member = new Kakao_Member();
 		kakao_Member.setUserId(rset.getString("user_id"));
-		kakao_Member.setUserNickName(rset.getString("password"));
+		kakao_Member.setPassword(rset.getString("password"));
 		kakao_Member.setUserEmail(rset.getString("email"));
 		kakao_Member.setBirth(rset.getDate("birth"));
 		kakao_Member.setPhone(rset.getString("phone"));
@@ -186,7 +185,7 @@ public class Kakao_MemberDao {
 			
 			switch (column) {
 			case "user_id": kakao_Member.setUserId(rset.getString("user_id")); break;
-			case "password": kakao_Member.setUserNickName(rset.getString("password")); break;
+			case "password": kakao_Member.setPassword(rset.getString("password")); break;
 			case "email" : kakao_Member.setUserEmail(rset.getString("email")); break;
 			case "birth" : kakao_Member.setBirth(rset.getDate("birth")); break;
 			case "phone" : kakao_Member.setPhone(rset.getString("phone")); break;
