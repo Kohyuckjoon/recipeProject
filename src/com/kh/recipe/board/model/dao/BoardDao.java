@@ -18,25 +18,25 @@ import oracle.jdbc.OracleConnection.CommitOption;
 public class BoardDao {
 
 	JDBCTemplate template = JDBCTemplate.getInstance();
-	
+
+	// 게시물 작성
 	public void insertBoard(Connection conn, Board board) {
-		String sql = "insert into board(no,title,user_id,content) values("
-				+ "BOARD_SEQ.nextval,?,?,?)";
-		
+		String sql = "insert into board(no,title,user_id,content) values(" + "BOARD_SEQ.nextval,?,?,?)";
+
 		PreparedStatement pstm = null;
-		
+
 		try {
-			
+
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, board.getTitle());
 			pstm.setString(2, board.getUserId());
 			pstm.setString(3, board.getContent());
 			pstm.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
-		}finally {
+		} finally {
 			template.close(pstm);
 		}
 	}
@@ -44,79 +44,78 @@ public class BoardDao {
 	public void insertFile(Connection conn, FileDTO fileDTO) {
 		String sql = "insert into file_info(fl_idx,type_idx,"
 				+ "origin_file_name,rename_file_name,save_path)"
-				+ "values(SC_FILE_IDX.nextval,BOARD_SEQ.currval,?,?,?)";
-		
+				+ "values(sc_file_idx.nextval,BOARD_SEQ.currval,?,?,?)";
+
 		PreparedStatement pstm = null;
-		
+
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, fileDTO.getOriginFileName());
 			pstm.setString(2, fileDTO.getRenameFileName());
 			pstm.setString(3, fileDTO.getSavePath());
-			
+
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
-		}finally {
+		} finally {
 			template.close(pstm);
 		}
 	}
 
-	
-public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
-	
-	
-	String sql = "select no,user_id,title,content,reg_date,view_count"
+	// 게시글 하나씩 조회
+	public Board selectBoardDetail(Connection conn, String no) { // 하나씩 조회
+
+		String sql =  "select no,user_id,reg_date,title,content"
 				+ " from board "
-				+ " where no = ?";
-		
+				+ " where no = ? and is_del = 0";
+
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
 		updateViewCount(conn, no);
-		
+
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
+			pstm.setString(1, no);
 			rset = pstm.executeQuery();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				board = new Board();
-				board.setNo(rset.getInt("no"));
+				board.setNo(rset.getString("no"));
 				board.setUserId(rset.getString("user_id"));
 				board.setTitle(rset.getString("title"));
 				board.setContent(rset.getString("content"));
 				board.setRegDate(rset.getDate("reg_date"));
 				board.setViewCount(rset.getInt("view_count"));
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
-		}finally {
-			template.close(rset,pstm);
+		} finally {
+			template.close(rset, pstm);
 		}
 		return board;
 	}
 
-	public List<FileDTO> selectFileDTOs(Connection conn, int no) {
-		
+	public List<FileDTO> selectFileDTOs(Connection conn, String no) {
+
 		String sql = "select fl_idx,type_idx,origin_file_name,rename_file_name,"
 				+ " save_path,reg_date from file_info "
-				+ " where type_idx=? ";
-		
+				+ " where type_idx=? and is_del = 0";
+
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		List<FileDTO> files = new ArrayList<FileDTO>();
-		
+
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
+			pstm.setString(1, no);
 			rset = pstm.executeQuery();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				FileDTO file = new FileDTO();
 				file.setFlIdx(rset.getString("fl_idx"));
 				file.setTypeIdx(rset.getString("type_idx"));
@@ -124,193 +123,144 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 				file.setRenameFileName(rset.getString("rename_file_name"));
 				file.setSavePath(rset.getString("save_path"));
 				file.setRegDate(rset.getDate("reg_date"));
-				
+
 				files.add(file);
 			}
-			
+
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
-		}finally {
+		} finally {
 			template.close(rset, pstm);
 		}
-		
+
 		return files;
 	}
 
+	// 조회수 증가 viewCount Dao 단
 
-	//조회수 증가  viewCount  Dao 단
-	
-		public int updateViewCount(Connection conn, int no) {
-			
-			String sql = "update board set view_count = view_count + 1 where no =? ";
-			PreparedStatement pstm = null;
-			ResultSet rset = null;
-			int cnt = 0;
-			try {
-				pstm = conn.prepareStatement(sql);
-				pstm.setInt(1, no);
-				cnt = pstm.executeUpdate();
-				
-				
-			} catch (SQLException e) {
-				/* throw new DataAccessException(e); */
-				e.printStackTrace();
-			}finally {
-				
-				template.close(rset,pstm);
-			}
-			 return no;
-		}
-		
-		
-	public Board updateBoard(Connection conn, int no) {
-		String sql = "update board set title = ?, content = ?"
-				+ " where no = ?";
-		
+	public String updateViewCount(Connection conn, String no) {
+
+		String sql = "update board set view_count = view_count + 1 where no =? ";
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		Board board = null;
-		
+		int cnt = 0;
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
-			rset = pstm.executeQuery();
-			
-			while(rset.next()) {
-				board = new Board();
-				
-				board.setTitle(rset.getString("title"));
-				board.setContent(rset.getString("content"));
-				board.setUserId(rset.getString("user_id"));
-				
-			}
-			
+			pstm.setString(1, no);
+			cnt = pstm.executeUpdate();
+
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
-		}finally {
-			template.close(rset,pstm);
+		} finally {
+
+			template.close(rset, pstm);
 		}
-		return board;
-	
+		return no;
 	}
 
-	public List<FileDTO> updateFileDTOs(Connection conn, int no) {
-		String sql = "update file_info set type_idx,origin_file_name,rename_file_name,save_path "
-				+ " where fl_idx=?";
-		
+	public Board updateBoard(Connection conn, String no) {
+		String sql = "update board set title = ? , content = ?  where no = ?";
+
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Board board = null;
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, no);
+			rset = pstm.executeQuery();
+
+			while (rset.next()) {
+				board = new Board();
+
+				board.setTitle(rset.getString("title"));
+				board.setContent(rset.getString("content"));
+				board.setUserId(rset.getString("user_id"));
+
+			}
+
+		} catch (SQLException e) {
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
+		} finally {
+			template.close(rset, pstm);
+		}
+		return board;
+
+	}
+
+	public List<FileDTO> updateFileDTOs(Connection conn, String no) {
+		String sql = "update set file_info fl_idx,type_idx,origin_file_name,rename_file_name,"
+				+ " save_path"
+				+ " where type_idx=? and is_del = 0";
+
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		List<FileDTO> files = new ArrayList<FileDTO>();
-		
+
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
+			pstm.setString(1, no);
 			rset = pstm.executeQuery();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				FileDTO file = new FileDTO();
+				file.setFlIdx(rset.getString("fl_idx"));
 				file.setTypeIdx(rset.getString("type_idx"));
 				file.setOriginFileName(rset.getString("origin_file_name"));
 				file.setRenameFileName(rset.getString("rename_file_name"));
 				file.setSavePath(rset.getString("save_path"));
-				
-				
+
 				files.add(file);
 			}
-			
+
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
-		}finally {
+		} finally {
 			template.close(rset, pstm);
 		}
-		
+
 		return files;
 	}
 
 	public List<Board> selectBoardAll(Connection conn) {
-		String sql = "select no,title,user_id,reg_date,view_count"
-				+ " from board order by no desc";
-		
+		String sql = "select no,title,user_id,reg_date,view_count from board order by no desc";
+
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		List<Board> boardList = new ArrayList<Board>();
-		
+
 		try {
 			pstm = conn.prepareStatement(sql);
-			
+
 			rset = pstm.executeQuery();
-			
-			while(rset.next()) {
-				
+
+			while (rset.next()) {
+
 				Board board = new Board();
-				
-				board.setNo(rset.getInt("no"));
+
+				board.setNo(rset.getString("no"));
 				board.setTitle(rset.getString("title"));
 				board.setUserId(rset.getString("user_id"));
 				board.setRegDate(rset.getDate("reg_date"));
 				board.setViewCount(rset.getInt("view_count"));
 				boardList.add(board);
 			}
-			
+
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
-		}finally {
-			template.close(rset,pstm);
+		} finally {
+			template.close(rset, pstm);
 		}
 		return boardList;
-		
-	}
 
-	public Board deleteBoard(Connection conn, int no) {
-		String sql = "delete from board where no ?";
-		
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		Board board = null;
-		
-		try {
-			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
-			rset = pstm.executeQuery();
-			
-		int flag = pstm.executeUpdate();
-		if(flag > 0) {
-			
-			conn.commit();
-		}
-			
-		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
-		}finally {
-			template.close(rset,pstm);
-		}
-		return board;
-	
 	}
 
 	
+	
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

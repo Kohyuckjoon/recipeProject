@@ -27,15 +27,7 @@
 					<br>
 					파일 : <input type="file" name="files" id="contract_file" multiple/>
 				</div>
-				<!-- <div class="category">
-				<form>		 		
-					<select name="nation">
-				 		<option  selected disabled> ---게시글 분류---</option>
-				 		<option value="free" id ="free">자유</option>
-				 		<option value="scrap" id="scraps">스크랩공유</option>
-				 	</select>
-			 </form>
-				</div> -->
+				
 				<div class="content_board">
 					<textarea name="content" required="required" maxlength="250" placeholder="250글자 이하로 작성하시오."></textarea>
 				</div>

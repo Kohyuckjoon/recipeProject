@@ -19,7 +19,13 @@ height: 100px;
 .info{font-size:2vw; border-bottom:1px solid}
 .info span{padding-right: 3vw;}
 .info li{font-size:1.5vw;}
-
+.tit{
+	position:relative;
+	top:105px;
+	font-size:2.3vw;
+	text-align: center;
+	
+}
 .btn_section{
    padding-top:20px;
    flex-direction:row;
@@ -48,7 +54,7 @@ height: 100px;
 	
 	
 	<div class="content"> 
-	<div class="tit">게시판 상세 글</div>
+	<div class="tit">${datas.board.no}번  게시글 상세보기</div>
 	
 		<div class="info">
 		<span>번호 : <c:out value="${datas.board.no}"/></span>
@@ -72,13 +78,9 @@ height: 100px;
 	
 </div>
 
- <div class="btn_section">
-
-               <button onclick = "location.href = '/board/board-update?no={board.no}">수정하기</button>
-    	<!-- 		<button onclick = "location.href = '/board/board-update?no={board.no}">삭제하기</button> -->
-               <button onclick = "location.href = '/board/board-list'">목록</button>
-                   
-      </div>                      
+	<a href="/board/board-update?no=${board.no}">게시글 수정</a>
+	<a href="/board/board-delete?no=${board.no}">게시글 삭제</a>   
+	<a href="/board/board-list">목록</a>                
           
 <!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>

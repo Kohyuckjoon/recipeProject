@@ -66,4 +66,13 @@
     <servlet-name>diethealthController</servlet-name>
     <url-pattern>/diethealthController</url-pattern>
   </servlet-mapping>
+  
+   <filter>
+    <filter-name>fileFilter</filter-name>
+  	<filter-class>com.kh.recipe.common.filter.FileFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>fileFilter</filter-name>
+  	<url-pattern>/file/*</url-pattern>
+  </filter-mapping>
 </web-app>
