@@ -109,11 +109,12 @@ public class MemberController extends HttpServlet {
 		
 		if(member != 0) {
 			System.out.println(userId);
-			request.getRequestDispatcher("/member/delete-member").forward(request, response);
 			request.getSession().removeAttribute("authentication");
-			
 			response.sendRedirect("/mainPage/mainPage");
-			//request.getRequestDispatcher("/member/delete-form").forward(request, response);
+			
+			//request.getRequestDispatcher("/mainPage/mainPage").forward(request, response);
+			//request.getSession().removeAttribute("authentication");
+			
 			return;
 			
 		}
