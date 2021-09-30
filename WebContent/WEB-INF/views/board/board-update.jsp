@@ -98,6 +98,7 @@ height: 100px;
 		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
 		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
 	</div>
+	
 	<div class="info file_info">
 		<c:if test="${not empty datas.files}">
 			<ol>
@@ -107,15 +108,16 @@ height: 100px;
 			</ol>
 		</c:if>
 	</div>
-	<div class="content_board">
-					<textarea name="content" required="required" maxlength="250">${datas.board.content}</textarea>
+	
+	<div class="article_content">
+		<pre><c:out value="${datas.board.content}"/></pre>
 	</div>
 	
 </div>
 
  <div class="btn_section">
          <button style="background-color:red; color:white; width:100%">수정완료</button>
-          <button >삭제</button>
+          <button onclick = "location.href = '/board/board-delete'">게시물 삭제</button>     
           <button onclick = "location.href = '/board/board-list'">목록</button>         
     </div>      
 <!-- 여기부턴 foot -->

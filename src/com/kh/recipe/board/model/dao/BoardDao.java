@@ -42,8 +42,9 @@ public class BoardDao {
 	}
 
 	public void insertFile(Connection conn, FileDTO fileDTO) {
-		String sql = "insert into file_info(fl_idx,type_idx," + "origin_file_name,rename_file_name,save_path)"
-				+ "values(SC_FILE_IDX.nextval,BOARD_SEQ.currval,?,?,?)";
+		String sql = "insert into file_info(fl_idx,type_idx,"
+				+ "origin_file_name,rename_file_name,save_path)"
+				+ "values(sc_file_idx.nextval,BOARD_SEQ.currval,?,?,?)";
 
 		PreparedStatement pstm = null;
 
@@ -65,7 +66,9 @@ public class BoardDao {
 	// 게시글 하나씩 조회
 	public Board selectBoardDetail(Connection conn, String no) { // 하나씩 조회
 
-		String sql = "select no,user_id,title,content,reg_date,view_count" + " from board " + " where no = ?";
+		String sql =  "select no,user_id,reg_date,title,content"
+				+ " from board "
+				+ " where no = ? and is_del = 0";
 
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -99,8 +102,9 @@ public class BoardDao {
 
 	public List<FileDTO> selectFileDTOs(Connection conn, String no) {
 
-		String sql = "select fl_idx,type_idx,origin_file_name,rename_file_name," + " save_path,reg_date from file_info "
-				+ " where type_idx=? ";
+		String sql = "select fl_idx,type_idx,origin_file_name,rename_file_name,"
+				+ " save_path,reg_date from file_info "
+				+ " where type_idx=? and is_del = 0";
 
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -188,7 +192,9 @@ public class BoardDao {
 	}
 
 	public List<FileDTO> updateFileDTOs(Connection conn, String no) {
-		String sql = "update file_info set type_idx,origin_file_name,rename_file_name,save_path " + " where fl_idx=?";
+		String sql = "update set file_info fl_idx,type_idx,origin_file_name,rename_file_name,"
+				+ " save_path"
+				+ " where type_idx=? and is_del = 0";
 
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -201,6 +207,7 @@ public class BoardDao {
 
 			while (rset.next()) {
 				FileDTO file = new FileDTO();
+				file.setFlIdx(rset.getString("fl_idx"));
 				file.setTypeIdx(rset.getString("type_idx"));
 				file.setOriginFileName(rset.getString("origin_file_name"));
 				file.setRenameFileName(rset.getString("rename_file_name"));
@@ -253,26 +260,7 @@ public class BoardDao {
 
 	}
 
-	public Board deleteBoard(Connection conn, String no) {
-		String sql = "delete from board where no = ?";
-
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		Board board = null;
-
-		/*
-		 * try { pstm = conn.prepareStatement(sql); pstm.setString(1, no); rset =
-		 * pstm.executeQuery();
-		 * 
-		 * int flag = pstm.executeUpdate(); if(flag > 0) {
-		 * 
-		 * conn.commit(); }
-		 * 
-		 * } catch (SQLException e) { throw new DataAccessException(e);
-		 * e.printStackTrace(); }finally { template.close(rset,pstm); }
-		 */
-		return board;
-
-	}
+	
+	
 
 }
