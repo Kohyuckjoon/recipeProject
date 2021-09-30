@@ -34,5 +34,5 @@
 	</div>
 	
 
-
+	<script type="text/javascript" src = "/resources/js/include/header.js"></script>
 </html>
