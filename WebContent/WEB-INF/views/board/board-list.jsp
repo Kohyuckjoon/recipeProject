@@ -146,14 +146,17 @@ Form {
 	
 	<div class="searchForm">
 		
-		<form>
-			<select name="opt">
-				<option value="0">제목</option>
-				<option value="3">글쓴이</option>
-			</select>
-			<input type="text" size="20" name="condition"/>&nbsp;
-			<input type="submit" value="검색"/>
-		</form>	
+		<form action="search.do">
+		<select name="searchoption">
+		<option value="author">작성자</option>	
+		<option value="title">제목</option>
+		<option value="content">내용</option>
+		</select>
+		<input name="searchkeyword">
+		<input type="submit" value="검색">
+</form>
+
+		
 		
 	</div>
 	<button class="formBtn" onclick = "location.href = '/board/board-form'">글쓰기</button>

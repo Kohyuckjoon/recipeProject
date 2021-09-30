@@ -66,14 +66,15 @@ public class BoardDao {
 	// 게시글 하나씩 조회
 	public Board selectBoardDetail(Connection conn, String no) { // 하나씩 조회
 
-		String sql =  "select no,user_id,reg_date,title,content"
+		String sql =  "select no,user_id,title,content,reg_date,view_count"
 				+ " from board "
 				+ " where no = ? and is_del = 0";
-
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
 		Board board = null;
 		updateViewCount(conn, no);
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		
+		
 
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -143,19 +144,19 @@ public class BoardDao {
 
 		String sql = "update board set view_count = view_count + 1 where no =? ";
 		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		int cnt = 0;
+	
+		
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, no);
-			cnt = pstm.executeUpdate();
+			pstm.executeUpdate();
 
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
 		} finally {
 
-			template.close(rset, pstm);
+			template.close(pstm);
 		}
 		return no;
 	}
@@ -258,6 +259,40 @@ public class BoardDao {
 		}
 		return boardList;
 
+	}
+
+	public List<Board> search(Connection conn, String searchoption, String searchkeyword) {
+		String sql =  "select no,user_id,title,content,reg_date,view_count"
+				+ " from board "
+				+ " where lower("+searchoption+")= lower(?)"
+				+ "order by no desc";
+
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		List<Board> list = new ArrayList<Board>();
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, "%"+searchkeyword+"%");
+			rset = pstm.executeQuery();
+
+			while (rset.next()) {
+				String no = rset.getString("no");
+				String title = rset.getString("title");
+				String userId = rset.getString("userId");
+				Date regDate = rset.getDate("regDate");
+				int viewCount = rset.getInt("viewCount");
+				list.add(null); //수정하기****
+			}
+
+		} catch (SQLException e) {
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
+		} finally {
+			template.close(rset, pstm);
+		}
+
+		return list;
 	}
 
 	

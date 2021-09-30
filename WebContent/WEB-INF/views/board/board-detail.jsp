@@ -53,10 +53,9 @@ height: 100px;
 <div class="top"></div>
 	
 	
-	<div class="content"> 
-	<div class="tit">${datas.board.no}번  게시글 상세보기</div>
 	
-		<div class="info">
+	<h2 class="tit"> ${datas.board.no }상세 글 보기</h2>
+	<div class="info">
 		<span>번호 : <c:out value="${datas.board.no}"/></span>
 		<span>제목 : <c:out value="${datas.board.title}"/></span>
 		<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
@@ -76,11 +75,13 @@ height: 100px;
 		<pre><c:out value="${datas.board.content}"/></pre>
 	</div>
 	
-</div>
 
-	<a href="/board/board-update?no=${board.no}">게시글 수정</a>
-	<a href="/board/board-delete?no=${board.no}">게시글 삭제</a>   
-	<a href="/board/board-list">목록</a>                
+	
+	<a href="/board/board-list">목록</a>    
+	<c:if test="${board.userId == userId }"  > <!--작성자와 수정하는 사람이 같아야 수정 삭제 버튼 보이게  -->
+		<a href="/board/board-update?no=${board.no}">게시글 수정</a>
+		<a href="/board/board-delete?no=${board.no}">게시글 삭제</a>   
+	</c:if>         
           
 <!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>

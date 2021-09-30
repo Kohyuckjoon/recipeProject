@@ -1,10 +1,12 @@
 package com.kh.recipe.board.model.service;
 
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import com.kh.recipe.board.model.dao.BoardDao;
 import com.kh.recipe.board.model.dto.Board;
@@ -85,14 +87,31 @@ public class BoardService {
 
 	
 
-	public void updateViewCount(String no) {
-		
-	}
+	
 
 	public void deleteBoard(String no) {
 		
 		
 		
+	}
+
+	public void updateViewCount(String no) {
+		// TODO Auto-generated method stub
+		Connection conn = template.getConnection();
+	}
+
+	public List<Board> search(String searchoption, String searchkeyword) {
+		Connection conn = template.getConnection();
+		List<Board> list = new ArrayList<Board>();
+		try {
+			
+		 list = boardDao.search(conn,searchoption,searchkeyword);
+		
+		} finally {
+			template.close(conn);
+		}
+		
+		return list;
 	} 
 
 	
