@@ -7,9 +7,9 @@
 <link href="../resources/css/include/header.css" rel="stylesheet"  type="text/css">
 <title>header</title>
 </head>
-<body>
+
 	<div class="header">
-		<img class="title"></img>
+		<div class="title"></div>
 		<div class="pagebutton">
 			<button class="mainPageButton" onclick = "location.href = '/mainPage/mainPage' ">메인페이지</button>
 			<button class="recipePageButton" onclick="location.href = '/dietHealth/searchResult' ">다이어트 & 헬스 레시피</button>
@@ -33,5 +33,5 @@
 		
 	</div>
 
-</body>
+
 </html>
