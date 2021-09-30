@@ -65,7 +65,7 @@
 	<c:forEach var="recipe" items="${Recipes}" begin="<%=begin%>" end="<%=end%>">
 		recipeDetail.push("${recipe.rcpNm}");
 	</c:forEach>
-	
+	 
 	console.dir(recipeDetail);
 	</script>
 	
