@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.Date;
 import java.util.Properties;
@@ -71,8 +72,8 @@ public class MemberController extends HttpServlet {
 			checkID(request,response);
 			break;
 		case "kakao-join":
-			kakaoJoin(request,response); break;
-		
+			kakaoJoin(request,response); 
+			break;
 		case "join-impl":
 			joinImpl(request,response);
 			break;
@@ -82,12 +83,53 @@ public class MemberController extends HttpServlet {
 		case "login":
 			login(request,response);
 			break;
+		case "delete-member":
+			deleteMember(request,response);
+			break;
+		case "delete-form":
+			deleteForm(request,response);
+			break;
 
 		default: throw new PageNotFoundException();
 		
 		}
 	}
 	
+
+	private void deleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/member/delete-form").forward(request, response);
+		
+	}
+
+	private void deleteMember(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("userId"); 
+		String password = request.getParameter("password");
+		
+		int member = memberService.deleteMember(userId, password);
+		
+		if(member != 0) {
+			System.out.println(userId);
+			request.getRequestDispatcher("/member/delete-member").forward(request, response);
+			request.getSession().removeAttribute("authentication");
+			
+			response.sendRedirect("/mainPage/mainPage");
+			//request.getRequestDispatcher("/member/delete-form").forward(request, response);
+			return;
+			
+		}
+	/*	else if(member != 0){
+			request.getSession().removeAttribute("authentication");
+			response.sendRedirect("/mainPage/mainPage");
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>alert('계정이 삭제 되었습니다'); location.href='/mainPage/mainPage';</script>");
+			 
+			out.flush();
+		}		
+	*/	
+		
+		
+	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

@@ -115,11 +115,11 @@ public class MemberService {
 		return res; 
 	} 
 
-	public int deleteMember(String userId) {
+	public int deleteMember(String userId, String password) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		try {
-			res = memberDao.deleteMember(userId, conn);
+			res = memberDao.deleteMember(userId, password, conn);
 			template.commit(conn);
 		} catch (Exception e) {
 			// TODO: handle exception

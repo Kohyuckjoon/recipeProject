@@ -76,7 +76,7 @@
 	<div class="top"></div>
 	<c:if test="${not empty authentication}">
 	<a href="/member/logout">
-    <span>로그아웃</span>
+    <button>로그아웃</button>
     </a>
 	</c:if>
 	<div id="myPage">

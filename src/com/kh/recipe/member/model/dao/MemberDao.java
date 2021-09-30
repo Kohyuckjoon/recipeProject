@@ -186,16 +186,17 @@ public class MemberDao {
 		
 	}
 
-	public int deleteMember(String userId, Connection conn) {
+	public int deleteMember(String userId, String password, Connection conn) {
+		Statement stmt = null;
 		int res = 0;
 		
-		Statement stmt = null;
-		String query = "delete from member where user_id = '" + userId + "'";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
 			stmt = conn.createStatement();
+			String query = "delete from member where user_id = '" + userId + "' " 
+					+ "and password = '" + password + "'";
 			res = stmt.executeUpdate(query);
 		} catch (ClassNotFoundException | SQLException e) {
 			 throw new DataAccessException(e);
