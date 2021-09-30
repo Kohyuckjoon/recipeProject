@@ -13,6 +13,8 @@ import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.file.FileDTO;
 
+import oracle.jdbc.OracleConnection.CommitOption;
+
 public class BoardDao {
 
 	JDBCTemplate template = JDBCTemplate.getInstance();
@@ -61,13 +63,15 @@ public class BoardDao {
 
 	
 public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
-		
-		String sql = "select no,user_id,title,content,reg_date,view_count"
+	
+	
+	String sql = "select no,user_id,title,content,reg_date,view_count"
 				+ " from board "
 				+ " where no = ?";
 		
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
+		updateViewCount(conn, no);
 		Board board = null;
 		
 		try {
@@ -130,6 +134,31 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		return files;
 	}
 
+
+	//조회수 증가  viewCount  Dao 단
+	
+		public int updateViewCount(Connection conn, int no) {
+			
+			String sql = "update board set view_count = view_count + 1 where no =? ";
+			PreparedStatement pstm = null;
+			ResultSet rset = null;
+			int cnt = 0;
+			try {
+				pstm = conn.prepareStatement(sql);
+				pstm.setInt(1, no);
+				cnt = pstm.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				throw new DataAccessException(e);
+			}finally {
+				
+				template.close(rset,pstm);
+			}
+			 return no;
+		}
+		
+		
 	public Board updateBoard(Connection conn, int no) {
 		String sql = "update board set title = ?, content = ?"
 				+ " where no = ?";
@@ -254,6 +283,8 @@ public Board selectBoardDetail(Connection conn, int no) { //하나씩 조회
 		return board;
 	
 	}
+
+	
 
 
 	
