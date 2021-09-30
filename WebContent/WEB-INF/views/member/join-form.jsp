@@ -128,11 +128,11 @@ body {
         
       <p></p>
       
-      <input type="password" name="password" id="password" placeholder="영어,숫자,특수문자 조합의 8~14자의 문자열"  
+      <input type="password" name="password" id="password"   
 	      <c:if test="${empty joinFailed.password}">
 		  	value="${joinForm.password}"	
 		  </c:if>
-      required/>
+     placeholder="영어,숫자,특수문자 조합의 8~14자의 문자열" required/>
       
       <span id="pwCheck" class="valid-msg">
 	      <c:if test="${not empty joinFailed.password}">
@@ -140,14 +140,14 @@ body {
 		  </c:if>
       </span>
       
-      <input type="text" name="name" id="name" size="10" placeholder="2자 이상 6자 미만의 한글 이름" 
-      		<c:if test="${empty joinFailed.name}">
+      <input type="text" name="name" id="name" placeholder="2자 이상 6자 미만의 한글 이름" 
+      		<c:if test="${not empty joinFailed.name}">
 		  		value="${joinForm.name}"	
 		 	</c:if>
       required/>
       
       <span id="nameCheck" class="valid-msg">
-	      <c:if test="${not empty joinFailed.name}">
+	      <c:if test="${not empty joinFailed.text}">
 		   	2자 이상 6자 미만의 한글 이름
 		  </c:if>
       </span>

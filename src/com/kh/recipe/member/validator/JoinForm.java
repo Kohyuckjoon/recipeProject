@@ -49,7 +49,7 @@ public class JoinForm {
 			res = false;
 		}
 		
-		vaild = Pattern.matches("^[가-힣]{2,5}$", name);
+		vaild = Pattern.matches("/^[가-힣]{2,5}$/", name);
 		if (!vaild) {
 			failedAttribute.put("name", name);
 			res = false;
