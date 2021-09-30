@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.recipe.common.exception.PageNotFoundException;
 import com.kh.recipe.dietHealth.service.DietHealthService;
 
-@WebServlet("/searchResult/*")
+@WebServlet("/dietHealth/searchResult/*")
 public class DiethealthController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DietHealthService dietHealthService = new DietHealthService();
@@ -33,28 +33,32 @@ public class DiethealthController extends HttpServlet {
 			checkBox(request,response);
 			break;
 			
+		case "clickedPage":
+			clickedPage(request, response);
+			break;
 			
-			
-			
-			
-		
-
 		default: throw new PageNotFoundException();
 		}
+		
 	}
 	
-
-	private void checkBox(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void clickedPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/mainPage").forward(request, response);
 		
 	}
 
+	private void checkBox(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+	}
 
 	private void searchResult(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//체크박스 입력을 받아서,
 		//필요한 칼로리, 나트륨, 지방, 단백질을 입력 받아서
-		//sql 디벨로퍼에 있는 정보중에 부합하는것들을 
+		//sql 디벨로퍼에 있는 정보중에 부합하는것들을 가져와야함
+		
+		
 		request.getRequestDispatcher("/dietHealth/searchResult").forward(request, response);
 	}
 

@@ -48,7 +48,7 @@ height: 100px;
 	
 	
 	<div class="content"> 
-	<h2 class="tit">게시판 상세 글</h2>
+	<div class="tit">게시판 상세 글</div>
 	
 		<div class="info">
 		<span>번호 : <c:out value="${datas.board.no}"/></span>
@@ -73,8 +73,9 @@ height: 100px;
 </div>
 
  <div class="btn_section">
-               <button onclick = "location.href = '/board/board-update?">수정하기</button>
-               <button>삭제하기</button>
+
+               <button onclick = "location.href = '/board/board-update?no={board.no}">수정하기</button>
+    	<!-- 		<button onclick = "location.href = '/board/board-update?no={board.no}">삭제하기</button> -->
                <button onclick = "location.href = '/board/board-list'">목록</button>
                    
       </div>                      

@@ -53,25 +53,34 @@ public class MyPageController extends HttpServlet {
 	private void myScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Member member = (Member) request.getSession().getAttribute("authentication");
-
+		
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
+		
 		Scrape scrape = new Scrape();
 		scrape.setUserId(member.getUserId());
 		String userId = scrape.getUserId();
-
+		
 		List<Recipe> myRecipes = new ArrayList<Recipe>();
 		myRecipes = myPageService.selectMyRecipe(userId);
-		
-		System.out.println(myRecipes);
 		
 		request.setAttribute("myRecipes", myRecipes);
 
 		request.getRequestDispatcher("/myPage/myScrape").forward(request, response);
+		
 		
 	}
 
 	private void myReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Member member = (Member) request.getSession().getAttribute("authentication");
+		
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		
 		Review review = new Review();
 		review.setUserId(member.getUserId());
