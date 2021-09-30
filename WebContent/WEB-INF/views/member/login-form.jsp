@@ -97,11 +97,11 @@
   color: #EF3B3A;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
+  background: #ccdce7; /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);
   background: -moz-linear-gradient(right, #76b852, #8DC26F);
   background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+  background: linear-gradient(to left, #ccdce7, #ccdce7);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
@@ -120,7 +120,7 @@ body {
 			
 			<input type="text" name="userId" id="userId" placeholder="ID"/>
 		
-			<input type="password" name="password" id="password" placeholder="password"/>
+			<input type="password" name="password" id="password" placeholder="Password"/>
 			
 			<button>로그인 하기</button>
 			</form>
@@ -134,9 +134,10 @@ body {
 	 	</div>
 	</div>
 	</c:if>
-<c:if test="${not empty authentication}">
-<c:redirect  url="/myPage/myPage"/>
-</c:if>
+	
+	<c:if test="${not empty authentication}">
+	<c:redirect  url="/myPage/myPage"/>
+	</c:if>
 
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
