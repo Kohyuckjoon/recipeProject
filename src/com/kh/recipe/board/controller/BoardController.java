@@ -71,8 +71,10 @@ public class BoardController extends HttpServlet {
 
 
 	private void viewCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/board/board-list").forward(request, response);
+		
+		int no = Integer.parseInt(request.getParameter("no"));
+		boardService.updateViewCount(no);
+		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
 
 	private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
