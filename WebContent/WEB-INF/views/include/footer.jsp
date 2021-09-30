@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../resources/css/include/foot.css" rel="stylesheet"  type="text/css">
+<link href="../resources/css/include/footer.css" rel="stylesheet"  type="text/css">
 <title>Recipe</title>
 </head>
 <body>

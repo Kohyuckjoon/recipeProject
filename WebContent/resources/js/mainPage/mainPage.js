@@ -1,9 +1,56 @@
 (() => {
 	
-		let numberForPaging = (totalPage, viewPageNumbers, currentPage) => {
+	/* 메인페이지 레시피 화면 구현 자바스크립트*/
+	console.dir("sPN: "+ sPN);
+	console.dir("시작 인덱스 = 4*9*"+sPN+"-36: "+ (sPN*4*9-36));
+	
+	for(let i = 0; i < 9; i++){
+	
+		let rowDiv = document.createElement('div');
+		rowDiv.classList.add('row');
+		document.querySelector(".body").appendChild(rowDiv);
+		let numForRecipe = (sPN*36-36)+i*4
+		console.dir("");
+		
+		for(let j = numForRecipe; j < numForRecipe+4; j++){
+			console.dir(j);
+			let urDiv = document.createElement('div');
+			urDiv.classList.add('upper-recipe');
+			rowDiv.appendChild(urDiv);
+		
+			let imgDiv = document.createElement('img');
+			imgDiv.classList.add('recipe-pic');
+			let imgSrc = document.createAttribute("src");
+			imgSrc.value = recipeImg[j]
+			imgDiv.setAttributeNode(imgSrc);
+			urDiv.appendChild(imgDiv);
+		
+			let textAreaDiv = document.createElement('div');
+			textAreaDiv.classList.add('recipe-text');
+			urDiv.appendChild(textAreaDiv);
+		
+			let foodTypeDiv = document.createElement('div');
+			foodTypeDiv.classList.add('food-type');
+			foodTypeDiv.append(recipeType[j]);
+			textAreaDiv.appendChild(foodTypeDiv);
+		
+			let foodNameDiv = document.createElement('div');
+			foodNameDiv.classList.add('food-name');
+			foodNameDiv.append(recipeName[j]);
+			textAreaDiv.appendChild(foodNameDiv);
+		
+			let foodStarDiv = document.createElement('div');
+			foodStarDiv.classList.add('food-star');
+			foodStarDiv.append("★★★★★");
+			textAreaDiv.appendChild(foodStarDiv);
+		}
+	}
+	
+	/* 페이징 구현 자바스크립트*/
+	let numberForPaging = (totalPage, viewPageNumbers, currentPage) => {
 		
 		this.totalPage = totalPage;
-		// 1000/36 = 27.7
+		// 1315/36 = 36.5
 		this.currentPage = currentPage;
 		this.viewPageNumbers = viewPageNumbers;
 		let remainder = currentPage % viewPageNumbers;
@@ -30,13 +77,13 @@
 	}
 	
 	let paging = null;
-	let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
+	
 	
 	
 	if(isNaN(sPN) == true) {
-		paging = numberForPaging(28, 10, 1)
+		paging = numberForPaging(37, 10, 1)
 	} else {
-		paging = numberForPaging(28, 10, sPN)
+		paging = numberForPaging(37, 10, sPN)
 	}
 	
 	for(let i = paging.firstPagerNum; i < paging.lastPagerNum + 1; i++){
@@ -50,8 +97,79 @@
 			location.href="/mainPage/clickedPage";
 		});
 		
+		if (i != sPN) {
+			document.querySelector('.page-' + i).addEventListener('mouseover',() =>{
+				let mouseOnPage = document.querySelector('.page-'+i)
+				let insertColorIntoMouseOnPage = document.createAttribute("style");
+				insertColorIntoMouseOnPage.value = "border-bottom:1px solid black";
+				mouseOnPage.setAttributeNode(insertColorIntoMouseOnPage);
+			});
+			
+			document.querySelector('.page-' + i).addEventListener('mouseout',() =>{
+				let mouseOnPage = document.querySelector('.page-'+i)
+				let insertColorIntoMouseOnPage = document.createAttribute("style");
+				mouseOnPage.setAttributeNode(insertColorIntoMouseOnPage);
+			});
+		} 
+		
 		
 	}
+	
+	document.querySelector('.prevPage').addEventListener('click',() =>{
+		
+		if (sPN == 1) {
+			sPN = 1
+		} else {
+			sPN -= 1;
+		}
+		
+		sessionStorage.setItem('sessionPageNumber', sPN);
+		location.href="/mainPage/clickedPage";
+	});
+	
+	document.querySelector('.nextPage').addEventListener('click',() =>{
+		
+		if (sPN == 37) {
+			sPN = 37
+		} else {
+			sPN += 1;
+		}
+		
+		sessionStorage.setItem('sessionPageNumber', sPN);
+		location.href="/mainPage/clickedPage";
+	});
+	
+	document.querySelector('.prevPrevPage').addEventListener('click',() =>{
+		
+		if (sPN <= 10) {
+			sPN = 1
+		} else if(sPN%10 == 0){
+			sPN -= 19;
+		} else{
+			sPN = sPN - (9 + sPN%10);
+		}
+		
+		sessionStorage.setItem('sessionPageNumber', sPN);
+		location.href="/mainPage/clickedPage";
+	});
+	
+	document.querySelector('.nextNextPage').addEventListener('click',() =>{
+		
+		if (sPN >= 31) {
+			sPN = 37
+		} else if(sPN%10 == 0){
+			sPN += 1;
+		} else{
+			sPN = sPN + (11 - sPN%10);
+		}
+		sessionStorage.setItem('sessionPageNumber', sPN);
+		location.href="/mainPage/clickedPage";
+	}); 
+	
+	let currentPage = document.querySelector('.page-'+sPN)
+	let insertColorIntoCurrentPage = document.createAttribute("style");
+	insertColorIntoCurrentPage.value = "background-color:lightblue";
+	currentPage.setAttributeNode(insertColorIntoCurrentPage);
 
 	
 })();

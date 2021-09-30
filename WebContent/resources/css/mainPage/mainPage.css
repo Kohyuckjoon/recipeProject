@@ -61,7 +61,6 @@ html{
 	margin-top: 100px;
 }
 
-/* 첫번재줄 */
 .row {
 	height: 400px;
 	display: flex;
@@ -103,12 +102,13 @@ html{
 
 /* 페이지 넘버 */
 
-.page{
+.pager{
 	margin-top: 30px;
-	margin-left: 530px
+	margin-left: 596px
+	/* (1568-376)/2 */
 }
 
-.page td{
+.pager td{
 	font-size: 20px;
 	padding: 5px;
 	background-color: white;	
@@ -125,16 +125,4 @@ html{
 	padding: 0px;
 	background-color:#ccdce7;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

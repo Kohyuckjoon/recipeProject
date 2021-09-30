@@ -4,156 +4,94 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="../resources/css/mainPage.css" rel="stylesheet"  type="text/css">
+<link href="../resources/css/mainPage/mainPage.css" rel="stylesheet"  type="text/css">
 </head>
 <body>
 	
-	<!-- 여기서부터 헤드 -->
-	
+	<!-- 헤더 불러옴 -->
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 	
-	
-
-	<!-- ul과 li로 넣어도 댐 -->
+	<!-- 싸이드바 -->
+	<!-- 애는 파라미터 바꿀일이 없어서 JSTL 사용함 -->
 	<div class="sideBar">
-
 		<div class="sideBar-title">Best Recipes</div>
 		<div class="sideBar-body">
-				<c:forEach var="recipe" items="${Recipes}" begin= "31" end="36">
-					<div class="best-recipe">
-						<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
-						<div class="best-recipe-text">
-							<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
-							<div class="food-star">★★★★★</div>
-						</div>
+			<c:forEach var="recipe" items="${Recipes}" begin= "31" end="36">
+				<div class="best-recipe">
+					<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
+					<div class="best-recipe-text">
+						<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
+						<div class="food-star">★★★★★</div>
 					</div>
-				</c:forEach>
-
+				</div>
+			</c:forEach>
 		</div>
-
 	</div>
 	
+	
+	
 	<!-- 여기서부터 바디 -->
-
+	
+	<!-- JAVA(server)단 session은 JavaScript(client)단에서 변경 불가. controller를 타야 변경 가능. -->
+	<!-- controller를 페이지 수만큼 늘리는건 좀 무식한짓 같았음 -->
+	<!-- 따라서 JSTL로 구현했던 페이지를 JavaScript로 갈아엎음 -->
+	<!-- JSTL은 JavaScript의 array에 값을 넣는데만 쓰임-->
+	<!-- 그리고 하단 페이저의 숫자 클릭시 sPN(Session Page Number)이라는 세션값이 설정되고-->
+	<!-- 그 값을 변수로 가져와서 페이지 설정-->
+	
+	<!-- body class의 div에 JavaScript로 설정한 노드들이 붙음-->
+	<!-- JSTL 제외하고 다 JavaScript 파일로 빼놓음-->
+	
 	<div class="body">
-
-
-
-		<%
-		int begin = (int) session.getAttribute("sessionPageNumber") * 36 - 35;
-		int end = (int) session.getAttribute("sessionPageNumber") * 36 - 32;
-		%>
-
-		<c:forEach begin="0" end="8">
-
-			<div class="row">
-				
-			</div>
-
-			<%begin += 4; end += 4; %>
-
-		</c:forEach>
-
-
+			
 	</div>
 	
 	<script type="text/javascript">
-	let recipeDetail = new Array();
 	
+	let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
 	
+	if(isNaN(sPN) == true) {
+		sPN = 1;
+	} 
 	
-	<c:forEach var="recipe" items="${Recipes}" begin="<%=begin%>" end="<%=end%>">
-		recipeDetail.push("${recipe.rcpNm}");
+	let recipeIdx = new Array();
+	let recipeImg = new Array();
+	let recipeType = new Array();
+	let recipeName = new Array();
+	
+	<c:forEach var="recipe" items="${Recipes}">
+		recipeIdx.push('${recipe.rcpSeq}');
+		recipeImg.push('${recipe.attFileNoMk}');
+		recipeType.push('${recipe.rcpPat2}');
+		recipeName.push('${recipe.rcpNm}');
 	</c:forEach>
-	 
-	console.dir(recipeDetail);
+	
 	</script>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- 페이지 이동 기능 -->
-	<div class = "page">
+
+	<!-- 페이저 구현 HTML-->
+	<!-- 물론 자바스크립트 코드는 따로 뺴놓음 -->
+	<div class = "pager">
 		<table>
 			<tr>
-				<td class = "arrow" class = "firstPage"><i class="fas fa-angle-double-left"></i></td>
+				<td class = "arrow prevPrevPage"><i class="fas fa-angle-double-left"></i></td>
 				<td class = "blank"></td>
-				<td class = "arrow" class = "prevPage"><i class="fas fa-angle-left"></i></td>
+				<td class = "arrow prevPage"><i class="fas fa-angle-left"></i></td>
 				<td class = "blank"> </td>
 				<td class = "blank num"> </td>
-				<td class = "arrow" class = "nextPage"><i class="fas fa-angle-right"></i></td>
+				<td class = "arrow nextPage"><i class="fas fa-angle-right"></i></td>
 				<td class = "blank"></td>
-				<td class = "arrow" class = "lastPage"><i class="fas fa-angle-double-right"></i></td>
+				<td class = "arrow nextNextPage"><i class="fas fa-angle-double-right"></i></td>
 			</tr>
 		</table>
 	</div>
 	
-	<script type="text/javascript">
-		let numberForPaging = (totalPage, viewPageNumbers, currentPage) => {
-		
-		this.totalPage = totalPage;
-		// 1000/36 = 27.7
-		this.currentPage = currentPage;
-		this.viewPageNumbers = viewPageNumbers;
-		let remainder = currentPage % viewPageNumbers;
-		let firstPagerNum = currentPage - remainder + 1;
-		let lastPagerNum = currentPage - remainder + viewPageNumbers;
-		
-		if(remainder == 0){
-			firstPagerNum -= 10;
-			lastPagerNum -= 10;
-		}
-		
-		if(this.totalPage < lastPagerNum ){
-			lastPagerNum = this.totalPage; 
-		}
-		
-		return{
-			totalPage,
-			currentPage,
-			viewPageNumbers,
-			firstPagerNum,
-			lastPagerNum
-		}
-		
-	}
 	
-	let paging = null;
-	let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
+	<!-- footer 불러옴-->
 	
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 	
-	if(isNaN(sPN) == true) {
-		paging = numberForPaging(28, 10, 1)
-	} else {
-		paging = numberForPaging(28, 10, sPN)
-	}
-	
-	for(let i = paging.firstPagerNum; i < paging.lastPagerNum + 1; i++){
-		let pageNumber = document.createElement('td');
-		pageNumber.classList.add('page-' + i);
-		pageNumber.append(i);
-		document.querySelector('.num').before(pageNumber);
-		
-		document.querySelector('.page-' + i).addEventListener('click',() =>{
-			sessionStorage.setItem('sessionPageNumber', i );
-			location.href="/mainPage/clickedPage";
-		});
-		
-	}
-	</script>
-	
-	<!-- 여기부턴 foot -->
-	
-	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
-	
-	<!-- <script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script> -->
+	<script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script>
 
 </body>
 </html>

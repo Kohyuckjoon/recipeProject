@@ -59,21 +59,6 @@
 	</div>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<!-- 페이지 이동 기능 -->
 	<div class = "page">
 		<table>
@@ -145,7 +130,7 @@
 	
 	<!-- 여기부턴 foot -->
 	
-	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 	
 	<!-- <script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script> -->
 
