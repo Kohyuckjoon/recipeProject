@@ -19,10 +19,6 @@ import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 
-
-/*rcp_nm 크기 너무 작아서 키움*/
-/*ORA-12899: "ADMIN"."RECIPE"."RCP_PARTS_DTLS" 열에 대한 값이 너무 큼(실제: 584, 최대값: 500)*/
-
 public class MainPageDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
@@ -48,8 +44,7 @@ public class MainPageDao {
 			}
 
 		}catch (Exception e) {
-			e.printStackTrace();
-			/* throw new HandlableException(ErrorCode.API_LODING_FAIL); */
+			throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR);
 		}finally {
 			template.close(rset,pstm);
 		}
@@ -65,22 +60,22 @@ public class MainPageDao {
 		String query = "insert into recipe(rcp_seq, rcp_nm, rcp_way2, rcp_pat2, info_eng, info_car, info_pro, info_fat, info_na, att_file_no_main, att_file_no_mk, rcp_parts_dtls, manual01, manual02, manual03, manual04, manual05, manual06, manual07, manual08, manual09, manual10, manual11, manual12, manual13, manual14, manual15, manual16, manual17, manual18, manual19, manual20) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";                                                                                      
 		int res = 0;
 		
-		
-		
 		try {
-			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/44/44");
+			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/401/500");
 			BufferedReader br;
 			br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			value = br.readLine();
 
 			JSONParser parser = new JSONParser();
+			
 			JSONObject object = (JSONObject) parser.parse(value);
 			JSONObject COOKRCP01 = (JSONObject) object.get("COOKRCP01");
-			JSONArray recipeArray = (JSONArray) COOKRCP01.get("row");
-			
+			JSONArray recipeArray = (JSONArray) COOKRCP01.get("row"); 
+					   
 			pstm = conn.prepareStatement(query);
 			
 			for (int i = 0; i < recipeArray.size(); i++){
+				
 				Recipe recipe = new Recipe();
 				
 				recipeDetail = (JSONObject) recipeArray.get(i);
@@ -120,8 +115,6 @@ public class MainPageDao {
 				recipe.setManual19(recipeDetail.get("MANUAL19").toString());
 				recipe.setManual20(recipeDetail.get("MANUAL20").toString());
 
-				
-				
 				pstm.setInt(1, recipe.getRcpSeq());
 				pstm.setString(2, recipe.getRcpNm());
 				pstm.setString(3, recipe.getRcpWay2());
@@ -156,24 +149,32 @@ public class MainPageDao {
 				pstm.setString(32, recipe.getManual20());
 
 				res = pstm.executeUpdate();
+				
 			}
 			
 			template.commit(conn);
 		} catch (Exception e) {
 			e.printStackTrace();
-			/* throw new HandlableException(ErrorCode.API_LODING_FAIL); */
+			throw new HandlableException(ErrorCode.API_LODING_FAIL);
 		}finally {
 			template.close(pstm);
 		}
 		return res;
 	}
-	
+
 	public String roundOff(String primeNum) {
 		
-		int idx = primeNum.indexOf(".");
-		String roundOff = primeNum.substring(0, idx);
-		 
-		return roundOff;
+		String result = null;
+		boolean hasDecimalPoint = primeNum.contains(".");
+		
+		if (hasDecimalPoint) {
+			int idx = primeNum.indexOf(".");
+			result = primeNum.substring(0, idx);
+		} else {
+			result = primeNum;
+		} 
+		
+		return result;
 		
 	}
 	

@@ -37,37 +37,32 @@
 
 	<div class="body">
 
-
-
 		<%
 		int begin = (int) session.getAttribute("sessionPageNumber") * 36 - 35;
 		int end = (int) session.getAttribute("sessionPageNumber") * 36 - 32;
 		%>
-
 		<c:forEach begin="0" end="8">
-
 			<div class="row">
-				
+				<c:forEach var="recipe" items="${Recipes}" begin="<%=begin%>" end="<%=end%>">
+					<div class="upper-recipe">
+						<img src="${recipe.attFileNoMk}" class="recipe-pic">
+						<div class="recipe-text">
+							<div class="food-type">${recipe.rcpPat2}</div>
+							<div class="food-name">${recipe.rcpNm}</div>
+							<span class="food-star">★★★★★</span>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
-
 			<%begin += 4; end += 4; %>
-
 		</c:forEach>
-
-
 	</div>
 	
-	<script type="text/javascript">
-	let recipeDetail = new Array();
 	
 	
 	
-	<c:forEach var="recipe" items="${Recipes}" begin="<%=begin%>" end="<%=end%>">
-		recipeDetail.push("${recipe.rcpNm}");
-	</c:forEach>
 	
-	console.dir(recipeDetail);
-	</script>
+	
 	
 	
 	
@@ -96,7 +91,7 @@
 	</div>
 	
 	<script type="text/javascript">
-		let numberForPaging = (totalPage, viewPageNumbers, currentPage) => {
+		var numberForPaging = (totalPage, viewPageNumbers, currentPage) => {
 		
 		this.totalPage = totalPage;
 		// 1000/36 = 27.7
@@ -145,7 +140,6 @@
 			sessionStorage.setItem('sessionPageNumber', i );
 			location.href="/mainPage/clickedPage";
 		});
-		
 	}
 	</script>
 	
