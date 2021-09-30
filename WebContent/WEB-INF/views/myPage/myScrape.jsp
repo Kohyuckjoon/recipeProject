@@ -87,13 +87,18 @@ html {
 
 		<div class="row">
 			<c:forEach var="myRecipe" items="${myRecipes}">
+				
 				<div class="upper-recipe">
 					<img src="${myRecipe.attFileNoMk}" class="recipe-pic">
 					<div class="recipe-text">
 						<div class="food-type">${myRecipe.rcpPat2}</div>
 						<div class="food-name">${myRecipe.rcpNm}</div>
-						<div class="cancel-btn">			
-						<button onclick="cancel_myRecipe()"><img src="/resources/img/scrape_cancel.png" width="20px" height="20px"></button>
+						<div class="cancel-btn">
+						<form action="" method="get">
+						<button><img src="/resources/img/scrape_cancel.png" width="20px" height="20px"></button>
+						<input type="hidden" name="cancel" value="${myRecipe.rcpSeq }">
+						</form>			
+						
 						</div>					
 					</div>
 				</div>
@@ -104,7 +109,7 @@ html {
 
 function cancel_myRecipe() {
 	 
-	console.log("테스트 중");
+	/* console.log("테스트 중"); */
 
 	
 }

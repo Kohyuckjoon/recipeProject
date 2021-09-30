@@ -45,9 +45,20 @@ public class MyPageController extends HttpServlet {
 		case "myScrape":
 			myScrape(request,response);
 			break;
+		case "Cancel":
+			cancel(request,response);
+			break;	
+			
 		default: throw new PageNotFoundException();
 		
 		}
+	}
+
+	private void cancel(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		System.out.println();
+		
 	}
 
 	private void myScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
