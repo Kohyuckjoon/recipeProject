@@ -16,11 +16,11 @@ public class Kakao_MemberService {
 	private Kakao_MemberDao kakao_MemberDao = new Kakao_MemberDao();
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
-	public Kakao_Member kakaomemberAuthenticate(String userId, String password) {
+	public Kakao_Member kakaomemberAuthenticate(String userId) {
 		Connection conn = template.getConnection();
 		Kakao_Member kakao_member = null;
 		try {
-			kakao_member = kakao_MemberDao.kakaomemberAuthenticate(userId, password, conn);
+			kakao_member = kakao_MemberDao.kakaomemberAuthenticate(userId, conn);
 			
 		}finally {
 			template.close(conn);

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Kakao_Member {
 
 	 private String userId;
-	 private String userNickName;
+	 private String password;
 	 private String userName;
 	 private String userEmail;
 	 private String phone;
@@ -16,11 +16,11 @@ public class Kakao_Member {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserNickName() {
-		return userNickName;
+	public String getPassword() {
+		return password;
 	}
-	public void setUserNickName(String userNickName) {
-		this.userNickName = userNickName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getUserName() {
 		return userName;
@@ -48,9 +48,10 @@ public class Kakao_Member {
 	}
 	@Override
 	public String toString() {
-		return "Kakao_Member [userId=" + userId + ", userNickName=" + userNickName + ", userName=" + userName
-				+ ", userEmail=" + userEmail + ", phone=" + phone + ", birth=" + birth + "]";
+		return "Kakao_Member [userId=" + userId + ", password=" + password + ", userName=" + userName + ", userEmail="
+				+ userEmail + ", phone=" + phone + ", birth=" + birth + "]";
 	}
+	
 	
 
 	 
