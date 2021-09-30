@@ -50,6 +50,8 @@ public class BoardService {
 		
 		return res;
 	}
+	
+	
 
 	public Map<String, Object> updateBoard(int no) { //수정
 		Connection conn = template.getConnection();

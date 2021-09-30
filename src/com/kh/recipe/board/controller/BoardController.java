@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.recipe.board.model.dao.BoardDao;
 import com.kh.recipe.board.model.dto.Board;
 import com.kh.recipe.board.model.service.BoardService;
 import com.kh.recipe.common.exception.PageNotFoundException;
@@ -50,11 +51,17 @@ public class BoardController extends HttpServlet {
 		case "board-detail":
 			boardDetail(request,response);
 			break;
+		
 		case "board-update":
 			boardUpdate(request,response);
 			break;
+		
 		case "board-delete":
 			boardDelete(request,response);
+			break;
+		case "viewCount":
+			/* boardList(request,response); */
+			viewCount(request,response);
 			break;
 		default:throw new PageNotFoundException();
 		
@@ -62,6 +69,11 @@ public class BoardController extends HttpServlet {
 	}
 
 
+
+	private void viewCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/board/board-list").forward(request, response);
+	}
 
 	private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -102,7 +114,7 @@ public class BoardController extends HttpServlet {
 		
 		//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
-		
+	
 		request.setAttribute("datas", datas);
 		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
