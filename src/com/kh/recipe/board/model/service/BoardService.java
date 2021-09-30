@@ -34,7 +34,7 @@ public class BoardService {
 		}
 	}
 
-	public Map<String, Object> selectBoardDetail(int no) { //게시글 하나씩
+	public Map<String, Object> selectBoardDetail(String no) { //게시글 하나씩
 		
 		Connection conn = template.getConnection();
 		Map<String,Object> res = new HashMap<String, Object>();
@@ -53,7 +53,7 @@ public class BoardService {
 	
 	
 
-	public Map<String, Object> updateBoard(int no) { //수정
+	public Map<String, Object> updateBoard(String no) { //수정
 		Connection conn = template.getConnection();
 		Map<String,Object> res = new HashMap<String, Object>();
 		
@@ -83,7 +83,7 @@ public class BoardService {
 		return boardList;
 	}
 
-	public Map<String, Object> deleteBoard(int no) {
+	public Map<String, Object> deleteBoard(String no) {
 		Connection conn = template.getConnection();
 		Map<String,Object> res = new HashMap<String, Object>();
 		
@@ -97,9 +97,9 @@ public class BoardService {
 		return res;
 	}
 
-	public void updateViewCount(int no) {
+	public void updateViewCount(String no) {
 		
-	}
+	} 
 
 	
 
