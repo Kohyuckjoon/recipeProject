@@ -47,12 +47,16 @@ public class MyPageController extends HttpServlet {
 			break;
 		case "cancel":
 			cancel(request,response);
-			break;	
+			break;
+		case "clickedMyScrape":
+			myScrape(request,response);
+			break;
 			
 		default: throw new PageNotFoundException();
 		
 		}
 	}
+
 
 	private void cancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -66,7 +70,7 @@ public class MyPageController extends HttpServlet {
 		
 		System.out.println(rcpSeq);
 		System.out.println(userId);
-		 
+
 		int res = myPageService.cancelScrape(userId, rcpSeq);
 		
 		System.out.println(res);

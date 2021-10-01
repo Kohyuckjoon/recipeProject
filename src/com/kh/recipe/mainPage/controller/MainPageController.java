@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.kh.recipe.common.exception.PageNotFoundException;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 import com.kh.recipe.mainPage.service.MainPageService;
@@ -46,13 +48,11 @@ public class MainPageController extends HttpServlet {
 	}
 	
 	private void mainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.getRequestDispatcher("/mainPage").forward(request, response);	
 		
 	}
 	
 	private void clickedPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.getRequestDispatcher("/mainPage").forward(request, response);	
 	}
 	

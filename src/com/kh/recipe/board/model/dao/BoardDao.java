@@ -49,9 +49,9 @@ public class BoardDao {
 		String sql = "select no,user_id,title,content,reg_date,view_count from board "
 				+ " where no = ?";
 		Board board = null;
-		updateViewCount(conn, no);
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
+		// 업데이트 보드를 왜 여기서 불러오지
 
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -84,17 +84,16 @@ public class BoardDao {
 
 	public int updateViewCount(Connection conn, int no) {
 
-		String sql = "update board set view_count = view_count + 1 where no =? ";
+		String sql = "update board set view_count = view_count + 1 where no = ? ";
 		PreparedStatement pstm = null;
 		int rset = 0;
-
+		System.out.println(no);
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, no);
 			rset = pstm.executeUpdate();
 
 		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
 			e.printStackTrace();
 		} finally {
 
