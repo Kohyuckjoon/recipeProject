@@ -41,9 +41,9 @@
 	
 	<!-- body class의 div에 JavaScript로 설정한 노드들이 붙음-->
 	<!-- JSTL 제외하고 다 JavaScript 파일로 빼놓음-->
-	
+	 
 	<div class="body">
-			
+			 
 	</div>
 	
 	<script type="text/javascript">
