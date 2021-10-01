@@ -42,8 +42,7 @@ public class BoardDao {
 	}
 
 	public void insertFile(Connection conn, FileDTO fileDTO) {
-		String sql = "insert into file_info(fl_idx,type_idx,"
-				+ "origin_file_name,rename_file_name,save_path)"
+		String sql = "insert into file_info(fl_idx,type_idx," + "origin_file_name,rename_file_name,save_path)"
 				+ "values(sc_file_idx.nextval,BOARD_SEQ.currval,?,?,?)";
 
 		PreparedStatement pstm = null;
@@ -64,26 +63,23 @@ public class BoardDao {
 	}
 
 	// 게시글 하나씩 조회
-	public Board selectBoardDetail(Connection conn, String no) { // 하나씩 조회
+	public Board selectBoardDetail(Connection conn, int no) { // 하나씩 조회
 
-		String sql =  "select no,user_id,title,content,reg_date,view_count"
-				+ " from board "
-				+ " where no = ? and is_del = 0";
+		String sql = "select no,user_id,title,content,reg_date,view_count from board "
+				+ " where no = ?";
 		Board board = null;
 		updateViewCount(conn, no);
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		
-		
 
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, no);
+			pstm.setInt(1, no);
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
 				board = new Board();
-				board.setNo(rset.getString("no"));
+				board.setNo(rset.getInt("no"));
 				board.setUserId(rset.getString("user_id"));
 				board.setTitle(rset.getString("title"));
 				board.setContent(rset.getString("content"));
@@ -101,10 +97,10 @@ public class BoardDao {
 		return board;
 	}
 
-	public List<FileDTO> selectFileDTOs(Connection conn, String no) {
+	// 게시글 파일 보여주기
+	public List<FileDTO> selectFileDTOs(Connection conn, int no) {
 
-		String sql = "select fl_idx,type_idx,origin_file_name,rename_file_name,"
-				+ " save_path,reg_date from file_info "
+		String sql = "select fl_idx,type_idx,origin_file_name,rename_file_name," + " save_path,reg_date from file_info "
 				+ " where type_idx=? and is_del = 0";
 
 		PreparedStatement pstm = null;
@@ -113,7 +109,7 @@ public class BoardDao {
 
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, no);
+			pstm.setInt(1, no);
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
@@ -140,16 +136,16 @@ public class BoardDao {
 
 	// 조회수 증가 viewCount Dao 단
 
-	public String updateViewCount(Connection conn, String no) {
+	public int updateViewCount(Connection conn, int no) {
 
 		String sql = "update board set view_count = view_count + 1 where no =? ";
 		PreparedStatement pstm = null;
-	
-		
+		int rset = 0;
+
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, no);
-			pstm.executeUpdate();
+			pstm.setInt(1, no);
+			rset = pstm.executeUpdate();
 
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
@@ -158,10 +154,11 @@ public class BoardDao {
 
 			template.close(pstm);
 		}
-		return no;
+		return rset;
 	}
 
-	public Board updateBoard(Connection conn, String no) {
+	// 게시글 수정
+	public Board updateBoard(Connection conn, int no) {
 		String sql = "update board set title = ? , content = ?  where no = ?";
 
 		PreparedStatement pstm = null;
@@ -170,7 +167,7 @@ public class BoardDao {
 
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, no);
+			pstm.setInt(1, no);
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
@@ -192,9 +189,9 @@ public class BoardDao {
 
 	}
 
-	public List<FileDTO> updateFileDTOs(Connection conn, String no) {
-		String sql = "update set file_info fl_idx,type_idx,origin_file_name,rename_file_name,"
-				+ " save_path"
+	// 파일 수정기능
+	public List<FileDTO> updateFileDTOs(Connection conn, int no) {
+		String sql = "update set file_info fl_idx,type_idx,origin_file_name,rename_file_name," + " save_path"
 				+ " where type_idx=? and is_del = 0";
 
 		PreparedStatement pstm = null;
@@ -203,7 +200,7 @@ public class BoardDao {
 
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, no);
+			pstm.setInt(1, no);
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
@@ -227,6 +224,7 @@ public class BoardDao {
 		return files;
 	}
 
+	// 리스트로 전체 게시글 목록
 	public List<Board> selectBoardAll(Connection conn) {
 		String sql = "select no,title,user_id,reg_date,view_count from board order by no desc";
 
@@ -243,7 +241,7 @@ public class BoardDao {
 
 				Board board = new Board();
 
-				board.setNo(rset.getString("no"));
+				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
 				board.setUserId(rset.getString("user_id"));
 				board.setRegDate(rset.getDate("reg_date"));
@@ -261,11 +259,10 @@ public class BoardDao {
 
 	}
 
+	// 이건 검색창 구현하려고 해놓은거
 	public List<Board> search(Connection conn, String searchoption, String searchkeyword) {
-		String sql =  "select no,user_id,title,content,reg_date,view_count"
-				+ " from board "
-				+ " where lower("+searchoption+")= lower(?)"
-				+ "order by no desc";
+		String sql = "select no,user_id,title,content,reg_date,view_count" + " from board " + " where lower("
+				+ searchoption + ")= lower(?)" + "order by no desc";
 
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -273,16 +270,16 @@ public class BoardDao {
 
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, "%"+searchkeyword+"%");
+			pstm.setString(1, "%" + searchkeyword + "%");
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				String no = rset.getString("no");
+				int no = rset.getInt("no");
 				String title = rset.getString("title");
 				String userId = rset.getString("userId");
 				Date regDate = rset.getDate("regDate");
 				int viewCount = rset.getInt("viewCount");
-				list.add(null); //수정하기****
+				list.add(null); // 수정하기****
 			}
 
 		} catch (SQLException e) {
@@ -295,7 +292,21 @@ public class BoardDao {
 		return list;
 	}
 
-	
-	
+	/*
+	 * public int deleteBoard(Connection conn, int num) {
+	 * 
+	 * String deleteNum = null; String sql = "delete from board where no =?";
+	 * PreparedStatement pstm = null; ResultSet rset = null;
+	 * 
+	 * deleteNum = Integer.toString(num); try { pstm = conn.prepareStatement(sql);
+	 * pstm.setString(1, no); pstm.executeUpdate();
+	 * 
+	 * 
+	 * } catch (SQLException e) { throw new DataAccessException(e);
+	 * e.printStackTrace(); } finally { template.close(rset, pstm); } return ;
+	 * 
+	 * 
+	 * }
+	 */
 
 }

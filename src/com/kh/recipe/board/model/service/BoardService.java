@@ -36,7 +36,7 @@ public class BoardService {
 		}
 	}
 
-	public Map<String, Object> selectBoardDetail(String no) { //게시글 하나씩
+	public Map<String, Object> selectBoardDetail(int no) { //게시글 하나씩
 		
 		Connection conn = template.getConnection();
 		Map<String,Object> res = new HashMap<String, Object>();
@@ -55,7 +55,7 @@ public class BoardService {
 	
 	
 
-	public Map<String, Object> updateBoard(String no) { //수정
+	public Map<String, Object> updateBoard(int no) { //수정
 		Connection conn = template.getConnection();
 		Map<String,Object> res = new HashMap<String, Object>();
 		
@@ -85,17 +85,17 @@ public class BoardService {
 		return boardList;
 	}
 
-	
 
-	
 
-	public void deleteBoard(String no) {
-		
-		
-		
-	}
+	/*
+	 * public int deleteBoard(int no) { Connection conn =template.getConnection();
+	 * int deleteNum = 0; deleteNum = boardDao.deleteBoard(conn,no); return
+	 * deleteNum;
+	 * 
+	 * }
+	 */
 
-	public void updateViewCount(String no) {
+	public void updateViewCount(int no) {
 		// TODO Auto-generated method stub
 		Connection conn = template.getConnection();
 	}
