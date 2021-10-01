@@ -6,7 +6,7 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link href="../resources/css/myPage/myScrape.css" rel="stylesheet"  type="text/css">
-
+ 
 </head>
 <body>
 
