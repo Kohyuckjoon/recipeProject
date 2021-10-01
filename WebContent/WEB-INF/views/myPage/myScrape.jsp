@@ -12,18 +12,15 @@ html {
 	background-color: #ccdce7;
 	margin-left: 70px;
 }
-
 .top {
 	height: 100px;
 }
-
 .body {
 	width: 1600px;
 	display: inline-flex;
 	flex-direction: column;
 	margin-top: 100px;
-}
-
+} 
 .row {
 	height: 400px;
 	display: flex;
@@ -31,45 +28,37 @@ html {
 	font-weight: bold;
 	text-align: center;
 }
-
 .row>* {
 	margin-right: 2em;
 }
-
 .upper-recipe {
 	height: 70%;
-	width: 20%;
+	width: 100%;
 	background-color: white;
 }
-
 .recipe-pic {
 	margin-bottom: 1em;
 	float: left;
 	height: 80%;
 	width: 100%;
 }
-
 .recipe-text>div {
 	margin-bottom: 0.3px;
 	font-weight: bold;
 	font-family: 'Single Day', cursive;
 }
-
 .food-type {
 	font-size: 12px;
 	color: orange;
 	margin-bottom: 20px;
 }
-
 .food-name{
 	display: inline-block;
 }
-
 .cancel-btn{
 	display: inline-block;
 	float: right;
 }
-
 </style>
 </head>
 <body>
@@ -81,8 +70,6 @@ html {
 	<!-- myPage 바디 -->
 
 	<div class="top"></div>
-
-		
 	
 
 		<div class="row">
@@ -93,32 +80,26 @@ html {
 					<div class="recipe-text">
 						<div class="food-type">${myRecipe.rcpPat2}</div>
 						<div class="food-name">${myRecipe.rcpNm}</div>
-						<div class="cancel-btn">
-						<form action="" method="get">
-						<button><img src="/resources/img/scrape_cancel.png" width="20px" height="20px"></button>
-						<input type="hidden" name="cancel" value="${myRecipe.rcpSeq }">
-						</form>			
-						
-						</div>					
+						<div class="cancel-btn">	
+							
+							<form action="/myPage/cancel" method="get">
+								<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq }" />
+								<input type="image" src="/resources/img/scrape_cancel.png" width="20px" height="20px" />
+							</form>		
+								
+						</div>
+						<!-- <button><img src="/resources/img/scrape_cancel.png" width="20px" height="20px"></button> -->					
 					</div>
 				</div>
+
 			</c:forEach>
 		</div>
-
-<script type="text/javascript">
-
-function cancel_myRecipe() {
-	 
-	/* console.log("테스트 중"); */
-
-	
-}
-
-</script>
 
 	
 
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
+	
+	<script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script>
 
 </body>
 </html>

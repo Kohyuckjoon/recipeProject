@@ -189,7 +189,7 @@ public class MemberController extends HttpServlet {
 		memberService.authenticateByEmail(member,persistToken);
 		
 		request.setAttribute("msg", "이메일이 발송 되었습니다.");
-		request.setAttribute("url", "/mainPage/1");
+		request.setAttribute("url", "/mainPage/mainPage");
 		request.getRequestDispatcher("/error/result").forward(request, response);
 	}
 	
@@ -203,7 +203,9 @@ public class MemberController extends HttpServlet {
 		session.removeAttribute("persistToken");
 		session.removeAttribute("persistUser");
 		
-		response.sendRedirect("/member/login-form");
+		//response.sendRedirect("/mainPage/mainPage");
+		response.sendRedirect("/mainPage");
+		//request.getRequestDispatcher("/member/join").forward(request, response);
 		
 		/*
 		 * response.sendRedirect("/member/login-form"); String userId =

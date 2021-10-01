@@ -41,26 +41,7 @@ public class BoardDao {
 		}
 	}
 
-	public void insertFile(Connection conn, FileDTO fileDTO) {
-		String sql = "insert into file_info(fl_idx,type_idx," + "origin_file_name,rename_file_name,save_path)"
-				+ "values(sc_file_idx.nextval,BOARD_SEQ.currval,?,?,?)";
-
-		PreparedStatement pstm = null;
-
-		try {
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, fileDTO.getOriginFileName());
-			pstm.setString(2, fileDTO.getRenameFileName());
-			pstm.setString(3, fileDTO.getSavePath());
-
-			pstm.executeUpdate();
-		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
-		} finally {
-			template.close(pstm);
-		}
-	}
+	
 
 	// 게시글 하나씩 조회
 	public Board selectBoardDetail(Connection conn, int no) { // 하나씩 조회
@@ -97,42 +78,7 @@ public class BoardDao {
 		return board;
 	}
 
-	// 게시글 파일 보여주기
-	public List<FileDTO> selectFileDTOs(Connection conn, int no) {
-
-		String sql = "select fl_idx,type_idx,origin_file_name,rename_file_name," + " save_path,reg_date from file_info "
-				+ " where type_idx=? and is_del = 0";
-
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		List<FileDTO> files = new ArrayList<FileDTO>();
-
-		try {
-			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
-			rset = pstm.executeQuery();
-
-			while (rset.next()) {
-				FileDTO file = new FileDTO();
-				file.setFlIdx(rset.getString("fl_idx"));
-				file.setTypeIdx(rset.getString("type_idx"));
-				file.setOriginFileName(rset.getString("origin_file_name"));
-				file.setRenameFileName(rset.getString("rename_file_name"));
-				file.setSavePath(rset.getString("save_path"));
-				file.setRegDate(rset.getDate("reg_date"));
-
-				files.add(file);
-			}
-
-		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
-		} finally {
-			template.close(rset, pstm);
-		}
-
-		return files;
-	}
+	
 
 	// 조회수 증가 viewCount Dao 단
 
@@ -189,40 +135,7 @@ public class BoardDao {
 
 	}
 
-	// 파일 수정기능
-	public List<FileDTO> updateFileDTOs(Connection conn, int no) {
-		String sql = "update set file_info fl_idx,type_idx,origin_file_name,rename_file_name," + " save_path"
-				+ " where type_idx=? and is_del = 0";
-
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		List<FileDTO> files = new ArrayList<FileDTO>();
-
-		try {
-			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
-			rset = pstm.executeQuery();
-
-			while (rset.next()) {
-				FileDTO file = new FileDTO();
-				file.setFlIdx(rset.getString("fl_idx"));
-				file.setTypeIdx(rset.getString("type_idx"));
-				file.setOriginFileName(rset.getString("origin_file_name"));
-				file.setRenameFileName(rset.getString("rename_file_name"));
-				file.setSavePath(rset.getString("save_path"));
-
-				files.add(file);
-			}
-
-		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
-		} finally {
-			template.close(rset, pstm);
-		}
-
-		return files;
-	}
+	
 
 	// 리스트로 전체 게시글 목록
 	public List<Board> selectBoardAll(Connection conn) {

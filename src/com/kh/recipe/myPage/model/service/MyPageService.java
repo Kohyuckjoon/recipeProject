@@ -15,8 +15,6 @@ public class MyPageService {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private MyReviewDao myReviewDao = new MyReviewDao();
-
-
 	private MyScrapeDao myScrapeDao = new MyScrapeDao();
 	
 	public List<Recipe> selectMyRecipe(String userId) {
@@ -47,6 +45,27 @@ public class MyPageService {
 		
 		return myReviews;
 	}
+
+	public int cancelScrape(String userId, String rcpSeq) {
+		
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = myScrapeDao.cancelScrape(userId, rcpSeq, conn);
+			template.commit(conn);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			template.rollback(conn);
+		}
+		
+		return res;
+		
+		
+	}
+
+	
 
 	
 

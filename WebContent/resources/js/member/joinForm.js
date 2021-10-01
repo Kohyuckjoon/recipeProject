@@ -44,9 +44,10 @@
    				document.querySelector('#pwCheck').innerHTML ='영어,숫자,특수문자 조합의 8~14자의 문자열'; 
    			}
 
-			if(!nameReg.test(name.value)){
+			if(!nameReg.test(username.value)){
+				console.dir('>>>>> : ' + username);
    				e.preventDefault();
-   				document.querySelector('#nameCheck').innerHTML ='2자 이상 6자 미만의 한글 이름'; 
+   				document.querySelector('#nameCheck').innerHTML ='2자 이상 6자 미만의 한글 이름js'; 
    			}
    			
    			if(!tellReg.test(phone.value)){

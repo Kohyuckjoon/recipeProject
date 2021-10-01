@@ -1,13 +1,16 @@
 package com.kh.recipe.myPage.model.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.recipe.common.db.JDBCTemplate;
+import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 
 public class MyScrapeDao {
@@ -65,6 +68,32 @@ public class MyScrapeDao {
 			}
 		}
 		return recipe;
+	}
+
+	public int cancelScrape(String userId, String rcpSeq, Connection conn) {
+		Statement stmt = null;
+		int res = 0;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
+			stmt = conn.createStatement();
+			String query = "delete from scrape where user_id = '" + userId + "' " 
+					+ "and rcp_seq = '" + rcpSeq + "'";
+			res = stmt.executeUpdate(query);
+		} catch (ClassNotFoundException | SQLException e) {
+			 throw new DataAccessException(e);
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return res;
 	}
 	
 }

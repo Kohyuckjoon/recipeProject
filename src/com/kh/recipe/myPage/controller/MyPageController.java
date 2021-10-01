@@ -45,7 +45,7 @@ public class MyPageController extends HttpServlet {
 		case "myScrape":
 			myScrape(request,response);
 			break;
-		case "Cancel":
+		case "cancel":
 			cancel(request,response);
 			break;	
 			
@@ -54,10 +54,28 @@ public class MyPageController extends HttpServlet {
 		}
 	}
 
-	private void cancel(HttpServletRequest request, HttpServletResponse response) {
+	private void cancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Member member = (Member) request.getSession().getAttribute("authentication");	
 		
-		System.out.println();
+		String rcpSeq = request.getParameter("rcpSeq");
+		
+		Scrape scrape = new Scrape();
+		scrape.setUserId(member.getUserId());
+		String userId = scrape.getUserId();
+		
+		System.out.println(rcpSeq);
+		System.out.println(userId);
+		
+		int res = myPageService.cancelScrape(userId, rcpSeq);
+		
+		System.out.println(res);
+		
+		if(res!=0) {
+			response.sendRedirect("/myPage/myScrape");
+			
+			return;
+		}
 		
 	}
 
