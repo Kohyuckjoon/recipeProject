@@ -73,7 +73,7 @@ public class MyPageController extends HttpServlet {
 		
 		if(res!=0) {
 			response.sendRedirect("/myPage/myScrape");
-			 
+			
 			return;
 		}
 		
