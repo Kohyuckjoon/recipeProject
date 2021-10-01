@@ -112,7 +112,7 @@ body {
 
 <div class="join-page">
   <div class="form">
-    <form class="register-form" action="/member/join-form" method="post" id="frm_join" >
+    <form class="register-form" action="/member/join" method="post" id="frm_join" >
       <input type="text" name="userId" id="userId" size="10"
       	<c:if test="${empty joinFailed.userId}">
 	           	  	value="${joinForm.userId}"	
@@ -140,7 +140,7 @@ body {
 		  </c:if>
       </span>
       
-      <input type="text" name="name" id="name" placeholder="2자 이상 6자 미만의 한글 이름" 
+      <input type="text" name="name" id="username" placeholder="2자 이상 6자 미만의 한글 이름" 
       		<c:if test="${empty joinFailed.name}">
 		  		value="${joinForm.name}"	
 		 	</c:if>
@@ -148,7 +148,7 @@ body {
       
       <span id="nameCheck" class="valid-msg">
 	      <c:if test="${not empty joinFailed.name}">
-		   	2자 이상 6자 미만의 한글 이름
+		   	2자 이상 6자 미만의 한글 이름span
 		  </c:if>
       </span>
       
@@ -177,9 +177,5 @@ body {
 </div>
 
  <script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
-<script type="text/javascript">
-System.out.println(id,password,name,phone);
-
-</script>
 </body>
 </html>

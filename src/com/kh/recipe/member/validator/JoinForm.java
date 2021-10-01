@@ -82,8 +82,6 @@ public class JoinForm {
 	
 	}
 
-	
-
 	public String getUserId() {
 		return userId;
 	}
@@ -91,7 +89,7 @@ public class JoinForm {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -103,6 +101,10 @@ public class JoinForm {
 	public String getPhone() {
 		return phone;
 	}
+
+	
+
+	
 
 
 	
