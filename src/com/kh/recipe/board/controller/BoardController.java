@@ -60,9 +60,7 @@ public class BoardController extends HttpServlet {
 			//boardDelete(request,response);
 			break;
 		
-		 case "viewCount": 
-			 //viewCount(request,response); 
-			 break;
+		
 		 case "search": 
 			 search(request,response); 
 			 break;
@@ -105,17 +103,7 @@ public class BoardController extends HttpServlet {
 		request.getRequestDispatcher("/board/board-search").forward(request, response);
 	}
 
-	//조회수 
-//	private void viewCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/*
-		 * //게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다. String no =
-		 * request.getParameter("no");
-		 * 
-		 * boardService.updateViewCount(no);
-		 * response.sendRedirect("/board/board-detail");
-		 *
-	}
+
 	//게시물 삭제
 	/*
 	 * private void boardDelete(HttpServletRequest request, HttpServletResponse
@@ -163,10 +151,14 @@ public class BoardController extends HttpServlet {
 	}
 	//게시글 업로드
 	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		 Member member =(Member) request.getSession().getAttribute("authentication");
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		  FileUtil util = new FileUtil(); 
 		  MultiPartParams multiPart = util.fileUpload(request); 
-		  Member member =(Member) request.getSession().getAttribute("authentication");
+		 
 		  
 		  Board board = new Board();
 		  board.setUserId(member.getUserId());
