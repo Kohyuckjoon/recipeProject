@@ -43,7 +43,7 @@
 	<!-- JSTL 제외하고 다 JavaScript 파일로 빼놓음-->
 	 
 	<div class="body">
-			
+			 
 	</div>
 	
 	<script type="text/javascript">
