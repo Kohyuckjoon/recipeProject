@@ -141,7 +141,7 @@ body {
       </span>
       
       <input type="text" name="name" id="name" placeholder="2자 이상 6자 미만의 한글 이름" 
-      		<c:if test="${not empty joinFailed.name}">
+      		<c:if test="${empty joinFailed.name}">
 		  		value="${joinForm.name}"	
 		 	</c:if>
       required/>
@@ -177,7 +177,9 @@ body {
 </div>
 
  <script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
+<script type="text/javascript">
+System.out.println(id,password,name,phone);
 
-
+</script>
 </body>
 </html>

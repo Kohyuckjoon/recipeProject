@@ -46,11 +46,13 @@ public class JoinForm {
 		vaild = Pattern.matches("(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(.{8,})", password);
 		if (!vaild) {
 			failedAttribute.put("password", password);
+			System.out.println(password);
 			res = false;
 		}
 		
-		vaild = Pattern.matches("/^[가-힣]{2,5}$/", name);
+		vaild = Pattern.matches("^[가-힣]{2,5}$", name);
 		if (!vaild) {
+			System.out.println(name);
 			failedAttribute.put("name", name);
 			res = false;
 		}
@@ -60,6 +62,7 @@ public class JoinForm {
 		// 이스케이프문자니까 \하나 더
 		vaild =  Pattern.matches("^\\d{9,11}$", phone);
 		if (!vaild) {
+			System.out.println(phone);
 			failedAttribute.put("phone", phone);
 			res = false;
 		}
