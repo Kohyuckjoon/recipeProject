@@ -92,9 +92,7 @@ html {
 							
 							<form action="/myPage/cancel" method="get">
 								<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq }" />
-								<input type="image" src="/resources/img/scrape_cancel.png" width="20px" height="20px" />
 								<input class="cancel-img" type="image" src="/resources/img/scrape_cancel.png" />
-
 							</form>		
 								
 						</div>
