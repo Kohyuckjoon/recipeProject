@@ -130,7 +130,7 @@
 	
 	<!-- 여기부턴 foot -->
 	
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 	
 	<!-- <script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script> -->
 
