@@ -66,7 +66,7 @@ public class MyPageController extends HttpServlet {
 		
 		System.out.println(rcpSeq);
 		System.out.println(userId);
-		
+		 
 		int res = myPageService.cancelScrape(userId, rcpSeq);
 		
 		System.out.println(res);
