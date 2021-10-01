@@ -173,8 +173,8 @@ public class BoardController extends HttpServlet {
 		  board.setTitle(multiPart.getParameter("title"));
 		  board.setContent(multiPart.getParameter("content"));
 		  
-		  List<FileDTO> files = multiPart.getFilesInfo();
-		  boardService.insertBoard(board,files);
+		
+		  boardService.insertBoard(board);
 		  
 		  response.sendRedirect("/board/board-list"); //게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
 		 

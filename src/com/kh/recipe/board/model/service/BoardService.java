@@ -19,14 +19,12 @@ public class BoardService {
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private BoardDao boardDao = new BoardDao();
 	
-	public void insertBoard(Board board, List<FileDTO> files) { //게시글 작성 폼
+	public void insertBoard(Board board) { //게시글 작성 폼
 		Connection conn = template.getConnection();
 		
 		try {
 			boardDao.insertBoard(conn, board);
-			for (FileDTO fileDTO : files) {
-				boardDao.insertFile(conn,fileDTO);
-			}
+			
 			template.commit(conn);
 		} catch (DataAccessException e) {
 			template.rollback(conn);
@@ -43,9 +41,9 @@ public class BoardService {
 		
 		try {
 			Board board = boardDao.selectBoardDetail(conn,no);
-			List<FileDTO> files = boardDao.selectFileDTOs(conn,no);
+			
 			res.put("board", board);
-			res.put("files", files);
+			
 		} finally {
 			template.close(conn);
 		}
@@ -61,9 +59,9 @@ public class BoardService {
 		
 		try {
 			Board board = boardDao.updateBoard(conn,no);
-			List<FileDTO> files = boardDao.updateFileDTOs(conn,no);
+			
 			res.put("board", board);
-			res.put("files", files);
+			
 		} finally {
 			template.close(conn);
 		}
@@ -95,10 +93,15 @@ public class BoardService {
 	 * }
 	 */
 
-	public void updateViewCount(int no) {
-		// TODO Auto-generated method stub
-		Connection conn = template.getConnection();
-	}
+	/*
+	 * public void updateViewCount(int no) { // TODO Auto-generated method stub
+	 * Connection conn = template.getConnection(); List<Board> boardList = new
+	 * ArrayList<Board>(); try {
+	 * 
+	 * boardList = boardDao.updateViewCount(conn,no);
+	 * 
+	 * } finally { template.close(conn); } return }
+	 */
 
 	public List<Board> search(String searchoption, String searchkeyword) {
 		Connection conn = template.getConnection();

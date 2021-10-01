@@ -62,15 +62,7 @@ height: 100px;
 		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
 		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
 	</div>
-	<div class="info file_info">
-		<c:if test="${not empty datas.files}">
-			<ol>
-				<c:forEach items="${datas.files}" var="file">
-					<li><a href="${file.downloadLink}">${file.originFileName}</a></li>				
-				</c:forEach>
-			</ol>
-		</c:if>
-	</div>
+	
 	<div class="article_content">
 		<pre><c:out value="${datas.board.content}"/></pre>
 	</div>
