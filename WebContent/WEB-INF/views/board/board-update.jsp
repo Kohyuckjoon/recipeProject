@@ -33,13 +33,8 @@ height: 100px;
  background-color: lightblue;
   color:white;
    }
-.content_board{
-   overflow:hidden;
-   width:70%;
-   left:30%;
-}
 
-.btn_down-file{margin-left:1%;   z-index:999;}
+
 .article_content{min-height: 50vh; border-bottom: 1px solid;}
 </style>
 
@@ -99,15 +94,6 @@ height: 100px;
 		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
 	</div>
 	
-	<div class="info file_info">
-		<c:if test="${not empty datas.files}">
-			<ol>
-				<c:forEach items="${datas.files}" var="file">
-					<li><a href="${file.downloadLink}">${file.originFileName}</a></li>				
-				</c:forEach>
-			</ol>
-		</c:if>
-	</div>
 	
 	<div class="article_content">
 		<textarea name="content" required="required" maxlength="250" >${datas.board.content }</textarea>
@@ -116,7 +102,7 @@ height: 100px;
 </div>
 
  <div class="btn_section">
-         <button style="background-color:red; color:white; width:100%">수정완료</button>
+       <input type="submit" value="수정완료">
           <button onclick = "location.href = '/board/board-delete'">게시물 삭제</button>     
           <button onclick = "location.href = '/board/board-list'">목록</button>         
     </div>      

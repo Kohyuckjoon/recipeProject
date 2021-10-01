@@ -44,7 +44,7 @@ height: 100px;
    left:30%;
 }
 
-.btn_down-file{margin-left:1%;   z-index:999;}
+
 .article_content{min-height: 50vh; border-bottom: 1px solid;}
 </style>
 </head>
@@ -71,8 +71,8 @@ height: 100px;
 	
 	<a href="/board/board-list">목록</a>    
 <%-- 	<c:if test="${board.userId == userId }"  >  --%><!--작성자와 수정하는 사람이 같아야 수정 삭제 버튼 보이게  -->
-		 <button onclick = "location.href = '/board/board-delete?no=${board.no}'">[삭제]</button>     
-          <button onclick = "location.href = '/board/board-update?no=${board.no}'">[수정]</button>  
+		 <button onclick = "location.href = '/board/board-delete?no=${datas.board.no}'">[삭제]</button>     
+         <input type="button" value="수정" onclick="location.href='/board/board-update?no=${datas.board.no}'">
 		 
 	<%-- </c:if>   --%>       
           
