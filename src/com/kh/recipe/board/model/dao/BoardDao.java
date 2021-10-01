@@ -51,7 +51,7 @@ public class BoardDao {
 		Board board = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		// 업데이트 보드를 왜 여기서 불러오지
+		
 
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class BoardDao {
 
 	// 조회수 증가 viewCount Dao 단
 
-	public int updateViewCount(Connection conn, int no) {System.out.println("게시글 번호 : " + no);
+	public int updateViewCount(Connection conn, int no) {
 		String sql = "update board set view_count = view_count+1 where no = ? ";
 		PreparedStatement pstm = null;
 		int rset = 0;
@@ -122,8 +122,8 @@ public class BoardDao {
 
 				board.setTitle(rset.getString("title"));
 				board.setContent(rset.getString("content"));
-				board.setUserId(rset.getString("user_id"));
-
+				//board.setUserId(rset.getString("user_id"));
+				
 			}
 			template.commit(conn);
 		} catch (SQLException e) {

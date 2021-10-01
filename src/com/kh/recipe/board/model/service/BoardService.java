@@ -92,6 +92,7 @@ public class BoardService {
 		   
 		  try {
 			  res = boardDao.deleteBoard(conn,no);
+			  template.commit(conn);
 		  }catch (Exception e) {
 			  e.printStackTrace();
 		  }finally { 
@@ -110,6 +111,7 @@ public class BoardService {
 		  
 		  try {
 			  res = boardDao.updateViewCount(conn,no);
+			
 		  }catch (Exception e) {
 			  e.printStackTrace();
 		  }finally { 

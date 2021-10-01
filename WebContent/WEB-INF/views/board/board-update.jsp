@@ -82,7 +82,7 @@ height: 100px;
 	 --%>
 	
 	
-
+<form action="/board/upload" method="post" enctype="multipart/form-data">
 	<div class="content"> 
 	<div class="tit">게시판 글 수정</div>
 	
@@ -106,6 +106,7 @@ height: 100px;
           <button onclick = "location.href = '/board/board-delete'">게시물 삭제</button>     
           <button onclick = "location.href = '/board/board-list'">목록</button>         
     </div>      
+   </form>
 <!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>
 

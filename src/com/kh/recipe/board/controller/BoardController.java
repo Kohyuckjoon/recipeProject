@@ -48,6 +48,9 @@ public class BoardController extends HttpServlet {
 		case "upload":
 			upload(request,response);
 			break;
+		case "updateUpload":
+			updateUpload(request,response);
+			break;
 		case "board-detail":
 			boardDetail(request,response);
 			break;
@@ -91,9 +94,10 @@ public class BoardController extends HttpServlet {
 	 private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 
 	 int no =Integer.parseInt(request.getParameter("no"));
+	
 	 boardService.deleteBoard(no);
 	 
-	 response.sendRedirect("/board/board-delete?no="+no);
+	 response.sendRedirect("/board/board-list");
 	 
 	 }
 	 
@@ -110,7 +114,7 @@ public class BoardController extends HttpServlet {
 				
 				Map<String, Object> datas = boardService.selectBoardDetail(no);
 				request.setAttribute("datas", datas);
-				request.getRequestDispatcher("/board/board-update").forward(request, response);
+				request.getRequestDispatcher("/board/board-list").forward(request,response);
 				/* response.sendRedirect("/board/board-list"); */
 	}
 	//게시물 목록
@@ -134,29 +138,43 @@ public class BoardController extends HttpServlet {
 		request.setAttribute("datas", datas);
 		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
-	//게시글 업로드
-	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	//게시글 수정 업로드
+	private void updateUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		 Member member =(Member) request.getSession().getAttribute("authentication");
-		if(member == null) {
-			response.sendRedirect("/member/login");
-			return;
-		}
+		
 		  FileUtil util = new FileUtil(); 
 		  MultiPartParams multiPart = util.fileUpload(request); 
-		 
-		  
+	
 		  Board board = new Board();
-		  board.setUserId(member.getUserId());
 		  board.setTitle(multiPart.getParameter("title"));
 		  board.setContent(multiPart.getParameter("content"));
-		  
-		
-		  boardService.insertBoard(board);
-		  
+		 
 		  response.sendRedirect("/board/board-list"); //게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
 		 
-		
 	}
+	//게시글 업로드
+		private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+			 Member member =(Member) request.getSession().getAttribute("authentication");
+			 int no  = Integer.parseInt(request.getParameter("no"));
+			if(member == null) {
+				response.sendRedirect("/member/login");
+				return;
+			}
+			  FileUtil util = new FileUtil(); 
+			  MultiPartParams multiPart = util.fileUpload(request); 
+			 
+			  
+			  Board board = new Board();
+			  board.setUserId(member.getUserId());
+			  board.setTitle(multiPart.getParameter("title"));
+			  board.setContent(multiPart.getParameter("content"));
+			  
+			
+			  boardService.insertBoard(board);
+			  response.sendRedirect("/board/board-list"); //게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
+			 
+			
+		}
 
 	private void boardForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.getRequestDispatcher("/board/board-form").forward(request, response);
