@@ -93,15 +93,23 @@ public class BoardService {
 	 * }
 	 */
 
-	/*
-	 * public void updateViewCount(int no) { // TODO Auto-generated method stub
-	 * Connection conn = template.getConnection(); List<Board> boardList = new
-	 * ArrayList<Board>(); try {
-	 * 
-	 * boardList = boardDao.updateViewCount(conn,no);
-	 * 
-	 * } finally { template.close(conn); } return }
-	 */
+	
+	  public int updateViewCount(int no) { // TODO Auto-generated method stub
+		  Connection conn = template.getConnection(); 
+		  int res = 0;
+		  
+		  try {
+			  res = boardDao.updateViewCount(conn,no);
+		  }catch (Exception e) {
+			  e.printStackTrace();
+		  }finally { 
+			  template.close(conn); 
+		  } 
+		  
+		  return res;
+			  
+	  }
+	 
 
 	public List<Board> search(String searchoption, String searchkeyword) {
 		Connection conn = template.getConnection();

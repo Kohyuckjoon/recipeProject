@@ -47,7 +47,6 @@
 	</div>
 	
 	<script type="text/javascript">
-	
 	let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
 	
 	if(isNaN(sPN) == true) {
@@ -64,6 +63,7 @@
 		recipeImg.push('${recipe.attFileNoMk}');
 		recipeType.push('${recipe.rcpPat2}');
 		recipeName.push('${recipe.rcpNm}');
+		
 	</c:forEach>
 	
 	</script>
@@ -92,6 +92,5 @@
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 	
 	<script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script>
-
 </body>
 </html>

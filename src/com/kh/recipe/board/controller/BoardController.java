@@ -153,11 +153,11 @@ public class BoardController extends HttpServlet {
 		
 		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
 		int no =Integer.parseInt(request.getParameter("no"));
-		BoardDao boardDao = null;
+		// 다오를 불러올 필요가 없음
 	
 		//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
-	
+		boardService.updateViewCount(no);
 		request.setAttribute("datas", datas);
 		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
