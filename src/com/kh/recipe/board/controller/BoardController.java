@@ -57,14 +57,17 @@ public class BoardController extends HttpServlet {
 			break;
 		
 		case "board-delete":
-			boardDelete(request,response);
+			//boardDelete(request,response);
 			break;
 		
 		 case "viewCount": 
-			 viewCount(request,response); 
+			 //viewCount(request,response); 
 			 break;
 		 case "search": 
 			 search(request,response); 
+			 break;
+		 case "total": 
+			 total(request,response); 
 			 break;
 		 
 		default:throw new PageNotFoundException();
@@ -72,6 +75,25 @@ public class BoardController extends HttpServlet {
 		}
 	}
 
+
+	private void total(HttpServletRequest request, HttpServletResponse response) {
+		int pageNum = 1;
+		int amount = 10;
+		
+		if(request.getParameter("pageNum") != null && request.getParameter("amount") != null){
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+				amount = Integer.parseInt(request.getParameter("amount"));
+		}
+		/*
+		 * BoardDao boardDao = BoardDao.getInstance(); List<BoardVO> list =
+		 * boardDao.getList(pageNum,amount); int total = dao.getTotal(); PageVO pageVO =
+		 * new PageVO(pageNum,amount, total);
+		 */
+		/*
+		 * request.setAttribute("pageVO", pageVO); request.setAttribute("list", list);
+		 */
+		
+	}
 
 	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -84,7 +106,7 @@ public class BoardController extends HttpServlet {
 	}
 
 	//조회수 
-	private void viewCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//	private void viewCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*
 		 * //게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다. String no =
@@ -92,22 +114,24 @@ public class BoardController extends HttpServlet {
 		 * 
 		 * boardService.updateViewCount(no);
 		 * response.sendRedirect("/board/board-detail");
-		 */
+		 *
 	}
 	//게시물 삭제
-	private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
-		String no = request.getParameter("no");
-		boardService.deleteBoard(no);
-		
-		request.getRequestDispatcher("/board/board-list").forward(request, response);
-		
-	}
+	/*
+	 * private void boardDelete(HttpServletRequest request, HttpServletResponse
+	 * response) throws ServletException, IOException { //게시글 상세페이지, 해당 게시글의 bdIdx를
+	 * 요청파리미터에서 받아온다. String no = request.getParameter("no"); int num =
+	 * Integer.parseInt("no"); boardService.deleteBoard(num);
+	 * 
+	 * response.sendRedirect("/board/board-list");
+	 * 
+	 * }
+	 */
 	//게시물 수정
 	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
-		String no = request.getParameter("no");
+				int no =Integer.parseInt(request.getParameter("no"));
 				
 				//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
 				Map<String, Object> datas = boardService.updateBoard(no);
@@ -128,7 +152,7 @@ public class BoardController extends HttpServlet {
 	private void boardDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		//게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
-		String no = request.getParameter("no");
+		int no =Integer.parseInt(request.getParameter("no"));
 		BoardDao boardDao = null;
 	
 		//boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다.
@@ -149,8 +173,8 @@ public class BoardController extends HttpServlet {
 		  board.setTitle(multiPart.getParameter("title"));
 		  board.setContent(multiPart.getParameter("content"));
 		  
-		  List<FileDTO> files = multiPart.getFilesInfo();
-		  boardService.insertBoard(board,files);
+		
+		  boardService.insertBoard(board);
 		  
 		  response.sendRedirect("/board/board-list"); //게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
 		 

@@ -93,7 +93,7 @@ height: 100px;
 	
 		<div class="info">
 		<span>번호 : <c:out value="${datas.board.no}"/></span>
-		<span>제목 : <input type="text" name="title" required="required" />${datas.board.title}</span>
+		<span>제목 : <input type="text" name="title" required="required" value="${datas.board.title}" /></span>
 		<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
 		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
 		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
@@ -110,7 +110,7 @@ height: 100px;
 	</div>
 	
 	<div class="article_content">
-		<pre><c:out value="${datas.board.content}"/></pre>
+		<textarea name="content" required="required" maxlength="250" >${datas.board.content }</textarea>
 	</div>
 	
 </div>

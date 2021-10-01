@@ -24,8 +24,7 @@
 			<div>
 				<div class="tit_board">
 					제목 : <input type="text" name="title" required="required" placeholder="글 제목을 입력하세요"/>
-					<br>
-					파일 : <input type="file" name="files" id="contract_file" multiple/>
+				
 				</div>
 				
 				<div class="content_board">
