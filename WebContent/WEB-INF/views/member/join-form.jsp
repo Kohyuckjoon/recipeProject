@@ -147,7 +147,7 @@ body {
       required/>
       
       <span id="nameCheck" class="valid-msg">
-	      <c:if test="${not empty joinFailed.text}">
+	      <c:if test="${not empty joinFailed.name}">
 		   	2자 이상 6자 미만의 한글 이름
 		  </c:if>
       </span>
