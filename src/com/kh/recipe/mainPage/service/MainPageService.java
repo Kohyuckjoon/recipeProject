@@ -46,6 +46,9 @@ public class MainPageService {
 		}finally {
 			template.close(conn);
 		}
+		
+		System.out.println("temNum : "+temNum);
+		
 		return  temNum;
 	}
 		
