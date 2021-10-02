@@ -82,7 +82,7 @@ height: 100px;
 	 --%>
 	
 	
-<form action="/board/updateUpload" method="post" enctype="multipart/form-data">
+<form action="/board/upload" method="post" enctype="multipart/form-data">
 	<div class="content"> 
 	<div class="tit">게시판 글 수정</div>
 	
