@@ -53,12 +53,12 @@ public class BoardService {
 	
 	
 
-	public int updateBoard(Board board) { //수정
+	public int updateBoard(String title,String content) { //수정
 		  Connection conn = template.getConnection(); 
 		  int res = 0;
 		  
 		  try {
-			  res = boardDao.updateBoard(conn,board);
+			  res = boardDao.updateBoard(conn,title,content);
 			
 		  }catch (Exception e) {
 			  e.printStackTrace();

@@ -6,22 +6,21 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="../resources/css/mainPage.css" rel="stylesheet"
-	type="text/css">
+<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
 
-<!-- <link href="resources/css/board/board-list.css" rel="stylesheet"  type="text/css"> -->
+ 
 <style type="text/css">
 
 
-/* div {
+/*  div {
 	box-shadow: 0 0 2px black;
-} */
+}  */
 .top{
 height: 100px;
 }
 .tit{
 	position:relative;
-	top:105px;
+	top:27px;
 	font-size:2.3vw;
 	text-align: center;
 	
@@ -67,13 +66,13 @@ text-align: left;
 text-decoration: underline;
 }
 .paging{
-	
+
 	}
 
 Form {
 	position:relative;
      margin-top: 30px; 
-    left:47%;
+    left:44%;
 }
 .formBtn{
    display:flex;
@@ -81,8 +80,10 @@ Form {
    left:80%;
    flex-direction:row;
    justify-content:center;
-   width:100px;
-   background-color: yellow;
+   width:150px;
+   height:30px;
+   background-color: lightblue;
+   font-size:20px;
 }
 </style>
 </head>
@@ -149,7 +150,7 @@ Form {
 		
 		
 	</div>
-	<button class="formBtn" onclick = "location.href = '/board/board-form'">글쓰기</button>
+	<button class="formBtn" onclick = "location.href = '/board/board-form'" >글쓰기</button>
 	<!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>

@@ -9,34 +9,56 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
-<link href="../resources/css/mainPage.css" rel="stylesheet"
-	type="text/css">
+<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
 
-<link href="resources/css/board/board.css" rel="stylesheet"  type="text/css">
+
 <style type="text/css">
-.top{
-height: 100px;
+
+
+<style type="text/css">
+.top > div{
+	height: 100px;
 }
-.info{font-size:2vw; border-bottom:1px solid}
-.info span{padding-right: 3vw;}
-.info li{font-size:1.5vw;}
-
-.btn_section{
-   padding-top:20px;
-   flex-direction:row;
-   justify-content:flex-end;
-   width:50%;
-
+.tit{
+	top:100px;
+	position:relative;
+	color:blue;
+	font-weight:bold;
+	font-size:2.3vw;
+	text-align: center;
+	
 }
-.btn_section input{
- font-size:1.5vw;
- background-color: lightblue;
-  color:white;
-   }
+.info{
+display:flex;
+margin-top:200px;
+font-size:1.3vw; 
+border-bottom:1px solid;}
+.info span{
+padding-right: 3vw;
+}
+a{
+	font-size:20px;
+	background-color:lightblue;
+}
+.btn_section > input{
+	position:relative;
+	font-size:20px;
+	background-color:lightblue;
+}
+button{
+	position:relative;
+	font-size:20px;
+	background-color:lightblue;
+}
 
-
-.article_content{min-height: 50vh; border-bottom: 1px solid;}
+.article_content{
+min-height: 50vh; 
+border-bottom: 1px solid;
+font-size:2vw;
+}
 </style>
+
+
 
 </head>
 <body>
@@ -102,8 +124,7 @@ height: 100px;
 </div>
 
  <div class="btn_section">
-       <input type="submit" value="수정완료">
-          <button onclick = "location.href = '/board/board-delete'">게시물 삭제</button>     
+       	<input type="submit" value="수정완료">    
           <button onclick = "location.href = '/board/board-list'">목록</button>         
     </div>      
    </form>
