@@ -44,32 +44,6 @@ public class MyScrapeDao {
 		return myRecipes;
 	}
 
-	private Recipe convertAllToRecipe(ResultSet rset) throws SQLException {
-		Recipe recipe = new Recipe();
-		recipe.setRcpSeq(rset.getInt("rcp_seq"));
-		recipe.setRcpNm(rset.getString("rcp_nm"));
-		recipe.setRcpPat2(rset.getString("rcp_pat2"));
-		recipe.setAttFileNoMk(rset.getString("att_file_no_mk"));
-		return recipe;
-	}
-	
-	private Recipe convertRowToRecipe(String[] columns, ResultSet rset) throws SQLException {
-		Recipe recipe = new Recipe();
-		for (int i = 0; i < columns.length; i++) {			
-			String column = columns[i].toLowerCase();
-			column = column.trim();
-			
-			switch (column) {
-			case "rcp_seq": recipe.setRcpSeq(rset.getInt("rcp_seq")); break;
-			case "rcp_nm": recipe.setRcpNm(rset.getString("rcp_nm")); break;
-			case "rcp_pat2" : recipe.setRcpPat2(rset.getString("rcp_pat2")); break;
-			case "att_file_no_mk" : recipe.setAttFileNoMk(rset.getString("att_file_no_mk")); break;
-		
-			}
-		}
-		return recipe;
-	}
-
 	public int cancelScrape(String userId, String rcpSeq, Connection conn) {
 		Statement stmt = null;
 		int res = 0;
@@ -95,5 +69,32 @@ public class MyScrapeDao {
 		
 		return res;
 	}
+	
+	private Recipe convertAllToRecipe(ResultSet rset) throws SQLException {
+		Recipe recipe = new Recipe();
+		recipe.setRcpSeq(rset.getInt("rcp_seq"));
+		recipe.setRcpNm(rset.getString("rcp_nm"));
+		recipe.setRcpPat2(rset.getString("rcp_pat2"));
+		recipe.setAttFileNoMk(rset.getString("att_file_no_mk"));
+		return recipe;
+	}
+	
+	private Recipe convertRowToRecipe(String[] columns, ResultSet rset) throws SQLException {
+		Recipe recipe = new Recipe();
+		for (int i = 0; i < columns.length; i++) {			
+			String column = columns[i].toLowerCase();
+			column = column.trim();
+			
+			switch (column) {
+			case "rcp_seq": recipe.setRcpSeq(rset.getInt("rcp_seq")); break;
+			case "rcp_nm": recipe.setRcpNm(rset.getString("rcp_nm")); break;
+			case "rcp_pat2" : recipe.setRcpPat2(rset.getString("rcp_pat2")); break;
+			case "att_file_no_mk" : recipe.setAttFileNoMk(rset.getString("att_file_no_mk")); break;
+		
+			}
+		}
+		return recipe;
+	}
+	
 	
 }
