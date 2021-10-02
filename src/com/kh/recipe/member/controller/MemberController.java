@@ -89,6 +89,11 @@ public class MemberController extends HttpServlet {
 		case "delete-form":
 			deleteForm(request,response);
 			break;
+		case "update-memberinfo":
+			updateMemeberInfo(request,response);
+		case "update-form":
+			updateForm(request,response);	
+			break;	
 
 		default: throw new PageNotFoundException();
 		
@@ -96,7 +101,26 @@ public class MemberController extends HttpServlet {
 	}
 	
 
-	private void deleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	private void updateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String userId = request.getParameter("userId"); 
+		String password = request.getParameter("password");
+		
+		int member = memberService.updateMemeberPassword(userId, password);
+		
+		if(member != 0) {
+			System.out.println(userId);
+			request.getSession().removeAttribute("authentication");
+			response.sendRedirect("/mainPage/mainPage");
+		}
+		
+	}
+
+	private void updateMemeberInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/myPage/update-memberinfo").forward(request, response);
+		
+	}
+
+	private void deleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/member/delete-form").forward(request, response);
 		
 	}
