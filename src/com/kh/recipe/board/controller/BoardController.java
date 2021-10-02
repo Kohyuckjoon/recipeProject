@@ -1,6 +1,7 @@
 package com.kh.recipe.board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -96,8 +97,8 @@ public class BoardController extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));
 		System.out.println(no);
 		int result = boardService.deleteBoard(no);
-
-		response.sendRedirect("/board/board-list");
+	
+	 response.sendRedirect("/board/board-list"); 
 
 	}
 
