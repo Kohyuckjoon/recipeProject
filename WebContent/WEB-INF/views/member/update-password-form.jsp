@@ -111,12 +111,12 @@ body {
 <body>
 
 
-	<c:if test="${empty authentication}">
+	<c:if test="${not empty authentication}">
 	
 	<div class="login-page">
 	  	<div class="form">
 	  
-		    <form class="login-form" action="/member/update-member-password" method="post" id="frm_change">
+		    <form class="update-member-password" action="/member/update-member-password" method="post" id="frm_change">
 			
 				<input type="text" name="userId" id="userId" placeholder="ID"/>
 			
@@ -138,8 +138,8 @@ body {
 	</div>
 	</c:if>
 	
-	<c:if test="${not empty authentication}">
-	<c:redirect  url="/myPage/myPage"/>
+	<c:if test="${empty authentication}">
+	<c:redirect  url="/mainPage/mainPage"/>
 	</c:if>
 
  <script type="text/javascript" src="/resources/js/member/joinForm.js"></script>

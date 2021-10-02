@@ -92,16 +92,16 @@ public class MemberController extends HttpServlet {
 		case "delete-form":
 			deleteForm(request,response);
 			break;
-		case "update-passwordform":
+		case "update-password-form":
 			updatePasswordForm(request,response);	
 			break;	
-		case "update-nameform":
+		case "update-name-form":
 			updateNameForm(request,response);	
 			break;	
 		case "update-email-form":
 			updateEmailForm(request,response);	
 			break;	
-		case "update-phoneform":
+		case "update-phone-form":
 			updatePhoneForm(request,response);	
 			break;	
 		case "update-member-password":
@@ -146,11 +146,16 @@ public class MemberController extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		
-		int member = memberService.updateMemeberPassword(userId, password, email);
+		int member = memberService.updateMemeberEmail(userId, password, email);
 		
-		if(member == 0) {
+		if(member != 0) {
 			System.out.println(email);
-			response.sendRedirect("/myPage/memberInfo#tab1");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이메일이 변경되었습니다.'); </script>");
+			out.flush();
+			request.getRequestDispatcher("/myPage/memberInfo").forward(request, response);
+			
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
 			 
@@ -169,18 +174,21 @@ public class MemberController extends HttpServlet {
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
 		
-		int member = memberService.updateMemeberPassword(userId, password, phone);
 		
-		if(member == 0) {
+		int member = memberService.updateMemeberPhone(userId, password, phone);
+		
+		if(member != 0) {
 			System.out.println(phone);
-			response.sendRedirect("/myPage/memberInfo#tab1");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('전화번호가 변경되었습니다.'); </script>");
+			out.flush();
+			request.getRequestDispatcher("/myPage/memberInfo#tab1").forward(request, response);
+			
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
-			 
 			PrintWriter out = response.getWriter();
-			 
 			out.println("<script>alert('전화번호가 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
-			 
 			out.flush();
 
 		}
@@ -193,18 +201,20 @@ public class MemberController extends HttpServlet {
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		
-		int member = memberService.updateMemeberPassword(userId, password, name);
+		int member = memberService.updateMemeberName(userId, password, name);
 		
-		if(member == 0) {
+		if(member != 0) {
 			System.out.println(name);
-			response.sendRedirect("/myPage/memberInfo#tab1");
+			System.out.println(member);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이름이 변경되었습니다.'); location.href='/myPage/memberInfo' </script>");
+			out.flush();
+			
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
-			 
 			PrintWriter out = response.getWriter();
-			 
 			out.println("<script>alert('이름이 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
-			 
 			out.flush();
 
 		}
@@ -219,28 +229,22 @@ public class MemberController extends HttpServlet {
 		
 		int member = memberService.updateMemeberPassword(userId, password, changepassword);
 		
-		if(member == 0) {
+		if(member != 0) {
 			System.out.println(changepassword);
-			response.sendRedirect("/myPage/memberInfo#tab1");
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 변경되었습니다.'); location.href='/myPage/memberInfo' </script>");
+			out.flush();
+			
+		
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
-			 
 			PrintWriter out = response.getWriter();
-			 
 			out.println("<script>alert('비밀번호가 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
-			 
 			out.flush();
 
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	
@@ -261,14 +265,24 @@ public class MemberController extends HttpServlet {
 		
 		if(member != 0) {
 			System.out.println(userId);
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('계정이 삭제 되었습니다.'); location.href='/mainPage/mainPage';</script>");
+			out.flush();
+
 			request.getSession().removeAttribute("authentication");
 			response.sendRedirect("/mainPage/mainPage");
-			
-			//request.getRequestDispatcher("/mainPage/mainPage").forward(request, response);
-			//request.getSession().removeAttribute("authentication");
-			
+
 			return;
 			
+		}else {
+			System.out.println(userId);
+			System.out.println(password);
+			
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('아이디, 비밀번호를 확인해주세요.'); location.href='history.back()'; </script>");
+			out.flush();
+
+			return;
 		}
 	/*	else if(member != 0){
 			request.getSession().removeAttribute("authentication");

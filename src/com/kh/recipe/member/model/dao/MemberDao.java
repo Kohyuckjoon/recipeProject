@@ -249,7 +249,7 @@ public class MemberDao {
 	         Class.forName("oracle.jdbc.driver.OracleDriver");
 	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
 	         stmt = conn.createStatement();
-	         String query = "update member set phone = '" + email + "' "
+	         String query = "update member set email = '" + email + "' "
 	                  + "where user_id = '" + userId + "' " + "and password = '" + password + "'";
 	         res = stmt.executeUpdate(query);
 	      } catch (ClassNotFoundException | SQLException e) {

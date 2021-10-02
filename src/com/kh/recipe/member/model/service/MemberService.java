@@ -120,7 +120,7 @@ public class MemberService {
 		int res = 0;
 		
 		try {
-			res = memberDao.updateMemberPassword(userId, password, name, conn);
+			res = memberDao.updateMemberName(userId, password, name, conn);
 			template.commit(conn);
 			
 		} catch (Exception e) {
@@ -139,7 +139,7 @@ public class MemberService {
 		int res = 0;
 		
 		try {
-			res = memberDao.updateMemberPassword(userId, password, phone, conn);
+			res = memberDao.updateMemberPhone(userId, password, phone, conn);
 			template.commit(conn);
 			
 		} catch (Exception e) {
@@ -158,7 +158,7 @@ public class MemberService {
 		int res = 0;
 		
 		try {
-			res = memberDao.updateMemberPassword(userId, password, email, conn);
+			res = memberDao.updateMemberEmail(userId, password, email, conn);
 			template.commit(conn);
 			
 		} catch (Exception e) {

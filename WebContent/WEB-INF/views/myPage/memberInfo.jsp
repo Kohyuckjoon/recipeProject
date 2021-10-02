@@ -21,13 +21,13 @@ location.href = "#tab1";
   		<ul>
     		<li id="tab1" class="btnCon"><a class="btn first" href="#tab1">회원 정보</a>
 	      		<div class="tabCon">
-	      			<h1>${authentication.name}님 환영합니다.</h1>
+	      			<h1>${authentication.userId}님 환영합니다.</h1>
 		
 						<table border="1">
 						
 						<tr>
 							<th>이름</th>
-							<th>${authentication.name}</th>
+							<th>${Member.name}</th>
 						</tr>
 						<tr>
 							<th>아이디</th>
@@ -41,45 +41,34 @@ location.href = "#tab1";
 							<th>이메일</th>
 							<th>${authentication.email}</th>
 						</tr>
-						<%-- <tr>
-							<th>회원 탈퇴하기</th>
-							<th><button onclick="location.href='/member/delete-form'">회원 탈퇴</button></th>
-						</tr> --%>
-						<%-- <tr>
-							<th>개인정보 수정</th>
-							<th>${authentication.name}</th>
-						</tr> --%>
-						<%-- <tr>
-							<th>비밀번호</th>
-							<th>${authentication.password}</th>
-						</tr> --%>
+						
 					
 					</table>
 	      		
 	      		</div>
     		</li>
     		
-		    <li id="tab2" class="btnCon"><a class="btn" href="#tab2">보안 수정</a>
+		    <li id="tab2" class="btnCon"><a class="btn" href="#tab2">회원정보 수정</a>
 				<div class="tabCon" >
 				
 					<div class="button-7">
 						<div class="eff-7"></div>
-						<a href="#">아이디 변경</a>
+						<a href="/member/update-password-form">비밀번호 변경</a>
 					</div>
 					
 					<div class="button-7">
 						<div class="eff-7"></div>
-						<a href="#">이름 변경</a>
+						<a href="/member/update-name-form">이름 변경</a>
 					</div>
 					
 					<div class="button-7">
 						<div class="eff-7"></div>
-						<a href="#">전화번호 변경</a>
+						<a href="/member/update-phone-form">전화번호 변경</a>
 					</div>
 					
 					<div class="button-7">
 						<div class="eff-7"></div>
-						<a href="#">이메일 변경</a>
+						<a href="/member/update-email-form">이메일 변경</a>
 					</div>
 
 				</div>
