@@ -53,7 +53,7 @@ public class BoardController extends HttpServlet {
 			upload(request, response);
 			break;
 		case "updateUpload":
-			updateUpload(request, response);
+			//updateUpload(request, response);
 			break;
 		case "board-detail":
 			boardDetail(request, response);
@@ -85,7 +85,6 @@ public class BoardController extends HttpServlet {
 		System.out.println("keyword ="+keyword);
 		List<Board> list = boardService.select(category,keyword);
 		request.setAttribute("boardList", list);
-		System.out.println();
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
 	}
 
@@ -95,44 +94,24 @@ public class BoardController extends HttpServlet {
 			throws ServletException, IOException {
 
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println(no);
 		int result = boardService.deleteBoard(no);
-	
+		
 	 response.sendRedirect("/board/board-list"); 
 
 	}
 
 	// 게시물 수정
 	
-	  private void boardUpdate(HttpServletRequest request, HttpServletResponse
-	  response) throws ServletException, IOException { 
-		
-			/*FileUtil util = new FileUtil();
-			MultiPartParams multiPart = util.fileUpload(request);
-
-
-	  //게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다. 
-
-	  //boardService에서 게시글 상세페지에 뿌려주기 위한 데이터(게시글 정보, 파일정보)를 받아온다. 
+	 private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 			
-			  String title = request.getParameter("title"); String content =
-			  request.getParameter("content"); String userId =
-			  request.getParameter("userId");
-			 
+		 int no = Integer.parseInt(request.getParameter("no"));
+		 String title = request.getParameter("title");
+		 String content = request.getParameter("content");
+			int result = boardService.updateBoard(title, content);
 			
-	  Board board = new Board();
-	  board.setTitle(multiPart.getParameter("title"));
-	  board.setContent(multiPart.getParameter("content"));
-	  
-	  int result = boardService.updateBoard(board);
-	  request.getRequestDispatcher("/board/board-update").forward(request,response); 
-	  response.sendRedirect("/board/board-list");*/
-		  
-		  int no = Integer.parseInt(request.getParameter("no"));
-		  Map<String, Object> datas = boardService.selectBoardDetail(no);
-			request.setAttribute("datas", datas);
 			request.getRequestDispatcher("/board/board-update").forward(request, response);
-			System.out.println(no);
+
+		
 	  }
 	 
 	// 게시물 목록
@@ -161,7 +140,7 @@ public class BoardController extends HttpServlet {
 	}
 
 	// 게시글 수정 업로드
-	private void updateUpload(HttpServletRequest request, HttpServletResponse response)
+	/*private void updateUpload(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Member member = (Member) request.getSession().getAttribute("authentication");
 
@@ -174,20 +153,15 @@ public class BoardController extends HttpServlet {
 		board.setTitle(multiPart.getParameter("title"));
 		board.setContent(multiPart.getParameter("content"));
 
-		boardService.updateBoard(board);
 
 		response.sendRedirect("/board/board-detail"); // 게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
 		
-	}
+	}*/
 
 	// 게시글 업로드
 	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member member = (Member) request.getSession().getAttribute("authentication");
 
-		if (member == null) {
-			response.sendRedirect("/member/login");
-			return;
-		}
 		FileUtil util = new FileUtil();
 		MultiPartParams multiPart = util.fileUpload(request);
 
@@ -197,8 +171,7 @@ public class BoardController extends HttpServlet {
 		board.setContent(multiPart.getParameter("content"));
 		
 		boardService.insertBoard(board);
-		
-		boardService.updateBoard(board);
+	
 		response.sendRedirect("/board/board-list"); // 게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
 
 	}
