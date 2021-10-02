@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+html {
+	width: 1800px;
+	height: 100%; background-color : #ccdce7;
+	margin-left: 70px;
+	background-color: #ccdce7;
+}
+
+.top{
+height: 100px;
+}
+.tit{
+	position:relative;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size:2.3vw;
+	text-align: center;	
+}
+
+.myReview_list{
+	position:relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top:30px;
+	
+}
+
+.myReview_list {
+	width:80%;
+	border-top: 2px solid navy;
+	display: flex;
+	font-size:1vw;
+	justify-content: center;
+	align-items: center;
+}
+
+.myReview_list thead tr {
+	border-bottom :1px solid #999;
+	font-weight: bold;
+}
+
+.myReview_list thead th {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.myReview_list th{
+	padding: 10px;
+	text-align: center;
+}
+
+.myReview_list tbody tr{
+	border-bottom :1px solid #999;
+}
+
+.myReview_list tbody td{
+	padding: 10px;
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.myReview_list tbody tr td:nth-child(2):hover{
+text-decoration: underline;
+}
