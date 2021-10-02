@@ -83,10 +83,6 @@ public class MemberController extends HttpServlet {
 		case "mypage":
 			mypage(request,response);
 			break;
-		case "member-info":
-			memberInfo(request,response);
-			break;	
-			
 		case "login":
 			login(request,response);
 			break;
@@ -125,24 +121,9 @@ public class MemberController extends HttpServlet {
 		}
 	}
 	
-	private void memberInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String userId = request.getParameter("userId"); 
-//		  
-//		Member member = memberService.selectMemberById(userId);
-//		
-//		if(member != null) {
-//			System.out.println(member);
-//			response.sendRedirect("/mainPage/mainPage");
-//		}else {
-//			request.getRequestDispatcher("/member/login-form").forward(request, response);
-//			return;
-//		}
-//		request.getSession()..setAttribute("authentication", member);  
-//		request.getRequestDispatcher("/myPage/memberInfo").forward(request, response);
-//		
+		 
 		
 		
-	}
 
 	private void updatePhoneForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/member/update-phone-form").forward(request, response);
@@ -175,9 +156,8 @@ public class MemberController extends HttpServlet {
 			System.out.println(email);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('이메일이 변경되었습니다.'); </script>");
+			out.println("<script>alert('이메일이 변경되었습니다.'); location.href='/myPage/memberInfo' </script>");
 			out.flush();
-			request.getRequestDispatcher("/myPage/memberInfo").forward(request, response);
 			
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
@@ -204,9 +184,8 @@ public class MemberController extends HttpServlet {
 			System.out.println(phone);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('전화번호가 변경되었습니다.'); </script>");
+			out.println("<script>alert('전화번호가 변경되었습니다.'); location.href='/myPage/memberInfo'</script>");
 			out.flush();
-			request.getRequestDispatcher("/myPage/memberInfo#tab1").forward(request, response);
 			
 		}else {
 			response.setContentType("text/html; charset=UTF-8");

@@ -46,6 +46,10 @@ public class MemberService {
 		return member;
 	}
 
+	
+	
+	
+	
 	public Member selectMemberById(String userId) {
 		
 		Connection conn = template.getConnection();
