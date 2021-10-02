@@ -83,6 +83,10 @@ public class MemberController extends HttpServlet {
 		case "mypage":
 			mypage(request,response);
 			break;
+		case "member-info":
+			memberInfo(request,response);
+			break;	
+			
 		case "login":
 			login(request,response);
 			break;
@@ -121,6 +125,25 @@ public class MemberController extends HttpServlet {
 		}
 	}
 	
+	private void memberInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String userId = request.getParameter("userId"); 
+//		  
+//		Member member = memberService.selectMemberById(userId);
+//		
+//		if(member != null) {
+//			System.out.println(member);
+//			response.sendRedirect("/mainPage/mainPage");
+//		}else {
+//			request.getRequestDispatcher("/member/login-form").forward(request, response);
+//			return;
+//		}
+//		request.getSession()..setAttribute("authentication", member);  
+//		request.getRequestDispatcher("/myPage/memberInfo").forward(request, response);
+//		
+		
+		
+	}
+
 	private void updatePhoneForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/member/update-phone-form").forward(request, response);
 		

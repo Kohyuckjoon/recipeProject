@@ -75,10 +75,6 @@ public class MemberDao {
 	 * null ){ conn.close(); conn=null; } }catch(Exception e){ throw new
 	 * RuntimeException(e.getMessage()); } } } // end loginCheck()
 	 */
-
-	
-	
-
 	
 	public Member selectMemberById(String userId, Connection conn) {
 		Member member = null;
@@ -100,6 +96,7 @@ public class MemberDao {
 		}
 		
 		return member;
+		
 	}
 
 	public List<Member> selectMemberList(Connection conn) {
@@ -306,7 +303,6 @@ public class MemberDao {
 		member.setPassword(rset.getString("password"));
 		member.setName(rset.getString("name"));
 		member.setEmail(rset.getString("email"));
-		member.setBirth(rset.getDate("birth"));
 		member.setPhone(rset.getString("phone"));
 		return member;
 	}
@@ -322,7 +318,6 @@ public class MemberDao {
 			case "password": member.setPassword(rset.getString("password")); break;
 			case "name" : member.setName(rset.getString("name")); break;
 			case "email" : member.setEmail(rset.getString("email")); break;
-			case "birth" : member.setBirth(rset.getDate("birth")); break;
 			case "phone" : member.setPhone(rset.getString("phone")); break;
 			default : throw new SQLException("부적절한 컬럼명을 전달했습니다."); //예외처리
 			}
