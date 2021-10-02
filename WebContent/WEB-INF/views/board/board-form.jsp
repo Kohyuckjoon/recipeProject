@@ -31,8 +31,8 @@
 					<textarea name="content" required="required" maxlength="250" placeholder="250글자 이하로 작성하시오."></textarea>
 				</div>
 				<div class="btn">
-				<button style="background-color:red; color:white; width:100%">전송</button>
-				<button onclick = "location.href = '/board/board-list'">목록</button>
+				<button  >전송</button>
+				<button onclick = "location.href = '/board/board-list'" >목록</button>
 				</div>
 			</div>
 		</form>
