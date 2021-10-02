@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
+<link href="../resources/css/mainPage/mainPage.css" rel="stylesheet"  type="text/css">
 <link href="../resources/css/mainPage.css" rel="stylesheet"
 	type="text/css">
 <link rel="stylesheet" href="resources/css/include/all.css">
@@ -17,7 +18,7 @@ input[type="text"] {
 }
 
 .topBlank {
-	height: 13vh;
+	height: 2vh;
 }
 
 .middleBlank {
@@ -275,17 +276,16 @@ span {
 	transition: all ease-in-out .35s;
 }
 </style>
+
 </head>
-<body oncontextmenu='return false' onselectstart='return false'
-	ondragstart='return false'>
+<body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-
-
+	<div class="body">
+	</div>
 
 	<form action="#" method="get">
 		<div>
 			<div class="topBlank"></div>
-			<!-- 칼로리, 나트륨, 지방, 단백질 선택박스 표시 -->
 			<div class="checkBox">
 				<div class="calorie">
 					<div>
@@ -363,7 +363,6 @@ span {
 				<div class="middleBlank"></div>
 
 
-
 				<div class="search">
 					<button class="button" type="reset" value="내용초기화">
 						<span> 초기화 </span>
@@ -384,15 +383,11 @@ span {
 	</form>
 
 	<div class="lowerBox">
-		<!-- 왼쪽 -->
 		<div class="lowerBoxLeft"></div>
 
-		<!-- 오른쪽 -->
 		<div class="lowerBoxRight">
 			<div class="sideBarBoxStyle">
-				<!-- 영역 나눠야함 -->
 				<div class="sideBarinfo">
-					<!-- 라벨칸 -->
 					<div>
 						<label>성별 : </label> <input type="radio" name="gender" value="man">남
 						<input type="radio" name="gender" value="woman"
@@ -400,7 +395,6 @@ span {
 						<br>
 					</div>
 
-					<!-- 라디오박스칸 -->
 					<div>
 						<label>나이 : <input type="text" name="age"></label><br>
 						<br>
@@ -424,6 +418,8 @@ span {
 			</div>
 		</div>
 	</div>
-
+	
+	
+	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
 </html>
