@@ -6,7 +6,7 @@
 	let endNum = 9;
 	
 	if(sPN == 37){
-		endNum = 5;
+		endNum = 4;
 	}
 	
 	

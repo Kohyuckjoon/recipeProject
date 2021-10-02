@@ -61,7 +61,7 @@ public class MainPageDao {
 		int res = 0;
 		
 		try {
-			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/1215/1318");
+			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/1318/1318");
 			BufferedReader br;
 			br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			value = br.readLine();
