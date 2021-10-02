@@ -96,12 +96,12 @@ public class MemberService {
 		return res;
 	}
 
-	public int updateMemeberPassword(String userId, String password) {
+	public int updateMemeberPassword(String userId, String password, String changepassword) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		
 		try {
-			res = memberDao.updateMemberPassword(userId, password, conn);
+			res = memberDao.updateMemberPassword(userId, password, changepassword, conn);
 			template.commit(conn);
 			
 		} catch (Exception e) {
@@ -115,6 +115,64 @@ public class MemberService {
 		return res; 
 	} 
 
+	public int updateMemeberName(String userId, String password, String name) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = memberDao.updateMemberPassword(userId, password, name, conn);
+			template.commit(conn);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			template.rollback(conn);
+			
+		} finally {
+			template.close(conn);
+		}
+		return res; 
+	} 
+	
+	public int updateMemeberPhone(String userId, String password, String phone) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = memberDao.updateMemberPassword(userId, password, phone, conn);
+			template.commit(conn);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			template.rollback(conn);
+			
+		} finally {
+			template.close(conn);
+		}
+		return res; 
+	} 
+	
+	public int updateMemeberEmail(String userId, String password, String email) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = memberDao.updateMemberPassword(userId, password, email, conn);
+			template.commit(conn);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			template.rollback(conn);
+			
+		} finally {
+			template.close(conn);
+		}
+		return res; 
+	} 
+	
+	
 	public int deleteMember(String userId, String password) {
 		Connection conn = template.getConnection();
 		int res = 0;

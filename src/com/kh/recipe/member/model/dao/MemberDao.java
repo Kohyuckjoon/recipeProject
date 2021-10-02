@@ -158,7 +158,7 @@ public class MemberDao {
 	//생성시 등록된 쿼리 템플릿의 구조가 변경되는 것을 방지
 	//문자열에 대해서 자동으로 이스케이프 처리 
 	//ex) ->\' or 1=1 or user_id = \'
-	public int updateMemberPassword(String userId, String password, Connection conn) {
+	public int updateMemberPassword(String userId, String password, String changepassword, Connection conn) {
 		
 	      Statement stmt = null;
 	      int res = 0;
@@ -168,8 +168,8 @@ public class MemberDao {
 	         Class.forName("oracle.jdbc.driver.OracleDriver");
 	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
 	         stmt = conn.createStatement();
-	         String query = "update member set password = '" + password + "' "
-	                  + "where user_id = '" + userId + "'";
+	         String query = "update member set password = '" + changepassword + "' "
+	                  + "where user_id = '" + userId + "' " + "and password = '" + password + "' ";
 	         res = stmt.executeUpdate(query);
 	      } catch (ClassNotFoundException | SQLException e) {
 	         res = -1;
@@ -183,8 +183,93 @@ public class MemberDao {
 	         }
 	      }
 	      return res;
+		} 
+
+	public int updateMemberName(String userId, String password, String name, Connection conn) {
+			
+		      Statement stmt = null;
+		      int res = 0;
+
+			
+		     try {
+		         Class.forName("oracle.jdbc.driver.OracleDriver");
+		         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
+		         stmt = conn.createStatement();
+		         String query = "update member set name = '" + name + "' "
+		                  + "where user_id = '" + userId + "' " + "and password = '" + password + "'";
+		         res = stmt.executeUpdate(query);
+		      } catch (ClassNotFoundException | SQLException e) {
+		         res = -1;
+		         throw new DataAccessException(e);
+		      } finally {
+		         try {
+		            stmt.close();
+		            conn.close();
+		         } catch (SQLException e) {
+		            e.printStackTrace();
+		         }
+		      }
+		      return res;      
+			}
+	      
+	public int updateMemberPhone(String userId, String password, String phone, Connection conn) {
 		
-	}
+	      Statement stmt = null;
+	      int res = 0;
+
+		
+	     try {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
+	         stmt = conn.createStatement();
+	         String query = "update member set phone = '" + phone + "' "
+	                  + "where user_id = '" + userId + "' " + "and password = '" + password + "'";
+	         res = stmt.executeUpdate(query);
+	      } catch (ClassNotFoundException | SQLException e) {
+	         res = -1;
+	         throw new DataAccessException(e);
+	      } finally {
+	         try {
+	            stmt.close();
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+	      return res;      
+		}
+
+	public int updateMemberEmail(String userId, String password, String email, Connection conn) {
+		
+	      Statement stmt = null;
+	      int res = 0;
+
+		
+	     try {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
+	         stmt = conn.createStatement();
+	         String query = "update member set phone = '" + email + "' "
+	                  + "where user_id = '" + userId + "' " + "and password = '" + password + "'";
+	         res = stmt.executeUpdate(query);
+	      } catch (ClassNotFoundException | SQLException e) {
+	         res = -1;
+	         throw new DataAccessException(e);
+	      } finally {
+	         try {
+	            stmt.close();
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+	      return res;      
+		}	      
+	      
+	      
+	      
+		
+	
 
 	public int deleteMember(String userId, String password, Connection conn) {
 		Statement stmt = null;

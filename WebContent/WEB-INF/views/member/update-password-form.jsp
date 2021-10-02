@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/head.jsp" %>
+<%@ page import="com.kh.recipe.member.model.dao.MemberDao" %>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -20,7 +21,6 @@
   margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
-  color:red;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
@@ -61,7 +61,7 @@
   text-decoration: none;
 }
 .form .register-form {
- 
+  display: none;
 }
 .container {
   position: relative;
@@ -110,72 +110,42 @@ body {
 </head>
 <body>
 
-<div class="join-page">
-  <div class="form">
-    <form class="register-form" action="/member/join" method="post" id="frm_join" >
-      <input type="text" name="userId" id="userId" size="10"
-      	<c:if test="${empty joinFailed.userId}">
-	           	  	value="${joinForm.userId}"	
-	    </c:if>
-      placeholder="ID" required/>
+
+	<c:if test="${empty authentication}">
+	
+	<div class="login-page">
+	  	<div class="form">
+	  
+		    <form class="login-form" action="/member/update-member-password" method="post" id="frm_change">
+			
+				<input type="text" name="userId" id="userId" placeholder="ID"/>
+			
+				<input type="password" name="password" id="password" placeholder="Password"/>
+				
+				<input type="password" name="changepassword" id="Password to change"   
+			    placeholder="영어,숫자,특수문자 조합의 8~14자의 문자열" required/>
       
-      <button type="button" id="btnIdCheck">ID 중복체크</button>
-      	<span id="idCheck"  class="valid-msg" >
-	        <c:if test="${not empty joinFailed.userId}">
-		       	사용 불가능한 아이디 입니다.
-		    </c:if>
-        </span>
-        
-      <p></p>
-      
-      <input type="password" name="password" id="password"   
-	      <c:if test="${empty joinFailed.password}">
-		  	value="${joinForm.password}"	
-		  </c:if>
-     placeholder="영어,숫자,특수문자 조합의 8~14자의 문자열" required/>
-      
-      <span id="pwCheck" class="valid-msg">
-	      <c:if test="${not empty joinFailed.password}">
-		   	영어,숫자,특수문자 조합의 8~14자의 문자열
-		  </c:if>
-      </span>
-      
-      <input type="text" name="name" id="username" placeholder="2자 이상 6자 미만의 한글 이름" 
-      		<c:if test="${empty joinFailed.name}">
-		  		value="${joinForm.name}"	
-		 	</c:if>
-      required/>
-      
-      <span id="nameCheck" class="valid-msg">
-	      <c:if test="${not empty joinFailed.name}">
-		   	2자 이상 6자 미만의 한글 이름
-		  </c:if>
-      </span>
-      
-      
-      <input type="tel" name="phone" id="phone" size="10" placeholder="0100000000"  
-	      <c:if test="${empty joinFailed.tell}">
-		  	value="${joinForm.tell}"	
-		  </c:if>
-      required/>
-      <span  id="tellCheck" class="valid-msg">
-	      <c:if test="${not empty joinFailed.tell}">
-		   	전화번호는 9~11자리 숫자입니다. 
-		  </c:if>
-      </span>
-      
-      <input type="text" name="email" placeholder="Email address"  
-	      <c:if test="${empty joinFailed.email}">
-		  	value="${joinForm.email}"	
-		  </c:if>
-      required/>
-      
-      <button>가입하기</button>
-      <p class="message">이미 회원가입 되어있으신가요? <a href="member/login">로그인하러 가기</a></p>
-    </form>
-  </div>
-</div>
+			    <span id="pwCheck" class="valid-msg">
+				    <c:if test="${not empty joinFailed.password}">
+					   	영어,숫자,특수문자 조합의 8~14자의 문자열
+					</c:if>
+			    </span>
+				
+				<button>정보 변경 하기</button>
+				</form>
+			
+	 	</div>
+	</div>
+	</c:if>
+	
+	<c:if test="${not empty authentication}">
+	<c:redirect  url="/myPage/myPage"/>
+	</c:if>
 
  <script type="text/javascript" src="/resources/js/member/joinForm.js"></script>
+ 
 </body>
 </html>
+
+
+

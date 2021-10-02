@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.Properties;
 import java.util.UUID;
@@ -89,36 +92,161 @@ public class MemberController extends HttpServlet {
 		case "delete-form":
 			deleteForm(request,response);
 			break;
-		case "update-memberinfo":
-			updateMemeberInfo(request,response);
-		case "update-form":
-			updateForm(request,response);	
+		case "update-passwordform":
+			updatePasswordForm(request,response);	
 			break;	
-
+		case "update-nameform":
+			updateNameForm(request,response);	
+			break;	
+		case "update-email-form":
+			updateEmailForm(request,response);	
+			break;	
+		case "update-phoneform":
+			updatePhoneForm(request,response);	
+			break;	
+		case "update-member-password":
+			updateMemeberPassword(request,response);
+			break;
+		case "update-member-name":
+			updateMemeberName(request,response);
+			break;
+		case "update-member-phone":
+			updateMemeberPhone(request,response);
+			break;
+		case "update-member-email":
+			updateMemeberEmail(request,response);
+			break;
 		default: throw new PageNotFoundException();
 		
 		}
 	}
 	
+	private void updatePhoneForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/member/update-phone-form").forward(request, response);
+		
+	}
 
-	private void updateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	private void updateEmailForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/member/update-email-form").forward(request, response);
+		
+	}
+
+	private void updateNameForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/member/update-name-form").forward(request, response);
+		
+	}
+
+	private void updatePasswordForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/member/update-password-form").forward(request, response);
+		
+	}
+	
+	private void updateMemeberEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId"); 
 		String password = request.getParameter("password");
+		String email = request.getParameter("email");
 		
-		int member = memberService.updateMemeberPassword(userId, password);
+		int member = memberService.updateMemeberPassword(userId, password, email);
 		
-		if(member != 0) {
-			System.out.println(userId);
-			request.getSession().removeAttribute("authentication");
-			response.sendRedirect("/mainPage/mainPage");
+		if(member == 0) {
+			System.out.println(email);
+			response.sendRedirect("/myPage/memberInfo#tab1");
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>alert('이메일이 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
+			 
+			out.flush();
+
 		}
 		
 	}
 
-	private void updateMemeberInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/myPage/update-memberinfo").forward(request, response);
+	private void updateMemeberPhone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("userId"); 
+		String password = request.getParameter("password");
+		String phone = request.getParameter("phone");
+		
+		int member = memberService.updateMemeberPassword(userId, password, phone);
+		
+		if(member == 0) {
+			System.out.println(phone);
+			response.sendRedirect("/myPage/memberInfo#tab1");
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>alert('전화번호가 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
+			 
+			out.flush();
+
+		}
 		
 	}
+
+	
+	private void updateMemeberName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("userId"); 
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		
+		int member = memberService.updateMemeberPassword(userId, password, name);
+		
+		if(member == 0) {
+			System.out.println(name);
+			response.sendRedirect("/myPage/memberInfo#tab1");
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>alert('이름이 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
+			 
+			out.flush();
+
+		}
+		
+	}
+
+
+	private void updateMemeberPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("userId"); 
+		String password = request.getParameter("password");
+		String changepassword = request.getParameter("changepassword");
+		
+		int member = memberService.updateMemeberPassword(userId, password, changepassword);
+		
+		if(member == 0) {
+			System.out.println(changepassword);
+			response.sendRedirect("/myPage/memberInfo#tab1");
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>alert('비밀번호가 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
+			 
+			out.flush();
+
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 
 	private void deleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/member/delete-form").forward(request, response);

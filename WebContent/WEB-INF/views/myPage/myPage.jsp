@@ -18,10 +18,12 @@
 
 	<div class="top"></div>
 	<c:if test="${not empty authentication}">
-	<a href="/member/logout">
-    <button>로그아웃</button>
-    </a>
-	</c:if>
+		<div style ="float:right;" class="button-4">
+		    <div class="eff-4"></div>
+		    <a href="/member/logout"> 로그아웃</a>
+	    </div>
+  	</c:if>
+  	
 	<div id="myPage">
 		<div class="memberInfo" id="memberInfo" onclick = "location.href = '/myPage/memberInfo' ">
 		회원정보 및 수정			
