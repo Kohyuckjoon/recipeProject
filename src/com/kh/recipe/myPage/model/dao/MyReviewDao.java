@@ -19,7 +19,8 @@ public class MyReviewDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String query = "select * from review where user_id = ?";
+		String query = "select review_no, rcp_seq, rcp_nm, user_id, review_contents, review_date"
+				+ " from review inner join recipe using (rcp_seq) where user_id = ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -44,6 +45,7 @@ public class MyReviewDao {
 		Review review = new Review();
 		review.setReviewNo(rset.getInt("review_no"));
 		review.setRcpSeq(rset.getInt("rcp_seq"));
+		review.setRcpNm(rset.getString("rcp_nm"));
 		review.setUserId(rset.getString("user_id"));
 		review.setReviewContents(rset.getString("review_contents"));
 		review.setReviewDate(rset.getDate("review_date"));

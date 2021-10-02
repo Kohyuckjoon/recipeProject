@@ -6,12 +6,21 @@ public class Review {
 
 	private int reviewNo; // 댓글번호
 	private int rcpSeq; // 레시피 번호
+	private String rcpNm; // 레시피 이름
 	private String userId; // 아이디
 	private String reviewContents; // 댓글 내용
 	private Date reviewDate; //댓글작성날짜
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getRcpNm() {
+		return rcpNm;
+	}
+
+	public void setRcpNm(String rcpNm) {
+		this.rcpNm = rcpNm;
 	}
 
 	public int getReviewNo() {
@@ -54,12 +63,14 @@ public class Review {
 		this.reviewDate = reviewDate;
 	}
 
-
 	@Override
 	public String toString() {
-		return "myReview [reviewNo=" + reviewNo + ", rcpSeq=" + rcpSeq + ", userId=" + userId + ", reviewContents="
-				+ reviewContents + ", reviewDate=" + reviewDate + "]";
+		return "Review [reviewNo=" + reviewNo + ", rcpSeq=" + rcpSeq + ", rcpNm=" + rcpNm + ", userId=" + userId
+				+ ", reviewContents=" + reviewContents + ", reviewDate=" + reviewDate + "]";
 	}
+
+
+	
 	
 	
 	

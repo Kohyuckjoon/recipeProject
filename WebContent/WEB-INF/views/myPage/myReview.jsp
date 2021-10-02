@@ -4,65 +4,45 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
-
-<style type="text/css">
-
-.top{
-
-	height : 100px;
-	
-}
-
-</style>
+<link href="../resources/css/myPage/myReview.css" rel="stylesheet"  type="text/css">
 
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 	<div class="top"></div>
-	
-	<div>
-	<table class="sub_news" border="1" cellspacing="0"
-		summary="게시판의 글제목 리스트">
-		<caption>게시판 리스트</caption>
-		<colgroup>
-			<col>
-			<col width="110">
-			<col width="100">
-			<col width="80">
-		</colgroup>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>레시피번호</th>
-				<th>아이디</th>
-				<th>댓글내용</th>
-				<th>댓글작성날짜</th>
 
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="reviewIndex">1</td>
-				<td class="recipeIndex">3</td>
-				<td class="id">pclass</td>
-				<td class="reviewContents">asdas</td>
-				<td class="date">2021/09/21</td>
-				
-			</tr>		
-			<tr>
-				<td class="reviewIndex">2</td>
-				<td class="recipeIndex">7</td>
-				<td class="id">pclass</td>
-				<td class="reviewContents">asdasdass</td>
-				<td class="date">2021/09/23</td>
-				
-			</tr>
-			
+	<div class="tit">내가 쓴 댓글</div>
+	
+	<div class ="myReview_list">
+	
+		<table style="table-layout: fiexd; width:70%;">
+		<!-- 목록  -->
+			<thead>
+				<tr>
+				   <th width="10%">번호</th>
+				   <th width="20%">레시피 이름</th>
+				   <th width="40%">내용</th>
+				   <th width="15%">작성자</th>
+				   <th width="15%">작성일</th>
+				</tr>
+			</thead>
+	
+		<tbody>		
+			<c:forEach items="${myReviews}" var="myReview">
+				<tr>
+					<td>${myReview.reviewNo}</td>
+					<td>${myReview.rcpNm}</td>
+					<td>${myReview.reviewContents}</td>
+					<td>${myReview.userId}</td>
+					<td>${myReview.reviewDate}</td>
+				</tr>
+			</c:forEach> 
 		</tbody>
-	</table>
-	</div>
+		
+		</table>
+		</div>
+	
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
 </html>
