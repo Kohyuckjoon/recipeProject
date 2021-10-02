@@ -53,20 +53,20 @@ public class BoardService {
 	
 	
 
-	public Map<String, Object> updateBoard(int no) { //수정
-		Connection conn = template.getConnection();
-		Map<String,Object> res = new HashMap<String, Object>();
-		
-		try {
-			Board board = boardDao.updateBoard(conn,no);
+	public int updateBoard(Board board) { //수정
+		  Connection conn = template.getConnection(); 
+		  int res = 0;
+		  
+		  try {
+			  res = boardDao.updateBoard(conn,board);
 			
-			res.put("board", board);
-			
-		} finally {
-			template.close(conn);
-		}
-		
-		return res;
+		  }catch (Exception e) {
+			  e.printStackTrace();
+		  }finally { 
+			  template.close(conn); 
+		  } 
+		  
+		  return res;
 	}
 
 	public List<Board> selectBoardAll() { //게시글 목록 페이지 
@@ -92,7 +92,7 @@ public class BoardService {
 		   
 		  try {
 			  res = boardDao.deleteBoard(conn,no);
-			  template.commit(conn);
+			
 		  }catch (Exception e) {
 			  e.printStackTrace();
 		  }finally { 

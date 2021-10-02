@@ -105,34 +105,30 @@ public class BoardDao {
 	}
 
 	// 게시글 수정
-	public Board updateBoard(Connection conn, int no) {
+	public int updateBoard(Connection conn, Board board) {
 		String sql = "update board set title = ? , content = ?  where no = ?";
 
 		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		Board board = null;
-
+		int res = 0;
+	
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
-			rset = pstm.executeQuery();
+			pstm.setString(1,board.getTitle());
+			pstm.setString(2,board.getContent());
+			pstm.setInt(3, board.getNo());
+			res = pstm.executeUpdate();
 			
-			while (rset.next()) {
-				board = new Board();
-
-				board.setTitle(rset.getString("title"));
-				board.setContent(rset.getString("content"));
-				//board.setUserId(rset.getString("user_id"));
-				
-			}
 			template.commit(conn);
+
+			
+			
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
 		} finally {
-			template.close(rset, pstm);
+			template.close(pstm);
 		}
-		return board;
+		return res;
 
 	}
 
