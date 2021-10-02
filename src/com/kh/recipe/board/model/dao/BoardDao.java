@@ -51,7 +51,7 @@ public class BoardDao {
 		Board board = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		// 업데이트 보드를 왜 여기서 불러오지
+		
 
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -83,8 +83,6 @@ public class BoardDao {
 	// 조회수 증가 viewCount Dao 단
 
 	public int updateViewCount(Connection conn, int no) {
-		
-		System.out.println("게시글 번호 : " + no);
 		String sql = "update board set view_count = view_count+1 where no = ? ";
 		PreparedStatement pstm = null;
 		int rset = 0;
@@ -102,7 +100,7 @@ public class BoardDao {
 			template.close(pstm);
 		}
 		
-		System.out.println("rset : " + rset);
+		
 		return rset;
 	}
 
@@ -118,16 +116,16 @@ public class BoardDao {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, no);
 			rset = pstm.executeQuery();
-
+			
 			while (rset.next()) {
 				board = new Board();
 
 				board.setTitle(rset.getString("title"));
 				board.setContent(rset.getString("content"));
-				board.setUserId(rset.getString("user_id"));
-
+				//board.setUserId(rset.getString("user_id"));
+				
 			}
-
+			template.commit(conn);
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
@@ -208,21 +206,32 @@ public class BoardDao {
 		return list;
 	}
 
-	/*
-	 * public int deleteBoard(Connection conn, int num) {
-	 * 
-	 * String deleteNum = null; String sql = "delete from board where no =?";
-	 * PreparedStatement pstm = null; ResultSet rset = null;
-	 * 
-	 * deleteNum = Integer.toString(num); try { pstm = conn.prepareStatement(sql);
-	 * pstm.setString(1, no); pstm.executeUpdate();
-	 * 
-	 * 
-	 * } catch (SQLException e) { throw new DataAccessException(e);
-	 * e.printStackTrace(); } finally { template.close(rset, pstm); } return ;
-	 * 
-	 * 
-	 * }
-	 */
+
+	//게시글 삭제 구문
+	public int deleteBoard(Connection conn, int no) {
+		
+		int res = 0;
+		//System.out.println("게시글 번호 : " + no);
+		String sql = "delete from board where no =?";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, no);
+			res = pstm.executeUpdate();
+			template.commit(conn);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			template.close(pstm);
+		}
+		
+		
+		return res;
+	}
+
+	
 
 }

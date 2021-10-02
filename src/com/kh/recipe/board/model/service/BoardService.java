@@ -85,13 +85,24 @@ public class BoardService {
 
 
 
-	/*
-	 * public int deleteBoard(int no) { Connection conn =template.getConnection();
-	 * int deleteNum = 0; deleteNum = boardDao.deleteBoard(conn,no); return
-	 * deleteNum;
-	 * 
-	 * }
-	 */
+	
+	  public int deleteBoard(int no) { 
+		  int res = 0;
+		  Connection conn =template.getConnection();
+		   
+		  try {
+			  res = boardDao.deleteBoard(conn,no);
+			  template.commit(conn);
+		  }catch (Exception e) {
+			  e.printStackTrace();
+		  }finally { 
+			  template.close(conn); 
+		  } 
+		  
+		  return res;
+			  
+	  }
+	 
 
 	
 	  public int updateViewCount(int no) { // TODO Auto-generated method stub
@@ -100,6 +111,7 @@ public class BoardService {
 		  
 		  try {
 			  res = boardDao.updateViewCount(conn,no);
+			
 		  }catch (Exception e) {
 			  e.printStackTrace();
 		  }finally { 
@@ -123,7 +135,7 @@ public class BoardService {
 		}
 		
 		return list;
-	} 
+	}
 
 	
 
