@@ -1,6 +1,7 @@
 package com.kh.recipe.board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +64,7 @@ public class BoardController extends HttpServlet {
 			break;
 
 		case "board-delete":
-			// boardDelete(request,response);
+			 boardDelete(request,response);
 			break;
 
 		case "search":
@@ -77,13 +78,15 @@ public class BoardController extends HttpServlet {
 	}
 
 	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String searchoption = request.getParameter("searchoption");
-		String searchkeyword = request.getParameter("searchkeyword");
-		request.setAttribute("searchkeyword", searchkeyword);
-		List<Board> list = new BoardService().search(searchoption, searchkeyword);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/board/board-search").forward(request, response);
+		
+		int category = Integer.parseInt(request.getParameter("searchCategory"));
+		String keyword = request.getParameter("searchKeyword");
+		System.out.println("category ="+category);
+		System.out.println("keyword ="+keyword);
+		List<Board> list = boardService.select(category,keyword);
+		request.setAttribute("boardList", list);
+		System.out.println();
+		request.getRequestDispatcher("/board/board-list").forward(request, response);
 	}
 
 	// 게시물 삭제
@@ -92,10 +95,10 @@ public class BoardController extends HttpServlet {
 			throws ServletException, IOException {
 
 		int no = Integer.parseInt(request.getParameter("no"));
-
-		boardService.deleteBoard(no);
-
-		response.sendRedirect("/board/board-list");
+		System.out.println(no);
+		int result = boardService.deleteBoard(no);
+	
+	 response.sendRedirect("/board/board-list"); 
 
 	}
 
@@ -192,8 +195,9 @@ public class BoardController extends HttpServlet {
 		board.setUserId(member.getUserId());
 		board.setTitle(multiPart.getParameter("title"));
 		board.setContent(multiPart.getParameter("content"));
-
+		
 		boardService.insertBoard(board);
+		
 		boardService.updateBoard(board);
 		response.sendRedirect("/board/board-list"); // 게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
 

@@ -123,18 +123,20 @@ public class BoardService {
 	  }
 	 
 
-	public List<Board> search(String searchoption, String searchkeyword) {
+	
+
+	public List<Board> select(int category, String keyword) {
 		Connection conn = template.getConnection();
-		List<Board> list = new ArrayList<Board>();
+		List<Board> list = new ArrayList<>();
 		try {
 			
-		 list = boardDao.search(conn,searchoption,searchkeyword);
-		
-		} finally {
-			template.close(conn);
-		}
-		
-		return list;
+			list = boardDao.selectBoard(category,keyword,conn);
+			
+			} finally {
+				template.close(conn);
+			}
+			
+			return list;
 	}
 
 	

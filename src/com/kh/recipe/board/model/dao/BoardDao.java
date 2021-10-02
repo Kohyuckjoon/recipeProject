@@ -169,44 +169,12 @@ public class BoardDao {
 
 	}
 
-	// 이건 검색창 구현하려고 해놓은거
-	public List<Board> search(Connection conn, String searchoption, String searchkeyword) {
-		String sql = "select no,user_id,title,content,reg_date,view_count" + " from board " + " where lower("
-				+ searchoption + ")= lower(?)" + "order by no desc";
-
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		List<Board> list = new ArrayList<Board>();
-
-		try {
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, "%" + searchkeyword + "%");
-			rset = pstm.executeQuery();
-
-			while (rset.next()) {
-				int no = rset.getInt("no");
-				String title = rset.getString("title");
-				String userId = rset.getString("userId");
-				Date regDate = rset.getDate("regDate");
-				int viewCount = rset.getInt("viewCount");
-				list.add(null); // 수정하기****
-			}
-
-		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
-		} finally {
-			template.close(rset, pstm);
-		}
-
-		return list;
-	}
-
+	
 
 	//게시글 삭제 구문
 	public int deleteBoard(Connection conn, int no) {
 		
-		int res = 0;
+		int result = 0;
 		//System.out.println("게시글 번호 : " + no);
 		String sql = "delete from board where no =?";
 		PreparedStatement pstm = null;
@@ -214,7 +182,7 @@ public class BoardDao {
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, no);
-			res = pstm.executeUpdate();
+			result = pstm.executeUpdate();
 			template.commit(conn);
 
 		} catch (SQLException e) {
@@ -225,8 +193,60 @@ public class BoardDao {
 		}
 		
 		
-		return res;
+		return result;
 	}
+
+
+
+	public List<Board> selectBoard(int category, String keyword, Connection conn) {
+		
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		String sql = null;
+
+		try {
+			if(category == 1) {
+				sql ="select no,title,user_id,reg_date,view_count from board where user_id like ? "+"order by no desc" ;
+				pstm = conn.prepareStatement(sql);
+				pstm.setString(1, "%" + keyword +"%");
+			}else if(category == 2) {
+				sql = "select no,title,user_id,reg_date,view_count from board where title like ? " + " order by no desc";
+				pstm = conn.prepareStatement(sql);
+				pstm.setString(2, "%" + keyword +"%");
+			}else if(category == 3) {
+				sql = "select no,title,user_id,reg_date,view_count from board where user_id like ? or content like ? "+" order by no desc" ;
+				pstm = conn.prepareStatement(sql);
+				pstm.setString(1, "%" + keyword +"%");
+				pstm.setString(2, "%" + keyword +"%");
+			}
+			
+			rset = pstm.executeQuery();
+
+			while (rset.next()) {
+
+				Board board = new Board();
+
+				board.setNo(rset.getInt("no"));
+				board.setTitle(rset.getString("title"));
+				board.setUserId(rset.getString("user_id"));
+				board.setRegDate(rset.getDate("reg_date"));
+				board.setViewCount(rset.getInt("view_count"));
+				list.add(board);
+			}
+
+		} catch (SQLException e) {
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+
+		return null;
+	}
+
+
 
 	
 

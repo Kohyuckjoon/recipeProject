@@ -296,9 +296,9 @@ span {
 
 						<div class="checkBoxStyle1">
 							<div class="calorieCheckbox">
-								0~300<input type="checkbox" name="calorie1" value=""><br>
-								300~500<input type="checkbox" name="calorie2" value=""><br>
-								500~700<input type="checkbox" name="calorie3" value=""><br>
+								0~300<input type="checkbox" name="calorie" value="" onclick="calorieCheckbox(this)"><br>
+								300~500<input type="checkbox" name="calorie" value="" onclick="calorieCheckbox(this)"><br>
+								500~700<input type="checkbox" name="calorie" value="" onclick="calorieCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -315,9 +315,9 @@ span {
 
 						<div class="checkBoxStyle2">
 							<div class="saltCheckbox">
-								0~50<input type="checkbox" name="salt1" value=""><br>
-								50~100<input type="checkbox" name="salt2" value=""><br>
-								100~150<input type="checkbox" name="salt3" value=""><br>
+								0~50<input type="checkbox" name="salt" value="" onclick="saltCheckbox(this)"><br>
+								50~100<input type="checkbox" name="salt" value="" onclick="saltCheckbox(this)"><br>
+								100~150<input type="checkbox" name="salt" value="" onclick="saltCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -334,9 +334,9 @@ span {
 
 						<div class="checkBoxStyle3">
 							<div class="fatCheckbox">
-								0~50<input type="checkbox" name="fat1" value=""><br>
-								50~100<input type="checkbox" name="fat2" value=""><br>
-								100~150<input type="checkbox" name="fat3" value=""><br>
+								0~50<input type="checkbox" name="fat" value="" onclick="fatCheckbox(this)"><br>
+								50~100<input type="checkbox" name="fat" value="" onclick="fatCheckbox(this)"><br>
+								100~150<input type="checkbox" name="fat" value="" onclick="fatCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -353,9 +353,9 @@ span {
 
 						<div class="checkBoxStyle4">
 							<div class="proteinCheckbox">
-								0~50<input type="checkbox" name="protein1" value=""><br>
-								50~100<input type="checkbox" name="protein2" value=""><br>
-								100~150<input type="checkbox" name="protein3" value=""><br>
+								0~50<input type="checkbox" name="protein" value="" onclick="proteinCheckbox(this)"><br>
+								50~100<input type="checkbox" name="protein" value="" onclick="proteinCheckbox(this)"><br>
+								100~150<input type="checkbox" name="protein" value="" onclick="proteinCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -419,6 +419,43 @@ span {
 		</div>
 	</div>
 	
+<script type="text/javascript">
+function calorieCheckbox(a){
+    var obj = document.getElementsByName("calorie");
+    for(var i=0; i<obj.length; i++){
+        if(obj[i] != a){
+            obj[i].checked = false;
+        }
+    }
+}
+
+function saltCheckbox(a){
+    var obj = document.getElementsByName("salt");
+    for(var i=0; i<obj.length; i++){
+        if(obj[i] != a){
+            obj[i].checked = false;
+        }
+    }
+}
+
+function fatCheckbox(a){
+    var obj = document.getElementsByName("fat");
+    for(var i=0; i<obj.length; i++){
+        if(obj[i] != a){
+            obj[i].checked = false;
+        }
+    }
+}
+
+function proteinCheckbox(a){
+	var obj = document.getElementsByName("protein");
+	for(var i=0; i<obj.length; i++){
+		if(obj[i] != a){
+			obj[i].checked = false;
+		}
+	}
+}
+</script>
 	
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>
