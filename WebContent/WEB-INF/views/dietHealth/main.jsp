@@ -368,7 +368,7 @@ span {
 						<span> 초기화 </span>
 					</button>
 
-					<div></div>
+					<div>　　</div>
 
 					<button class="button" type="" value="검색하기">
 						<span> 검색하기 </span>
