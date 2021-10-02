@@ -36,10 +36,10 @@ public class MainPageService {
 	public int insertRecipe() {
 		
 		Connection conn = template.getConnection();
-		int temNum = 0;
+		int succes = 0;
 		
 		try {
-			temNum = mPD.insertRecipe(conn);
+			succes = mPD.insertRecipe(conn);
 		} catch (Exception e) {
 			template.rollback(conn);
 			throw e;
@@ -47,9 +47,7 @@ public class MainPageService {
 			template.close(conn);
 		}
 		
-		System.out.println("temNum : "+temNum);
-		
-		return  temNum;
+		return  succes;
 	}
 		
 	
