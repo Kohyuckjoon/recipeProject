@@ -9,7 +9,7 @@
 	});
 	
 	document.querySelector('.recipePageButton').addEventListener('click',() =>{
-		location.href="/dietHealth/searchResult";
+		location.href="/dietHealth/main";
 	});
 	
 	document.querySelector('.boardPageButton').addEventListener('click',() =>{
