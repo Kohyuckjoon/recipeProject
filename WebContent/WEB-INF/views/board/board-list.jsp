@@ -96,15 +96,7 @@ Form {
 
 
 	<div class="tit">자유게시판</div>
-	<div class="category">
-				<form>		 		
-					<select name="nation">
-				 		<option value="" id ="" selected>최신순</option>
-				 		<option value="" id ="" >조회순</option>
-				 	
-				 	</select>
-			 	</form>
-	</div>
+
 	
 	<!-- 게시판 내용 뿌려주는 곳 -->
 
@@ -144,16 +136,14 @@ Form {
 </div>
 	
 	
-	<div class="searchForm">
-		
-		<form action="search.do">
-		<select name="searchoption">
-		<option value="author">작성자</option>	
-		<option value="title">제목</option>
-		<option value="content">내용</option>
-		</select>
-		<input name="searchkeyword">
-		<input type="submit" value="검색">
+<form action="board-search" method="get">
+	<select name="searchCategory">
+		<option value="1">작성자</option>
+		<option value="2">글제목</option>
+		<option value="3">글제목 + 내용</option>
+	</select>
+	<input type="text" name = "searchKeyword" placeholder="키워드" required />
+	<input type="submit" value="검색">
 </form>
 
 		
