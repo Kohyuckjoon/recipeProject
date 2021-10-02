@@ -28,7 +28,6 @@ public class Member {
 	private String email;
 	private String phone;
 	private String name;
-	private Date birth;
 	public String getUserId() {
 		return userId;
 	}
@@ -59,16 +58,11 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
+	
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", phone=" + phone
-				+ ", name=" + name + ", birth=" + birth + "]";
+				+ ", name=" + name + " ]";
 	}
 	
 	

@@ -2,12 +2,38 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<style>
+table.type11{
+width: 96%;
+text-align: center; 
+border-spacing: 1px; 
+line-height: 1.5; 
+margin: 20px 10px;
+
+}
+
+table.type11 th {
+    width: 155px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #4CAF50 ;
+    
+}
+table.type11 td {
+    width: 155px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+}
+
+    
+</style>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<%@page import="com.kh.recipe.member.model.dao.MemberDao"%>
-<%@page import="com.kh.recipe.member.model.service.MemberService"%>
-<%@page import="com.kh.recipe.member.model.dto.Member"%>
 
 <link href="../resources/css/include/header.css" rel="stylesheet"  type="text/css">
 <link href="../resources/css/myPage/myPage.css" rel="stylesheet"  type="text/css">
@@ -26,28 +52,32 @@
   		<ul>
     		<li id="tab1" class="btnCon"><a class="btn first" href="#tab1">회원 정보</a>
 	      		<div class="tabCon">
-	      		<jsp:useBean id="member" scope="request" class="com.kh.recipe.member.model.dto.Member" />
-	      			<h1>${member.userId}님 환영합니다.</h1>
-		
-						<table border="1">
+	      			
+						<table class="type11">
 						
+						<thead>
+							<tr>
+								<th colspan="2">${authentication.name}님 환영합니다.</th>
+							</tr>
+						</thead>
+						<tbody>
 						<tr>
-							<th>이름</th>
-							<th>${member.name}</th>
+							<td>이름</td>
+							<td>${authentication.name}</td>
 						</tr>
 						<tr>
-							<th>아이디</th>
-							<th>${member.userId}</th>
+							<td>아이디</td>
+							<td>${authentication.userId}</td>
 						</tr>
 						<tr>
-							<th>전화번호</th>
-							<th>${member.phone}</th>
+							<td>전화번호</td>
+							<td>${authentication.phone}</td>
 						</tr>
 						<tr>
-							<th>이메일</th>
-							<th>${member.email}</th>
+							<td>이메일</td>
+							<td>${authentication.email}</td>
 						</tr>
-						
+						</tbody>
 					
 					</table>
 	      		
@@ -55,8 +85,8 @@
     		</li>
     		
 		    <li id="tab2" class="btnCon"><a class="btn" href="#tab2">회원정보 수정</a>
-				<div class="tabCon" >
-				
+				<div class="tabCon">
+					
 					<div class="button-7">
 						<div class="eff-7"></div>
 						<a href="/member/update-password-form">비밀번호 변경</a>
@@ -71,7 +101,7 @@
 						<div class="eff-7"></div>
 						<a href="/member/update-phone-form">전화번호 변경</a>
 					</div>
-					
+
 					<div class="button-7">
 						<div class="eff-7"></div>
 						<a href="/member/update-email-form">이메일 변경</a>
@@ -84,7 +114,7 @@
       			<div class="tabCon">
       			
       				<div class="button-2">
-					    <div class="eff-2"></div>
+					    <div class="eff-2" style="position: absolute  top: 50%; left: 50%; transform: translate(-50%,-50%);"></div>
 					    <a href="/member/delete-form">회원 탈퇴하기</a>
 				  	</div>
       			</div>
