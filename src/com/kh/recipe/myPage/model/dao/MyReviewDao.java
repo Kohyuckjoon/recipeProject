@@ -70,7 +70,7 @@ public class MyReviewDao {
 		return res;
 	}
 
-	public static int selPageLength(Connection conn, Review review, int page) {
+	public static int selReviewPageLength(Connection conn, Review review, int page) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		int res = 0;
