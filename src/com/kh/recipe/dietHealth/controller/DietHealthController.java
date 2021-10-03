@@ -1,8 +1,9 @@
 package com.kh.recipe.dietHealth.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,49 +11,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.common.exception.PageNotFoundException;
-import com.kh.recipe.dietHealth.model.dto.DietHealth;
+import com.kh.recipe.dietHealth.service.DietHealthService;
+import com.kh.recipe.mainPage.model.dto.Recipe;
+
 
 @WebServlet("/dietHealth/*")
 public class DietHealthController extends HttpServlet {
 	
-	/**
-	 * ESSENTIAL STATIC VARIABLE
-	 */
 	private static final long serialVersionUID = 1L;
+	private DietHealthService dietHealthService = new DietHealthService();
 	
-	private boolean isDebug = false;
-	
-	private final String MAIN = "main";
-//	private final String SEARCH_RESULT = "searchResult";
-
 	public DietHealthController() {
-		super();
-	}
+        super();
+    }
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(isDebug) {
-			System.out.println(req.getRequestURL());
-			System.out.println(subURLParser(req.getRequestURL().toString()));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Recipe> Recipes = new ArrayList<Recipe>();
+		Recipes = dietHealthService.selectSearchResult();
+		request.setAttribute("Recipes", Recipes);
+		
+		String[] uriArr = request.getRequestURI().split("/");
+		
+		switch(uriArr[uriArr.length-1]) {
+		case "main":
+			main(request, response);
+			break;
+		case "clickedPage":
+			clickedPage(request, response);
+			break;
+		default: throw new PageNotFoundException();
 		}
-		switch(subURLParser(req.getRequestURL().toString())) {
-			case MAIN : 
-				req.getRequestDispatcher("/dietHealth/main").forward(req, resp);
-				break;
-//			case SEARCH_RESULT : 
-//				break;
-			default :
-				throw new PageNotFoundException();
-		}
+		 
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+	private void clickedPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/dietHealth/main").forward(request, response);			
+	}
+
+	private void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/dietHealth/main").forward(request, response);
 		
 	}
-	
-	private String subURLParser(String origin) {
-		return origin.substring(origin.lastIndexOf("/") + 1);
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
-	
 }

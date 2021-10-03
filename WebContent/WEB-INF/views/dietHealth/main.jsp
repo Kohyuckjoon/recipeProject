@@ -10,52 +10,43 @@
 <link rel="stylesheet" href="resources/css/include/all.css">
 <link rel="stylesheet" href="resources/css/include/reset.css">
 <style type="text/css">
-/* div {
+/*  div {
 	box-shadow: 0 0 2px black;
-} */
+} */ 
 input[type="text"] {
 	width: 130px;
 }
-
 .topBlank {
 	height: 2vh;
 }
-
 .middleBlank {
 	float: left;
 	height: 15vh;
 	width: 2%;
 }
-
 .blank {
 	float: left;
 	width: 7%;
 }
-
 .checkBox {
 	height: 15vh;
 }
-
 .sideBar {
 	float: right;
 	height: 45vh;
 	width: 13%;
 }
-
 .sideBarRight label {
 	float: right;
 }
-
 .sideBarGender label {
 	float: left;
 }
-
 .calorie {
 	float: left;
 	height: 15vh;
 	width: 7%;
 }
-
 .calorielabel {
 	font-size: 110%;
 	margin: 5%;
@@ -63,17 +54,14 @@ input[type="text"] {
 	background-color: white;
 	padding: 3%;
 }
-
 .calorieCheckbox {
 	margin: 10%;
 }
-
 .salt {
 	float: left;
 	height: 15vh;
 	width: 7%;
 }
-
 .saltLabel {
 	font-size: 110%;
 	margin: 5%;
@@ -81,17 +69,14 @@ input[type="text"] {
 	background-color: white;
 	padding: 3%;
 }
-
 .saltCheckbox {
 	margin: 10%;
 }
-
 .fat {
 	float: left;
 	height: 15vh;
 	width: 7%;
 }
-
 .fatLabel {
 	font-size: 110%;
 	margin: 5%;
@@ -99,17 +84,14 @@ input[type="text"] {
 	background-color: white;
 	padding: 3%;
 }
-
 .fatCheckbox {
 	margin: 10%;
 }
-
 .protein {
 	float: left;
 	height: 15vh;
 	width: 7%;
 }
-
 .proteinLabel {
 	font-size: 110%;
 	margin: 5%;
@@ -117,38 +99,31 @@ input[type="text"] {
 	background-color: white;
 	padding: 3%;
 }
-
 .proteinCheckbox {
 	margin: 10%;
 }
-
 .search {
 	float: left;
 	height: 50%;
 	width: 7%;
 	padding: 1%;
 }
-
 .secondBlank {
 	height: 5vh;
 }
-
 .lowerBox {
 	height: 80vh;
 }
-
 .lowerBoxLeft {
 	float: left;
 	width: 82%;
 	height: 79vh;
 }
-
 .lowerBoxRight {
 	float: right;
 	width: 18%;
 	height: 79vh;
 }
-
 .sideBarBoxStyle {
 	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
@@ -157,61 +132,51 @@ input[type="text"] {
 	width: 85%;
 	height: 85%;
 }
-
 .sideBarinfo {
 	float: right;
 	left: 50%;
 }
-
 .sideBarTitle {
 	margin: 10px;
 	width: 70%;
 	height: 78vh;
 }
-
 .searchLabel {
 	background-color: white;
 	margin: 7%;
 }
-
 .searchCheckbox {
 	margin: 10%;
 	float: right;
 	position: absolute, bottom:0, right:0;
 }
-
 .calculateResult {
 	float: right;
 }
-
 .checkBoxStyle1 {
 	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
 	padding: 3%;
 	margin: 5%;
 }
-
 .checkBoxStyle2 {
 	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
 	padding: 3%;
 	margin: 5%;
 }
-
 .checkBoxStyle3 {
 	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
 	padding: 3%;
 	margin: 5%;
 }
-
 .checkBoxStyle4 {
 	box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.3);
 	background-color: white;
 	padding: 3%;
 	margin: 5%;
 }
-
 .button {
 	background: #fff;
 	border: none;
@@ -225,7 +190,6 @@ input[type="text"] {
 	width: 85%;
 	text-align: center;
 }
-
 span {
 	display: flex;
 	padding: 15px;
@@ -235,13 +199,11 @@ span {
 	transition: all .35s ease-in-out .35s;
 	text-align: center;
 }
-
 .button:hover span {
 	background: #36B4C7;
 	color: #fff;
 	transition: all .35s ease-in-out .35s;
 }
-
 .button:after {
 	bottom: -100%;
 	right: -100%;
@@ -252,13 +214,11 @@ span {
 	background: #36B4C7;
 	transition: all .35s ease-in-out .5s;
 }
-
 .button:hover:after {
 	right: 0;
 	bottom: 0;
 	transition: all ease-in-out .35s;
 }
-
 .button:before {
 	top: -100%;
 	left: -100%;
@@ -269,7 +229,6 @@ span {
 	background: #36B4C7;
 	transition: all .35s ease-in-out .5s;
 }
-
 .button:hover:before {
 	left: 0;
 	top: 0;
@@ -296,9 +255,9 @@ span {
 
 						<div class="checkBoxStyle1">
 							<div class="calorieCheckbox">
-								0~300<input type="checkbox" name="calorie" value="" onclick="calorieCheckbox(this)"><br>
-								300~500<input type="checkbox" name="calorie" value="" onclick="calorieCheckbox(this)"><br>
-								500~700<input type="checkbox" name="calorie" value="" onclick="calorieCheckbox(this)"><br>
+								0~300<input type="checkbox" name="calorie" value="300" onclick="calorieCheckbox(this)"><br>
+								300~500<input type="checkbox" name="calorie" value="500" onclick="calorieCheckbox(this)"><br>
+								500~700<input type="checkbox" name="calorie" value="700" onclick="calorieCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -315,9 +274,9 @@ span {
 
 						<div class="checkBoxStyle2">
 							<div class="saltCheckbox">
-								0~50<input type="checkbox" name="salt" value="" onclick="saltCheckbox(this)"><br>
-								50~100<input type="checkbox" name="salt" value="" onclick="saltCheckbox(this)"><br>
-								100~150<input type="checkbox" name="salt" value="" onclick="saltCheckbox(this)"><br>
+								0~50<input type="checkbox" name="salt" value="50" onclick="saltCheckbox(this)"><br>
+								50~100<input type="checkbox" name="salt" value="100" onclick="saltCheckbox(this)"><br>
+								100~150<input type="checkbox" name="salt" value="150" onclick="saltCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -334,9 +293,9 @@ span {
 
 						<div class="checkBoxStyle3">
 							<div class="fatCheckbox">
-								0~50<input type="checkbox" name="fat" value="" onclick="fatCheckbox(this)"><br>
-								50~100<input type="checkbox" name="fat" value="" onclick="fatCheckbox(this)"><br>
-								100~150<input type="checkbox" name="fat" value="" onclick="fatCheckbox(this)"><br>
+								0~50<input type="checkbox" name="fat" value=50 onclick="fatCheckbox(this)"><br>
+								50~100<input type="checkbox" name="fat" value="100" onclick="fatCheckbox(this)"><br>
+								100~150<input type="checkbox" name="fat" value="150" onclick="fatCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -353,9 +312,9 @@ span {
 
 						<div class="checkBoxStyle4">
 							<div class="proteinCheckbox">
-								0~50<input type="checkbox" name="protein" value="" onclick="proteinCheckbox(this)"><br>
-								50~100<input type="checkbox" name="protein" value="" onclick="proteinCheckbox(this)"><br>
-								100~150<input type="checkbox" name="protein" value="" onclick="proteinCheckbox(this)"><br>
+								0~50<input type="checkbox" name="protein" value="50" onclick="proteinCheckbox(this)"><br>
+								50~100<input type="checkbox" name="protein" value="100" onclick="proteinCheckbox(this)"><br>
+								100~150<input type="checkbox" name="protein" value="150" onclick="proteinCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -380,6 +339,46 @@ span {
 
 			<div class="secondBlank"></div>
 		</div>
+		
+		<script type="text/javascript">
+			let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
+			
+			if(isNaN(sPN) == true) {
+				sPN = 1;
+			} 
+			
+			let recipeIdx = new Array();
+			let recipeImg = new Array();
+			let recipeType = new Array();
+			let recipeName = new Array();
+			
+			<c:forEach var="recipe" items="${Recipes}">
+				recipeIdx.push('${recipe.rcpSeq}');
+				recipeImg.push('${recipe.attFileNoMk}');
+				recipeType.push('${recipe.rcpPat2}');
+				recipeName.push('${recipe.rcpNm}');
+				
+			</c:forEach>
+			
+		</script>
+			
+		<!-- 페이저 구현 HTML-->
+		<!-- 물론 자바스크립트 코드는 따로 뺴놓음 -->
+		<div class = "pager">
+			<table>
+				<tr>
+					<td class = "arrow prevPrevPage"><i class="fas fa-angle-double-left"></i></td>
+					<td class = "blank"></td>
+					<td class = "arrow prevPage"><i class="fas fa-angle-left"></i></td>
+					<td class = "blank"> </td>
+					<td class = "blank num"> </td>
+					<td class = "arrow nextPage"><i class="fas fa-angle-right"></i></td>
+					<td class = "blank"></td>
+					<td class = "arrow nextNextPage"><i class="fas fa-angle-double-right"></i></td>
+				</tr>
+			</table>
+		</div>
+		
 	</form>
 
 	<div class="lowerBox">
@@ -419,7 +418,10 @@ span {
 		</div>
 	</div>
 	
+	
+	
 <script type="text/javascript">
+
 function calorieCheckbox(a){
     var obj = document.getElementsByName("calorie");
     for(var i=0; i<obj.length; i++){
@@ -428,7 +430,6 @@ function calorieCheckbox(a){
         }
     }
 }
-
 function saltCheckbox(a){
     var obj = document.getElementsByName("salt");
     for(var i=0; i<obj.length; i++){
@@ -437,7 +438,6 @@ function saltCheckbox(a){
         }
     }
 }
-
 function fatCheckbox(a){
     var obj = document.getElementsByName("fat");
     for(var i=0; i<obj.length; i++){
@@ -446,7 +446,6 @@ function fatCheckbox(a){
         }
     }
 }
-
 function proteinCheckbox(a){
 	var obj = document.getElementsByName("protein");
 	for(var i=0; i<obj.length; i++){
