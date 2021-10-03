@@ -25,8 +25,7 @@ public class MainPageService {
 		try {
 			Recipes = mPD.selectRecipeByDetail(conn);
 		} catch (DataAccessException | SQLException e) {
-			e.printStackTrace();
-			/* throw new HandlableException(ErrorCode.API_LODING_FAIL); */
+			throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); 
 		}finally {
 			template.close(conn);
 		}

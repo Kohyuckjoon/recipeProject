@@ -4,6 +4,7 @@
 	console.dir("sPN: "+ sPN);
 	console.dir("시작 인덱스 = 4*9*"+sPN+"-36: "+ (sPN*4*9-36));
 	let endNum = 9;
+	let recipeDetail =0;
 	
 	if(sPN == 37){
 		endNum = 4;
@@ -26,6 +27,7 @@
 			if(j <= 1314){
 				let urDiv = document.createElement('div');
 				urDiv.classList.add('upper-recipe');
+				urDiv.classList.add('upper-recipe'+recipeIdx[j]);
 				rowDiv.appendChild(urDiv);
 		
 				let imgDiv = document.createElement('img');
@@ -40,20 +42,26 @@
 				textAreaDiv.classList.add('recipe-text');
 				urDiv.appendChild(textAreaDiv);
 		
-				let foodTypeDiv = document.createElement('div');
-				foodTypeDiv.classList.add('food-type');
-				foodTypeDiv.append(recipeType[j]);
-				textAreaDiv.appendChild(foodTypeDiv);
+				let recipeTypeDiv = document.createElement('div');
+				recipeTypeDiv.classList.add('recipe-type');
+				recipeTypeDiv.append(recipeType[j]);
+				textAreaDiv.appendChild(recipeTypeDiv);
 		
-				let foodNameDiv = document.createElement('div');
-				foodNameDiv.classList.add('food-name');
-				foodNameDiv.append(recipeName[j]);
-				textAreaDiv.appendChild(foodNameDiv);
+				let recipeNameDiv = document.createElement('div');
+				recipeNameDiv.classList.add('recipe-name');
+				recipeNameDiv.append(recipeName[j]);
+				textAreaDiv.appendChild(recipeNameDiv);
 		
-				let foodStarDiv = document.createElement('div');
-				foodStarDiv.classList.add('food-star');
-				foodStarDiv.append("★★★★★");
-				textAreaDiv.appendChild(foodStarDiv);
+				let recipeStarDiv = document.createElement('div');
+				recipeStarDiv.classList.add('recipe-star');
+				recipeStarDiv.append("★★★★★");
+				textAreaDiv.appendChild(recipeStarDiv);
+				
+				document.querySelector('.upper-recipe'+recipeIdx[j]).addEventListener('click',() =>{
+					recipeDetail=recipeIdx[j];
+					sessionStorage.setItem('recipeDetailIdx', recipeDetail);
+					location.href="/recipePage/recipePage";
+				}); 
 			}
 			
 		}

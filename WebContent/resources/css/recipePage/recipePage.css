@@ -3,10 +3,10 @@
 html{
 	width: 1800px;
 	background-color: #ccdce7;
-	margin-left: 70px;
+	margin-left: 50px;
 }
 
-.recipe_page{
+.recipe-page{
 	width: 1800px;
 	display: inline-flex;
 	flex-wrap: wrap;
@@ -14,9 +14,9 @@ html{
 	margin-top: 100px;
 }
 
-.food_img{
+.recipe-img{
 	width: 700px;
-	height: 900px;
+	height: 800px;
 	background-color: silver;
 	margin-top: 30px;
 	margin-left: 30px;
@@ -31,46 +31,48 @@ html{
 	margin-left: 50px;
 }
 
-.food_category{
-	color: orange;
-	font-size: 40px;
-	font-weight: bold;
-}
-
-.food_name{
+.recipe-name{
 	font-weight: bolder;
 	font-size: 55px;
 	margin-top: 10px;
 }
 
-.nutrition_fact{
+.recipe-type{
+	color: orange;
+	font-size: 40px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-left: 2px;
+}
+
+.nutrient{
 	width: 100%;
 }
 
-.nutrition_fact_title{
+.nutrient-title{
 	margin-top: 30px;
 	font-weight: 600;
 	font-size: 35px;
 }
 
-.nutrition_fact_detail div{
+.nutrient-detail div{
 	margin-top: 10px;
 	font-size: 20px;
 	font-weight: 600;
 }
 
-.ingredients_title{
+.ingredients-title{
 	margin-top: 30px;
 	font-weight: 600;
 	font-size: 35px;
 }
 
-.ingredients_detail div{
+.ingredients-detail div{
 	margin-top: 10px;
 	font-size: 20px;
 	font-weight: 600;
+	word-break: keep-all;
 }
-
 
 
 .cooking_method{

@@ -57,11 +57,18 @@ public class MainPageDao {
 		PreparedStatement pstm = null;
 		
 		String value = "";
-		String query = "insert into recipe(rcp_seq, rcp_nm, rcp_way2, rcp_pat2, info_eng, info_car, info_pro, info_fat, info_na, att_file_no_main, att_file_no_mk, rcp_parts_dtls, manual01, manual02, manual03, manual04, manual05, manual06, manual07, manual08, manual09, manual10, manual11, manual12, manual13, manual14, manual15, manual16, manual17, manual18, manual19, manual20) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";                                                                                      
+		String query = "insert into recipe(rcp_seq, rcp_nm, rcp_way2, rcp_pat2, info_eng, info_car, "
+				+ "info_pro, info_fat, info_na, att_file_no_main, att_file_no_mk, rcp_parts_dtls, manual01, "
+				+ "manual02, manual03, manual04, manual05, manual06, manual07, manual08, manual09, manual10, "
+				+ "manual11, manual12, manual13, manual14, manual15, manual16, manual17, manual18, manual19, "
+				+ "manual20, manual_img01, manual_img02, manual_img03, manual_img04, manual_img05, manual_img06, "
+				+ "manual_img07, manual_img08, manual_img09, manual_img10, manual_img11, manual_img12, manual_img13, "
+				+ "manual_img14, manual_img15, manual_img16, manual_img17, manual_img18, manual_img19, manual_img20 ) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";                                                                                      
 		int res = 0;
 		
 		try {
-			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/1318/1318");
+			URL url = new URL("https://openapi.foodsafetykorea.go.kr/api/9ee2439be26f471d9ffd/COOKRCP01/json/1215/1318");
 			BufferedReader br;
 			br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			value = br.readLine();
@@ -114,6 +121,27 @@ public class MainPageDao {
 				recipe.setManual18(recipeDetail.get("MANUAL18").toString());
 				recipe.setManual19(recipeDetail.get("MANUAL19").toString());
 				recipe.setManual20(recipeDetail.get("MANUAL20").toString());
+				recipe.setManualImg01(recipeDetail.get("MANUAL_IMG01").toString());
+				recipe.setManualImg02(recipeDetail.get("MANUAL_IMG02").toString());
+				recipe.setManualImg03(recipeDetail.get("MANUAL_IMG03").toString());
+				recipe.setManualImg04(recipeDetail.get("MANUAL_IMG04").toString());
+				recipe.setManualImg05(recipeDetail.get("MANUAL_IMG05").toString());
+				recipe.setManualImg06(recipeDetail.get("MANUAL_IMG06").toString());
+				recipe.setManualImg07(recipeDetail.get("MANUAL_IMG07").toString());
+				recipe.setManualImg08(recipeDetail.get("MANUAL_IMG08").toString());
+				recipe.setManualImg09(recipeDetail.get("MANUAL_IMG09").toString());
+				recipe.setManualImg10(recipeDetail.get("MANUAL_IMG10").toString());
+				recipe.setManualImg11(recipeDetail.get("MANUAL_IMG11").toString());
+				recipe.setManualImg12(recipeDetail.get("MANUAL_IMG12").toString());
+				recipe.setManualImg13(recipeDetail.get("MANUAL_IMG13").toString());
+				recipe.setManualImg14(recipeDetail.get("MANUAL_IMG14").toString());
+				recipe.setManualImg15(recipeDetail.get("MANUAL_IMG15").toString());
+				recipe.setManualImg16(recipeDetail.get("MANUAL_IMG16").toString());
+				recipe.setManualImg17(recipeDetail.get("MANUAL_IMG17").toString());
+				recipe.setManualImg18(recipeDetail.get("MANUAL_IMG18").toString());
+				recipe.setManualImg19(recipeDetail.get("MANUAL_IMG19").toString());
+				recipe.setManualImg20(recipeDetail.get("MANUAL_IMG20").toString());
+
 
 				pstm.setInt(1, recipe.getRcpSeq());
 				pstm.setString(2, recipe.getRcpNm());
@@ -147,6 +175,27 @@ public class MainPageDao {
 				pstm.setString(30, recipe.getManual18());
 				pstm.setString(31, recipe.getManual19());
 				pstm.setString(32, recipe.getManual20());
+				pstm.setString(33, recipe.getManualImg01());
+				pstm.setString(34, recipe.getManualImg02());
+				pstm.setString(35, recipe.getManualImg03());
+				pstm.setString(36, recipe.getManualImg04());
+				pstm.setString(37, recipe.getManualImg05());
+				pstm.setString(38, recipe.getManualImg06());
+				pstm.setString(39, recipe.getManualImg07());
+				pstm.setString(40, recipe.getManualImg08());
+				pstm.setString(41, recipe.getManualImg09());
+				pstm.setString(42, recipe.getManualImg10());
+				pstm.setString(43, recipe.getManualImg11());
+				pstm.setString(44, recipe.getManualImg12());
+				pstm.setString(45, recipe.getManualImg13());
+				pstm.setString(46, recipe.getManualImg14());
+				pstm.setString(47, recipe.getManualImg15());
+				pstm.setString(48, recipe.getManualImg16());
+				pstm.setString(49, recipe.getManualImg17());
+				pstm.setString(50, recipe.getManualImg18());
+				pstm.setString(51, recipe.getManualImg19());
+				pstm.setString(52, recipe.getManualImg20());
+
 
 				res = pstm.executeUpdate();
 				

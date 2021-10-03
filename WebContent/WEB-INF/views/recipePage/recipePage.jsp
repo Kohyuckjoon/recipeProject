@@ -11,34 +11,140 @@
 
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-	<div class="recipe_page">
+	<script type="text/javascript">
+		let recipeIdx = new Array();
+		let recipeImg = new Array();
+		let recipeType = new Array();
+		let recipeName = new Array();
 
-		<img class="food_img" src="http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00017_1.png"></img>
+		let caloryArr = new Array();
+		let carbohydrateArr = new Array();
+		let proteinArr = new Array();
+		let fatArr = new Array();
+		let natriumArr = new Array();
+
+		let ingredientsArr = new Array();
+
+		let manual1 = new Array();
+		let manual2 = new Array();
+		let manual3 = new Array();
+		let manual4 = new Array();
+		let manual5 = new Array();
+		let manual6 = new Array();
+		let manual7 = new Array();
+		let manual8 = new Array();
+		let manual9 = new Array();
+		let manual10 = new Array();
+		let manual11 = new Array();
+		let manual12 = new Array();
+		let manual13 = new Array();
+		let manual14 = new Array();
+		let manual15 = new Array();
+		let manual16 = new Array();
+		let manual17 = new Array();
+		let manual18 = new Array();
+		let manual19 = new Array();
+		let manual20 = new Array();
+		
+		let manualImg1 = new Array();
+		let manualImg2 = new Array();
+		let manualImg3 = new Array();
+		let manualImg4 = new Array();
+		let manualImg5 = new Array();
+		let manualImg6 = new Array();
+		let manualImg7 = new Array();
+		let manualImg8 = new Array();
+		let manualImg9 = new Array();
+		let manualImg10 = new Array();
+		let manualImg11 = new Array();
+		let manualImg12 = new Array();
+		let manualImg13 = new Array();
+		let manualImg14 = new Array();
+		let manualImg15 = new Array();
+		let manualImg16 = new Array();
+		let manualImg17 = new Array();
+		let manualImg18 = new Array();
+		let manualImg19 = new Array();
+		let manualImg20 = new Array();
+
+
+		<c:forEach var="recipe" items="${Recipes}">
+		recipeIdx.push('${recipe.rcpSeq}');
+		recipeImg.push('${recipe.attFileNoMk}');
+		recipeType.push('${recipe.rcpPat2}');
+		recipeName.push('${recipe.rcpNm}');
+
+		caloryArr.push('${recipe.infoEng}');
+		carbohydrateArr.push('${recipe.infoCar}');
+		proteinArr.push('${recipe.infoPro}');
+
+		fatArr.push('${recipe.infoFat}');
+		natriumArr.push('${recipe.infoNa}');
+
+		ingredientsArr.push('${recipe.rcpPartsDtls}');
+		// 줄바꿈문자 제거함
+
+		manual1.push('${recipe.manual1}');
+		manual2.push('${recipe.manual2}');
+		manual3.push('${recipe.manual3}');
+		manual4.push('${recipe.manual4}');
+		manual5.push('${recipe.manual5}');
+		manual6.push('${recipe.manual6}');
+		manual7.push('${recipe.manual7}');
+		manual8.push('${recipe.manual8}');
+		manual9.push('${recipe.manual9}');
+		manual10.push('${recipe.manual10}');
+		manual11.push('${recipe.manual11}');
+		manual12.push('${recipe.manual12}');
+		manual13.push('${recipe.manual13}');
+		manual14.push('${recipe.manual14}');
+		manual15.push('${recipe.manual15}');
+		manual16.push('${recipe.manual16}');
+		manual17.push('${recipe.manual17}');
+		manual18.push('${recipe.manual18}');
+		manual19.push('${recipe.manual19}');
+		manual20.push('${recipe.manual20}');
+		// 줄바꿈문자 제거함!
+		
+		manualImg1.push('${recipe.manualImg01}');
+		manualImg2.push('${recipe.manualImg02}');
+		manualImg3.push('${recipe.manualImg03}');
+		manualImg4.push('${recipe.manualImg04}');
+		manualImg5.push('${recipe.manualImg05}');
+		manualImg6.push('${recipe.manualImg06}');
+		manualImg7.push('${recipe.manualImg07}');
+		manualImg8.push('${recipe.manualImg08}');
+		manualImg9.push('${recipe.manualImg09}');
+		manualImg10.push('${recipe.manualImg10}');
+		manualImg11.push('${recipe.manualImg11}');
+		manualImg12.push('${recipe.manualImg12}');
+		manualImg13.push('${recipe.manualImg13}');
+		manualImg14.push('${recipe.manualImg14}');
+		manualImg15.push('${recipe.manualImg15}');
+		manualImg16.push('${recipe.manualImg16}');
+		manualImg17.push('${recipe.manualImg17}');
+		manualImg18.push('${recipe.manualImg18}');
+		manualImg19.push('${recipe.manualImg19}');
+		manualImg20.push('${recipe.manualImg20}');
+		
+		
+		</c:forEach>
+	</script>
+
+
+	<div class="recipe-page">
 
 		<div class="container">
-			<div class="food_category">-밥-</div>
-			<div class="food_name">칼륨 듬뿍 고구마죽</div>
 
-			<div class="nutrition_fact">
-				<div class = "nutrition_fact_title">영양성분</div>
-				<div class = "nutrition_fact_detail">
-					<div class = "calory">&#x25C9 열량 : 1</div>
-					<div class = "carbohydrate">&#x25C9 탄수화물 : 2</div>
-					<div class = "protein">&#x25C9 단백질 : 3</div>
-					<div class = "fat">&#x25C9 지방 : 4</div>
-					<div class = "natrium ">&#x25C9 나트륨 : 5</div>
+			<div class="nutrient">
+				<div class = "nutrient-title">영양성분</div>
+				<div class = "nutrient-detail">
 				</div>
 			</div>
-
+			
 			<div class="ingredients">
-				<div class="ingredients_title">재료</div>
-				<div class="ingredients_detail">
-					<div class="ingredients_detail_1">&#x25C9 고구마죽 고구마 100g(2/3개)</div>
-					<div class="ingredients_detail_2">&#x25C9 설탕 2g(1/3작은술)</div>
-					<div class="ingredients_detail_3">&#x25C9 찹쌀가루 3g(2/3작은술)</div>
-					<div class="ingredients_detail_4">&#x25C9 물 200ml(1컵)</div>
-					<div class="ingredients_detail_5">&#x25C9 잣 8g(8알)</div>
-				</div>
+				<div class="ingredients-title">재료</div>
+				<div class="ingredients-detail"></div>
 			</div>
 			
 		</div>
@@ -51,31 +157,25 @@
 
 		<div class="cooking_method">
 			<div class="cooking_method_title">조리방법</div>
-			<img class="cooking_method_img" src="http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00017_1.png"></img>
-			<div class="cooking_method_detail">1. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다.a</div>
-			<img class="cooking_method_img" src="http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00017_2.png"></img>
-			<div class="cooking_method_detail">2. 찜기에 고구마를 넣고 20~30분 정도 삶아 주고, 블렌더나 체를 이용하여 잘 으깨어 곱게 만든다.b</div>
-			<img class="cooking_method_img" src="http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00017_3.png"></img>
-			<div class="cooking_method_detail">3. 고구마와 물을 섞어 끓이면서 찹쌀가루로 농도를 맞추고 설탕을 넣어 맛을 낸다.c</div>
-			<div class="cooking_method_detail">4. 잣을 팬에 노릇하게 볶아 다져서 고구마 죽에 섞는다. 기호에 따라 고구마를 튀겨 얹어 먹어도 좋다.</div>
+			<div class="cooking_method_detail"></div>
 		</div>
+
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<div class="reply_list">
 			<table>
 				<thead>
@@ -106,7 +206,11 @@
 		</div>
 
 	</div>
+	
+	
+
 
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
+	<script type="text/javascript" src = "/resources/js/recipePage/recipePage.js"></script> 
 </body>
 </html>

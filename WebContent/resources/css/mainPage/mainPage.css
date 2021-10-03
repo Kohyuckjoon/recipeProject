@@ -95,7 +95,7 @@ html{
 }
 
 /* 음식 종류. 이하 뒤에 꼬리 이상한건 api 파라미터 따라한거임 */
-.food-type{
+.recipe-type{
 	font-size: 12px;
 	color: orange;
 }
@@ -125,4 +125,3 @@ html{
 	padding: 0px;
 	background-color:#ccdce7;
 }
-

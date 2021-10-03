@@ -9,15 +9,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.kh.recipe.common.exception.PageNotFoundException;
-import com.kh.recipe.recipePage.model.dto.Review;
+import com.kh.recipe.recipePage.model.dto.Recipe;
 import com.kh.recipe.recipePage.model.service.RecipePageService;
 
 @WebServlet("/recipePage/*")
 public class RecipePageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private RecipePageService recipePageService = new RecipePageService();
+	
     public RecipePageController() {
         super();
     }
@@ -35,7 +35,9 @@ public class RecipePageController extends HttpServlet {
 	
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		List<Recipe> Recipes = new ArrayList<Recipe>();
+		Recipes = recipePageService.selectRecipeByDetail();
+		request.setAttribute("Recipes", Recipes);
 		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
 
 	}

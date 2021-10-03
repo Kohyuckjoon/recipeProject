@@ -33,8 +33,6 @@
 		</div>
 	</div>
 	
-	
-	
 	<!-- 여기서부터 바디 -->
 	
 	<!-- JAVA(server)단 session은 JavaScript(client)단에서 변경 불가. controller를 타야 변경 가능. -->
