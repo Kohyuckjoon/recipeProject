@@ -50,6 +50,7 @@
 		<div class="share"></div>
 
 		<div class="cooking_method">
+			<div class="cooking_method_title">조리방법</div>
 			<img class="cooking_method_img" src="http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00017_1.png"></img>
 			<div class="cooking_method_detail">1. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다.a</div>
 			<img class="cooking_method_img" src="http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00017_2.png"></img>
