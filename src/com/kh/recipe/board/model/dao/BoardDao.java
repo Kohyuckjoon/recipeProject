@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.recipe.board.model.dto.Board;
+import com.kh.recipe.board.model.dto.BoardDTO;
 import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
@@ -136,22 +137,25 @@ public class BoardDao {
 	
 
 	// 리스트로 전체 게시글 목록
-	public List<Board> selectBoardAll(Connection conn) {
-		String sql = "select no,title,user_id,reg_date,view_count from board order by no desc";
-
+	public List<Board> selectBoardAll(Connection conn, BoardDTO param) {
+		List<Board> boardList = new ArrayList();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		List<Board> boardList = new ArrayList<Board>();
+		
+		String sql =  " select  no , user_id, title, reg_date, view_count" + 
+				" from (select rownum as rnum,  no , user_id, title, reg_date, view_count " + 
+				" from board  order by no desc) board" + 
+				" where rnum between  ? and ?";
 
+		
 		try {
 			pstm = conn.prepareStatement(sql);
-
+			pstm.setInt( 1, param.getStartIdx());
+			pstm.setInt(2, param.getRowCntPage());
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-
 				Board board = new Board();
-
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
 				board.setUserId(rset.getString("user_id"));
@@ -159,7 +163,7 @@ public class BoardDao {
 				board.setViewCount(rset.getInt("view_count"));
 				boardList.add(board);
 			}
-
+			
 		} catch (SQLException e) {
 			/* throw new DataAccessException(e); */
 			e.printStackTrace();
@@ -270,7 +274,41 @@ public class BoardDao {
 	}
 
 
+	
+	public int selPageLength(Connection conn, BoardDTO param) {
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		
+		String sql = "select ceil(count(no)/?) from board";
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, param.getRowCntPage()); 
+			rset = pstm.executeQuery();
+			
+			
+			  if(rset.next()) { 
+				return rset.getInt(1);
+				  }
+			 
+			
+			template.commit(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			template.close(pstm);
+		}
+		
+		return 0;
+		
+	}
+
+	}
+
+
 
 	
 
-}
+

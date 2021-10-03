@@ -65,9 +65,7 @@ text-align: left;
 .board_list tbody tr td:nth-child(2):hover{
 text-decoration: underline;
 }
-.paging{
 
-	}
 
 Form {
 	position:relative;
@@ -132,10 +130,11 @@ Form {
 		
 		<!-- 게시판 페이징 구현하는 거 -->
 
-<div id="paging">
-		페이징 구현 할 부분
-</div>
-	
+	<div style="text-align: center; vertical-align: bottom; height: 50px;" >
+		<c:forEach begin="1" end="${requestScope.pageLength}" step="1" var="page">
+			<span><a href="/board/board-list?page=${page}" > ${page} </a></span>
+		</c:forEach>
+		</div>
 	
 <form action="/board/board-list" method="get">
 	<select name="searchCategory">
@@ -145,12 +144,13 @@ Form {
 	</select>
 	<input type="text" name = "searchKeyword" placeholder="키워드" required />
 	<input type="submit" value="검색">
-</form>
-
-		
-		
+</form>	
 	</div>
 	<button class="formBtn" onclick = "location.href = '/board/board-form'" >글쓰기</button>
+	
+	
+		
+	
 	<!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>

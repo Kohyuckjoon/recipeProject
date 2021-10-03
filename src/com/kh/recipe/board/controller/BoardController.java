@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.board.model.dao.BoardDao;
 import com.kh.recipe.board.model.dto.Board;
+import com.kh.recipe.board.model.dto.BoardDTO;
 import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.board.model.service.BoardService;
 import com.kh.recipe.common.exception.PageNotFoundException;
@@ -20,6 +21,8 @@ import com.kh.recipe.common.file.FileDTO;
 import com.kh.recipe.common.file.FileUtil;
 import com.kh.recipe.common.file.MultiPartParams;
 import com.kh.recipe.member.model.dto.Member;
+import com.kh.recipe.myPage.model.dto.Review;
+import com.kh.recipe.paging.model.dto.Paging;
 
 @WebServlet("/board/*")
 public class BoardController extends HttpServlet {
@@ -71,12 +74,12 @@ public class BoardController extends HttpServlet {
 			 comment(request,response);
 			break;	
 		
-
 		default:
 			throw new PageNotFoundException();
 
 		}
 	}
+
 private void comment(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException  {
 		// TODO Auto-generated method stub
 	Member member = (Member) request.getSession().getAttribute("authentication");
@@ -149,15 +152,23 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	private void boardList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		String strPage = request.getParameter("page");
+		int page = strPage == null ? 1 : Integer.parseInt(strPage);
 		
-		 
+		int rowCnt = 10;
 		Board board = new Board();
-		board.setNo(board.getNo());
-		List<Board> datas = boardService.selectBoardAll();
+		BoardDTO param = new BoardDTO();
+		param.setRowCntPage(rowCnt);
+		param.setStartIdx((page-1)*rowCnt+1);
+		
+		request.setAttribute("pageLength", boardService.selPageLength(param));
+	
+		
+		List<Board> datas = boardService.selectBoardAll(param);
 		request.setAttribute("datas", datas);
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
 		
-		int category = Integer.parseInt(request.getParameter("searchCategory"));
+		/*int category = Integer.parseInt(request.getParameter("searchCategory"));
 		String keyword = request.getParameter("searchKeyword");
 		
 		if(keyword != null) {
@@ -165,7 +176,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 			request.setAttribute("datas", datas );
 			request.getRequestDispatcher("/board/board-list").forward(request, response);	
 			return;
-		}
+		}*/
 		
 	}
 

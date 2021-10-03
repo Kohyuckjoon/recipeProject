@@ -83,6 +83,11 @@ public class Board {
 				+ regDate + ", viewCount=" + viewCount + "]";
 	}
 
+
+
+
+
+	
 	
 
 	
