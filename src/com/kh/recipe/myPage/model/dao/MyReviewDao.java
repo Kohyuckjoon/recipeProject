@@ -12,7 +12,7 @@ import com.kh.recipe.myPage.model.dto.Review;
 
 public class MyReviewDao {
 	
-	private JDBCTemplate template = JDBCTemplate.getInstance();
+	private static JDBCTemplate template = JDBCTemplate.getInstance();
 
 	public List<Review> selectMyReview(Connection conn, String userId) {
 		List<Review> myReviews = new ArrayList<Review>();
@@ -41,6 +41,29 @@ public class MyReviewDao {
 		return myReviews;
 	}
 
+	public static int cancelReview(Connection conn, String userId, String reviewNo) {
+		int res = 0;
+	
+		String sql = "delete from review where review_no = ? and user_id= ?";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, reviewNo);
+			pstm.setString(2, userId);
+			res = pstm.executeUpdate();
+			template.commit(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			template.close(pstm);
+		}
+		
+		return res;
+	}
+	
 	private Review convertAllToReview(ResultSet rset) throws SQLException {
 		Review review = new Review();
 		review.setReviewNo(rset.getInt("review_no"));
@@ -51,5 +74,10 @@ public class MyReviewDao {
 		review.setReviewDate(rset.getDate("review_date"));
 		return review;
 	}
+
+
+
+
+	
 
 }

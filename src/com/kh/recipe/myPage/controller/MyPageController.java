@@ -45,11 +45,11 @@ public class MyPageController extends HttpServlet {
 		case "myScrape":
 			myScrape(request,response);
 			break;
-		case "cancel":
-			cancel(request,response);
+		case "cancelScrape":
+			cancelScrape(request,response);
 			break;
-		case "clickedMyScrape":
-			myScrape(request,response);
+		case "cancelReview":
+			cancelReview(request,response);
 			break;
 			
 		default: throw new PageNotFoundException();
@@ -58,7 +58,31 @@ public class MyPageController extends HttpServlet {
 	}
 
 
-	private void cancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void cancelReview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");	
+		
+		String reviewNo = request.getParameter("reviewNo");
+		
+		Review review = new Review();
+		review.setUserId(member.getUserId());
+		String userId = review.getUserId(); 
+		
+		System.out.println(userId + "," + reviewNo);
+		
+		int res = myPageService.cancelReview(userId, reviewNo);
+		
+		System.out.println(res);
+		
+		if(res!=0) {
+			response.sendRedirect("/myPage/myReview");
+			
+			return;
+		}
+		
+	}
+
+	private void cancelScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Member member = (Member) request.getSession().getAttribute("authentication");	
 		
