@@ -117,12 +117,21 @@ public class MyPageController extends HttpServlet {
 			return;
 		}
 		
+		String strPage = request.getParameter("page");
+		int page = strPage == null ? 1 : Integer.parseInt(strPage);
+		
+		int rowCnt = 12;
 		Scrape scrape = new Scrape();
 		scrape.setUserId(member.getUserId());
-		String userId = scrape.getUserId();
+		scrape.setRowCntPage(rowCnt*page);		
+		scrape.setStartIdx(((page-1)*rowCnt)+1);
 		
-		List<Recipe> myRecipes = new ArrayList<Recipe>();
-		myRecipes = myPageService.selectMyRecipe(userId);
+		int res = myPageService.selScrapePageLength(scrape, page);
+		
+		request.setAttribute("pageLength", res);
+		
+		
+		List<Recipe> myRecipes = myPageService.selectMyRecipe(scrape);
 		
 		request.setAttribute("myRecipes", myRecipes);
 
@@ -149,7 +158,7 @@ public class MyPageController extends HttpServlet {
 		review.setRowCntPage(rowCnt*page);		
 		
 		review.setStartIdx(((page-1)*rowCnt)+1);
-		int res = myPageService.selPageLength(review, page);
+		int res = myPageService.selReviewPageLength(review, page);
 		
 		request.setAttribute("pageLength", res);
 		

@@ -12,22 +12,28 @@ import java.util.List;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.mainPage.model.dto.Recipe;
+import com.kh.recipe.myPage.model.dto.Scrape;
 
 public class MyScrapeDao {
 
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 
-	public List<Recipe> selectMyRecipe(Connection conn, String userId) {
+	public List<Recipe> selectMyRecipe(Connection conn, Scrape scrape) {
 		List<Recipe> myRecipes = new ArrayList<Recipe>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
 		String columns = "rcp_seq, rcp_nm, rcp_pat2, att_file_no_mk";
-		String query = "select " + columns +" from recipe inner join scrape using(rcp_seq) where user_id = ?";
+		
+		String query = "select " + columns + " from (select rownum as rnum, " + columns + " from recipe inner join scrape using(rcp_seq) "
+				+ "where user_id = ? order by scr_index asc) "
+				+ "where rnum between ? and ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, userId);
+			pstm.setString(1, scrape.getUserId());
+			pstm.setInt(2, scrape.getStartIdx());
+			pstm.setInt(3, scrape.getRowCntPage());
 			rset = pstm.executeQuery();
 			
 			while(rset.next()) {
@@ -45,30 +51,58 @@ public class MyScrapeDao {
 	}
 
 	public int cancelScrape(String userId, String rcpSeq, Connection conn) {
-		Statement stmt = null;
+		
 		int res = 0;
 		
+		String sql = "delete from scrape where user_id= ?";
+		PreparedStatement pstm = null;
+		
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
-			stmt = conn.createStatement();
-			String query = "delete from scrape where user_id = '" + userId + "' " 
-					+ "and rcp_seq = '" + rcpSeq + "'";
-			res = stmt.executeUpdate(query);
-		} catch (ClassNotFoundException | SQLException e) {
-			 throw new DataAccessException(e);
-		}finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+			template.commit(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			template.close(pstm);
 		}
 		
 		return res;
+
 	}
+	
+	public int selScrapePageLength(Connection conn, Scrape scrape, int page) {
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		int res = 0;
+		
+		String sql = "select ceil(count(scr_index)/?) from scrape where user_id = ?";
+		
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, (scrape.getRowCntPage()/page));
+			pstm.setString(2, scrape.getUserId());
+			rset = pstm.executeQuery();
+			
+			if(rset.next()) {
+				res = rset.getInt(1);
+			}
+			
+			template.commit(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			template.close(pstm);
+		}
+		
+		return res;
+	}	
 	
 	private Recipe convertAllToRecipe(ResultSet rset) throws SQLException {
 		Recipe recipe = new Recipe();
@@ -95,6 +129,5 @@ public class MyScrapeDao {
 		}
 		return recipe;
 	}
-	
 	
 }

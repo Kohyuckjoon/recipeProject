@@ -2,22 +2,56 @@ package com.kh.recipe.myPage.model.dto;
 
 public class Scrape {
 
-	private int index;
+	private int scrIndex;
 	private String userId;
 	private int rcpSeq;
 	
-
+	private int startIdx; // 각 페이지별로 글이 시작하는 번호
+	private int rowCntPage; // 각 페이지당 출력할 글 개수
+	
 	public Scrape() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getIndex() {
-		return index;
+	
+	
+	public int getStartIdx() {
+		return startIdx;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+
+
+	public void setStartIdx(int startIdx) {
+		this.startIdx = startIdx;
 	}
+
+
+
+	public int getRowCntPage() {
+		return rowCntPage;
+	}
+
+
+
+	public void setRowCntPage(int rowCntPage) {
+		this.rowCntPage = rowCntPage;
+	}
+
+
+
+
+
+	public int getScrIndex() {
+		return scrIndex;
+	}
+
+
+
+	public void setScrIndex(int scrIndex) {
+		this.scrIndex = scrIndex;
+	}
+
+
 
 	public String getUserId() {
 		return userId;
@@ -35,10 +69,17 @@ public class Scrape {
 		this.rcpSeq = rcpSeq;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Scrape [index=" + index + ", userId=" + userId + ", rcpSeq=" + rcpSeq + "]";
+		return "Scrape [scrIndex=" + scrIndex + ", userId=" + userId + ", rcpSeq=" + rcpSeq + ", startIdx=" + startIdx
+				+ ", rowCntPage=" + rowCntPage + "]";
 	}
+
+
+
+	
 	
 
 }
