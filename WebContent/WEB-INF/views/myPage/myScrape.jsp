@@ -45,8 +45,6 @@
 	</div>
 
 
-
-
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
 
 
