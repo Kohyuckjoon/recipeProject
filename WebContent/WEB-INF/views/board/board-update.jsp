@@ -15,7 +15,7 @@
 <style type="text/css">
 
 
-<style type="text/css">
+
 .top > div{
 	height: 100px;
 }
@@ -109,24 +109,26 @@ font-size:2vw;
 	<div class="tit">게시판 글 수정</div>
 	
 		<div class="info">
-		<span>번호 : <c:out value="${datas.board.no}"/></span>
+		<span>번호 : <input type="text" name="no" value="${datas.board.no}" readonly="readonly" /></span>
 		<span>제목 : <input type="text" name="title" required="required" value="${datas.board.title}" /></span>
-		<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
-		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
-		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
+		<span>등록일 : <input  type="text" name="regDate" value="${datas.board.regDate}" readonly="readonly"/></span>
+		<span>작성자 : <input type="text" name="userId"  value="${datas.board.userId}" readonly="readonly"/></span>
+		<span>조회수 : <input  type="text" name="viewCount" value="${datas.board.viewCount}" readonly="readonly"/></span>
 	</div>
 	
 	
 	<div class="article_content">
-		<textarea name="content" required="required" maxlength="250" >${datas.board.content }</textarea>
+		<textarea name="content" required="required" maxlength="250" >${datas.board.content}</textarea>
 	</div>
 	
 </div>
 
- <div class="btn_section">
-       	<input type="submit" value="수정완료">    
+ 	<div class="btn_section">
+       	<input type="submit" value="수정완료"> 
+       	<button type="reset" >다시 입력</button>   
           <button onclick = "location.href = '/board/board-list'">목록</button>         
-    </div>      
+    </div>    
+    
    </form>
 <!-- 여기부턴 foot -->
 	 <%@ include file="/WEB-INF/views/include/foot.jsp" %>

@@ -67,26 +67,24 @@ public class BoardController extends HttpServlet {
 			 boardDelete(request,response);
 			break;
 
-		case "search":
-			search(request, response);
-			break;
+		
 
 		default:
 			throw new PageNotFoundException();
 
 		}
 	}
-
+/*
 	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int category = Integer.parseInt(request.getParameter("searchCategory"));
 		String keyword = request.getParameter("searchKeyword");
+		
 		System.out.println("category ="+category);
 		System.out.println("keyword ="+keyword);
 		List<Board> list = boardService.select(category,keyword);
 		request.setAttribute("boardList", list);
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
-	}
+	}*/
 
 	// 게시물 삭제
 
@@ -104,25 +102,50 @@ public class BoardController extends HttpServlet {
 	
 	 private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 			
+			/*
+			 * int no = Integer.parseInt(request.getParameter("no")); String title =
+			 * request.getParameter("title"); String content =
+			 * request.getParameter("content"); int result = boardService.updateBoard(title,
+			 * content);
+			 * 
+			 * request.getRequestDispatcher("/board/board-update").forward(request,
+			 * response);
+			 */
 		 int no = Integer.parseInt(request.getParameter("no"));
 		 String title = request.getParameter("title");
 		 String content = request.getParameter("content");
-			int result = boardService.updateBoard(title, content);
-			
-			request.getRequestDispatcher("/board/board-update").forward(request, response);
-
-		
+		 
+		 BoardService boardService = new BoardService();
+		 Board board = new Board();
+		 board.setTitle(title);
+		 board.setContent(content);
+		 boardService.updateBoard(title, content);
+		 response.sendRedirect("/board/board-update");
+		 
+		 
 	  }
 	 
 	// 게시물 목록
 	private void boardList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		
+		 
 		Board board = new Board();
 		board.setNo(board.getNo());
 		List<Board> datas = boardService.selectBoardAll();
 		request.setAttribute("datas", datas);
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
+		
+		int category = Integer.parseInt(request.getParameter("searchCategory"));
+		String keyword = request.getParameter("searchKeyword");
+		
+		if(keyword != null) {
+			datas  = boardService.select(category,keyword);
+			request.setAttribute("datas", datas );
+			request.getRequestDispatcher("/board/board-list").forward(request, response);
+			}
+		
 	}
 
 	// 게시물 상세글
