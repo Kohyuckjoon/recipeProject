@@ -17,12 +17,13 @@ import com.kh.recipe.myPage.model.dto.Review;
 
 import com.kh.recipe.myPage.model.dto.Scrape;
 import com.kh.recipe.myPage.model.service.MyPageService;
+import com.kh.recipe.recipePage.controller.RecipePageController;
 
 @WebServlet("/myPage/*")
 public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private MyPageService myPageService = new MyPageService();
-       
+	private MyPageService myPageService = new MyPageService();   
+	
 	public MyPageController() {
         super();
     }
@@ -139,14 +140,23 @@ public class MyPageController extends HttpServlet {
 			return;
 		}
 		
+		String strPage = request.getParameter("page");
+		int page = strPage == null ? 1 : Integer.parseInt(strPage);
+		
+		int rowCnt = 10;
 		Review review = new Review();
 		review.setUserId(member.getUserId());
-		String userId = review.getUserId();
+		review.setRowCntPage(rowCnt*page);		
 		
-		List<Review> myReviews = new ArrayList<Review>();
-		myReviews = myPageService.selectMyReview(userId);
+		review.setStartIdx(((page-1)*rowCnt)+1);
+		int res = myPageService.selPageLength(review, page);
 		
-		System.out.println(myReviews);
+		request.setAttribute("pageLength", res);
+		
+		System.out.println(res);
+		
+		List<Review> myReviews = myPageService.selectMyReview(review);
+		
 		
 		request.setAttribute("myReviews", myReviews);
 		
