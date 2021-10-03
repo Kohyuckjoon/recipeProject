@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.kh.recipe.board.model.dao.BoardDao;
 import com.kh.recipe.board.model.dto.Board;
+import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.file.FileDTO;
@@ -53,21 +54,6 @@ public class BoardService {
 	
 	
 
-	public int updateBoard(String title,String content) { //수정
-		  Connection conn = template.getConnection(); 
-		  int res = 0;
-		  
-		  try {
-			  res = boardDao.updateBoard(conn,title,content);
-			
-		  }catch (Exception e) {
-			  e.printStackTrace();
-		  }finally { 
-			  template.close(conn); 
-		  } 
-		  
-		  return res;
-	}
 
 	public List<Board> selectBoardAll() { //게시글 목록 페이지 
 		Connection conn = template.getConnection();
@@ -123,6 +109,21 @@ public class BoardService {
 	  }
 	 
 
+		public int updateBoard(String title,String content,int no) { //수정
+			  Connection conn = template.getConnection(); 
+			  int res = 0;
+			  
+			  try {
+				  res = boardDao.updateBoard(conn,title,content,no);
+				
+			  }catch (Exception e) {
+				  e.printStackTrace();
+			  }finally { 
+				  template.close(conn); 
+			  } 
+			  
+			  return res;
+		}
 	
 
 	public List<Board> select(int category, String keyword) {
@@ -137,6 +138,21 @@ public class BoardService {
 			}
 			
 			return list;
+	}
+
+	public void insertComment(Comments comment) {
+		Connection conn = template.getConnection();
+		
+		try {
+			boardDao.insertComment(conn, comment);
+			
+			template.commit(conn);
+		} catch (DataAccessException e) {
+			template.rollback(conn);
+			throw e;
+		}finally {
+			template.close(conn);
+		}
 	}
 
 	
