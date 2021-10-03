@@ -104,16 +104,17 @@ font-size:2vw;
 	 --%>
 	
 	
-<form action="/board/upload" method="post" enctype="multipart/form-data">
+<form action="/board/upload" method="post" enctype="multipart/form-data" class="update">
 	<div class="content"> 
 	<div class="tit">게시판 글 수정</div>
 	
 		<div class="info">
-		<span>번호 : <input type="text" name="no" value="${datas.board.no}" readonly="readonly" /></span>
+		<span>번호 : <c:out value="${datas.board.no}"/></span>
 		<span>제목 : <input type="text" name="title" required="required" value="${datas.board.title}" /></span>
-		<span>등록일 : <input  type="text" name="regDate" value="${datas.board.regDate}" readonly="readonly"/></span>
-		<span>작성자 : <input type="text" name="userId"  value="${datas.board.userId}" readonly="readonly"/></span>
-		<span>조회수 : <input  type="text" name="viewCount" value="${datas.board.viewCount}" readonly="readonly"/></span>
+		<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
+		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
+		<span>조회수 : <c:out value="${datas.board.viewCount}"/></span>
+	
 	</div>
 	
 	

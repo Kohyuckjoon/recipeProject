@@ -11,9 +11,37 @@ public class Review {
 	private String reviewContents; // 댓글 내용
 	private Date reviewDate; //댓글작성날짜
 	
+	private int startIdx; // 각 페이지별로 글이 시작하는 번호
+	private int rowCntPage; // 각 페이지당 출력할 글 개수
+	
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	public int getStartIdx() {
+		return startIdx;
+	}
+
+
+
+	public void setStartIdx(int startIdx) {
+		this.startIdx = startIdx;
+	}
+
+
+
+	public int getRowCntPage() {
+		return rowCntPage;
+	}
+
+
+
+	public void setRowCntPage(int rowCntPage) {
+		this.rowCntPage = rowCntPage;
+	}
+
+
 
 	public String getRcpNm() {
 		return rcpNm;
@@ -63,11 +91,15 @@ public class Review {
 		this.reviewDate = reviewDate;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", rcpSeq=" + rcpSeq + ", rcpNm=" + rcpNm + ", userId=" + userId
-				+ ", reviewContents=" + reviewContents + ", reviewDate=" + reviewDate + "]";
+				+ ", reviewContents=" + reviewContents + ", reviewDate=" + reviewDate + ", startIdx=" + startIdx
+				+ ", rowCntPage=" + rowCntPage + "]";
 	}
+
+	
 
 
 	

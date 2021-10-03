@@ -44,28 +44,6 @@
 
 	</div>
 
-	<script type="text/javascript">
-		let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
-
-		if (isNaN(sPN) == true) {
-			sPN = 1;
-		}
-
-		let myRecipeIdx = new Array();
-		let myRecipeImg = new Array();
-		let myRecipeType = new Array();
-		let myRecipeName = new Array();
-
-		<c:forEach var="myRecipe" items="${myRecipes}">
-			myRecipeIdx.push('${myRecipe.rcpSeq}');
-			myRecipeImg.push('${myRecipe.attFileNoMk}');
-			myRecipeType.push('${myRecipe.rcpPat2}');
-			myRecipeName.push('${myRecipe.rcpNm}');
-		</c:forEach>
-
-		console.log(myRecipeIdx);
-	</script>
-
 
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
 

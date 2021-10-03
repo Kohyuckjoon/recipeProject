@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.recipe.board.model.dto.Board;
+import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.file.FileDTO;
@@ -105,17 +106,18 @@ public class BoardDao {
 	}
 
 	// 게시글 수정
-	public int updateBoard(Connection conn, String title, String content) {
+	public int updateBoard(Connection conn, String title, String content, int no) {
 		String sql = "update board set title = ? , content = ?  where no = ?";
 
 		PreparedStatement pstm = null;
-		int res = 0;
+		int rset = 0;
 	
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1,title);
 			pstm.setString(2, content);
-			res = pstm.executeUpdate();
+			pstm.setInt(3, no);
+			rset = pstm.executeUpdate();
 			
 			template.commit(conn);
 
@@ -127,7 +129,7 @@ public class BoardDao {
 		} finally {
 			template.close(pstm);
 		}
-		return res;
+		return rset;
 
 	}
 
@@ -212,7 +214,7 @@ public class BoardDao {
 			}else if(category == 2) {
 				sql = "select no,title,user_id,reg_date,view_count from board where title like ? " + " order by no desc";
 				pstm = conn.prepareStatement(sql);
-				pstm.setString(2, "%" + keyword +"%");
+				pstm.setString(1, "%" + keyword +"%");
 			}else if(category == 3) {
 				sql = "select no,title,user_id,reg_date,view_count from board where user_id like ? or content like ? "+" order by no desc" ;
 				pstm = conn.prepareStatement(sql);
@@ -243,6 +245,28 @@ public class BoardDao {
 		
 
 		return null;
+	}
+
+
+
+	public void insertComment(Connection conn, Comments comment) {
+		String sql = "insert into comments(comment_no,comment_content,user_id) values(" + "comment_seq.nextval,?,?)";
+
+		PreparedStatement pstm = null;
+
+		try {
+
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, comment.getCommentContent());
+			pstm.setString(2, comment.getUserId());
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
+		} finally {
+			template.close(pstm);
+		}
 	}
 
 

@@ -137,7 +137,7 @@ Form {
 </div>
 	
 	
-<form action="board-search" method="get">
+<form action="/board/board-list" method="get">
 	<select name="searchCategory">
 		<option value="1">작성자</option>
 		<option value="2">글제목</option>

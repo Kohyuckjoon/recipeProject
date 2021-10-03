@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.board.model.dao.BoardDao;
 import com.kh.recipe.board.model.dto.Board;
+import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.board.model.service.BoardService;
 import com.kh.recipe.common.exception.PageNotFoundException;
 import com.kh.recipe.common.file.FileDTO;
@@ -60,13 +61,15 @@ public class BoardController extends HttpServlet {
 			break;
 
 		case "board-update":
-			boardUpdate(request, response);
+			//boardUpdate(request, response);
 			break;
 
 		case "board-delete":
 			 boardDelete(request,response);
 			break;
-
+		case "comment":
+			 comment(request,response);
+			break;	
 		
 
 		default:
@@ -74,6 +77,21 @@ public class BoardController extends HttpServlet {
 
 		}
 	}
+private void comment(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException  {
+		// TODO Auto-generated method stub
+	Member member = (Member) request.getSession().getAttribute("authentication");
+
+	FileUtil util = new FileUtil();
+	MultiPartParams multiPart = util.fileUpload(request);
+
+	Comments comment = new Comments();
+	comment.setUserId(member.getUserId());
+	comment.setCommentContent(multiPart.getParameter("commentContent"));
+	
+	boardService.insertComment(comment);
+	response.sendRedirect("/board/board-detail");
+	}
+
 /*
 	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int category = Integer.parseInt(request.getParameter("searchCategory"));
@@ -100,29 +118,31 @@ public class BoardController extends HttpServlet {
 
 	// 게시물 수정
 	
-	 private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 			
-			/*
-			 * int no = Integer.parseInt(request.getParameter("no")); String title =
+			
+			/* int no = Integer.parseInt(request.getParameter("no")); String title =
 			 * request.getParameter("title"); String content =
 			 * request.getParameter("content"); int result = boardService.updateBoard(title,
 			 * content);
 			 * 
 			 * request.getRequestDispatcher("/board/board-update").forward(request,
-			 * response);
+			 * response);*/
+			/*
+			 * int no = Integer.parseInt(request.getParameter("no")); String title =
+			 * request.getParameter("title"); String content =
+			 * request.getParameter("content");
+			 * 
+			 * BoardService boardService = new BoardService(); Board board = new Board();
+			 * board.setTitle(title); board.setContent(content);
+			 * boardService.updateBoard(title, content);
+			 * response.sendRedirect("/board/board-detail");
 			 */
-		 int no = Integer.parseInt(request.getParameter("no"));
-		 String title = request.getParameter("title");
-		 String content = request.getParameter("content");
-		 
-		 BoardService boardService = new BoardService();
-		 Board board = new Board();
-		 board.setTitle(title);
-		 board.setContent(content);
-		 boardService.updateBoard(title, content);
-		 response.sendRedirect("/board/board-update");
-		 
-		 
+		
+		int no = Integer.parseInt(request.getParameter("no"));
+		boardService.selectBoardDetail(no);
+		request.setAttribute("board", no);
+		request.getRequestDispatcher("/board/board-update").forward(request, response);
 	  }
 	 
 	// 게시물 목록
@@ -143,8 +163,9 @@ public class BoardController extends HttpServlet {
 		if(keyword != null) {
 			datas  = boardService.select(category,keyword);
 			request.setAttribute("datas", datas );
-			request.getRequestDispatcher("/board/board-list").forward(request, response);
-			}
+			request.getRequestDispatcher("/board/board-list").forward(request, response);	
+			return;
+		}
 		
 	}
 
@@ -163,23 +184,28 @@ public class BoardController extends HttpServlet {
 	}
 
 	// 게시글 수정 업로드
-	/*private void updateUpload(HttpServletRequest request, HttpServletResponse response)
+	private void updateUpload(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Member member = (Member) request.getSession().getAttribute("authentication");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int no = Integer.parseInt(request.getParameter("no"));
+		
+		int result = boardService.updateBoard(title, content, no);
+		if(result != 0 ) {
+			response.sendRedirect("/board/board-detail");
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>alert('이메일이 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
+			 
+			out.flush();
+		}
 
 		
-		FileUtil util = new FileUtil();
-		MultiPartParams multiPart = util.fileUpload(request);
-
-		Board board = new Board();
-
-		board.setTitle(multiPart.getParameter("title"));
-		board.setContent(multiPart.getParameter("content"));
-
-
-		response.sendRedirect("/board/board-detail"); // 게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
-		
-	}*/
+	}
 
 	// 게시글 업로드
 	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -194,8 +220,10 @@ public class BoardController extends HttpServlet {
 		board.setContent(multiPart.getParameter("content"));
 		
 		boardService.insertBoard(board);
-	
 		response.sendRedirect("/board/board-list"); // 게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
+	
+		
+		
 
 	}
 

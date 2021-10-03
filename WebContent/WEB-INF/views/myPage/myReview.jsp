@@ -57,6 +57,12 @@
 		
 		</table>
 		</div>
+		
+		<div style="text-align: center; vertical-align: bottom; height: 50px;" >
+		<c:forEach begin="1" end="${requestScope.pageLength}" step="1" var="page">
+			<span><a href="/myPage/myReview?page=${page}" > ${page} </a></span>
+		</c:forEach>
+		</div>
 	
 	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
 </body>

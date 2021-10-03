@@ -32,13 +32,13 @@ public class MyPageService {
 		return myRecipes;
 	}
 
-	public List<Review> selectMyReview(String userId) {
+	public List<Review> selectMyReview(Review review) {
 		Connection conn = template.getConnection();
 
 		List<Review> myReviews = null;
 		
 		try {
-			myReviews = myReviewDao.selectMyReview(conn,userId);
+			myReviews = myReviewDao.selectMyReview(conn,review);
 		}finally {
 			template.close(conn);
 		}
@@ -72,6 +72,24 @@ public class MyPageService {
 		   
 		  try {
 			  res = MyReviewDao.cancelReview(conn,userId,reviewNo);
+			
+		  }catch (Exception e) {
+			  e.printStackTrace();
+		  }finally { 
+			  template.close(conn); 
+		  } 
+		  
+		  return res;
+		
+	}
+
+	public int selPageLength(Review review, int page) {
+		int res = 0;  
+		
+		Connection conn =template.getConnection();
+		   
+		  try {
+			 res = MyReviewDao.selPageLength(conn,review,page);
 			
 		  }catch (Exception e) {
 			  e.printStackTrace();
