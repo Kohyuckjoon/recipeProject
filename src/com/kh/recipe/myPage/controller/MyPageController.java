@@ -153,10 +153,7 @@ public class MyPageController extends HttpServlet {
 		
 		request.setAttribute("pageLength", res);
 		
-		System.out.println(res);
-		
-		List<Review> myReviews = myPageService.selectMyReview(review);
-		
+		List<Review> myReviews = myPageService.selectMyReview(review);	
 		
 		request.setAttribute("myReviews", myReviews);
 		
