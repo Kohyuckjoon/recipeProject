@@ -11,13 +11,17 @@
 	<!-- 여기서부터 헤드 -->
 	
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
-	
+	<div>
+			<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" id="kakao_share_btn" onclick="shareKakao();"/>
+		</div>
 	
 
 	<!-- ul과 li로 넣어도 댐 -->
 	<div class="sideBar">
+		
 
 		<div class="sideBar-title">Best Recipes</div>
+		
 		<div class="sideBar-body">
 				<c:forEach var="recipe" items="${Recipes}" begin= "31" end="36">
 					<div class="best-recipe">
@@ -26,11 +30,12 @@
 							<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
 							<div class="food-star">★★★★★</div>
 						</div>
+						
 					</div>
 				</c:forEach>
-
+				
 		</div>
-
+		
 	</div>
 	
 	<!-- 여기서부터 바디 -->
@@ -74,7 +79,28 @@
 			</tr>
 		</table>
 	</div>
-	
+	<script type="text/javascript" src="/resources/js/member/kakaoLogin.js">
+	function shareKakao() {
+		 
+		  // 사용할 앱의 JavaScript 키 설정
+		  Kakao.init('0c512e152e989192c220235a73035b4b');
+		 
+		  // 카카오링크 버튼 생성
+		  Kakao.Link.createDefaultButton({
+		    container: '#kakao_share_btn', // 카카오공유버튼ID
+		    objectType: 'feed',
+		    content: {
+		      title: "Fitness Recipes", // 보여질 제목
+		      description: "The Fitness Recipes", // 보여질 설명
+		      imageUrl: "../../img/banner.gif", // 콘텐츠 URL
+		      link: {
+		         mobileWebUrl: window.location.href,
+		         webUrl: window.location.href
+		      }
+		    }
+		  });
+		}
+	</script>
 	<script type="text/javascript">
 		var numberForPaging = (totalPage, viewPageNumbers, currentPage) => {
 		
@@ -126,6 +152,10 @@
 			location.href="/mainPage/clickedPage";
 		});
 	}
+	
+	
+	
+	
 	</script>
 	
 	<!-- 여기부턴 foot -->

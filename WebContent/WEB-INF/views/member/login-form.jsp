@@ -126,14 +126,46 @@ body {
 			</form>
 			<hr>
 			<form class="kakao-login" action="/member/kakaoLogin" method="post">
+			
 			<a><img id="btnKakaoLogin"src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></a>
-		
-			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
+			<input type="hidden" name="data[userId]" id="userId" value=""/>
+			<input type="hidden" name="data[userEmail]" id="userEmail" value=""/>
 			</form>
+			
+			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
+			
 			
 	 	</div>
 	</div>
 	</c:if>
+	
+	<c:if test = "${sessionScope.userId == null and sessionScope.userNickName == null}"/>
+ 
+	<%
+	
+	//url로 보낸 아이디를 세션에 저장하기 위해 변수에 저장함
+	String userNickName = request.getParameter("userNickName");
+	String member = request.getParameter("member");
+	String admin_id = request.getParameter("admin_id");
+	 
+	//url로 보낸 이메일를 세션에 저장하기 위해 변수에 저장함
+	String userEmail = request.getParameter("userEmail");
+		 
+	%>    
+	 
+	<%
+	//아이디를 세션에 저장
+	session.setAttribute("userNickName", userNickName);
+	session.setAttribute("member", member);
+	session.setAttribute("admin_id", admin_id);
+	 
+	//이메일을 세션에 저장
+	session.setAttribute("userEmail", userEmail);
+ 	%>
+	
+	
+	
+	
 	
 	<c:if test="${not empty authentication}">
 	<c:redirect  url="/myPage/myPage"/>
@@ -150,7 +182,6 @@ Kakao.isInitialized();
 var userData = '';
 var jsonData = '';
 
-//카카오톡을 통한 로그인, 리다이렉트 구축
 function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
@@ -159,7 +190,7 @@ function kakaoLogin() {
           url: '/v2/user/me',
           success: function (response) {
         	  var userData = response;
-        	  console.log(JSON.stringify(response));
+        	  //console.log(JSON.stringify(response));
         	  alert(userData.properties.nickname + "님 환영합니다.");
         	  
         	  jsonData = JSON.stringify(response);
@@ -186,6 +217,9 @@ function kakaoLogin() {
         	  var userId = userData.id;
         	  var userNickName = userData.properties.nickname;
         	  var userEmail = userData.kakao_account.email;
+        	  //var userProfile_image = userData.kakao_account.profile.profile_image_url;
+        	  //var userProfile_thumnail_image = userData.kakao_account.profile.thumbnail_image_url;
+        	  //var useraccount_profile = userData.kakao_account.profile;
         	  //var user_birthday = userData.kakao_account.birthday;
         	  //var user_gender = userData.kakao_account.gender;
         	  //var html = '<br>' + userEmail + '<br>' + userNickName;
@@ -201,7 +235,7 @@ function kakaoLogin() {
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
         	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
         	  
-        	  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName+'&userId='+userId;
+        	  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName;
         	  
         	  
           },
@@ -211,6 +245,7 @@ function kakaoLogin() {
           })
           
           console.log(response);
+		  console.log(response.access_token);
 		  var token = response.access_token;
 		  
         },
