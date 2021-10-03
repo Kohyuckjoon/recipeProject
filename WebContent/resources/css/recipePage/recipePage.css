@@ -5,3 +5,139 @@ html{
 	background-color: #ccdce7;
 	margin-left: 70px;
 }
+
+.recipe_page{
+	width: 1800px;
+	display: inline-flex;
+	flex-wrap: wrap;
+	background-color: white;
+	margin-top: 100px;
+}
+
+.food_img{
+	width: 700px;
+	height: 900px;
+	background-color: silver;
+	margin-top: 30px;
+	margin-left: 30px;
+	
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	width: 900px;
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+.food_category{
+	color: orange;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.food_name{
+	font-weight: bolder;
+	font-size: 55px;
+	margin-top: 10px;
+}
+
+.nutrition_fact{
+	width: 100%;
+}
+
+.nutrition_fact_title{
+	margin-top: 30px;
+	font-weight: 600;
+	font-size: 35px;
+}
+
+.nutrition_fact_detail div{
+	margin-top: 10px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.ingredients_title{
+	margin-top: 30px;
+	font-weight: 600;
+	font-size: 35px;
+}
+
+.ingredients_detail div{
+	margin-top: 10px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.cooking_method{
+	margin-top: 30px;
+	margin-left: 30px;
+}
+
+.cooking_method div{
+	margin-top: 15px;
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+.scrap{
+	font-size: 120px;
+}
+
+
+.recipe_tit{
+	width: 100%;
+	font-size: 2vw;
+	margin: 9vw 0 3vw 3vw;
+}
+
+.reply_list{
+	width: 100%;
+	position:relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 30px;
+}
+
+.reply_list table{
+	width:100%;
+	
+}
+
+.reply_list tr {
+	border-bottom :1px solid #999;
+}
+
+.reply_list th,
+.reply_list td{
+	text-align: center;
+}
+
+.reply_list tbody tr td:nth-child(2){
+	text-align: left;
+}
+
+.replt_form{
+	margin-top: 3vw;
+}
+
+#form{
+	width: 70vw;
+	height: 7vw;
+}
+
+#submit{
+	width: 8.5vw;
+	height: 7vw;
+}
