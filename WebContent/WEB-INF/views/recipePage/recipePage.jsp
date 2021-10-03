@@ -155,9 +155,9 @@
 		
 		<div class="share"></div>
 
-		<div class="cooking_method">
-			<div class="cooking_method_title">조리방법</div>
-			<div class="cooking_method_detail"></div>
+		<div class="cooking-method">
+			<div class="cooking-method-title">조리방법</div>
+			<div class="cooking-method-detail"></div>
 		</div>
 
 		

@@ -16,7 +16,7 @@ html{
 
 .recipe-img{
 	width: 700px;
-	height: 800px;
+	height: 700px;
 	background-color: silver;
 	margin-top: 30px;
 	margin-left: 30px;
@@ -75,19 +75,23 @@ html{
 }
 
 
-.cooking_method{
+.cooking-method{
 	margin-top: 30px;
 	margin-left: 30px;
 }
 
-.cooking_method_title{
+.cooking-method-title{
 	font-size: 27px;
 	font-weight: bold;
 }
 
-.cooking_method_detail{
+.cooking-method-detail-img{
+	height: 450px;
+	width: 600px;
+}
+.cooking-method-detail-txt{
 	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 	font-weight: bold;
 }
 
