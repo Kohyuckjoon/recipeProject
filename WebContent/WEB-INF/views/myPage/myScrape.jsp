@@ -29,7 +29,7 @@
 						<div class="food-name">${myRecipe.rcpNm}</div>
 						<div class="cancel-btn">
 
-							<form action="/myPage/cancel" method="get">
+							<form action="/myPage/cancelScrape" method="get">
 								<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq }" />
 								<input class="cancel-img" type="image"
 									src="/resources/img/scrape_cancel.png" />

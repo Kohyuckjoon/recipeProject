@@ -65,6 +65,24 @@ public class MyPageService {
 		
 	}
 
+	public int cancelReview(String userId, String reviewNo) {
+
+		int res = 0;
+		  Connection conn =template.getConnection();
+		   
+		  try {
+			  res = MyReviewDao.cancelReview(conn,userId,reviewNo);
+			
+		  }catch (Exception e) {
+			  e.printStackTrace();
+		  }finally { 
+			  template.close(conn); 
+		  } 
+		  
+		  return res;
+		
+	}
+
 	
 
 	
