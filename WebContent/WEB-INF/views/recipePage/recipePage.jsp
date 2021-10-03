@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<link href="../resources/css/mainPage/mainPage.css" rel="stylesheet" type="text/css">
+<link href="../resources/css/recipePage/recipePage.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 
 .top{

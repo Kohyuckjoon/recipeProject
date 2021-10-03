@@ -17,20 +17,13 @@ import com.kh.recipe.recipePage.model.service.RecipePageService;
 @WebServlet("/recipePage/*")
 public class RecipePageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RecipePageService recipePageService = new RecipePageService();
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public RecipePageController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
 		case "recipePage":
@@ -42,21 +35,12 @@ public class RecipePageController extends HttpServlet {
 	
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Review review = new Review();
-		review.setRcpSeq(review.getRcpSeq());
-		int rcpSeq = review.getRcpSeq();
-		List<Review> reviews = new ArrayList<Review>();
-		reviews = recipePageService.selectReview(rcpSeq);
-		request.setAttribute("reviews", reviews);
-		request.getRequestDispatcher("/recipePage").forward(request, response);
+		
+		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
