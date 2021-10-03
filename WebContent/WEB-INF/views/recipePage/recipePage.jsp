@@ -163,20 +163,7 @@
 		
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<div class="reply_list">
+	<div class="reply_list">
 			<table>
 				<thead>
 					<tr>
