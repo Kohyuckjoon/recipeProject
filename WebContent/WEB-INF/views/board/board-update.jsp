@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
-<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
+
 
 
 <style type="text/css">
@@ -60,6 +60,13 @@ button{
 min-height: 50vh; 
 border-bottom: 1px solid;
 font-size:2vw;
+}
+textarea{
+min-height: 50vh; 
+width:100%;
+border-bottom: 1px solid;
+font-size:2vw;
+resize:none;
 }
 </style>
 

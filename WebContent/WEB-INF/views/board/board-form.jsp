@@ -5,7 +5,6 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 
-<link href="../resources/css/mainPage.css" rel="stylesheet"type="text/css">
 
  <link rel="stylesheet" href="/resources/css/board/board.css"/>
 
