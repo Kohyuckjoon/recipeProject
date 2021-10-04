@@ -2,6 +2,7 @@ package com.kh.recipe.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -123,13 +124,13 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 			
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-			String no = request.getParameter("no");
+			int no = Integer.parseInt(request.getParameter("no"));
 			System.out.println(title);
 			System.out.println(content);
 			System.out.println(no);
 			
-			  boardService.updateBoard(title, content, no);
-			  
+			 int result = boardService.updateBoard(title, content, no);
+			  System.out.println("result :"+result);
 			  request.getRequestDispatcher("/board/board-update").forward(request,
 			  response);
 			 
@@ -153,17 +154,8 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		List<Board> datas = boardService.selectBoardAll(board);
 		
 		request.setAttribute("datas", datas);
+		
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
-		
-		/*int category = Integer.parseInt(request.getParameter("searchCategory"));
-		String keyword = request.getParameter("searchKeyword");
-		
-		if(keyword != null) {
-			datas  = boardService.select(category,keyword);
-			request.setAttribute("datas", datas );
-			request.getRequestDispatcher("/board/board-list").forward(request, response);	
-			return;
-		}*/
 		
 	}
 
@@ -178,7 +170,12 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		boardService.updateViewCount(no);
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
 		request.setAttribute("datas", datas);
-		request.getRequestDispatcher("/board/board-detail").forward(request, response);
+		
+	
+		List<Comments> Comments = new ArrayList<Comments>();
+		Comments = boardService.selectBoardCommentDetail();
+		request.setAttribute("Comments", Comments);
+		request.getRequestDispatcher("/board/board-detail").forward(request,response);
 	}
 
 
