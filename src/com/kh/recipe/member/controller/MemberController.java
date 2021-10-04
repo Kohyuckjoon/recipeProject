@@ -118,19 +118,21 @@ public class MemberController extends HttpServlet {
 	private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Member member = new Member();
-		String userId = request.getParameter("userId");
+		String userId = (String) request.getSession().getAttribute("userId");
 		//String password = request.getParameter("password");
 		String password = UUID.randomUUID().toString();
 		String userNickName = request.getParameter("userNickName");
 		String userEmail = request.getParameter("userEmail");
-		
+
 		member.setUserId(userId);
   	  	member.setPassword(password);
 		member.setName(userNickName);
 		member.setEmail(userEmail);
+
 		
-		response.sendRedirect("/mainPage");
-		//request.getRequestDispatcher("/mainPage").forward(request, response);
+		
+		
+		
 		
 		
 	}
