@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.kh.recipe.common.exception.PageNotFoundException;
 import com.kh.recipe.recipePage.model.dto.Recipe;
+import com.kh.recipe.recipePage.model.dto.Review;
 import com.kh.recipe.recipePage.model.service.RecipePageService;
 
 @WebServlet("/recipePage/*")
@@ -43,16 +44,22 @@ public class RecipePageController extends HttpServlet {
 		
 		List<Recipe> Recipes = new ArrayList<Recipe>();
 		Recipes = recipePageService.selectRecipeByDetailToScrape(recipe);
-		System.out.println(Recipes);
 		request.setAttribute("Recipes", Recipes);
 		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
 	}
 
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Recipe> Recipes = new ArrayList<Recipe>();
-		Recipes = recipePageService.selectRecipeByDetail();
-		request.setAttribute("Recipes", Recipes);
+		List<Recipe> recipes = new ArrayList<Recipe>();
+		recipes = recipePageService.selectRecipeByDetail();
+		request.setAttribute("Recipes", recipes);
+		
+		
+		List<Review> comments = new ArrayList<Review>(); 
+		System.out.println(request.getParameter("no"));
+		int no = Integer.parseInt(request.getParameter("no"));
+		comments = recipePageService.selectReplyByDetail(no);
+		request.setAttribute("Comments", comments);
 		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
 	}
 

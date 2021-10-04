@@ -16,15 +16,14 @@
 		let recipeImg = new Array();
 		let recipeType = new Array();
 		let recipeName = new Array();
-
+		
 		let caloryArr = new Array();
 		let carbohydrateArr = new Array();
 		let proteinArr = new Array();
 		let fatArr = new Array();
 		let natriumArr = new Array();
-
 		let ingredientsArr = new Array();
-
+		
 		let manual1 = new Array();
 		let manual2 = new Array();
 		let manual3 = new Array();
@@ -66,69 +65,67 @@
 		let manualImg18 = new Array();
 		let manualImg19 = new Array();
 		let manualImg20 = new Array();
-
-
+		
 		<c:forEach var="recipe" items="${Recipes}">
-		recipeIdx.push('${recipe.rcpSeq}');
-		recipeImg.push('${recipe.attFileNoMk}');
-		recipeType.push('${recipe.rcpPat2}');
-		recipeName.push('${recipe.rcpNm}');
-
-		caloryArr.push('${recipe.infoEng}');
-		carbohydrateArr.push('${recipe.infoCar}');
-		proteinArr.push('${recipe.infoPro}');
-
-		fatArr.push('${recipe.infoFat}');
-		natriumArr.push('${recipe.infoNa}');
-
-		ingredientsArr.push('${recipe.rcpPartsDtls}');
-		// 줄바꿈문자 제거함
-
-		manual1.push('${recipe.manual1}');
-		manual2.push('${recipe.manual2}');
-		manual3.push('${recipe.manual3}');
-		manual4.push('${recipe.manual4}');
-		manual5.push('${recipe.manual5}');
-		manual6.push('${recipe.manual6}');
-		manual7.push('${recipe.manual7}');
-		manual8.push('${recipe.manual8}');
-		manual9.push('${recipe.manual9}');
-		manual10.push('${recipe.manual10}');
-		manual11.push('${recipe.manual11}');
-		manual12.push('${recipe.manual12}');
-		manual13.push('${recipe.manual13}');
-		manual14.push('${recipe.manual14}');
-		manual15.push('${recipe.manual15}');
-		manual16.push('${recipe.manual16}');
-		manual17.push('${recipe.manual17}');
-		manual18.push('${recipe.manual18}');
-		manual19.push('${recipe.manual19}');
-		manual20.push('${recipe.manual20}');
-		// 줄바꿈문자 제거함!
+			recipeIdx.push('${recipe.rcpSeq}');
+			recipeImg.push('${recipe.attFileNoMk}');
+			recipeType.push('${recipe.rcpPat2}');
+			recipeName.push('${recipe.rcpNm}');
+			caloryArr.push('${recipe.infoEng}');
+			carbohydrateArr.push('${recipe.infoCar}');
+			proteinArr.push('${recipe.infoPro}');
+			fatArr.push('${recipe.infoFat}');
+			natriumArr.push('${recipe.infoNa}');
+			ingredientsArr.push('${recipe.rcpPartsDtls}');
+			// 줄바꿈문자 제거함
+			manual1.push('${recipe.manual1}');
+			manual2.push('${recipe.manual2}');
+			manual3.push('${recipe.manual3}');
+			manual4.push('${recipe.manual4}');
+			manual5.push('${recipe.manual5}');
+			manual6.push('${recipe.manual6}');
+			manual7.push('${recipe.manual7}');
+			manual8.push('${recipe.manual8}');
+			manual9.push('${recipe.manual9}');
+			manual10.push('${recipe.manual10}');
+			manual11.push('${recipe.manual11}');
+			manual12.push('${recipe.manual12}');
+			manual13.push('${recipe.manual13}');
+			manual14.push('${recipe.manual14}');
+			manual15.push('${recipe.manual15}');
+			manual16.push('${recipe.manual16}');
+			manual17.push('${recipe.manual17}');
+			manual18.push('${recipe.manual18}');
+			manual19.push('${recipe.manual19}');
+			manual20.push('${recipe.manual20}');
+			// 줄바꿈문자 제거함!
 		
-		manualImg1.push('${recipe.manualImg01}');
-		manualImg2.push('${recipe.manualImg02}');
-		manualImg3.push('${recipe.manualImg03}');
-		manualImg4.push('${recipe.manualImg04}');
-		manualImg5.push('${recipe.manualImg05}');
-		manualImg6.push('${recipe.manualImg06}');
-		manualImg7.push('${recipe.manualImg07}');
-		manualImg8.push('${recipe.manualImg08}');
-		manualImg9.push('${recipe.manualImg09}');
-		manualImg10.push('${recipe.manualImg10}');
-		manualImg11.push('${recipe.manualImg11}');
-		manualImg12.push('${recipe.manualImg12}');
-		manualImg13.push('${recipe.manualImg13}');
-		manualImg14.push('${recipe.manualImg14}');
-		manualImg15.push('${recipe.manualImg15}');
-		manualImg16.push('${recipe.manualImg16}');
-		manualImg17.push('${recipe.manualImg17}');
-		manualImg18.push('${recipe.manualImg18}');
-		manualImg19.push('${recipe.manualImg19}');
-		manualImg20.push('${recipe.manualImg20}');
-		
-		
+			manualImg1.push('${recipe.manualImg01}');
+			manualImg2.push('${recipe.manualImg02}');
+			manualImg3.push('${recipe.manualImg03}');
+			manualImg4.push('${recipe.manualImg04}');
+			manualImg5.push('${recipe.manualImg05}');
+			manualImg6.push('${recipe.manualImg06}');
+			manualImg7.push('${recipe.manualImg07}');
+			manualImg8.push('${recipe.manualImg08}');
+			manualImg9.push('${recipe.manualImg09}');
+			manualImg10.push('${recipe.manualImg10}');
+			manualImg11.push('${recipe.manualImg11}');
+			manualImg12.push('${recipe.manualImg12}');
+			manualImg13.push('${recipe.manualImg13}');
+			manualImg14.push('${recipe.manualImg14}');
+			manualImg15.push('${recipe.manualImg15}');
+			manualImg16.push('${recipe.manualImg16}');
+			manualImg17.push('${recipe.manualImg17}');
+			manualImg18.push('${recipe.manualImg18}');
+			manualImg19.push('${recipe.manualImg19}');
+			manualImg20.push('${recipe.manualImg20}');
 		</c:forEach>
+		
+		
+		
+		console.dir(commentNumArr);
+		
 	</script>
 
 
@@ -137,124 +134,66 @@
 		<div class="container">
 
 			<div class="nutrient">
-				<div class = "nutrient-title">영양성분</div>
-				<div class = "nutrient-detail">
-				</div>
+				<div class="nutrient-title">영양성분</div>
+				<div class="nutrient-detail"></div>
 			</div>
-			
+
 			<div class="ingredients">
 				<div class="ingredients-title">재료</div>
 				<div class="ingredients-detail"></div>
 			</div>
-			
+
 		</div>
 
 		<div class="scrap">
 			<i class="far fa-bookmark"></i>
 		</div>
-		
-		</div>		
-		<div class="share">
-		<!-- <div class="button gray medium">
-			<i class="fas fa-share-alt" onclick="clip();"></i>
-		</div> -->
-		<!-- <div>
-		<a>
-			<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" id="kakao_share_btn" onclick="shareKakao();"/>
-		</a>
-		
-		</div> -->
+
+		<div class="share"></div>
 
 		<div class="cooking-method">
 			<div class="cooking-method-title">조리방법</div>
 			<div class="cooking-method-detail"></div>
 		</div>
 
-		
-
-
-	<div class="reply_list">
+		<div class="reply-list">
 			<table>
 				<thead>
 					<tr>
-						<th style="width: 10%;">No.</th>
-						<th style="width: 60%;">내용</th>
-						<th style="width: 15%;">작성자</th>
-						<th style="width: 15%;">작성일</th>
+						<th>No.</th>
+						<th>내용</th>
+						<th>작성자</th>
+						<th>작성일</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${reviews}" var="review">
-						<tr>
-							<td>${review.reviewNo}</td>
-							<td>${review.reviewContents}</td>
-							<td>${review.userId}</td>
-							<td>${review.reviewDate}</td>
+					<c:forEach var="comment" items="${Comments}">
+						<tr class="reply-detail">
+							<td>${comment.reviewNo}</td>
+							<td>${comment.rcpSeq}</td>
+							<td>${comment.userId}</td>
+							<td>${comment.reviewContents}</td>
+							<td>${comment.reviewDate}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 
-		<div class="replt_form">
+		<div class="reply-form">
 			<form>
-				<input id="form" type="text" placeholder="댓글 입력"> <input id="submit" type="submit" value="댓글 등록">
+				<input id="form" type="text" placeholder="댓글 입력" class="reply-text">
+				<input id="submit" type="submit" value="댓글 등록" class="reply-submit">
 			</form>
 		</div>
 
 	</div>
+
 	
-	
+
 
 
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
 	<script type="text/javascript" src = "/resources/js/recipePage/recipePage.js"></script> 
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script type="text/javascript">
-	Kakao.init('0c512e152e989192c220235a73035b4b');
-	Kakao.isInitialized();
-	
-	function shareKakao() {
-		 
-		  // 사용할 앱의 JavaScript 키 설정
-		 
-		 
-		  // 카카오링크 버튼 생성
-		  Kakao.Link.createDefaultButton({
-		    container: '#kakao_share_btn', // 카카오공유버튼ID
-		    objectType: 'feed',
-		    content: {
-		      title: "Fitness Recipes", // 보여질 제목
-		      description: "The Fitness Recipes", // 보여질 설명
-		      imageUrl: "../../img/banner.gif", // 콘텐츠 URL
-		      link: {
-		         mobileWebUrl: window.location.href,
-		         webUrl: window.location.href
-		      }
-		    }
-		  });
-		}
-	
-	
-	
-	
-
-	function clip(){
-
-		var url = '';
-		var textarea = document.createElement("textarea");
-		document.body.appendChild(textarea);
-		url = window.document.location.href;
-		textarea.value = url;
-		textarea.select();
-		document.execCommand("copy");
-		document.body.removeChild(textarea);
-		alert("URL이 복사되었습니다.")
-	}
-
-	
-	
-	</script>
-	
 </body>
 </html>

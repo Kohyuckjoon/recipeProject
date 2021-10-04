@@ -3,6 +3,8 @@
 	
 	let recipeDbOrder = recipeIdx.indexOf(rDI);
 	
+	console.dir(recipeDbOrder);
+	
 	let imgDiv = document.createElement('img');
 	imgDiv.classList.add('recipe-img');
 	
@@ -51,7 +53,6 @@
 	ingredientsDiv.append(ingredientsArr[recipeDbOrder]);
 	document.querySelector(".ingredients-detail").appendChild(ingredientsDiv);
 	
-	console.dir(manualImg1[recipeDbOrder]);
 	
 	if(manualImg1[recipeDbOrder]){
 		let manualImg1Div = document.createElement('img');
@@ -393,6 +394,13 @@
 		manual20Div.append(manual20[recipeDbOrder]);
 		document.querySelector(".cooking-method-detail").appendChild(manual20Div);
 	}
+	
+	
+	let replyDetailNo = document.createElement('td');
+	replyDetailNo.classList.add('reply-detail-no');
+	replyDetailNo.append(commentNumArr[recipeDbOrder]);
+	document.querySelector(".reply-detail").appendChild(replyDetailNo);
+	
 	
 	
 

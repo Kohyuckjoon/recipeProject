@@ -16,14 +16,14 @@ public class DietHealthService {
 	private DietHealthDao diteHelthDao = new DietHealthDao();
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
-	
-	public List<Recipe> selectSearchResult() {
+	//모든 레시피가 뜨게 하기
+	public List<Recipe> selectSearchResult(String value) {
 		
 		List<Recipe> Recipes = new ArrayList<Recipe>();
 		Connection conn = template.getConnection();
 		
 		try {
-			Recipes = diteHelthDao.selectSearchResult(conn);
+			Recipes = diteHelthDao.selectSearchResult(conn, value);
 		} catch (DataAccessException | SQLException e) {
 			throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); 
 		}finally {
@@ -32,5 +32,21 @@ public class DietHealthService {
 		return Recipes;
 	}
 	
+	//checkBox check한 항목만 데이터 가져오기
+//	public int checkBox() {
+//		Connection conn = template.getConnection();
+//		int checkList = 0;
+//		
+//		try {
+//			checkList = diteHelthDao.selectCheckBoxList();
+//		} catch (Exception e) {
+//			template.rollback(conn);
+//			throw e;
+//		} finally {
+//			template.close(conn);
+//		}
+//		
+//		return checkList;
+//	}
 	
 }

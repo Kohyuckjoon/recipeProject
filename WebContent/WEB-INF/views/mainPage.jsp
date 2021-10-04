@@ -21,7 +21,6 @@
 					<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
 					<div class="best-recipe-text">
 						<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
-						<div class="food-star">★★★★★</div>
 					</div>
 				</div>
 			</c:forEach>

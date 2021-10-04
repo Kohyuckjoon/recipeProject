@@ -115,30 +115,18 @@ public class BoardService {
 			  
 			  try {
 				  res = boardDao.updateBoard(conn,title,content,no);
-				
+				  
 			  }catch (Exception e) {
 				  e.printStackTrace();
 			  }finally { 
 				  template.close(conn); 
 			  } 
-			  
+
 			  return res;
 		}
 	
 
-	public List<Board> select(int category, String keyword) {
-		Connection conn = template.getConnection();
-		List<Board> list = new ArrayList<>();
-		try {
-			
-			list = boardDao.selectBoard(category,keyword,conn);
-			
-			} finally {
-				template.close(conn);
-			}
-			
-			return list;
-	}
+	
 
 	public void insertComment(Comments comment) {
 		Connection conn = template.getConnection();
@@ -169,6 +157,19 @@ public class BoardService {
 			template.close(conn);
 		}
 		return res;
+	}
+
+	public List<Comments> selectBoardCommentDetail() {
+		List<Comments> comments = new ArrayList<Comments>();
+		Connection conn = template.getConnection();
+		try {
+		comments = boardDao.selectBoardCommentDetail(conn);
+		}catch(DataAccessException e) {
+			e.printStackTrace();
+		}finally {
+			template.close(conn);
+		}
+		return comments;
 	}
 
 	
