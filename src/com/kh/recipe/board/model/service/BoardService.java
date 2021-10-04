@@ -61,7 +61,7 @@ public class BoardService {
 		try {
 			
 		 boardList = boardDao.selectBoardAll(conn,board);
-		
+	
 		} finally {
 			template.close(conn);
 		}
@@ -162,7 +162,7 @@ public class BoardService {
 		try {
 			res=boardDao.selPageLength(conn,board,page);
 			
-			/* template.commit(conn); */
+			
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}finally {
