@@ -42,14 +42,16 @@ table.type11 td {
 
 <body>
 
-	<c:if test="${empty authentication and empty Storage}">
+	<c:if test="${empty authentication or empty Storage}">
 	<c:redirect  url="/member/login-form"/>
-	</c:if>
+	
 
 	<c:if test="${not empty authentication and not empty session}">
 		<c:if test="${not empty session}">
-			window.alert("카카오 회원은 회원정보를 수정할 수 없습니다.");
-			<c:redirect  url="/mainPage/mainPage"/>
+			<script type="text/javascript">
+				alert("카카오 회원은 회원정보를 수정할 수 없습니다.");
+			</script>
+		<c:redirect  url="/mainPage/mainPage"/>
 		</c:if>
 		<div class="tabmenu">
   		<ul>
@@ -125,7 +127,7 @@ table.type11 td {
 		</ul>
 		</div>
 	</c:if>
-	
+	</c:if>
 	
 	
 	

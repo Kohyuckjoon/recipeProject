@@ -111,9 +111,11 @@ body {
 </head>
 <body>
 
-
-	<c:if test="${empty authentication}">
+	<c:if test="${not empty authentication and not empty sessionStorage}">
+	<c:redirect  url="/myPage/myPage"/>
+	</c:if>
 	
+	<c:if test="${empty authentication and empty sessionStorage}">
 	<div class="login-page">
 	  	<div class="form">
 	  
@@ -139,7 +141,8 @@ body {
 	</div>
 	</c:if>
 	
-	<c:if test = "${sessionScope.userId == null and sessionScope.userNickName == null}">
+	
+	<%-- <c:if test = "${sessionScope.userId == null and sessionScope.userNickName == null}">
  
 	<%
 	
@@ -164,12 +167,10 @@ body {
  	%>
 	
 	</c:if>
+	 --%>
 	
 	
 	
-	<c:if test="${not empty authentication}">
-	<c:redirect  url="/myPage/myPage"/>
-	</c:if>
 
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
