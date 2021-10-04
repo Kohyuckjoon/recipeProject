@@ -18,10 +18,12 @@ public class DietHealthDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 
-	public List<Recipe> selectSearchResult(Connection conn) throws SQLException {
+	public List<Recipe> selectSearchResult(Connection conn, String value) throws SQLException {
 		
 		List<Recipe> recipes = new ArrayList<Recipe>();
-		String query = "select rcp_seq, att_file_no_mk, rcp_pat2, rcp_nm from recipe ";
+		String query = "select rcp_seq, att_file_no_mk, rcp_pat2, rcp_nm from recipe "
+				+ "where 1=1 "
+				+ value;
 		ResultSet rset = null;
 		PreparedStatement pstm = null;
 		

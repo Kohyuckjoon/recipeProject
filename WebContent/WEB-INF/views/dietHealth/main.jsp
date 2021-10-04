@@ -33,10 +33,16 @@ input[type="text"] {
 	width: 7%;
 }
 
-.checkBox {
-	height: 15vh;
+.body {
+	width: 1600px;
+	display: inline-flex;
+	flex-direction: column;
+	margin-top: 100px;
 }
 
+/* .checkBox {
+	height: 15vh;
+} */
 .sideBar {
 	float: right;
 	height: 45vh;
@@ -135,7 +141,7 @@ input[type="text"] {
 }
 
 .lowerBox {
-	height: 80vh;
+	height: 100%;
 }
 
 .lowerBoxLeft {
@@ -281,9 +287,9 @@ span {
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	
-	
-		
+
+
+
 	<div class="body"></div>
 
 	<form action="#" method="get">
@@ -299,12 +305,9 @@ span {
 
 						<div class="checkBoxStyle1">
 							<div class="calorieCheckbox">
-								0~300<input type="checkbox" name="calorie" value="300"
-									onclick="calorieCheckbox(this)"><br> 300~500<input
-									type="checkbox" name="calorie" value="500"
-									onclick="calorieCheckbox(this)"><br> 500~700<input
-									type="checkbox" name="calorie" value="700"
-									onclick="calorieCheckbox(this)"><br>
+								0~300<input type="checkbox" name="calorie" value="300" onclick="calorieCheckbox(this)"><br>
+								300~500<input type="checkbox" name="calorie" value="500" onclick="calorieCheckbox(this)"><br> 
+								500~700<input type="checkbox" name="calorie" value="700" onclick="calorieCheckbox(this)"><br>
 							</div>
 						</div>
 					</div>
@@ -379,18 +382,18 @@ span {
 
 
 				<div class="search">
-					<button class="button" type="reset" value="내용초기화">
+					<button class="button" type="reset" value="resetButten">
 						<span> 초기화 </span>
 					</button>
 
 					<div></div>
 
-					<button class="button" type="" value="검색하기">
+					<button name="search" class="button" type="" value="searchButten">
 						<span> 검색하기 </span>
 					</button>
 				</div>
-				
-				
+
+
 
 				<div class="middleBlank"></div>
 			</div>
@@ -398,33 +401,58 @@ span {
 			<div class="secondBlank"></div>
 		</div>
 	</form>
+
+	<!-- checkBox값 추출하기 -->
 	<script type="text/javascript">
-				let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
-				
-				if(isNaN(sPN) == true) {
-					sPN = 1;
-				} 
-				
-				let recipeIdx = new Array();
-				let recipeImg = new Array();
-				let recipeType = new Array();
-				let recipeName = new Array();
-				
-				<c:forEach var="recipe" items="${Recipes}">
-					recipeIdx.push('${recipe.rcpSeq}');
-					recipeImg.push('${recipe.attFileNoMk}');
-					recipeType.push('${recipe.rcpPat2}');
-					recipeName.push('${recipe.rcpNm}');
-					
-				</c:forEach>
+		$(document).ready(function() {
+			$("#getCheckedAll").click(function() {
+				$("input[name=box]:checked").each(function() {
+					var test = $(this).val();
+					console.log(test);
+				});
+			});
+		})();
 	</script>
-	
+
+	<!-- 출력? -->
+	<script type="text/javascript">
+		function checkTest() {
+			console.log(checktest1());
+
+			console.log('checkBox값 : '
+					+ $(":input:checkbox[name=checkbox]:checked").val());
+
+			$("input[name=checkbox]:checked").each(function() {
+				console.log('checkbox값 : ' + $(this).val());
+			});
+		}
+	</script>
+
+
+	<script type="text/javascript">
+		let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
+
+		if (isNaN(sPN) == true) {
+			sPN = 1;
+		}
+
+		let recipeIdx = new Array();
+		let recipeImg = new Array();
+		let recipeType = new Array();
+		let recipeName = new Array();
+
+		<c:forEach var="recipe" items="${Recipes}">
+		recipeIdx.push('${recipe.rcpSeq}');
+		recipeImg.push('${recipe.attFileNoMk}');
+		recipeType.push('${recipe.rcpPat2}');
+		recipeName.push('${recipe.rcpNm}');
+
+		</c:forEach>
+	</script>
+
 
 	<div class="lowerBox">
-		<div class="lowerBoxLeft">
-			
-	
-		</div>
+		<div class="lowerBoxLeft"></div>
 
 		<div class="lowerBoxRight">
 			<div class="sideBarBoxStyle">
@@ -454,8 +482,8 @@ span {
 					<div class="calculateResult">
 						<input type='submit' value='계 산'>
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 		</div>
@@ -499,8 +527,27 @@ span {
 		}
 	</script>
 
+	<div class="pager">
+		<table>
+			<tr>
+				<td class="arrow prevPrevPage"><i
+					class="fas fa-angle-double-left"></i></td>
+				<td class="blank"></td>
+				<td class="arrow prevPage"><i class="fas fa-angle-left"></i></td>
+				<td class="blank"></td>
+				<td class="blank num"></td>
+				<td class="arrow nextPage"><i class="fas fa-angle-right"></i></td>
+				<td class="blank"></td>
+				<td class="arrow nextNextPage"><i
+					class="fas fa-angle-double-right"></i></td>
+			</tr>
+		</table>
+	</div>
+
+	<script type="text/javascript"
+		src="/resources/js/dietHealth/dietHealthPage.js"></script>
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
-	<script type="text/javascript" src = "/resources/js/dietHealth/dietHealthPage.js"></script>
-	
+
+
 </body>
 </html>
