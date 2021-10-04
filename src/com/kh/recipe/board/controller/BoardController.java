@@ -172,9 +172,9 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		request.setAttribute("datas", datas);
 		
 	
-		List<Comments> Comments = new ArrayList<Comments>();
-	//	Comments = boardService.selectBoardCommentDetail(no);
-		request.setAttribute("Comments", Comments);
+		List<Comments> comments = new ArrayList<Comments>();
+		comments= boardService.selectBoardCommentDetail(no);
+		request.setAttribute("Comments", comments);
 		request.getRequestDispatcher("/board/board-detail").forward(request,response);
 	}
 

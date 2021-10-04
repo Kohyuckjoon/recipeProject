@@ -159,6 +159,20 @@ public class BoardService {
 		return res;
 	}
 
+	public List<Comments> selectBoardCommentDetail(int no) {
+		List<Comments> Comments = new ArrayList<Comments>();
+		Connection conn = template.getConnection();
+		try {
+			Comments= boardDao.selectBoardCommentDetail(no,conn);
+		}catch (DataAccessException e) {
+			e.printStackTrace();
+			/* throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); */
+		}finally {
+			template.close(conn);
+		}
+		return Comments;
+	}
+
 	/*
 	 * public List<Comments> selectBoardCommentDetail(int no) { List<Comments>
 	 * comments = new ArrayList<Comments>(); Connection conn =

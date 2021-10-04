@@ -15,6 +15,7 @@ import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.file.FileDTO;
+import com.kh.recipe.recipePage.model.dto.Review;
 
 import oracle.jdbc.OracleConnection.CommitOption;
 
@@ -265,6 +266,39 @@ public class BoardDao {
 	
 		
 	}
+
+	public List<Comments> selectBoardCommentDetail(int no,Connection conn) {
+		String sql = "select comment_no, comment_content, user_id ,comment_date from comments where no = ? ";
+
+		List<Comments> comments = new ArrayList<Comments>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, no);
+			rset = pstm.executeQuery();
+			
+			while (rset.next()) {
+
+				Comments comment = new Comments();
+				comment.setCommentNo(rset.getInt("comment_no"));
+				comment.setCommentContent(rset.getString("comment_content"));
+				comment.setUserId(rset.getString("user_id"));
+				comment.setCommentDate(rset.getDate("comment_date"));
+				comments.add(comment);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			template.close(rset, pstm);
+		}
+		return comments;
+
+	}
+
 	}
 
 /*	댓글 기능 구현

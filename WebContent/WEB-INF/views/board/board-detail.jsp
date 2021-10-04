@@ -76,12 +76,13 @@ font-size:2vw;
 
 #form{
 	width: 70vw;
-	height: 7vw;
+	height: 3vw;
+
 }
 
 #submit{
-	width: 8.5vw;
-	height: 7vw;
+	width: 7vw;
+	height:3vw;
 }
 </style>
 </head>
@@ -121,12 +122,12 @@ font-size:2vw;
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${comment}" var="coment">
+					<c:forEach items="${Comments}" var="coment">
 						<tr>
-							<td>${comment.commentNo}</td>
-							<td>${comment.commentContent}</td>
-							<td>${comment.userId}</td>
-							<td>${comment.commentDate}</td>
+							<td>${coment.commentNo}</td>
+							<td>${coment.commentContent}</td>
+							<td>${coment.userId}</td>
+							<td>${coment.commentDate}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
