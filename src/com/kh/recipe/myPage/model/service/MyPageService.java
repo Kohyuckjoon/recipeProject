@@ -47,13 +47,13 @@ public class MyPageService {
 		return myReviews;
 	}
 
-	public int cancelScrape(String userId, String rcpSeq) {
+	public int cancelScrape(Scrape scrape) {
 		
 		int res = 0;
 		Connection conn = template.getConnection();
 
 		try {
-			res = myScrapeDao.cancelScrape(userId, rcpSeq, conn);
+			res = myScrapeDao.cancelScrape(conn, scrape);
 
 		} catch (Exception e) {
 			e.printStackTrace();

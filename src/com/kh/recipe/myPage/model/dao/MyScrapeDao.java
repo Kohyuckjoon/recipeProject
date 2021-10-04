@@ -50,16 +50,17 @@ public class MyScrapeDao {
 		return myRecipes;
 	}
 
-	public int cancelScrape(String userId, String rcpSeq, Connection conn) {
+	public int cancelScrape(Connection conn, Scrape scrape) {
 		
 		int res = 0;
-		
-		String sql = "delete from scrape where user_id= ?";
 		PreparedStatement pstm = null;
+		
+		String sql = "delete from scrape where user_id=? and rcp_seq=?";
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, userId);
+			pstm.setString(1, scrape.getUserId());
+			pstm.setInt(2, scrape.getRcpSeq());
 			res = pstm.executeUpdate();
 			template.commit(conn);
 			
