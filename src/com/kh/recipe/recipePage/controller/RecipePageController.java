@@ -55,6 +55,15 @@ public class RecipePageController extends HttpServlet {
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
+		String onLogin = "needToLogin";
+		
+		try {
+			onLogin = request.getSession().getAttribute("authentication").toString();
+		} catch (Exception e) {
+			
+		}
+		
+		request.setAttribute("onLogin", onLogin);
 		
 		List<Recipe> recipes = new ArrayList<Recipe>();
 		recipes = recipePageService.selectRecipeByDetail();
@@ -89,8 +98,6 @@ public class RecipePageController extends HttpServlet {
 		List<Review> comments = new ArrayList<Review>(); 
 		comments = recipePageService.selectReplyByDetail(no);
 		request.setAttribute("Comments", comments);
-		
-		
 		
 		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
 		

@@ -12,6 +12,9 @@
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
 	<script type="text/javascript">
+		
+		let onLogin = '<c:out value='${onLogin}'/>';
+		
 		let recipeIdx = new Array();
 		let recipeImg = new Array();
 		let recipeType = new Array();

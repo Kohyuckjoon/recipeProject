@@ -395,14 +395,21 @@
 	
 	let textAreaContents = null;
 	
-	
 	document.querySelector('.reply-submit').addEventListener('mouseover',() =>{
-		textAreaContents = document.querySelector(".reply-text").value ;
-		let postComment = document.querySelector(".reply-submit");
-		let bLocation = document.createAttribute("onclick");
-		let stringLocation = "location.href = '/recipePage/recipePageForReview?no="
-		bLocation.value = stringLocation+rDI+"&replyContents="+textAreaContents+"\'";
-		postComment.setAttributeNode(bLocation);
+		
+		if(onLogin == 'needToLogin'){
+			document.querySelector('.reply-submit').addEventListener('mouseover',() =>{
+				alert("로그인 해주세요");
+			});
+		}else{
+			textAreaContents = document.querySelector(".reply-text").value ;
+			let postComment = document.querySelector(".reply-submit");
+			let bLocation = document.createAttribute("onclick");
+			let stringLocation = "location.href = '/recipePage/recipePageForReview?no="
+			bLocation.value = stringLocation+rDI+"&replyContents="+textAreaContents+"\'";
+			postComment.setAttributeNode(bLocation);
+		}
+		
 	});
 	
 	
