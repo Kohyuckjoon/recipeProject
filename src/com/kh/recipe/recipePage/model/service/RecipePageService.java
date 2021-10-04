@@ -9,15 +9,18 @@ import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.recipePage.model.dao.RecipeReviewDao;
+import com.kh.recipe.recipePage.model.dao.ScrapDao;
 import com.kh.recipe.recipePage.model.dao.RecipeDao;
 import com.kh.recipe.recipePage.model.dto.Recipe;
 import com.kh.recipe.recipePage.model.dto.Review;
+import com.kh.recipe.recipePage.model.dto.Scrap;
 
 public class RecipePageService {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private RecipeDao rPD = new RecipeDao();
 	private RecipeReviewDao cDao = new RecipeReviewDao();
+	private ScrapDao sDao = new ScrapDao();
 	
 	public List<Recipe> selectRecipeByDetail() {
 		
@@ -80,16 +83,21 @@ public class RecipePageService {
 		
 	}
 
+	public int addScrap(Scrap scrap) {
+		int res = 0;
+		Connection conn = template.getConnection();
 
+		try {
+			res = sDao.addScrap(conn, scrap);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			template.close(conn);
+		}
 
+		return res;
+		}
 
+	}
 
-	
-	
-	
-	
-	
-
-	
-
-}

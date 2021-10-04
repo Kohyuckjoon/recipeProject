@@ -13,6 +13,7 @@ import com.kh.recipe.common.exception.PageNotFoundException;
 import com.kh.recipe.member.model.dto.Member;
 import com.kh.recipe.recipePage.model.dto.Recipe;
 import com.kh.recipe.recipePage.model.dto.Review;
+import com.kh.recipe.recipePage.model.dto.Scrap;
 import com.kh.recipe.recipePage.model.service.RecipePageService;
 
 @WebServlet("/recipePage/*")
@@ -37,19 +38,166 @@ public class RecipePageController extends HttpServlet {
 		case "recipePageToScrape":
 			recipePageToScrape(request, response);
 			break;
+		case "addScr":
+			addScr(request, response);
+			break;
+			
 		default: throw new PageNotFoundException();
 		}
 	}
 	
+
+	private void addScr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+		
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
+		
+		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
+		
+		Scrap scrap = new Scrap();
+		
+		scrap.setRcpSeq(rcpSeq);
+		scrap.setUserId(member.getUserId());
+		
+		int res = recipePageService.addScrap(scrap);
+		
+		if(res!=0) {
+			response.sendRedirect("/recipePage/recipePage?no=" + rcpSeq);
+			
+			return;
+		}
+		
+		
+	}
+
+	private void addScr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+		
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
+		
+		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
+		
+		Scrap scrap = new Scrap();
+		
+		scrap.setRcpSeq(rcpSeq);
+		scrap.setUserId(member.getUserId());
+		
+		int res = recipePageService.addScrap(scrap);
+		
+		if(res!=0) {
+			response.sendRedirect("/recipePage/recipePage?no=" + rcpSeq);
+			
+			return;
+		}
+		
+		
+	}
+
+	private void addScr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+		
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
+		
+		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
+		
+		Scrap scrap = new Scrap();
+		
+		scrap.setRcpSeq(rcpSeq);
+		scrap.setUserId(member.getUserId());
+		
+		int res = recipePageService.addScrap(scrap);
+		
+		if(res!=0) {
+			response.sendRedirect("/recipePage/recipePage?no=" + rcpSeq);
+			
+			return;
+		}
+		
+		
+	}
+
+	private void addScr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+		
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
+		
+		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
+		
+		Scrap scrap = new Scrap();
+		
+		scrap.setRcpSeq(rcpSeq);
+		scrap.setUserId(member.getUserId());
+		
+		int res = recipePageService.addScrap(scrap);
+		
+		if(res!=0) {
+			response.sendRedirect("/recipePage/recipePage?no=" + rcpSeq);
+			
+			return;
+		}
+		
+		
+	}
+
+	private void addScr(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+		
+		if(member == null) {
+			response.sendRedirect("/member/login");
+			return;
+		}
+		
+		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
+		
+		Scrap scrap = new Scrap();
+		
+		scrap.setRcpSeq(rcpSeq);
+		scrap.setUserId(member.getUserId());
+		
+		int res = recipePageService.addScrap(scrap);
+		
+		if(res!=0) {
+			response.sendRedirect("/recipePage/recipePage?no=" + rcpSeq);
+			
+			return;
+		}
+		
+		
+	}
+
 	private void recipePageToScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
-		Recipe recipe = new Recipe();
-		recipe.setRcpSeq(rcpSeq);
 		
-		List<Recipe> Recipes = new ArrayList<Recipe>();
-		Recipes = recipePageService.selectRecipeByDetailToScrape(recipe);
-		request.setAttribute("Recipes", Recipes);
-		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
+		System.out.println(rcpSeq);
+		
+		recipePage(request, response);
+		
+		/*
+		 * Recipe recipe = new Recipe(); recipe.setRcpSeq(rcpSeq);
+		 * 
+		 * List<Recipe> Recipes = new ArrayList<Recipe>(); Recipes =
+		 * recipePageService.selectRecipeByDetailToScrape(recipe);
+		 * request.setAttribute("Recipes", Recipes);
+		 * request.getRequestDispatcher("/recipePage/recipePage?no=" +
+		 * rcpSeq).forward(request, response);
+		 */
 	}
 
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

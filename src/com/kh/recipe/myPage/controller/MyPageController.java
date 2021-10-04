@@ -87,16 +87,15 @@ public class MyPageController extends HttpServlet {
 		
 		Member member = (Member) request.getSession().getAttribute("authentication");	
 		
-		String rcpSeq = request.getParameter("rcpSeq");
+		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
+		
+		System.out.println(rcpSeq);
 		
 		Scrape scrape = new Scrape();
 		scrape.setUserId(member.getUserId());
-		String userId = scrape.getUserId();
-		
-		System.out.println(rcpSeq);
-		System.out.println(userId);
+		scrape.setRcpSeq(rcpSeq);
 
-		int res = myPageService.cancelScrape(userId, rcpSeq);
+		int res = myPageService.cancelScrape(scrape);
 		
 		System.out.println(res);
 		

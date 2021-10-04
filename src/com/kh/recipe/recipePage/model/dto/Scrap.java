@@ -2,7 +2,7 @@ package com.kh.recipe.recipePage.model.dto;
 
 public class Scrap {
 	
-	private int index;
+	private int scrIndex;
 	private String userId;
 	private int rcpSeq;
 	
@@ -10,13 +10,19 @@ public class Scrap {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getIndex() {
-		return index;
+	
+
+	public int getScrIndex() {
+		return scrIndex;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+
+
+	public void setScrIndex(int scrIndex) {
+		this.scrIndex = scrIndex;
 	}
+
+
 
 	public String getUserId() {
 		return userId;
@@ -34,9 +40,13 @@ public class Scrap {
 		this.rcpSeq = rcpSeq;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Scrap [index=" + index + ", userId=" + userId + ", rcpSeq=" + rcpSeq + "]";
+		return "Scrap [scrIndex=" + scrIndex + ", userId=" + userId + ", rcpSeq=" + rcpSeq + "]";
 	}
+
+	
 
 }

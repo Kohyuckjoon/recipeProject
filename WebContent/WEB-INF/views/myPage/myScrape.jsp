@@ -27,17 +27,13 @@
 			
 				<div class="upper-recipe">
 					<img class="recipe-pic" src="${myRecipe.attFileNoMk}">
-					<form action="/recipePage/recipePageToScrape" method="get">
-					<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq }" />
-					<input type="submit" value="상세보기">
-					</form>
 					<div class="recipe-text">
 						<div class="food-type">${myRecipe.rcpPat2}</div>
 						<div class="food-name">${myRecipe.rcpNm}</div>
 					
 						<div class="cancel-btn">
 							<form action="/myPage/cancelScrape" method="get">
-								<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq }" />
+								<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq}" />
 								<input class="cancel-img" type="image"
 									src="/resources/img/scrape_cancel.png" />
 							</form>
