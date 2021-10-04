@@ -110,9 +110,11 @@ public class BoardDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 
-		String sql = "  select  no , user_id, title, reg_date, view_count"
-				+ " from (select rownum as rnum,  no , user_id, title, reg_date, view_count "
-				+ " from board  order by no desc)" + "  where rnum between  ? and ?";
+		String sql = "SELECT no,user_id,title,content,reg_date,view_count" + 
+				"  FROM (SELECT t.*, rownum as rnum" + 
+				"         FROM board t" + 
+				"         ORDER BY no desc)" + 
+				" WHERE rnum between  ? and  ?";
 
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -144,7 +146,7 @@ public class BoardDao {
 	public int deleteBoard(Connection conn, int no) {
 
 		int result = 0;
-		// System.out.println("게시글 번호 : " + no);
+		
 		String sql = "delete from board where no =?";
 		PreparedStatement pstm = null;
 
