@@ -128,11 +128,11 @@ body {
 			<button>로그인 하기</button>
 			</form>
 			<hr>
-			<form class="kakao-login" action="/member/kakaoLogin" method="post">
+			<!-- <form class="kakao-login" action="/member/kakaoLogin" method="post">
 			
 			<a><img id="btnKakaoLogin"src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></a>
 			
-			</form>
+			</form> -->
 			
 			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
 			
