@@ -146,7 +146,7 @@ public class BoardDao {
 	public int deleteBoard(Connection conn, int no) {
 
 		int result = 0;
-		// System.out.println("게시글 번호 : " + no);
+		
 		String sql = "delete from board where no =?";
 		PreparedStatement pstm = null;
 
