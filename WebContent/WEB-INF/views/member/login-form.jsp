@@ -111,7 +111,7 @@ body {
 </head>
 <body>
 
-	<c:if test="${not empty authentication and not empty sessionStorage}">
+	<c:if test="${not empty authentication or not empty sessionStorage}">
 	<c:redirect  url="/myPage/myPage"/>
 	</c:if>
 	
@@ -128,11 +128,7 @@ body {
 			<button>로그인 하기</button>
 			</form>
 			<hr>
-			<!-- <form class="kakao-login" action="/member/kakaoLogin" method="post">
 			
-			<a><img id="btnKakaoLogin"src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></a>
-			
-			</form> -->
 			
 			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
 			
@@ -142,71 +138,16 @@ body {
 	</c:if>
 	
 	
-	<%-- <c:if test = "${sessionScope.userId == null and sessionScope.userNickName == null}">
- 
-	<%
 	
-	//url로 보낸 아이디를 세션에 저장하기 위해 변수에 저장함
-	String userNickName = request.getParameter("userNickName");
-	String member = request.getParameter("member");
-	String admin_id = request.getParameter("admin_id");
-	 
-	//url로 보낸 이메일를 세션에 저장하기 위해 변수에 저장함
-	String userEmail = request.getParameter("userEmail");
-		 
-	%>    
-	 
-	<%
-	//아이디를 세션에 저장
-	session.setAttribute("userNickName", userNickName);
-	session.setAttribute("member", member);
-	session.setAttribute("admin_id", admin_id);
-	 
-	//이메일을 세션에 저장
-	session.setAttribute("userEmail", userEmail);
- 	%>
-	
-	</c:if>
-	 --%>
 	
 	
 	
 
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript" src="/resources/js/member/kakaoLogin.js"></script>
 <script type="text/javascript">
 
-function SocialLogin() {
-    Kakao.init('0c512e152e989192c220235a73035b4b');
-    Kakao.isInitialized();
-    console.log(Kakao.isInitialized());
-    Kakao.Auth.login({
-      success: function (authObj) {
-        console.log(authObj);
-        fetch('login-form', {
-          method: 'GET',
-          headers: {
-            Authorization: authObj.access_token,
-          },
-        })
-          .then(res => res.json())
-          .then(res => {
-            localStorage.setItem('access_token', res.access_token);
-            if (res.access_token) {
-              alert('로그인 성공!');
-              history.push('/');
-            } else {
-              alert('다시 확인해주세요');
-            }
-          });
-       },
-        fail: function (err) {
-        console.log('에러', err);
-        alert('로그인실패!');
-         },
-       });
-    }
+
 
 
 
