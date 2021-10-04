@@ -29,17 +29,31 @@ public class RecipePageController extends HttpServlet {
 		case "recipePage":
 			recipePage(request, response);
 			break;
+		case "recipePageToScrape":
+			recipePageToScrape(request, response);
+			break;
 		default: throw new PageNotFoundException();
 		}
 	}
 	
+	private void recipePageToScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
+		Recipe recipe = new Recipe();
+		recipe.setRcpSeq(rcpSeq);
+		
+		List<Recipe> Recipes = new ArrayList<Recipe>();
+		Recipes = recipePageService.selectRecipeByDetailToScrape(recipe);
+		System.out.println(Recipes);
+		request.setAttribute("Recipes", Recipes);
+		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
+	}
+
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Recipe> Recipes = new ArrayList<Recipe>();
 		Recipes = recipePageService.selectRecipeByDetail();
 		request.setAttribute("Recipes", Recipes);
 		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
