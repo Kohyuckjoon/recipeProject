@@ -139,7 +139,7 @@ body {
 	</div>
 	</c:if>
 	
-	<c:if test = "${sessionScope.userId == null and sessionScope.userNickName == null}"/>
+	<c:if test = "${sessionScope.userId == null and sessionScope.userNickName == null}">
  
 	<%
 	
@@ -163,7 +163,7 @@ body {
 	session.setAttribute("userEmail", userEmail);
  	%>
 	
-	
+	</c:if>
 	
 	
 	
@@ -190,9 +190,9 @@ function kakaoLogin() {
           url: '/v2/user/me',
           success: function (response) {
         	  var userData = response;
-        	  //console.log(JSON.stringify(response));
+        	  console.dir(userData);
         	  alert(userData.properties.nickname + "님 환영합니다.");
-        	  
+        	 
         	  jsonData = JSON.stringify(response);
         	  
         	  //kakao 로그인 후 user Data 를 가져옵니다.

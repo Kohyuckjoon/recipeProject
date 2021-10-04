@@ -1,97 +1,203 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="../resources/css/mainPage/mainPage.css" rel="stylesheet"  type="text/css">
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
+<link href="../resources/css/recipePage/recipePage.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-	
-	<!-- 헤더 불러옴 -->
-	<%@ include file="/WEB-INF/views/include/header.jsp" %>
-	
-	<!-- 싸이드바 -->
-	<!-- 애는 파라미터 바꿀일이 없어서 JSTL 사용함 -->
-	<div class="sideBar">
-		<div class="sideBar-title">Best Recipes</div>
-		<div class="sideBar-body">
-			<c:forEach var="recipe" items="${Recipes}" begin= "31" end="36">
-				<div class="best-recipe">
-					<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
-					<div class="best-recipe-text">
-						<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
-						<div class="food-star">★★★★★</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-	</div>
-	
-	<!-- 여기서부터 바디 -->
-	
-	<!-- JAVA(server)단 session은 JavaScript(client)단에서 변경 불가. controller를 타야 변경 가능. -->
-	<!-- controller를 페이지 수만큼 늘리는건 좀 무식한짓 같았음 -->
-	<!-- 따라서 JSTL로 구현했던 페이지를 JavaScript로 갈아엎음 -->
-	<!-- JSTL은 JavaScript의 array에 값을 넣는데만 쓰임-->
-	<!-- 그리고 하단 페이저의 숫자 클릭시 sPN(Session Page Number)이라는 세션값이 설정되고-->
-	<!-- 그 값을 변수로 가져와서 페이지 설정-->
-	
-	<!-- body class의 div에 JavaScript로 설정한 노드들이 붙음-->
-	<!-- JSTL 제외하고 다 JavaScript 파일로 빼놓음-->
-	 
-	<div class="body">
-			 
-	</div>
-	
-	<script type="text/javascript">
-	let sPN = parseInt(sessionStorage.getItem('sessionPageNumber'));
-	
-	if(isNaN(sPN) == true) {
-		sPN = 1;
-	} 
-	
-	let recipeIdx = new Array();
-	let recipeImg = new Array();
-	let recipeType = new Array();
-	let recipeName = new Array();
-	
-	<c:forEach var="recipe" items="${Recipes}">
-		recipeIdx.push('${recipe.rcpSeq}');
-		recipeImg.push('${recipe.attFileNoMk}');
-		recipeType.push('${recipe.rcpPat2}');
-		recipeName.push('${recipe.rcpNm}');
-		
-	</c:forEach>
-	
-	</script>
-	
- 
-	<!-- 페이저 구현 HTML-->
-	<!-- 물론 자바스크립트 코드는 따로 뺴놓음 -->
-	<div class = "pager">
-		<table>
-			<tr>
-				<td class = "arrow prevPrevPage"><i class="fas fa-angle-double-left"></i></td>
-				<td class = "blank"></td>
-				<td class = "arrow prevPage"><i class="fas fa-angle-left"></i></td>
-				<td class = "blank"> </td>
-				<td class = "blank num"> </td>
-				<td class = "arrow nextPage"><i class="fas fa-angle-right"></i></td>
-				<td class = "blank"></td>
-				<td class = "arrow nextNextPage"><i class="fas fa-angle-double-right"></i></td>
-			</tr>
-		</table>
-	</div>
-	
-	
-	<!-- footer 불러옴-->
-	
-	<%@ include file="/WEB-INF/views/include/foot.jsp" %>
-	
-	<script type="text/javascript" src = "/resources/js/mainPage/mainPage.js"></script>
+
+   <%@ include file="/WEB-INF/views/include/header.jsp"%>
+
+   <script type="text/javascript">
+      let recipeIdx = new Array();
+      let recipeImg = new Array();
+      let recipeType = new Array();
+      let recipeName = new Array();
+
+      let caloryArr = new Array();
+      let carbohydrateArr = new Array();
+      let proteinArr = new Array();
+      let fatArr = new Array();
+      let natriumArr = new Array();
+
+      let ingredientsArr = new Array();
+
+      let manual1 = new Array();
+      let manual2 = new Array();
+      let manual3 = new Array();
+      let manual4 = new Array();
+      let manual5 = new Array();
+      let manual6 = new Array();
+      let manual7 = new Array();
+      let manual8 = new Array();
+      let manual9 = new Array();
+      let manual10 = new Array();
+      let manual11 = new Array();
+      let manual12 = new Array();
+      let manual13 = new Array();
+      let manual14 = new Array();
+      let manual15 = new Array();
+      let manual16 = new Array();
+      let manual17 = new Array();
+      let manual18 = new Array();
+      let manual19 = new Array();
+      let manual20 = new Array();
+      
+      let manualImg1 = new Array();
+      let manualImg2 = new Array();
+      let manualImg3 = new Array();
+      let manualImg4 = new Array();
+      let manualImg5 = new Array();
+      let manualImg6 = new Array();
+      let manualImg7 = new Array();
+      let manualImg8 = new Array();
+      let manualImg9 = new Array();
+      let manualImg10 = new Array();
+      let manualImg11 = new Array();
+      let manualImg12 = new Array();
+      let manualImg13 = new Array();
+      let manualImg14 = new Array();
+      let manualImg15 = new Array();
+      let manualImg16 = new Array();
+      let manualImg17 = new Array();
+      let manualImg18 = new Array();
+      let manualImg19 = new Array();
+      let manualImg20 = new Array();
 
 
-	
+      <c:forEach var="recipe" items="${Recipes}">
+         recipeIdx.push('${recipe.rcpSeq}');
+         recipeImg.push('${recipe.attFileNoMk}');
+         recipeType.push('${recipe.rcpPat2}');
+         recipeName.push('${recipe.rcpNm}');
+
+         caloryArr.push('${recipe.infoEng}');
+         carbohydrateArr.push('${recipe.infoCar}');
+         proteinArr.push('${recipe.infoPro}');
+
+         fatArr.push('${recipe.infoFat}');
+         natriumArr.push('${recipe.infoNa}');
+
+         ingredientsArr.push('${recipe.rcpPartsDtls}');
+         // 줄바꿈문자 제거함
+
+         manual1.push('${recipe.manual1}');
+         manual2.push('${recipe.manual2}');
+         manual3.push('${recipe.manual3}');
+         manual4.push('${recipe.manual4}');
+         manual5.push('${recipe.manual5}');
+         manual6.push('${recipe.manual6}');
+         manual7.push('${recipe.manual7}');
+         manual8.push('${recipe.manual8}');
+         manual9.push('${recipe.manual9}');
+         manual10.push('${recipe.manual10}');
+         manual11.push('${recipe.manual11}');
+         manual12.push('${recipe.manual12}');
+         manual13.push('${recipe.manual13}');
+         manual14.push('${recipe.manual14}');
+         manual15.push('${recipe.manual15}');
+         manual16.push('${recipe.manual16}');
+         manual17.push('${recipe.manual17}');
+         manual18.push('${recipe.manual18}');
+         manual19.push('${recipe.manual19}');
+         manual20.push('${recipe.manual20}');
+         // 줄바꿈문자 제거함!
+         
+         manualImg1.push('${recipe.manualImg01}');
+         manualImg2.push('${recipe.manualImg02}');
+         manualImg3.push('${recipe.manualImg03}');
+         manualImg4.push('${recipe.manualImg04}');
+         manualImg5.push('${recipe.manualImg05}');
+         manualImg6.push('${recipe.manualImg06}');
+         manualImg7.push('${recipe.manualImg07}');
+         manualImg8.push('${recipe.manualImg08}');
+         manualImg9.push('${recipe.manualImg09}');
+         manualImg10.push('${recipe.manualImg10}');
+         manualImg11.push('${recipe.manualImg11}');
+         manualImg12.push('${recipe.manualImg12}');
+         manualImg13.push('${recipe.manualImg13}');
+         manualImg14.push('${recipe.manualImg14}');
+         manualImg15.push('${recipe.manualImg15}');
+         manualImg16.push('${recipe.manualImg16}');
+         manualImg17.push('${recipe.manualImg17}');
+         manualImg18.push('${recipe.manualImg18}');
+         manualImg19.push('${recipe.manualImg19}');
+         manualImg20.push('${recipe.manualImg20}');
+         
+         
+      </c:forEach>
+   </script>
+
+
+   <div class="recipe-page">
+
+      <div class="container">
+
+         <div class="nutrient">
+            <div class = "nutrient-title">영양성분</div>
+            <div class = "nutrient-detail">
+            </div>
+         </div>
+         
+         <div class="ingredients">
+            <div class="ingredients-title">재료</div>
+            <div class="ingredients-detail"></div>
+         </div>
+         
+      </div>
+
+      <div class="scrap">
+         <i class="far fa-bookmark"></i>
+      </div>
+      
+      <div class="share"></div>
+
+      <div class="cooking-method">
+         <div class="cooking-method-title">조리방법</div>
+         <div class="cooking-method-detail"></div>
+      </div>
+
+      
+
+
+   <div class="reply_list">
+         <table>
+            <thead>
+               <tr>
+                  <th style="width: 10%;">No.</th>
+                  <th style="width: 60%;">내용</th>
+                  <th style="width: 15%;">작성자</th>
+                  <th style="width: 15%;">작성일</th>
+               </tr>
+            </thead>
+            <tbody>
+               <c:forEach items="${reviews}" var="review">
+                  <tr>
+                     <td>${review.reviewNo}</td>
+                     <td>${review.reviewContents}</td>
+                     <td>${review.userId}</td>
+                     <td>${review.reviewDate}</td>
+                  </tr>
+               </c:forEach>
+            </tbody>
+         </table>
+      </div>
+
+      <div class="replt_form">
+         <form>
+            <input id="form" type="text" placeholder="댓글 입력"> <input id="submit" type="submit" value="댓글 등록">
+         </form>
+      </div>
+
+   </div>
+   
+   
+
+
+   <%@ include file="/WEB-INF/views/include/foot.jsp"%>
+   <script type="text/javascript" src = "/resources/js/recipePage/recipePage.js"></script> 
 </body>
 </html>
