@@ -182,7 +182,7 @@ public class BoardController extends HttpServlet {
 		//댓글 뿌려주기
 		List<Comments> boardReview = new ArrayList<Comments>();
 		boardReview= boardService.selectBoardCommentDetail(no);
-		request.setAttribute("Comments", boardReview);
+		request.setAttribute("Comments", comments);
 		request.getRequestDispatcher("/board/board-detail").forward(request,response);
 	}
 

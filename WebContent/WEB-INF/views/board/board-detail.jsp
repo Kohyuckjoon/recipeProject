@@ -13,6 +13,12 @@
 
 
 <style type="text/css">
+html {
+   width: 1800px;
+   height: 100%; background-color : #ccdce7;
+   margin-left: 70px;
+   background-color: #ccdce7;
+}
 .top{
 height: 100px;
 }
@@ -122,7 +128,7 @@ font-size:2vw;
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${Comments}" var="coment">
+					<c:forEach items="${comments}" var="coment">
 						<tr>
 							<td>${coment.commentNo}</td>
 							<td>${coment.commentContent}</td>

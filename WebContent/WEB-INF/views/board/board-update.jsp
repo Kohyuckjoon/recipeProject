@@ -14,7 +14,12 @@
 
 <style type="text/css">
 
-
+html {
+   width: 1800px;
+   height: 100%; background-color : #ccdce7;
+   margin-left: 70px;
+   background-color: #ccdce7;
+}
 
 .top > div{
 	height: 100px;
