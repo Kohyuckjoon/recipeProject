@@ -412,6 +412,10 @@
 		
 	});
 	
+	let onclickScrap = document.createAttribute("onclick");
+	let scrapLocation = "location.href = '/recipePage/addScr?rcpSeq="
+	onclickScrap.value = scrapLocation+rDI+"\'";
+	document.querySelector(".scrap").setAttributeNode(onclickScrap);
 	
 
 })();

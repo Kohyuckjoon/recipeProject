@@ -131,13 +131,14 @@
 			document.querySelector('.page-' + i).addEventListener('mouseover',() =>{
 				let mouseOnPage = document.querySelector('.page-'+i)
 				let insertColorIntoMouseOnPage = document.createAttribute("style");
-				insertColorIntoMouseOnPage.value = "border-bottom:1px solid black";
+				insertColorIntoMouseOnPage.value = "border-bottom:1px solid black; cursor:pointer";
 				mouseOnPage.setAttributeNode(insertColorIntoMouseOnPage);
 			});
 			
 			document.querySelector('.page-' + i).addEventListener('mouseout',() =>{
 				let mouseOnPage = document.querySelector('.page-'+i)
 				let insertColorIntoMouseOnPage = document.createAttribute("style");
+				insertColorIntoMouseOnPage.value = 'cursor:pointer';
 				mouseOnPage.setAttributeNode(insertColorIntoMouseOnPage);
 			});
 		} 
@@ -198,7 +199,7 @@
 	
 	let currentPage = document.querySelector('.page-'+sPN)
 	let insertColorIntoCurrentPage = document.createAttribute("style");
-	insertColorIntoCurrentPage.value = "background-color:lightblue";
+	insertColorIntoCurrentPage.value = "background-color:lightblue; cursor:pointer";
 	currentPage.setAttributeNode(insertColorIntoCurrentPage);
 
 	

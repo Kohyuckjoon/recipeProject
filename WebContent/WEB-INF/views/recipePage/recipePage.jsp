@@ -144,7 +144,7 @@
 
 		</div>
 
-		<div class="scrap" style=" cursor:pointer" onclick="location.href='/recipePage/addScr';">
+		<div class="scrap" style=" cursor:pointer">
 			<i class="far fa-bookmark"></i>
 		</div>
 

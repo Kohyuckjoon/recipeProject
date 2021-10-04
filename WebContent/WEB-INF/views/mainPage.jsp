@@ -18,7 +18,9 @@
 		<div class="sideBar-body">
 			<c:forEach var="recipe" items="${Recipes}" begin= "31" end="36">
 				<div class="best-recipe">
-					<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
+					<a style=" cursor:pointer" href="/recipePage/recipePage?no=${recipe.rcpSeq}">
+						<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
+					</a>
 					<div class="best-recipe-text">
 						<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
 					</div>
@@ -60,7 +62,6 @@
 		recipeImg.push('${recipe.attFileNoMk}');
 		recipeType.push('${recipe.rcpPat2}');
 		recipeName.push('${recipe.rcpNm}');
-		
 	</c:forEach>
 	
 	</script>
@@ -71,14 +72,14 @@
 	<div class = "pager">
 		<table>
 			<tr>
-				<td class = "arrow prevPrevPage"><i class="fas fa-angle-double-left"></i></td>
+				<td class = "arrow prevPrevPage" style=" cursor:pointer"><i class="fas fa-angle-double-left"></i></td>
 				<td class = "blank"></td>
-				<td class = "arrow prevPage"><i class="fas fa-angle-left"></i></td>
+				<td class = "arrow prevPage" style=" cursor:pointer"><i class="fas fa-angle-left"></i></td>
 				<td class = "blank"> </td>
 				<td class = "blank num"> </td>
-				<td class = "arrow nextPage"><i class="fas fa-angle-right"></i></td>
+				<td class = "arrow nextPage" style=" cursor:pointer"><i class="fas fa-angle-right"></i></td>
 				<td class = "blank"></td>
-				<td class = "arrow nextNextPage"><i class="fas fa-angle-double-right"></i></td>
+				<td class = "arrow nextNextPage" style=" cursor:pointer"><i class="fas fa-angle-double-right"></i></td>
 			</tr>
 		</table>
 	</div>
