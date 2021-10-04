@@ -136,24 +136,25 @@ public class BoardDao {
 	
 
 	// 리스트로 전체 게시글 목록
-	public List<Board> selectBoardAll(Connection conn, Board board) {
+	public List<Board> selectBoardAll(Connection conn,Board board) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String sql =  " select  no , user_id, title, reg_date, view_count" + 
-				" from (select rownum as rnum,  no , user_id, title, reg_date, view_count " + 
-				" from board  order by no desc) board" + 
-				" where rnum between  ? and ?";
+		String sql = "  select  no , user_id, title, reg_date, view_count" + 
+				" from (select rownum as rnum,  no , user_id, title, reg_date, view_count "  + 
+				" from board  order by no desc)" +
+				"  where rnum between  ? and ?";
 
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt( 1, board.getStartIdx());
+			pstm.setInt(1, board.getStartIdx());
 			pstm.setInt(2, board.getRowCntPage());
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
+				board = new Board();
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
 				board.setUserId(rset.getString("user_id"));
@@ -281,7 +282,7 @@ public class BoardDao {
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, board.getRowCntPage()); 
+			pstm.setInt(1, board.getRowCntPage()/page); 
 			rset = pstm.executeQuery();
 			
 			
