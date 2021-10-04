@@ -128,22 +128,21 @@
 		<div class="container">
 
 			<div class="nutrient">
-				<div class = "nutrient-title">영양성분</div>
-				<div class = "nutrient-detail">
-				</div>
+				<div class="nutrient-title">영양성분</div>
+				<div class="nutrient-detail"></div>
 			</div>
-			
+
 			<div class="ingredients">
 				<div class="ingredients-title">재료</div>
 				<div class="ingredients-detail"></div>
 			</div>
-			
+
 		</div>
 
 		<div class="scrap">
 			<i class="far fa-bookmark"></i>
 		</div>
-		
+
 		<div class="share"></div>
 
 		<div class="cooking-method">
@@ -151,17 +150,14 @@
 			<div class="cooking-method-detail"></div>
 		</div>
 
-		
-
-
-	<div class="reply_list">
+		<div class="reply-list">
 			<table>
 				<thead>
 					<tr>
-						<th style="width: 10%;">No.</th>
-						<th style="width: 60%;">내용</th>
-						<th style="width: 15%;">작성자</th>
-						<th style="width: 15%;">작성일</th>
+						<th>No.</th>
+						<th>내용</th>
+						<th>작성자</th>
+						<th>작성일</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -177,15 +173,17 @@
 			</table>
 		</div>
 
-		<div class="replt_form">
+		<div class="reply-form">
 			<form>
-				<input id="form" type="text" placeholder="댓글 입력"> <input id="submit" type="submit" value="댓글 등록">
+				<input id="form" type="text" placeholder="댓글 입력" class="reply-text">
+				<input id="submit" type="submit" value="댓글 등록" class="reply-submit">
 			</form>
 		</div>
 
 	</div>
-	
-	
+
+
+
 
 
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
