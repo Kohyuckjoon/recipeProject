@@ -169,7 +169,7 @@
 							<td class="reply-detail-user">${comment.userId}</td>
 							<td class="reply-detail-contests">${comment.reviewContents}</td>
 							<td class="reply-detail-date">${comment.reviewDate}</td>
-						</tr>
+						</tr> 
 					</c:forEach>
 				</tbody>
 			</table>
