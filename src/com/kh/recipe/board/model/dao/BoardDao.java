@@ -106,17 +106,17 @@ public class BoardDao {
 	}
 
 	// 게시글 수정
-	public int updateBoard(Connection conn, String title, String content, int no) {
+	public int updateBoard(Connection conn, String title, String content, String no) {
 		String sql = "update board set title = ? , content = ?  where no = ?";
-
+		Board board = new Board();
 		PreparedStatement pstm = null;
 		int rset = 0;
 	
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1,title);
-			pstm.setString(2, content);
-			pstm.setInt(3, no);
+			pstm.setString(2,content);
+			pstm.setString(3,no);
 			rset = pstm.executeUpdate();
 			
 			template.commit(conn);

@@ -56,15 +56,13 @@ public class BoardController extends HttpServlet {
 		case "upload":
 			upload(request, response);
 			break;
-		case "updateUpload":
-			//updateUpload(request, response);
-			break;
+		
 		case "board-detail":
 			boardDetail(request, response);
 			break;
 
 		case "board-update":
-			//boardUpdate(request, response);
+			boardUpdate(request, response);
 			break;
 
 		case "board-delete":
@@ -123,29 +121,14 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	
 	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 			
-			
-			/* int no = Integer.parseInt(request.getParameter("no")); String title =
-			 * request.getParameter("title"); String content =
-			 * request.getParameter("content"); int result = boardService.updateBoard(title,
-			 * content);
-			 * 
-			 * request.getRequestDispatcher("/board/board-update").forward(request,
-			 * response);*/
-			/*
-			 * int no = Integer.parseInt(request.getParameter("no")); String title =
-			 * request.getParameter("title"); String content =
-			 * request.getParameter("content");
-			 * 
-			 * BoardService boardService = new BoardService(); Board board = new Board();
-			 * board.setTitle(title); board.setContent(content);
-			 * boardService.updateBoard(title, content);
-			 * response.sendRedirect("/board/board-detail");
-			 */
-		
-		int no = Integer.parseInt(request.getParameter("no"));
-		boardService.selectBoardDetail(no);
-		request.setAttribute("board", no);
-		request.getRequestDispatcher("/board/board-update").forward(request, response);
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			String no = request.getParameter("no");
+			boardService.updateBoard(title, content, no);
+			System.out.println(title);
+			System.out.println(content);
+			System.out.println(no);
+			request.getRequestDispatcher("/board/board-update").forward(request, response);
 	  }
 	 
 	// 게시물 목록
@@ -194,29 +177,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		request.getRequestDispatcher("/board/board-detail").forward(request, response);
 	}
 
-	// 게시글 수정 업로드
-	private void updateUpload(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		Member member = (Member) request.getSession().getAttribute("authentication");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		int no = Integer.parseInt(request.getParameter("no"));
-		
-		int result = boardService.updateBoard(title, content, no);
-		if(result != 0 ) {
-			response.sendRedirect("/board/board-detail");
-		}else {
-			response.setContentType("text/html; charset=UTF-8");
-			 
-			PrintWriter out = response.getWriter();
-			 
-			out.println("<script>alert('이메일이 변경되지 않았습니다. 아이디, 비밀번호를 확인해주세요'); location.href='/myPage/memberInfo#tab2'</script>");
-			 
-			out.flush();
-		}
 
-		
-	}
 
 	// 게시글 업로드
 	private void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -233,8 +194,6 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		boardService.insertBoard(board);
 		response.sendRedirect("/board/board-list"); // 게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송
 	
-		
-		
 
 	}
 

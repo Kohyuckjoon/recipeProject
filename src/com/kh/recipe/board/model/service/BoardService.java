@@ -109,19 +109,19 @@ public class BoardService {
 	  }
 	 
 
-		public int updateBoard(String title,String content,int no) { //수정
+		public int updateBoard(String title,String content,String no) { //수정
 			  Connection conn = template.getConnection(); 
 			  int res = 0;
 			  
 			  try {
 				  res = boardDao.updateBoard(conn,title,content,no);
-				
+				  
 			  }catch (Exception e) {
 				  e.printStackTrace();
 			  }finally { 
 				  template.close(conn); 
 			  } 
-			  
+			  System.out.println(res);
 			  return res;
 		}
 	
