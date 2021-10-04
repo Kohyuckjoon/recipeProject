@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.recipe.board.model.dao.BoardDao;
 import com.kh.recipe.board.model.dto.Board;
-import com.kh.recipe.board.model.dto.BoardDTO;
+
 import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.board.model.service.BoardService;
 import com.kh.recipe.common.exception.PageNotFoundException;
@@ -157,14 +157,14 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		
 		int rowCnt = 10;
 		Board board = new Board();
-		BoardDTO param = new BoardDTO();
-		param.setRowCntPage(rowCnt);
-		param.setStartIdx((page-1)*rowCnt+1);
-		
-		request.setAttribute("pageLength", boardService.selPageLength(param));
+		board.setRowCntPage(rowCnt*page);
+		board.setStartIdx(((page-1)*rowCnt)+1);
+		int res = boardService.selPageLength(board,page);
+		request.setAttribute("pageLength", res);
 	
 		
-		List<Board> datas = boardService.selectBoardAll(param);
+		List<Board> datas = boardService.selectBoardAll(board);
+		
 		request.setAttribute("datas", datas);
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
 		

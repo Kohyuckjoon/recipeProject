@@ -10,7 +10,6 @@ import java.util.Map;
 
 import com.kh.recipe.board.model.dao.BoardDao;
 import com.kh.recipe.board.model.dto.Board;
-import com.kh.recipe.board.model.dto.BoardDTO;
 import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
@@ -56,12 +55,12 @@ public class BoardService {
 	
 
 
-	public List<Board> selectBoardAll(BoardDTO param) { //게시글 목록 페이지 
+	public List<Board> selectBoardAll(Board board) { //게시글 목록 페이지 
 		Connection conn = template.getConnection();
 		List<Board> boardList = new ArrayList<Board>();
 		try {
 			
-		 boardList = boardDao.selectBoardAll(conn,param);
+		 boardList = boardDao.selectBoardAll(conn,board);
 		
 		} finally {
 			template.close(conn);
@@ -156,17 +155,16 @@ public class BoardService {
 		}
 	}
 
-	public  int selPageLength(BoardDTO param) {
+	public  int selPageLength(Board board ,int page) {
 		int res = 0;
 		Connection conn = template.getConnection();
 		
 		try {
-			res=boardDao.selPageLength(conn,param);
+			res=boardDao.selPageLength(conn,board,page);
 			
-			template.commit(conn);
+			/* template.commit(conn); */
 		} catch (DataAccessException e) {
-			template.rollback(conn);
-			throw e;
+			e.printStackTrace();
 		}finally {
 			template.close(conn);
 		}
