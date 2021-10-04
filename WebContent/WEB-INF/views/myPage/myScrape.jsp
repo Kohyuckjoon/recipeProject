@@ -23,12 +23,14 @@
 		<div class="row">
 			<c:forEach var="myRecipe" items="${myRecipes}">
 				<div class="upper-recipe">
-					<img src="${myRecipe.attFileNoMk}" class="recipe-pic">
+					<form action="/recipePage/recipePageToScrape" method="get">
+					<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq }" />
+					<input class="recipe-pic" type="image" src="${myRecipe.attFileNoMk}" />
+					</form>
 					<div class="recipe-text">
 						<div class="food-type">${myRecipe.rcpPat2}</div>
 						<div class="food-name">${myRecipe.rcpNm}</div>
 						<div class="cancel-btn">
-
 							<form action="/myPage/cancelScrape" method="get">
 								<input type="hidden" name="rcpSeq" value="${myRecipe.rcpSeq }" />
 								<input class="cancel-img" type="image"

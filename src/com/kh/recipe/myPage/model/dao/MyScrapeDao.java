@@ -24,7 +24,7 @@ public class MyScrapeDao {
 		ResultSet rset = null;
 		
 		String columns = "rcp_seq, rcp_nm, rcp_pat2, att_file_no_mk";
-		
+		   
 		String query = "select " + columns + " from (select rownum as rnum, " + columns + " from recipe inner join scrape using(rcp_seq) "
 				+ "where user_id = ? order by scr_index asc) "
 				+ "where rnum between ? and ?";
