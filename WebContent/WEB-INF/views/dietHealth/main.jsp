@@ -454,7 +454,7 @@ span {
 	<div class="lowerBox">
 		<div class="lowerBoxLeft"></div>
 
-		<div class="lowerBoxRight">
+		<!-- <div class="lowerBoxRight">
 			<div class="sideBarBoxStyle">
 				<div class="sideBarinfo">
 					<div>
@@ -486,7 +486,7 @@ span {
 
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 
@@ -527,21 +527,10 @@ span {
 		}
 	</script>
 
-	<div class="pager">
-		<table>
-			<tr>
-				<td class="arrow prevPrevPage"><i
-					class="fas fa-angle-double-left"></i></td>
-				<td class="blank"></td>
-				<td class="arrow prevPage"><i class="fas fa-angle-left"></i></td>
-				<td class="blank"></td>
-				<td class="blank num"></td>
-				<td class="arrow nextPage"><i class="fas fa-angle-right"></i></td>
-				<td class="blank"></td>
-				<td class="arrow nextNextPage"><i
-					class="fas fa-angle-double-right"></i></td>
-			</tr>
-		</table>
+	<div style="text-align: center; vertical-align: bottom; height: 50px;" >
+		<c:forEach begin="1" end="${requestScope.pageLength}" step="1" var="page">
+			<span><a href="/dietHealth/main?page=${page}" > ${page} </a></span>
+		</c:forEach>
 	</div>
 
 	<script type="text/javascript"

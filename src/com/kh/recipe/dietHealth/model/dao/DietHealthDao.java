@@ -9,9 +9,11 @@ import java.util.List;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
+import com.kh.recipe.board.model.dto.Board;
 import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.HandlableException;
+import com.kh.recipe.dietHealth.model.dto.DietHealth;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 
 public class DietHealthDao {
@@ -52,5 +54,4 @@ public class DietHealthDao {
 		}
 		return recipes;
 	}
-
 }

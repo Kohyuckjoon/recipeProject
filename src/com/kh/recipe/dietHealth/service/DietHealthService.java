@@ -5,11 +5,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.recipe.board.model.dto.Board;
 import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.dietHealth.model.dao.DietHealthDao;
+import com.kh.recipe.dietHealth.model.dto.DietHealth;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 
 public class DietHealthService {
@@ -31,7 +33,8 @@ public class DietHealthService {
 		}
 		return Recipes;
 	}
-	
+
+
 	//checkBox check한 항목만 데이터 가져오기
 //	public int checkBox() {
 //		Connection conn = template.getConnection();
