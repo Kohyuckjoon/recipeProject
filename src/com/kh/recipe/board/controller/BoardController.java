@@ -162,7 +162,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		int res = boardService.selPageLength(board,page);
 		request.setAttribute("pageLength", res);
 	
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
 		List<Board> datas = boardService.selectBoardAll(board);
 		
 		request.setAttribute("datas", datas);
