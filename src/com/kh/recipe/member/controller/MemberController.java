@@ -279,12 +279,13 @@ public class MemberController extends HttpServlet {
 		
 		if(member != 0) {
 			System.out.println(userId);
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('계정이 삭제 되었습니다.'); location.href='/mainPage/mainPage';</script>");
 			out.flush();
 
 			request.getSession().removeAttribute("authentication");
-			response.sendRedirect("/mainPage/mainPage");
+			
 
 			return;
 			
@@ -292,6 +293,7 @@ public class MemberController extends HttpServlet {
 			System.out.println(userId);
 			System.out.println(password);
 			
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('아이디, 비밀번호를 확인해주세요.'); location.href='history.back()'; </script>");
 			out.flush();
