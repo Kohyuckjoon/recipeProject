@@ -123,7 +123,7 @@ body {
 				<input type="password" name="password" id="password" placeholder="Password"/>
 				
 				<input type="password" name="changepassword" id="Password to change"   
-			    placeholder="영어,숫자,특수문자 조합의 8~14자의 문자열" required/>
+			    placeholder="Password to change" required/>
       
 			    <span id="pwCheck" class="valid-msg">
 				    <c:if test="${not empty joinFailed.password}">
