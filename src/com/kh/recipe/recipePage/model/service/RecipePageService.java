@@ -8,16 +8,16 @@ import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
-import com.kh.recipe.recipePage.model.dao.CommentsDao;
+import com.kh.recipe.recipePage.model.dao.RecipeCommentsDao;
 import com.kh.recipe.recipePage.model.dao.RecipeDao;
-import com.kh.recipe.recipePage.model.dto.Comments;
 import com.kh.recipe.recipePage.model.dto.Recipe;
+import com.kh.recipe.recipePage.model.dto.Review;
 
 public class RecipePageService {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private RecipeDao rPD = new RecipeDao();
-	private CommentsDao cDao = new CommentsDao();
+	private RecipeCommentsDao cDao = new RecipeCommentsDao();
 	
 	public List<Recipe> selectRecipeByDetail() {
 		
@@ -49,19 +49,20 @@ public class RecipePageService {
 		return Recipes;
 	}
 
-	public List<Comments> selectReplyByDetail() {
+	public List<Review> selectReplyByDetail(int no) {
 		
-		List<Comments> reply = new ArrayList<Comments>();
+		List<Review> comments = new ArrayList<Review>();
 		Connection conn = template.getConnection();
 		
 		try {
-			reply = cDao.selectCommentsByDetail(conn);
+			comments = cDao.selectCommentsByDetail(conn, no);
 		} catch (DataAccessException e) {
-			throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); 
+			e.printStackTrace();
+			/* throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); */
 		}finally {
 			template.close(conn);
 		}
-		return reply;
+		return comments;
 	}
 	
 	
