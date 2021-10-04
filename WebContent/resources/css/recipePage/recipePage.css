@@ -109,12 +109,37 @@ html{
     margin-top: 30px;
 }
 
-.reply-list table{
+.reply-list-table{
 	width:100%;
+	border: 1px solid black;
 }
-.reply-list tr {
-	border-bottom :1px solid #999;
+
+.reply-list-table th{
+	border: 1px solid black;
+	font-size: 20px;
+	font-weight: 600;
 }
+
+.reply-list-table td{
+	border: 1px solid black;
+	text-align: center;
+}
+
+
+
+.reply-detail-num{
+	width: 5%;
+}
+
+.reply-detail-user{
+	width: 8%;
+}
+
+.reply-detail-date{
+	width: 7%;
+}
+
+
 
 .reply-form{
 	margin-top: 3vw;
