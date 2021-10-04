@@ -546,9 +546,6 @@ span {
 	<script type="text/javascript"
 		src="/resources/js/dietHealth/dietHealthPage.js"></script>
 		
-	<div class="foot">
-		<div class="Copyright">Copyright © 1992-2021 HSJ All Right Reserved</div>
-	</div>
 
 
 </body>
