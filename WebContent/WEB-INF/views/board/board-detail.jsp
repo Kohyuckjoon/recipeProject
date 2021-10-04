@@ -134,11 +134,19 @@ font-size:2vw;
 			</table>
 		</div>
 
+<div style="text-align: center; vertical-align: bottom; height: 50px;" >
+		<c:forEach begin="1" end="${requestScope.pageLength}" step="1" var="page">
+			<span><a href="/board/board-list?page=${page}" > ${page} </a></span>
+		</c:forEach>
+		</div>
+
+
 		<div class="replt_form">
 			<form action="/board/comment" method="post" enctype="multipart/form-data">
 				<input id="form" type="text" placeholder="댓글 입력"> <input id="submit" type="submit" value="댓글 등록">
 			</form>
 		</div>
+
 
 	
 

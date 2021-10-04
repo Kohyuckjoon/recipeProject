@@ -162,6 +162,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	// 게시물 상세글
 	private void boardDetail(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 
 		// 게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
 		int no = Integer.parseInt(request.getParameter("no"));
@@ -171,6 +172,15 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
 		request.setAttribute("datas", datas);
 		
+		String strPage = request.getParameter("page");
+		int page = strPage == null ? 1 : Integer.parseInt(strPage);
+		
+		int rowCnt = 10;
+		Board board = new Board();
+		board.setRowCntPage(rowCnt*page);
+		board.setStartIdx(((page-1)*rowCnt)+1);
+		int res = boardService.selPageLength(board,page);
+		request.setAttribute("pageLength", res);
 	
 		List<Comments> comments = new ArrayList<Comments>();
 		comments= boardService.selectBoardCommentDetail(no);
