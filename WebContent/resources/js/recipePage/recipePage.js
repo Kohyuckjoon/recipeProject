@@ -3,8 +3,6 @@
 	
 	let recipeDbOrder = recipeIdx.indexOf(rDI);
 	
-	console.dir(recipeDbOrder);
-	
 	let imgDiv = document.createElement('img');
 	imgDiv.classList.add('recipe-img');
 	
@@ -394,12 +392,6 @@
 		manual20Div.append(manual20[recipeDbOrder]);
 		document.querySelector(".cooking-method-detail").appendChild(manual20Div);
 	}
-	
-	
-	let replyDetailNo = document.createElement('td');
-	replyDetailNo.classList.add('reply-detail-no');
-	replyDetailNo.append(commentNumArr[recipeDbOrder]);
-	document.querySelector(".reply-detail").appendChild(replyDetailNo);
 	
 	
 	

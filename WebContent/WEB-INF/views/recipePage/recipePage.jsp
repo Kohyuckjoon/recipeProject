@@ -122,10 +122,6 @@
 			manualImg20.push('${recipe.manualImg20}');
 		</c:forEach>
 		
-		
-		
-		console.dir(commentNumArr);
-		
 	</script>
 
 
@@ -157,24 +153,23 @@
 		</div>
 
 		<div class="reply-list">
-			<table>
+			<table class="reply-list-table">
 				<thead>
 					<tr>
 						<th>No.</th>
-						<th>내용</th>
 						<th>작성자</th>
+						<th>내용</th>
 						<th>작성일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="comment" items="${Comments}">
 						<tr class="reply-detail">
-							<td>${comment.reviewNo}</td>
-							<td>${comment.rcpSeq}</td>
-							<td>${comment.userId}</td>
-							<td>${comment.reviewContents}</td>
-							<td>${comment.reviewDate}</td>
-						</tr>
+							<td class="reply-detail-num">${comment.reviewNo}</td>
+							<td class="reply-detail-user">${comment.userId}</td>
+							<td class="reply-detail-contests">${comment.reviewContents}</td>
+							<td class="reply-detail-date">${comment.reviewDate}</td>
+						</tr> 
 					</c:forEach>
 				</tbody>
 			</table>
@@ -190,9 +185,6 @@
 	</div>
 
 	
-
-
-
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
 	<script type="text/javascript" src = "/resources/js/recipePage/recipePage.js"></script> 
 </body>
