@@ -3,6 +3,7 @@ package com.kh.recipe.recipePage.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 import com.kh.recipe.recipePage.model.dto.Review;
 
-public class RecipeCommentsDao {
+public class RecipeReviewDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 
@@ -47,5 +48,29 @@ public class RecipeCommentsDao {
 		}
 		return comments;
 	}
+
+	public void uploadReview(Connection conn, Review review) {
+		String sql = "insert into review(review_no, rcp_seq, user_id, review_contents) values(REVIEW_SEQ.nextval,?,?,?)";
+		
+		PreparedStatement pstm = null;
+
+		try {
+
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, review.getRcpSeq());
+			pstm.setString(2, review.getUserId());
+			pstm.setString(3, review.getReviewContents());
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			/* throw new DataAccessException(e); */
+			e.printStackTrace();
+		} finally {
+			template.close(pstm);
+		}
+		
+	}
+
+
 
 }

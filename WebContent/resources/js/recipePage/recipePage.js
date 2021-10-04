@@ -400,7 +400,7 @@
 		textAreaContents = document.querySelector(".reply-text").value ;
 		let postComment = document.querySelector(".reply-submit");
 		let bLocation = document.createAttribute("onclick");
-		let stringLocation = "location.href = '/recipePage/recipePage?no="
+		let stringLocation = "location.href = '/recipePage/recipePageForReview?no="
 		bLocation.value = stringLocation+rDI+"&replyContents="+textAreaContents+"\'";
 		postComment.setAttributeNode(bLocation);
 	});

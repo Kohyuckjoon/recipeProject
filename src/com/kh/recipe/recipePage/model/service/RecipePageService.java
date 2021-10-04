@@ -8,7 +8,7 @@ import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
-import com.kh.recipe.recipePage.model.dao.RecipeCommentsDao;
+import com.kh.recipe.recipePage.model.dao.RecipeReviewDao;
 import com.kh.recipe.recipePage.model.dao.RecipeDao;
 import com.kh.recipe.recipePage.model.dto.Recipe;
 import com.kh.recipe.recipePage.model.dto.Review;
@@ -17,7 +17,7 @@ public class RecipePageService {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private RecipeDao rPD = new RecipeDao();
-	private RecipeCommentsDao cDao = new RecipeCommentsDao();
+	private RecipeReviewDao cDao = new RecipeReviewDao();
 	
 	public List<Recipe> selectRecipeByDetail() {
 		
@@ -64,6 +64,27 @@ public class RecipePageService {
 		}
 		return comments;
 	}
+
+	public void uploadReview(Review review) {
+		Connection conn = template.getConnection();
+
+		try {
+			cDao.uploadReview(conn, review);
+			template.commit(conn);
+		} catch (DataAccessException e) {
+			template.rollback(conn);
+			throw e;
+		}finally {
+			template.close(conn);
+		}
+		
+	}
+
+
+
+
+
+	
 	
 	
 	
