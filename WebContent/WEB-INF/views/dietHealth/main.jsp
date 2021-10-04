@@ -303,7 +303,7 @@ span {
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-
+	<div></div>
 
 	<div class="body"></div>
 
