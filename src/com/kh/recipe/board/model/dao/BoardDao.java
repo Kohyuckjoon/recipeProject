@@ -137,8 +137,8 @@ public class BoardDao {
 	
 
 	// 리스트로 전체 게시글 목록
-	public List<Board> selectBoardAll(Connection conn, BoardDTO param) {
-		List<Board> boardList = new ArrayList();
+	public List<Board> selectBoardAll(Connection conn) {
+		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
@@ -150,8 +150,8 @@ public class BoardDao {
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt( 1, param.getStartIdx());
-			pstm.setInt(2, param.getRowCntPage());
+			pstm.setInt( 1, board.getStartIdx());
+			pstm.setInt(2, board.getRowCntPage());
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
@@ -275,20 +275,20 @@ public class BoardDao {
 
 
 	
-	public int selPageLength(Connection conn, BoardDTO param) {
+	public int selPageLength(Connection conn,Board board,int page) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		
+		int res = 0;
 		String sql = "select ceil(count(no)/?) from board";
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, param.getRowCntPage()); 
+			pstm.setInt(1, board.getRowCntPage()); 
 			rset = pstm.executeQuery();
 			
 			
 			  if(rset.next()) { 
-				return rset.getInt(1);
+				  res = rset.getInt(1);
 				  }
 			 
 			
@@ -301,7 +301,7 @@ public class BoardDao {
 			template.close(pstm);
 		}
 		
-		return 0;
+		return res;
 		
 	}
 
