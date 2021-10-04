@@ -148,7 +148,11 @@
 			<i class="far fa-bookmark"></i>
 		</div>
 
-		<div class="share"></div>
+		<div class="share" style=" cursor:pointer">
+			<a>
+				<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" id="kakao_share_btn" onclick="shareKakao();"/>
+			</a>
+		</div>
 
 		<div class="cooking-method">
 			<div class="cooking-method-title">조리방법</div>
@@ -189,5 +193,32 @@
 	
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
 	<script type="text/javascript" src = "/resources/js/recipePage/recipePage.js"></script> 
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript">
+	Kakao.init('0c512e152e989192c220235a73035b4b');
+	Kakao.isInitialized();
+	
+	function shareKakao() {
+		 
+		  // 사용할 앱의 JavaScript 키 설정
+		 
+		 
+		  // 카카오링크 버튼 생성
+		  Kakao.Link.createDefaultButton({
+		    container: '#kakao_share_btn', // 카카오공유버튼ID
+		    objectType: 'feed',
+		    content: {
+		      title: "Fitness Recipes", // 보여질 제목
+		      description: "The Fitness Recipes", // 보여질 설명
+		      imageUrl: "../../img/banner.gif", // 콘텐츠 URL
+		      link: {
+		         mobileWebUrl: window.location.href,
+		         webUrl: window.location.href
+		      }
+		    }
+		  });
+		}
+	</script>
+	
 </body>
 </html>
