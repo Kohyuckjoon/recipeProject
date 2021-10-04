@@ -144,9 +144,9 @@
 
 		</div>
 
-		<!-- <div class="scrap">
+		<div class="scrap" style=" cursor:pointer" onclick="location.href='/recipePage/addScr';">
 			<i class="far fa-bookmark"></i>
-		</div> 스크래앱 이미지이-->
+		</div>
 
 		<div class="share"></div>
 
