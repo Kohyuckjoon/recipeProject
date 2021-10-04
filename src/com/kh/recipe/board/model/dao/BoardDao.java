@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.recipe.board.model.dto.Board;
-import com.kh.recipe.board.model.dto.BoardDTO;
 import com.kh.recipe.board.model.dto.Comments;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
@@ -137,7 +136,7 @@ public class BoardDao {
 	
 
 	// 리스트로 전체 게시글 목록
-	public List<Board> selectBoardAll(Connection conn) {
+	public List<Board> selectBoardAll(Connection conn, Board board) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -155,7 +154,6 @@ public class BoardDao {
 			rset = pstm.executeQuery();
 
 			while (rset.next()) {
-				Board board = new Board();
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
 				board.setUserId(rset.getString("user_id"));

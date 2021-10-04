@@ -55,12 +55,12 @@ public class BoardService {
 	
 
 
-	public List<Board> selectBoardAll() { //게시글 목록 페이지 
+	public List<Board> selectBoardAll(Board board) { //게시글 목록 페이지 
 		Connection conn = template.getConnection();
 		List<Board> boardList = new ArrayList<Board>();
 		try {
 			
-		 boardList = boardDao.selectBoardAll(conn);
+		 boardList = boardDao.selectBoardAll(conn,board);
 		
 		} finally {
 			template.close(conn);

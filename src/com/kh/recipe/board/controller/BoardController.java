@@ -164,7 +164,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	
 		System.out.println("res :" +res);
 		
-		List<Board> datas = boardService.selectBoardAll();
+		List<Board> datas = boardService.selectBoardAll(board);
 		request.setAttribute("datas", datas);
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
 		
