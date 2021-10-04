@@ -115,7 +115,7 @@ public class BoardService {
 			  
 			  try {
 				  res = boardDao.updateBoard(title,content,no,conn);
-				  template.commit(conn);
+				  
 			  }catch (Exception e) {
 				  e.printStackTrace();
 			  }finally { 

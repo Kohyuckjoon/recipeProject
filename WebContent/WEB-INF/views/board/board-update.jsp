@@ -114,7 +114,7 @@ font-size:2vw;
 			<span>등록일 : <c:out value="${datas.board.regDate}"/></span>
 		<span>작성자 : <c:out value="${datas.board.userId}"/></span>
 		<span>조회수 : <c:out value="${datas.board.viewCount }"/></span>
-	
+	<input type="hidden" name="no" value="${datas.board.no}" />  
 	</div>
 	
 	

@@ -242,30 +242,29 @@ public class BoardDao {
 	}
 
 	public int updateBoard(String title, String content, String no, Connection conn) {
-		  Statement stmt = null;
-	      int res = 0;
+		String sql = "update board set title = ? , content =?  where no = ? ";
+		PreparedStatement pstm = null;
+		int rset = 0;
 
-		
-	     try {
-	         Class.forName("oracle.jdbc.driver.OracleDriver");
-	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
-	         stmt = conn.createStatement();
-	         String query = "update board set title = '" + title + "' , content = '" + content
-	                  + "where no = '" + no ;
-	         res = stmt.executeUpdate(query);
-	      } catch (ClassNotFoundException | SQLException e) {
-	         res = -1;
-	         throw new DataAccessException(e);
-	      } finally {
-	         try {
-	            stmt.close();
-	            conn.close();
-	         } catch (SQLException e) {
-	            e.printStackTrace();
-	         }
-	      }
-	      return res;      
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, title);
+			pstm.setString(2, content);
+			pstm.setString(3, no);
+			rset = pstm.executeUpdate();
+			template.commit(conn);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			template.close(pstm);
 		}
+
+		return rset;
+	
+		
+	}
 	}
 
 /*	댓글 기능 구현

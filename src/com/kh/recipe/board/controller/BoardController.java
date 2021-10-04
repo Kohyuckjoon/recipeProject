@@ -122,17 +122,18 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	
 	
 	 private void updateBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
-
+		 
 			
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String no = request.getParameter("no");
 			int res = boardService.updateBoard(title,content,no);
-			
-			System.out.println("title =" +title);
-			System.out.println("content =" +content);
-			System.out.println("no =" +no);
-			
+			System.out.println("res "+res);
+			System.out.println("title "+title);
+			System.out.println("cont "+content);
+			System.out.println("no "+no);
+		
+			request.getRequestDispatcher("/board/board-list").forward(request, response);
 			
 	  }
 	// 게시물 목록
