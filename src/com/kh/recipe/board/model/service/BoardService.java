@@ -121,7 +121,7 @@ public class BoardService {
 			  }finally { 
 				  template.close(conn); 
 			  } 
-			  System.out.println(res);
+
 			  return res;
 		}
 	

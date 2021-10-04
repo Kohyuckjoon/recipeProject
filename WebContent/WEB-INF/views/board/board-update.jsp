@@ -104,7 +104,7 @@ font-size:2vw;
 	 --%>
 	
 	
-<form action="/board/update-board" method="post"  class="update">
+<form action="/board/board-update" method="post"  class="update">
 	<div class="content"> 
 	<div class="tit">게시판 글 수정</div>
 	

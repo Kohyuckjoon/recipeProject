@@ -124,11 +124,15 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String no = request.getParameter("no");
-			boardService.updateBoard(title, content, no);
 			System.out.println(title);
 			System.out.println(content);
 			System.out.println(no);
-			request.getRequestDispatcher("/board/board-update").forward(request, response);
+			
+			  boardService.updateBoard(title, content, no);
+			  
+			  request.getRequestDispatcher("/board/board-update").forward(request,
+			  response);
+			 
 	  }
 	 
 	// 게시물 목록
