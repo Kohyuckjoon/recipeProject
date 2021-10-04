@@ -11,7 +11,6 @@
 		endNum = 4;
 	}
 	
-	
 	for(let i = 0; i < endNum; i++){
 	
 		let rowDiv = document.createElement('div');
