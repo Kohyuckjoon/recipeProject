@@ -1,8 +1,9 @@
 (() => {
 	
 	/* 메인페이지 레시피 화면 구현 자바스크립트*/
-	console.dir("sPN: "+ sPN);
-	console.dir("시작 인덱스 = 4*9*"+sPN+"-36: "+ (sPN*4*9-36));
+	/*console.dir("sPN: "+ sPN);
+	console.dir("시작 인덱스 = 4*9*"+sPN+"-36: "+ (sPN*4*9-36));*/
+	
 	let endNum = 9;
 	let recipeDetail =0;
 	
@@ -12,9 +13,8 @@
 	
 	
 	for(let i = 0; i < endNum; i++){
-		
+	
 		let rowDiv = document.createElement('div');
-
 		rowDiv.classList.add('row');
 		document.querySelector(".lowerBoxLeft").appendChild(rowDiv);
 		
@@ -22,14 +22,22 @@
 
 		
 		for(let j = numForRecipe; j < numForRecipe+4; j++){
-			console.dir(j);
+			/*console.dir(j);*/
 			
 			
 			if(j <= 1314){
-				let urDiv = document.createElement('div');
+				let urDiv = document.createElement('a');
 				urDiv.classList.add('upper-recipe');
 				urDiv.classList.add('upper-recipe'+recipeIdx[j]);
+				let style = document.createAttribute("style");
+				style.value = 'cursor:pointer';
+				urDiv.setAttributeNode(style);
+				let onClick = document.createAttribute("href");
+				onClick.value = '/recipePage/recipePage?no='+recipeIdx[j];
+				urDiv.setAttributeNode(onClick);
 				rowDiv.appendChild(urDiv);
+				
+
 		
 				let imgDiv = document.createElement('img');
 				imgDiv.classList.add('recipe-pic');
@@ -66,8 +74,7 @@
 			}
 			
 		}
-		console.dir("");
-		
+		/*console.dir("");*/
 	}
 	
 	/* 페이징 구현 자바스크립트*/
@@ -81,7 +88,7 @@
 		let firstPagerNum = currentPage - remainder + 1;
 		
 		let lastPagerNum = currentPage - remainder + viewPageNumbers;
-
+																		
 		if(remainder == 0){
 			firstPagerNum -= 10;
 			lastPagerNum -= 10;

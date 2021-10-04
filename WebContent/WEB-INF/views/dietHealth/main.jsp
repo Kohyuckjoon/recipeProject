@@ -10,6 +10,7 @@
 	type="text/css">
 <link rel="stylesheet" href="resources/css/include/all.css">
 <link rel="stylesheet" href="resources/css/include/reset.css">
+<link href="../resources/css/include/footer.css" rel="stylesheet"  type="text/css">
 <style type="text/css">
 /* div {
 	box-shadow: 0 0 2px black;
@@ -282,6 +283,20 @@ span {
 	top: 0;
 	transition: all ease-in-out .35s;
 }
+
+.foot {
+	margin-top: 20px;
+	width : 1800px;
+	height: 100px;
+	background-color: lightblue;
+	display: flex;
+	
+}
+
+.Copyright {
+	position: relative;
+	margin: auto;
+}
 </style>
 
 </head>
@@ -527,15 +542,13 @@ span {
 		}
 	</script>
 
-	<div style="text-align: center; vertical-align: bottom; height: 50px;" >
-		<c:forEach begin="1" end="${requestScope.pageLength}" step="1" var="page">
-			<span><a href="/dietHealth/main?page=${page}" > ${page} </a></span>
-		</c:forEach>
-	</div>
 
 	<script type="text/javascript"
 		src="/resources/js/dietHealth/dietHealthPage.js"></script>
-	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
+		
+	<div class="foot">
+		<div class="Copyright">Copyright © 1992-2021 HSJ All Right Reserved</div>
+	</div>
 
 
 </body>
