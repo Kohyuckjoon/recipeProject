@@ -6,11 +6,16 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="../resources/css/mainPage.css" rel="stylesheet" type="text/css">
+
 
  
 <style type="text/css">
-
+html {
+   width: 1800px;
+   height: 100%; background-color : #ccdce7;
+   margin-left: 70px;
+   background-color: #ccdce7;
+}
 
 /*  div {
 	box-shadow: 0 0 2px black;
