@@ -72,7 +72,8 @@ public class BoardController extends HttpServlet {
 		case "comment":
 			 comment(request,response);
 			break;	
-		
+		case "updateBoard":
+		updateBoard(request,response);
 		default:
 			throw new PageNotFoundException();
 
@@ -94,17 +95,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	response.sendRedirect("/board/board-detail");
 	}
 
-/*
-	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int category = Integer.parseInt(request.getParameter("searchCategory"));
-		String keyword = request.getParameter("searchKeyword");
-		
-		System.out.println("category ="+category);
-		System.out.println("keyword ="+keyword);
-		List<Board> list = boardService.select(category,keyword);
-		request.setAttribute("boardList", list);
-		request.getRequestDispatcher("/board/board-list").forward(request, response);
-	}*/
+
 
 	// 게시물 삭제
 
@@ -121,21 +112,29 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	// 게시물 수정
 	
 	private void boardUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+		int no = Integer.parseInt(request.getParameter("no"));
+		Map<String, Object> datas = boardService.selectBoardDetail(no);
+		request.setAttribute("datas", datas);
+			request.getRequestDispatcher("/board/board-update").forward(request, response);
+	  }
+	
+	
+	
+	
+	 private void updateBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+
 			
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-			int no = Integer.parseInt(request.getParameter("no"));
-			System.out.println(title);
-			System.out.println(content);
-			System.out.println(no);
+			String no = request.getParameter("no");
+			int res = boardService.updateBoard(title,content,no);
 			
-			 int result = boardService.updateBoard(title, content, no);
-			  System.out.println("result :"+result);
-			  request.getRequestDispatcher("/board/board-update").forward(request,
-			  response);
-			 
+			System.out.println("title =" +title);
+			System.out.println("content =" +content);
+			System.out.println("no =" +no);
+			
+			
 	  }
-	 
 	// 게시물 목록
 	private void boardList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -173,7 +172,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		
 	
 		List<Comments> Comments = new ArrayList<Comments>();
-		Comments = boardService.selectBoardCommentDetail();
+	//	Comments = boardService.selectBoardCommentDetail(no);
 		request.setAttribute("Comments", Comments);
 		request.getRequestDispatcher("/board/board-detail").forward(request,response);
 	}
@@ -191,6 +190,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		board.setUserId(member.getUserId());
 		board.setTitle(multiPart.getParameter("title"));
 		board.setContent(multiPart.getParameter("content"));
+		
 		
 		boardService.insertBoard(board);
 		response.sendRedirect("/board/board-list"); // 게시판 글 쓰고 성공하면 인덱스 페이지였음 -> 나는 성공하면 게시판 리스트로 전송

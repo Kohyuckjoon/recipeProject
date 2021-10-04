@@ -104,7 +104,7 @@ font-size:2vw;
 	 --%>
 	
 	
-<form action="/board/board-update" method="post"  class="update">
+<form action="/board/updateBoard" method="post"  class="update">
 	<div class="content"> 
 	<div class="tit">게시판 글 수정</div>
 	
@@ -119,13 +119,13 @@ font-size:2vw;
 	
 	
 	<div class="article_content">
-		<textarea name="content" required="required" maxlength="250" value="${datas.board.content}" ></textarea>
+		<textarea name="content" required="required" maxlength="250"  value="${datas.board.content}"></textarea>
 	</div>
 	
 </div>
 
  	<div class="btn_section">
-       	<input type="submit" value="수정완료"> 
+       	<button>수정완료 </button>
        	<button type="reset" >다시 입력</button>   
           <button onclick = "location.href = '/board/board-list'">목록</button>         
     </div>    

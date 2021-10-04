@@ -135,15 +135,7 @@ Form {
 			<span><a href="/board/board-list?page=${page}" > ${page} </a></span>
 		</c:forEach>
 		</div>
-	
-<form action="/board/board-list" method="get">
-	<select name="searchCategory">
-		<option value="write">작성자</option>
-		<option value="title">글제목</option>
-	</select>
-	<input type="text" name = "searchKeyword" placeholder="키워드" required />
-	<input type="submit" value="검색">
-</form>	
+
 	</div>
 	<button class="formBtn" onclick = "location.href = '/board/board-form'" >글쓰기</button>
 	
