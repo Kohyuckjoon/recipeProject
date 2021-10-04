@@ -166,56 +166,7 @@ public class BoardDao {
 		return result;
 	}
 
-	/*
-	 * public List<Board> selectBoard(Board board, String category, String keyword,
-	 * Connection conn) {
-	 * 
-	 * ArrayList<Board> list = new ArrayList<>(); PreparedStatement pstm = null;
-	 * ResultSet rset = null; String sql = null;
-	 * 
-	 * try { if(category.equals("write")) { sql
-	 * ="select no,title,user_id,reg_date,view_count from board where user_id like ? "
-	 * +"order by no desc" ; pstm = conn.prepareStatement(sql); pstm.setString(1,
-	 * "%" + keyword +"%"); }else if(category.equals("title")) { sql =
-	 * "select no,title,user_id,reg_date,view_count from board where title like ? "
-	 * + " order by no desc"; pstm = conn.prepareStatement(sql); pstm.setString(1,
-	 * "%" + keyword +"%"); } rset = pstm.executeQuery();
-	 * 
-	 * while (rset.next()) {
-	 * 
-	 * board = new Board(); board.setNo(rset.getInt("no"));
-	 * board.setTitle(rset.getString("title"));
-	 * board.setUserId(rset.getString("user_id"));
-	 * board.setRegDate(rset.getDate("reg_date"));
-	 * board.setViewCount(rset.getInt("view_count")); list.add(board); }
-	 * 
-	 * } catch (SQLException e) { throw new DataAccessException(e);
-	 * e.printStackTrace(); } finally { template.close(rset, pstm); }
-	 * 
-	 * 
-	 * return null; }
-	 * 
-	 */
-
-	public void insertComment(Connection conn, Comments comment) {
-		String sql = "insert into comments(comment_no,comment_content,user_id) values(" + "comment_seq.nextval,?,?)";
-
-		PreparedStatement pstm = null;
-
-		try {
-
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, comment.getCommentContent());
-			pstm.setString(2, comment.getUserId());
-			pstm.executeUpdate();
-
-		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
-		} finally {
-			template.close(pstm);
-		}
-	}
+	
 
 	public int selPageLength(Connection conn, Board board, int page) {
 		PreparedStatement pstm = null;
@@ -301,28 +252,28 @@ public class BoardDao {
 
 	}
 
+	public int uploadBoardReview(Connection conn, Comments comments) {
+		String sql ="insert into comments(comment_no,no, comment_content, user_id) values(comment_seq.nextval,?,?,?)";
+		PreparedStatement pstm = null;
+		int rset = 0;
+		  
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, comments.getNo());
+			pstm.setString(2, comments.getCommentContent());
+			pstm.setString(3, comments.getUserId());
+			rset = pstm.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			template.close(pstm);
+		}
+		return rset;
+	}
+		
+	
 	}
 
-/*	댓글 기능 구현
- * public List<Comments> selectBoardCommentDetail(Connection conn,int no) {
-		List<Comments> comments = new ArrayList<Comments>();
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-
-		String sql = "select commentNo, commentContent, userId ,commentDate from comments where no ? ";
-		 
-			pstm = conn.prepareStatement(sql);
-			pstm.setInt(1, no);
-			rset = pstm.executeQuery();
-		
-			while(rset.next()) {
-				comments = new Comments();
-				
-				
-			}
-		
-		return null;
-	}*/
 
 	
 
