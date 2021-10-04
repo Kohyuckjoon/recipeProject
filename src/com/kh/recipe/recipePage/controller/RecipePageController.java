@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.kh.recipe.common.exception.PageNotFoundException;
+import com.kh.recipe.recipePage.model.dto.Comments;
 import com.kh.recipe.recipePage.model.dto.Recipe;
+import com.kh.recipe.recipePage.model.dto.Review;
 import com.kh.recipe.recipePage.model.service.RecipePageService;
 
 @WebServlet("/recipePage/*")
@@ -50,9 +52,13 @@ public class RecipePageController extends HttpServlet {
 
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Recipe> Recipes = new ArrayList<Recipe>();
-		Recipes = recipePageService.selectRecipeByDetail();
-		request.setAttribute("Recipes", Recipes);
+		List<Recipe> recipes = new ArrayList<Recipe>();
+		recipes = recipePageService.selectRecipeByDetail();
+		request.setAttribute("Recipes", recipes);
+		
+		List<Comments> Comments = new ArrayList<Comments>();
+		Comments = recipePageService.selectReplyByDetail();
+		request.setAttribute("Comments", Comments);
 		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
 	}
 

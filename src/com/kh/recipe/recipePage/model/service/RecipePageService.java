@@ -8,13 +8,16 @@ import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.db.JDBCTemplate;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
+import com.kh.recipe.recipePage.model.dao.CommentsDao;
 import com.kh.recipe.recipePage.model.dao.RecipeDao;
+import com.kh.recipe.recipePage.model.dto.Comments;
 import com.kh.recipe.recipePage.model.dto.Recipe;
 
 public class RecipePageService {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private RecipeDao rPD = new RecipeDao();
+	private CommentsDao cDao = new CommentsDao();
 	
 	public List<Recipe> selectRecipeByDetail() {
 		
@@ -44,6 +47,21 @@ public class RecipePageService {
 			template.close(conn);
 		}
 		return Recipes;
+	}
+
+	public List<Comments> selectReplyByDetail() {
+		
+		List<Comments> reply = new ArrayList<Comments>();
+		Connection conn = template.getConnection();
+		
+		try {
+			reply = cDao.selectCommentsByDetail(conn);
+		} catch (DataAccessException e) {
+			throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); 
+		}finally {
+			template.close(conn);
+		}
+		return reply;
 	}
 	
 	
