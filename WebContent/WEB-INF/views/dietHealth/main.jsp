@@ -11,9 +11,9 @@
 <link rel="stylesheet" href="resources/css/include/all.css">
 <link rel="stylesheet" href="resources/css/include/reset.css">
 <style type="text/css">
-div {
+/* div {
 	box-shadow: 0 0 2px black;
-}
+} */
 input[type="text"] {
 	width: 130px;
 }
