@@ -51,7 +51,6 @@
 	ingredientsDiv.append(ingredientsArr[recipeDbOrder]);
 	document.querySelector(".ingredients-detail").appendChild(ingredientsDiv);
 	
-	console.dir(manualImg1[recipeDbOrder]);
 	
 	if(manualImg1[recipeDbOrder]){
 		let manualImg1Div = document.createElement('img');

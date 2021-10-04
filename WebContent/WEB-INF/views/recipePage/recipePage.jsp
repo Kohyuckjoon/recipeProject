@@ -16,15 +16,12 @@
 		let recipeImg = new Array();
 		let recipeType = new Array();
 		let recipeName = new Array();
-
 		let caloryArr = new Array();
 		let carbohydrateArr = new Array();
 		let proteinArr = new Array();
 		let fatArr = new Array();
 		let natriumArr = new Array();
-
 		let ingredientsArr = new Array();
-
 		let manual1 = new Array();
 		let manual2 = new Array();
 		let manual3 = new Array();
@@ -66,24 +63,18 @@
 		let manualImg18 = new Array();
 		let manualImg19 = new Array();
 		let manualImg20 = new Array();
-
-
 		<c:forEach var="recipe" items="${Recipes}">
 		recipeIdx.push('${recipe.rcpSeq}');
 		recipeImg.push('${recipe.attFileNoMk}');
 		recipeType.push('${recipe.rcpPat2}');
 		recipeName.push('${recipe.rcpNm}');
-
 		caloryArr.push('${recipe.infoEng}');
 		carbohydrateArr.push('${recipe.infoCar}');
 		proteinArr.push('${recipe.infoPro}');
-
 		fatArr.push('${recipe.infoFat}');
 		natriumArr.push('${recipe.infoNa}');
-
 		ingredientsArr.push('${recipe.rcpPartsDtls}');
 		// 줄바꿈문자 제거함
-
 		manual1.push('${recipe.manual1}');
 		manual2.push('${recipe.manual2}');
 		manual3.push('${recipe.manual3}');
@@ -153,17 +144,7 @@
 			<i class="far fa-bookmark"></i>
 		</div>
 		
-		</div>		
-		<div class="share">
-		<!-- <div class="button gray medium">
-			<i class="fas fa-share-alt" onclick="clip();"></i>
-		</div> -->
-		<!-- <div>
-		<a>
-			<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" id="kakao_share_btn" onclick="shareKakao();"/>
-		</a>
-		
-		</div> -->
+		<div class="share"></div>
 
 		<div class="cooking-method">
 			<div class="cooking-method-title">조리방법</div>
@@ -209,52 +190,5 @@
 
 	<%@ include file="/WEB-INF/views/include/foot.jsp"%>
 	<script type="text/javascript" src = "/resources/js/recipePage/recipePage.js"></script> 
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script type="text/javascript">
-	Kakao.init('0c512e152e989192c220235a73035b4b');
-	Kakao.isInitialized();
-	
-	function shareKakao() {
-		 
-		  // 사용할 앱의 JavaScript 키 설정
-		 
-		 
-		  // 카카오링크 버튼 생성
-		  Kakao.Link.createDefaultButton({
-		    container: '#kakao_share_btn', // 카카오공유버튼ID
-		    objectType: 'feed',
-		    content: {
-		      title: "Fitness Recipes", // 보여질 제목
-		      description: "The Fitness Recipes", // 보여질 설명
-		      imageUrl: "../../img/banner.gif", // 콘텐츠 URL
-		      link: {
-		         mobileWebUrl: window.location.href,
-		         webUrl: window.location.href
-		      }
-		    }
-		  });
-		}
-	
-	
-	
-	
-
-	function clip(){
-
-		var url = '';
-		var textarea = document.createElement("textarea");
-		document.body.appendChild(textarea);
-		url = window.document.location.href;
-		textarea.value = url;
-		textarea.select();
-		document.execCommand("copy");
-		document.body.removeChild(textarea);
-		alert("URL이 복사되었습니다.")
-	}
-
-	
-	
-	</script>
-	
 </body>
 </html>
