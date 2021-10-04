@@ -12,6 +12,7 @@
 	}
 	
 	
+	
 	for(let i = 0; i < endNum; i++){
 	
 		let rowDiv = document.createElement('div');
@@ -20,12 +21,12 @@
 		
 		let numForRecipe = (sPN*36-36)+i*4
 
-		
 		for(let j = numForRecipe; j < numForRecipe+4; j++){
 			/*console.dir(j);*/
 			
 			
 			if(j <= 1314){
+				
 				let urDiv = document.createElement('a');
 				urDiv.classList.add('upper-recipe');
 				urDiv.classList.add('upper-recipe'+recipeIdx[j]);
@@ -36,9 +37,7 @@
 				onClick.value = '/recipePage/recipePage?no='+recipeIdx[j];
 				urDiv.setAttributeNode(onClick);
 				rowDiv.appendChild(urDiv);
-				
 
-		
 				let imgDiv = document.createElement('img');
 				imgDiv.classList.add('recipe-pic');
 				

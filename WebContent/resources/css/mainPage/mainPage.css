@@ -40,12 +40,19 @@ html{
 	height: 80px;
 	width: 100px;
 }
+
+
 .best-recipe-text{
 	height: 80px;
 	width: 100px;
+}
+
+.recipe-type-sidebar{
 	word-break: keep-all;
-	font-size: 14px;
-	margin-top: 14px;	
+	color: orange;
+	font-family: 'Single Day', cursive;
+	margin-top: 20px;
+	font-weight: bold;
 }
 
 .most-popular-recipe-text{
@@ -98,6 +105,7 @@ html{
 .recipe-type{
 	font-size: 12px;
 	color: orange;
+	font-weight:bold; 
 }
 
 /* 페이지 넘버 */

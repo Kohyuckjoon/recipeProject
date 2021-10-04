@@ -10,18 +10,18 @@
 	
 	<!-- 헤더 불러옴 -->
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
-	
 	<!-- 싸이드바 -->
 	<!-- 애는 파라미터 바꿀일이 없어서 JSTL 사용함 -->
 	<div class="sideBar">
 		<div class="sideBar-title">Best Recipes</div>
 		<div class="sideBar-body">
-			<c:forEach var="recipe" items="${Recipes}" begin= "31" end="36">
+			<c:forEach var="recipe" items="${Recipes}" begin= "36" end="41">
 				<div class="best-recipe">
-					<a style=" cursor:pointer" href="/recipePage/recipePage?no=${recipe.rcpSeq}">
+					<a style="cursor:pointer" class="sidebarLink" href="/recipePage/recipePage?no=717">
 						<img class="best-recipe-pic" src="${recipe.attFileNoMk}">
 					</a>
 					<div class="best-recipe-text">
+						<div class="recipe-type-sidebar">${recipe.rcpPat2}</div>
 						<div class="most-popular-recipe-text" >${recipe.rcpNm}</div>
 					</div>
 				</div>
