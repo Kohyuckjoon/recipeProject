@@ -50,16 +50,17 @@ public class RecipePageController extends HttpServlet {
 
 	private void recipePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int no = Integer.parseInt(request.getParameter("no"));
+		
 		List<Recipe> recipes = new ArrayList<Recipe>();
 		recipes = recipePageService.selectRecipeByDetail();
 		request.setAttribute("Recipes", recipes);
 		
 		
 		List<Review> comments = new ArrayList<Review>(); 
-		System.out.println(request.getParameter("no"));
-		int no = Integer.parseInt(request.getParameter("no"));
 		comments = recipePageService.selectReplyByDetail(no);
 		request.setAttribute("Comments", comments);
+		
 		request.getRequestDispatcher("/recipePage/recipePage").forward(request, response);
 	}
 

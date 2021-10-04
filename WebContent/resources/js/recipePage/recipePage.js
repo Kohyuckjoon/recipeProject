@@ -393,7 +393,35 @@
 		document.querySelector(".cooking-method-detail").appendChild(manual20Div);
 	}
 	
+	let textAreaContents = null;
+	
+	
+	document.querySelector('.reply-submit').addEventListener('mouseover',() =>{
+		textAreaContents = document.querySelector(".reply-text").value ;
+		let postComment = document.querySelector(".reply-submit");
+		let bLocation = document.createAttribute("onclick");
+		let stringLocation = "location.href = '/recipePage/recipePage?no="
+		bLocation.value = stringLocation+rDI+"&replyContents="+textAreaContents+"\'";
+		postComment.setAttributeNode(bLocation);
+	});
 	
 	
 
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

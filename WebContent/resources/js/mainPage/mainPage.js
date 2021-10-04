@@ -88,7 +88,7 @@
 		let firstPagerNum = currentPage - remainder + 1;
 		
 		let lastPagerNum = currentPage - remainder + viewPageNumbers;
-
+																		
 		if(remainder == 0){
 			firstPagerNum -= 10;
 			lastPagerNum -= 10;

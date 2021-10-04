@@ -141,9 +141,9 @@
 
 		</div>
 
-		<div class="scrap">
+		<!-- <div class="scrap">
 			<i class="far fa-bookmark"></i>
-		</div>
+		</div> 스크래앱 이미지이-->
 
 		<div class="share"></div>
 
@@ -158,7 +158,7 @@
 					<tr>
 						<th>No.</th>
 						<th>작성자</th>
-						<th>내용</th>
+						<th>한 줄 평</th>
 						<th>작성일</th>
 					</tr>
 				</thead>
@@ -175,12 +175,11 @@
 			</table>
 		</div>
 
-		<div class="reply-form">
-			<form>
-				<input id="form" type="text" placeholder="댓글 입력" class="reply-text">
-				<input id="submit" type="submit" value="댓글 등록" class="reply-submit">
-			</form>
+		<div class="reply-form" >
+			<input class="reply-text" placeholder="한 줄 평을 입력해주세요">
+			<a class="reply-submit">등록</a>
 		</div>
+		
 
 	</div>
 

@@ -112,6 +112,7 @@ html{
 .reply-list-table{
 	width:100%;
 	border: 1px solid black;
+	background-color: lightgray;
 }
 
 .reply-list-table th{
@@ -123,9 +124,9 @@ html{
 .reply-list-table td{
 	border: 1px solid black;
 	text-align: center;
+	font-size: 15px;
+	font-weight: 500;
 }
-
-
 
 .reply-detail-num{
 	width: 5%;
@@ -142,16 +143,21 @@ html{
 
 
 .reply-form{
-	margin-top: 3vw;
-	width: 80%;
-	position:relative;
-    left: 50%;
-    transform: translateX(-50%);
+	margin-top: 10px;
+	margin-left: 367px;
+	width: 1145px;
     padding-bottom: 20px;
 }
 
 .reply-text{
-	width: 100%;
+	width: 1095px;
+	display: inline;
+}
+
+.reply-submit{
+	border: 1px solid black;
+	border-radius: 10%;
+	background-color: lightgray;
 }
 
 
