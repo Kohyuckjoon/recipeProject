@@ -398,7 +398,7 @@
 	document.querySelector('.reply-submit').addEventListener('mouseover',() =>{
 		
 		if(onLogin == 'needToLogin'){
-			document.querySelector('.reply-submit').addEventListener('mouseover',() =>{
+			document.querySelector('.reply-submit').addEventListener('click',() =>{
 				alert("로그인 해주세요");
 			});
 		}else{
@@ -419,20 +419,3 @@
 	
 
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

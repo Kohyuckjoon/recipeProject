@@ -37,20 +37,10 @@ public class RecipePageController extends HttpServlet {
 		case "recipePageToScrape":
 			recipePageToScrape(request, response);
 			break;
-		case "addScr":
-			addScr(request, response);
-			break;
-			
 		default: throw new PageNotFoundException();
 		}
 	}
 	
-	private void addScr(HttpServletRequest request, HttpServletResponse response) {
-		String rcpSeq = request.getParameter("rcpSeq");
-		System.out.println(rcpSeq);
-		
-	}
-
 	private void recipePageToScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int rcpSeq = Integer.parseInt(request.getParameter("rcpSeq"));
 		Recipe recipe = new Recipe();
