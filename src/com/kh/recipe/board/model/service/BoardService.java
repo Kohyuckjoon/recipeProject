@@ -128,21 +128,6 @@ public class BoardService {
 
 	
 
-	public void insertComment(Comments comment) {
-		Connection conn = template.getConnection();
-		
-		try {
-			boardDao.insertComment(conn, comment);
-			
-			template.commit(conn);
-		} catch (DataAccessException e) {
-			template.rollback(conn);
-			throw e;
-		}finally {
-			template.close(conn);
-		}
-	}
-
 	public  int selPageLength(Board board ,int page) {
 		int res = 0;
 		Connection conn = template.getConnection();
@@ -173,13 +158,23 @@ public class BoardService {
 		return Comments;
 	}
 
-	/*
-	 * public List<Comments> selectBoardCommentDetail(int no) { List<Comments>
-	 * comments = new ArrayList<Comments>(); Connection conn =
-	 * template.getConnection(); try { comments =
-	 * boardDao.selectBoardCommentDetail(conn,no); }catch(DataAccessException e) {
-	 * e.printStackTrace(); }finally { template.close(conn); } return comments; }
-	 */
+	public int uploadBoardReview(Comments comments) {
+		Connection conn = template.getConnection();
+		 int res = 0;
+		  
+		try {
+			boardDao.uploadBoardReview(conn, comments);
+			template.commit(conn);
+		}catch(DataAccessException e) {
+			template.rollback(conn);
+			throw e;
+		}finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+	
 	
 
 	

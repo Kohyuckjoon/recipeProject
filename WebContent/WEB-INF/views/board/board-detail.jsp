@@ -142,7 +142,7 @@ font-size:2vw;
 
 
 		<div class="replt_form">
-			<form action="/board/comment" method="post" enctype="multipart/form-data">
+			<form action="/board/comment" method="post" >
 				<input id="form" type="text" placeholder="댓글 입력"> <input id="submit" type="submit" value="댓글 등록">
 			</form>
 		</div>

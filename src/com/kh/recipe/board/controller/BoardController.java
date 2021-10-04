@@ -69,33 +69,25 @@ public class BoardController extends HttpServlet {
 		case "board-delete":
 			 boardDelete(request,response);
 			break;
+			
 		case "comment":
-			 comment(request,response);
-			break;	
+			comment(request,response);
+			break;
 		case "updateBoard":
 		updateBoard(request,response);
+		break;
 		default:
 			throw new PageNotFoundException();
 
 		}
 	}
 
-private void comment(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException  {
+
+
+	private void comment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	Member member = (Member) request.getSession().getAttribute("authentication");
-
-	FileUtil util = new FileUtil();
-	MultiPartParams multiPart = util.fileUpload(request);
-
-	Comments comment = new Comments();
-	comment.setUserId(member.getUserId());
-	comment.setCommentContent(multiPart.getParameter("commentContent"));
-	
-	boardService.insertComment(comment);
-	response.sendRedirect("/board/board-detail");
+		request.getRequestDispatcher("/board/board-detail").forward(request,response);
 	}
-
-
 
 	// 게시물 삭제
 
@@ -163,7 +155,7 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 	private void boardDetail(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-
+		
 		// 게시글 상세페이지, 해당 게시글의 bdIdx를 요청파리미터에서 받아온다.
 		int no = Integer.parseInt(request.getParameter("no"));
 
@@ -172,19 +164,25 @@ private void comment(HttpServletRequest request, HttpServletResponse response)th
 		Map<String, Object> datas = boardService.selectBoardDetail(no);
 		request.setAttribute("datas", datas);
 		
-		String strPage = request.getParameter("page");
-		int page = strPage == null ? 1 : Integer.parseInt(strPage);
-		
-		int rowCnt = 10;
-		Board board = new Board();
-		board.setRowCntPage(rowCnt*page);
-		board.setStartIdx(((page-1)*rowCnt)+1);
-		int res = boardService.selPageLength(board,page);
-		request.setAttribute("pageLength", res);
 	
-		List<Comments> comments = new ArrayList<Comments>();
-		comments= boardService.selectBoardCommentDetail(no);
-		request.setAttribute("Comments", comments);
+		///댓글작성
+		
+		Member member = (Member) request.getSession().getAttribute("authentication");
+		String commentContent = request.getParameter("commentContent");
+		System.out.println(commentContent);
+		Comments comments = new Comments();
+		comments.setUserId(member.getUserId());
+		comments.setNo(no);
+		comments.setCommentContent(commentContent);
+		
+		 int res = boardService.uploadBoardReview(comments);
+		 System.out.println("res " +res);
+		 System.out.println(comments);
+		 
+		//댓글 뿌려주기
+		List<Comments> boardReview = new ArrayList<Comments>();
+		boardReview= boardService.selectBoardCommentDetail(no);
+		request.setAttribute("Comments", boardReview);
 		request.getRequestDispatcher("/board/board-detail").forward(request,response);
 	}
 
