@@ -2,9 +2,11 @@ package com.kh.recipe.board.model.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,31 +100,8 @@ public class BoardDao {
 		return rset;
 	}
 
-	// 게시글 수정
-	public int updateBoard(Connection conn, String title, String content, int no) {
-		String sql = "update board set title = ? , content = ?  where no = ?";
-		Board board = new Board();
-		PreparedStatement pstm = null;
-		int rset = 0;
+	
 
-		try {
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, title);
-			pstm.setString(2, content);
-			pstm.setInt(3, no);
-			rset = pstm.executeUpdate();
-
-			template.commit(conn);
-
-		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
-		} finally {
-			template.close(pstm);
-		}
-		return rset;
-
-	}
 
 	// 리스트로 전체 게시글 목록
 	public List<Board> selectBoardAll(Connection conn, Board board) {
@@ -260,16 +239,55 @@ public class BoardDao {
 		}
 
 		return res;
-
 	}
 
-	public List<Comments> selectBoardCommentDetail(Connection conn) {
+	public int updateBoard(String title, String content, String no, Connection conn) {
+		  Statement stmt = null;
+	      int res = 0;
+
+		
+	     try {
+	         Class.forName("oracle.jdbc.driver.OracleDriver");
+	         conn = DriverManager.getConnection("jdbc:oracle:thin:@db202109141233_high?TNS_ADMIN=C:/CODE/Wallet_DB202109141233", "ADMIN", "2whTpalvmf__");
+	         stmt = conn.createStatement();
+	         String query = "update board set title = '" + title + "' , content = '" + content
+	                  + "where no = '" + no ;
+	         res = stmt.executeUpdate(query);
+	      } catch (ClassNotFoundException | SQLException e) {
+	         res = -1;
+	         throw new DataAccessException(e);
+	      } finally {
+	         try {
+	            stmt.close();
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+	      return res;      
+		}
+	}
+
+/*	댓글 기능 구현
+ * public List<Comments> selectBoardCommentDetail(Connection conn,int no) {
 		List<Comments> comments = new ArrayList<Comments>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 
-		String sql = "select comments, commentContent, userId ,commentDate from comments";
+		String sql = "select commentNo, commentContent, userId ,commentDate from comments where no ? ";
+		 
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, no);
+			rset = pstm.executeQuery();
+		
+			while(rset.next()) {
+				comments = new Comments();
+				
+				
+			}
+		
 		return null;
-	}
+	}*/
 
-}
+	
+

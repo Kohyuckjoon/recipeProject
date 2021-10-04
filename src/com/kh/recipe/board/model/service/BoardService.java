@@ -109,13 +109,13 @@ public class BoardService {
 	  }
 	 
 
-		public int updateBoard(String title,String content,int no) { //수정
+		public int updateBoard(String title,String content,String no) { //수정
 			  Connection conn = template.getConnection(); 
 			  int res = 0;
 			  
 			  try {
-				  res = boardDao.updateBoard(conn,title,content,no);
-				  
+				  res = boardDao.updateBoard(title,content,no,conn);
+				  template.commit(conn);
 			  }catch (Exception e) {
 				  e.printStackTrace();
 			  }finally { 
@@ -159,18 +159,14 @@ public class BoardService {
 		return res;
 	}
 
-	public List<Comments> selectBoardCommentDetail() {
-		List<Comments> comments = new ArrayList<Comments>();
-		Connection conn = template.getConnection();
-		try {
-		comments = boardDao.selectBoardCommentDetail(conn);
-		}catch(DataAccessException e) {
-			e.printStackTrace();
-		}finally {
-			template.close(conn);
-		}
-		return comments;
-	}
+	/*
+	 * public List<Comments> selectBoardCommentDetail(int no) { List<Comments>
+	 * comments = new ArrayList<Comments>(); Connection conn =
+	 * template.getConnection(); try { comments =
+	 * boardDao.selectBoardCommentDetail(conn,no); }catch(DataAccessException e) {
+	 * e.printStackTrace(); }finally { template.close(conn); } return comments; }
+	 */
+	
 
 	
 
