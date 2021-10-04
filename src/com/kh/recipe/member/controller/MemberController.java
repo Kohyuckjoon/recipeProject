@@ -31,9 +31,7 @@ import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.common.exception.PageNotFoundException;
-import com.kh.recipe.member.model.dto.Kakao_Member;
 import com.kh.recipe.member.model.dto.Member;
-import com.kh.recipe.member.model.service.Kakao_MemberService;
 import com.kh.recipe.member.model.service.MemberService;
 
 /**
@@ -44,7 +42,6 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private MemberService memberService = new MemberService();
-	private Kakao_MemberService kakao_memberService = new Kakao_MemberService();
 	
     public MemberController() {
         super();
@@ -59,9 +56,6 @@ public class MemberController extends HttpServlet {
 		case "login-form":
 			loginForm(request,response);
 			break;
-		case "kakao-login":
-			kakaoLogin(request,response);
-			break;
 		case "logout":
 			logout(request,response);
 			break;
@@ -74,9 +68,6 @@ public class MemberController extends HttpServlet {
 		case "id-check":
 			checkID(request,response);
 			break;
-		case "kakao-join":
-			kakaoJoin(request,response); 
-			break;
 		case "join-impl":
 			joinImpl(request,response);
 			break;
@@ -85,6 +76,9 @@ public class MemberController extends HttpServlet {
 			break;
 		case "login":
 			login(request,response);
+			break;
+		case "kakao-login":
+			kakaoLogin(request,response);
 			break;
 		case "delete-member":
 			deleteMember(request,response);
@@ -120,10 +114,26 @@ public class MemberController extends HttpServlet {
 		
 		}
 	}
-	
-		 
+
+	private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Member member = new Member();
+		String userId = request.getParameter("userId");
+		//String password = request.getParameter("password");
+		String password = UUID.randomUUID().toString();
+		String userNickName = request.getParameter("userNickName");
+		String userEmail = request.getParameter("userEmail");
+		
+		member.setUserId(userId);
+  	  	member.setPassword(password);
+		member.setName(userNickName);
+		member.setEmail(userEmail);
+		
+		response.sendRedirect("/mainPage");
+		//request.getRequestDispatcher("/mainPage").forward(request, response);
 		
 		
+	}
 
 	private void updatePhoneForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/member/update-phone-form").forward(request, response);
@@ -397,58 +407,47 @@ public class MemberController extends HttpServlet {
 		request.getRequestDispatcher("/member/join-form").forward(request, response);
 	}
 	
-	  private void kakaoJoin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
-		  	
-		String userId = request.getParameter("userId");
-		String password = UUID.randomUUID().toString();
-		String userName = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		String userEmail = request.getParameter("email");
-		
-		
-		Kakao_Member kakao_member = new Kakao_Member();
-		kakao_member.setUserId(userId);
-		kakao_member.setPassword(password);
-		kakao_member.setUserName(userName);
-		kakao_member.setPhone(phone);
-		kakao_member.setUserEmail(userEmail);
-	  
-	  	  
-	  } 	  
+//	  private void kakaoJoin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
+//		  	
+//		String userId = request.getParameter("userId");
+//		String password = UUID.randomUUID().toString();
+//		String userName = request.getParameter("name");
+//		String phone = request.getParameter("phone");
+//		String userEmail = request.getParameter("email");
+//		
+//		
+//		Kakao_Member kakao_member = new Kakao_Member();
+//		kakao_member.setUserId(userId);
+//		kakao_member.setPassword(password);
+//		kakao_member.setUserName(userName);
+//		kakao_member.setPhone(phone);
+//		kakao_member.setUserEmail(userEmail);
+//	  
+//	  	  
+//	  } 	  
 
 	  
-	  private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-/*			
-			String userId = request.getParameter("userId");
-			String password = UUID.randomUUID().toString();
-			
-			Member member = memberService.selectMemberById(userId);
-			if(member == null) {
-				response.getWriter().print("available");
-			}else {
-				response.getWriter().print("disable");
-			}
-			String persistToken = UUID.randomUUID().toString();
-*/			
-			String userId = request.getParameter("userId"); 
-			  
-			Kakao_Member kakao_member = kakao_memberService.kakaomemberAuthenticate(userId);
-			
-			if(kakao_member != null) {
-				System.out.println(kakao_member);
-				response.sendRedirect("/mainPage/mainPage");
-			}else {
-				request.getRequestDispatcher("/member/login-form").forward(request, response);
-				return;
-			}
-			request.getSession().setAttribute("authentication", kakao_member); 
-			
-			
-			
-			
-			
-			
-		}
+//	  private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+///*			
+//			String userId = request.getParameter("userId");
+//			String password = UUID.randomUUID().toString();
+//			
+//			Member member = memberService.selectMemberById(userId);
+//			if(member == null) {
+//				response.getWriter().print("available");
+//			}else {
+//				response.getWriter().print("disable");
+//			}
+//			String persistToken = UUID.randomUUID().toString();
+//*/			
+//			 
+//			
+//			
+//			
+//			
+//			
+//			
+//		}
 	
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

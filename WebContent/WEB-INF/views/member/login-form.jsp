@@ -5,6 +5,7 @@
 <head>
 <%@ page import="com.kh.recipe.member.model.dao.MemberDao" %>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+<%@ page import="java.util.UUID" %>
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -128,8 +129,7 @@ body {
 			<form class="kakao-login" action="/member/kakaoLogin" method="post">
 			
 			<a><img id="btnKakaoLogin"src="/resources/img/kakao_login_large_narrow.png" onclick="kakaoLogin();" style="height :49px;width:270px;"></a>
-			<input type="hidden" name="data[userId]" id="userId" value=""/>
-			<input type="hidden" name="data[userEmail]" id="userEmail" value=""/>
+			
 			</form>
 			
 			<p class="message">회원가입 되어있지 않으신가요? <a href="member/join-form">회원가입하기</a></p>
@@ -176,13 +176,46 @@ body {
 <script type="text/javascript" src="/resources/js/member/kakaoLogin.js"></script>
 <script type="text/javascript">
 
+function SocialLogin() {
+    Kakao.init('0c512e152e989192c220235a73035b4b');
+    Kakao.isInitialized();
+    console.log(Kakao.isInitialized());
+    Kakao.Auth.login({
+      success: function (authObj) {
+        console.log(authObj);
+        fetch('login-form', {
+          method: 'GET',
+          headers: {
+            Authorization: authObj.access_token,
+          },
+        })
+          .then(res => res.json())
+          .then(res => {
+            localStorage.setItem('access_token', res.access_token);
+            if (res.access_token) {
+              alert('로그인 성공!');
+              history.push('/');
+            } else {
+              alert('다시 확인해주세요');
+            }
+          });
+       },
+        fail: function (err) {
+        console.log('에러', err);
+        alert('로그인실패!');
+         },
+       });
+    }
 
-Kakao.init('0c512e152e989192c220235a73035b4b');
-Kakao.isInitialized();
-var userData = '';
-var jsonData = '';
+
+
+
 
 function kakaoLogin() {
+	Kakao.init('0c512e152e989192c220235a73035b4b');
+	Kakao.isInitialized();
+	var userData = '';
+	var jsonData = '';
     Kakao.Auth.login({
       success: function (response) {
         
@@ -234,8 +267,14 @@ function kakaoLogin() {
         	  console.log("kakao_account.email =====>"+userData.kakao_account.email);
         	  console.log("kakao_account.birthday =====>"+userData.kakao_account.birthday);
         	  console.log("kakao_account.gender =====>"+userData.kakao_account.gender);  */
+        	  sessionStorage.setItem("userId", userId);
+        	  sessionStorage.setItem("userNickName", userNickName);
+        	  sessionStorage.setItem("userEmail", userEmail);
         	  
-        	  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName;
+        	  var kakaoSession = sessionStorage.getItem(userId, userNickName, userEmail);
+        	  
+			  //document.querySelector("#result").innerHTML = kakaoSession;
+			  location.href = 'http://localhost:9090/mainPage/mainPage?userEmail='+userEmail+'&name='+userNickName;
         	  
         	  
           },
@@ -257,6 +296,19 @@ function kakaoLogin() {
 	
 
 }
+
+//다른사람꺼 불러옴
+
+
+
+
+
+
+
+
+
+
+
 
   
 //kakao logout!
