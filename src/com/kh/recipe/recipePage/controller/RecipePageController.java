@@ -70,7 +70,7 @@ public class RecipePageController extends HttpServlet {
 			return;
 		}
 		
-		
+		 
 	}
 
 	private void recipePageToScrape(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
