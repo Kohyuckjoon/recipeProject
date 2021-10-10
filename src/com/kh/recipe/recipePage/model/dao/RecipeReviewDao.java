@@ -21,7 +21,7 @@ public class RecipeReviewDao {
 		
 		List<Review> comments = new ArrayList<Review>();
 		
-		String query = "select review_no, rcp_seq, user_id, review_contents, review_date from review where rcp_seq = ?";
+		String query = "select review_no, rcp_seq, user_id, review_contents, review_date from review where rcp_seq = ? order by review_no desc";
 		ResultSet rset = null;
 		PreparedStatement pstm = null;
 		
