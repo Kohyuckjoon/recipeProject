@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.kh.recipe.common.code.ErrorCode;
 import com.kh.recipe.common.db.JDBCTemplate;
+import com.kh.recipe.common.exception.DataAccessException;
 import com.kh.recipe.common.exception.HandlableException;
 import com.kh.recipe.mainPage.model.dto.Recipe;
 import com.kh.recipe.recipePage.model.dto.Review;
@@ -41,8 +42,7 @@ public class RecipeReviewDao {
 			}
 
 		}catch (Exception e) {
-			e.printStackTrace();
-			/* throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); */
+			throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR);
 		}finally {
 			template.close(rset,pstm);
 		}
@@ -63,8 +63,7 @@ public class RecipeReviewDao {
 			pstm.executeUpdate();
 
 		} catch (SQLException e) {
-			/* throw new DataAccessException(e); */
-			e.printStackTrace();
+			throw new DataAccessException(e);
 		} finally {
 			template.close(pstm);
 		}

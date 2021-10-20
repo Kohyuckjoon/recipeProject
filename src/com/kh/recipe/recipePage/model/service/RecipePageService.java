@@ -60,8 +60,7 @@ public class RecipePageService {
 		try {
 			comments = cDao.selectCommentsByDetail(conn, no);
 		} catch (DataAccessException e) {
-			e.printStackTrace();
-			/* throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR); */
+			throw new HandlableException(ErrorCode.DATABASE_ACCESS_ERROR);
 		}finally {
 			template.close(conn);
 		}
