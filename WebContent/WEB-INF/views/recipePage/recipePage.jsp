@@ -80,7 +80,6 @@
 			fatArr.push('${recipe.infoFat}');
 			natriumArr.push('${recipe.infoNa}');
 			ingredientsArr.push('${recipe.rcpPartsDtls}');
-			// 줄바꿈문자 제거함
 			manual1.push('${recipe.manual1}');
 			manual2.push('${recipe.manual2}');
 			manual3.push('${recipe.manual3}');
@@ -101,7 +100,6 @@
 			manual18.push('${recipe.manual18}');
 			manual19.push('${recipe.manual19}');
 			manual20.push('${recipe.manual20}');
-			// 줄바꿈문자 제거함!
 		
 			manualImg1.push('${recipe.manualImg01}');
 			manualImg2.push('${recipe.manualImg02}');
